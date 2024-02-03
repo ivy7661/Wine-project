@@ -1,32 +1,32 @@
 <script>
-import axios from 'axios'
+import axios from "axios";
 export default {
   data() {
     return {
-      name: '',
-      email: '',
-      password: ''
-    }
+      name: "",
+      email: "",
+      password: ""
+    };
   },
   methods: {
     signup() {
       axios
-        .post('http://localhost:3000/users', {
+        .post("http://localhost:3000/users", {
           email: this.email,
           password: this.password,
           name: this.name
         })
         .then((res) => {
-          console.log(res)
-          alert('註冊成功')
+          console.log(res);
+          alert("註冊成功");
         })
         .catch((error) => {
-          console.log(error)
-          alert('註冊失敗')
-        })
+          console.log(error);
+          alert("註冊失敗");
+        });
     }
   }
-}
+};
 </script>
 
 <template>
