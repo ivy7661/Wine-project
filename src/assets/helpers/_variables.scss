@@ -309,6 +309,12 @@ $dark: $gray-900 !default;
 $bg-yellow: #f5ebd8;
 $bg-white: #fffbf5;
 $bg-gray: #e4e0de;
+$black: #4d403c;
+$white: #ffffff;
+$accent-yellow: #eeae32;
+$accent-brown: #e7d8ca;
+$accent-green: #d7e7c1;
+$accent-red: #f5d7d7;
 // scss-docs-end theme-color-variables
 
 // scss-docs-start theme-colors-map
@@ -549,6 +555,10 @@ $border-radius-lg: 0.5rem !default;
 $border-radius-xl: 1rem !default;
 $border-radius-xxl: 2rem !default;
 $border-radius-pill: 50rem !default;
+
+$radius-lg: 100px; // large radius,be used in button
+$radius-sm: 8px; // small radius,be used in icon backgound
+
 // scss-docs-end border-radius-variables
 // fusv-disable
 $border-radius-2xl: $border-radius-xxl !default; // Deprecated in v5.3.0
