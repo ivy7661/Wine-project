@@ -1,14 +1,34 @@
 /* eslint-env node */
-require('@rushstack/eslint-patch/modern-module-resolution')
-
 module.exports = {
   root: true,
-  'extends': [
+  env: {
+    browser: true,
+    es2021: true
+  },
+  extends: [
     'plugin:vue/vue3-essential',
     'eslint:recommended',
-    '@vue/eslint-config-prettier/skip-formatting'
+    'standard'
   ],
   parserOptions: {
-    ecmaVersion: 'latest'
+    ecmaVersion: 'latest',
+    sourceType: 'module'
+  },
+  settings: {
+    'import/resolver': {
+      alias: {
+        map: [
+          ['@', './src']
+        ],
+        extensions: ['.js', '.vue']
+      }
+    }
+  },
+  plugins: [
+    'vue'
+  ],
+  rules: {
+    semi: ['error', 'always'],
+    'space-before-function-paren': ['error', 'never']
   }
-}
+};

@@ -6,15 +6,12 @@
 
 <script>
 export default {
-  name: 'AdminProductsView',
+  name: 'UserProductsView',
   components: {},
   data() {
     return {
-      title: '後台 - 商品管理'
+      title: '產品列表'
     };
-  },
-  mounted() {
-
   }
 };
 </script>

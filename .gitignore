@@ -28,3 +28,9 @@ coverage
 *.sw?
 
 *.tsbuildinfo
+
+# 不需檢查的目錄
+build/*
+dist/*
+
+.env

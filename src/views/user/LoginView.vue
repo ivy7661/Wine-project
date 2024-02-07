@@ -6,11 +6,11 @@
 
 <script>
 export default {
-  name: 'AdminProductsView',
+  name: 'LoginView',
   components: {},
   data() {
     return {
-      title: '後台 - 商品管理'
+      title: '登入頁'
     };
   },
   mounted() {

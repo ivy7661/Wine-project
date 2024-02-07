@@ -6,15 +6,16 @@
 
 <script>
 export default {
-  name: 'AdminProductsView',
+  name: 'ProductDetail',
   components: {},
   data() {
     return {
-      title: '後台 - 商品管理'
+      title: '產品詳情'
     };
   },
   mounted() {
-
+    console.log('ProductDetail.vue mounted', this.$route.params.id);
+    this.title = '產品詳情 - ' + this.$route.params.id;
   }
 };
 </script>

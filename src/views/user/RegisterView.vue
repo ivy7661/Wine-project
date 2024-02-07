@@ -6,11 +6,11 @@
 
 <script>
 export default {
-  name: 'AdminProductsView',
+  name: 'RegisterView',
   components: {},
   data() {
     return {
-      title: '後台 - 商品管理'
+      title: '註冊頁'
     };
   },
   mounted() {

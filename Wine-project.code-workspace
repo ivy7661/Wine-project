@@ -1,0 +1,25 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"eslint.validate": [
+			"javascript",
+			"javascriptreact",
+			"typescript",
+			"typescriptreact",
+			"vue",
+		],
+		"files.eol": "\n",
+		"files.defaultLanguage": "markdown",
+		"files.autoSave": "off",
+		// 除存檔案時，自動插入新的一行
+		"files.insertFinalNewline": true,
+		// 除存檔案時，自動修正最後一行
+		"files.trimFinalNewlines": true,
+		// 除存檔案時，自動修正空格
+		"files.trimTrailingWhitespace": true,
+	}
+}
