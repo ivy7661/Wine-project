@@ -2,7 +2,7 @@
   <div class="col-md-6">
     <div class="card flex-md-row mb-4 shadow-sm h-md-250">
       <div class="card-body d-flex flex-column align-items-start">
-        <strong class="d-inline-block mb-2 text-primary">World</strong>
+        <strong class="d-inline-block mb-2 text-primary">熱賣商品</strong>
         <h3 class="mb-0">
           <a class="text-dark" href="#">Featured post</a>
         </h3>
@@ -20,7 +20,7 @@
   <div class="col-md-6">
     <div class="card flex-md-row mb-4 shadow-sm h-md-250">
       <div class="card-body d-flex flex-column align-items-start">
-        <strong class="d-inline-block mb-2 text-primary">World</strong>
+        <strong class="d-inline-block mb-2 text-primary">引導選酒區</strong>
         <h3 class="mb-0">
           <a class="text-dark" href="#">Featured post</a>
         </h3>

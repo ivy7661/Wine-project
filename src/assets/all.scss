@@ -1,7 +1,8 @@
-@import "bootstrap/scss/bootstrap.scss";
 @import "bootstrap/scss/functions";
+@import "./helpers/_variables"; // 自定義
 @import "bootstrap/scss/mixins";
-@import "./helpers/variables";
+@import "bootstrap/scss/bootstrap";
+
 @import "./helpers/base";
 
 @import "bootstrap-icons/font/bootstrap-icons.css";

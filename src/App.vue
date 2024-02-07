@@ -2,7 +2,15 @@
   <RouterView />
 </template>
 
-<script></script>
+<script>
+export default {
+  data() {
+    return {
+      title: 'APP'
+    };
+  }
+};
+</script>
 
 <style lang="scss">
 </style>
