@@ -1,12 +1,16 @@
-@import "bootstrap/scss/functions";
-@import "./helpers/_variables"; // 自定義
-@import "bootstrap/scss/mixins";
-@import "bootstrap/scss/bootstrap";
+@import 'bootstrap/scss/functions';
+@import './helpers/_variables'; // 自定義
+@import 'bootstrap/scss/mixins';
+@import 'bootstrap/scss/bootstrap';
 
-@import "./helpers/base";
+@import './helpers/base';
 
-@import "bootstrap-icons/font/bootstrap-icons.css";
-@import "vue-loading-overlay/dist/css/index.css";
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+@import 'vue-loading-overlay/dist/css/index.css';
+
+#app {
+  background-color: $bg-yellow;
+}
 
 header {
   nav {
