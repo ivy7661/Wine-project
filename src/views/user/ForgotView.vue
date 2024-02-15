@@ -1,9 +1,6 @@
 <template>
   <div class="row justify-content-center">
     <h2 class="mt-5 font-weight-normal fw-bold text-center">{{ title }}</h2>
-    <h2 class="mt-0 mb-5 font-weight-normal fw-bold text-center">
-      已經擁有 Vin Chateau 帳號嗎?<RouterLink to="/login" class="p-2">立即登入</RouterLink>
-    </h2>
 
     <div class="col-5 py-4">
       <form id="form" class="form-signin" v-on:submit.prevent="signIn">
@@ -12,33 +9,19 @@
             v-model="userData.email" />
           <label for="email">帳號</label>
         </div>
-        <div class="form-floating mb-3">
-          <input type="text" class="form-control" id="username" placeholder="name" required autofocus
-            v-model="userData.username" />
-          <label for="username">名稱</label>
-        </div>
+
         <div class="form-floating mb-3">
           <input type="text" class="form-control" id="phone" placeholder="0988888888" required autofocus
             v-model="userData.phone" />
           <label for="phone">電話</label>
         </div>
-        <div class="form-floating mb-3">
-          <input type="password" class="form-control" id="password" placeholder="Password" autocomplete="false" required
-            v-model="userData.password" />
-          <label for="password">密碼</label>
-        </div>
-        <div class="form-floating mb-3">
-          <input type="password" class="form-control" id="checkPwd" placeholder="Password" autocomplete="false" required
-            v-model="userData.checkPwd" />
-          <label for="checkPwd">確認密碼</label>
-        </div>
 
         <button class="btn btn-lg btn-primary w-100 mt-3" type="submit">
-          註冊
+          下一步
         </button>
 
         <div class="text-center mt-3">
-          <RouterLink to="/" class="p-2">回首頁</RouterLink>
+          還不是會員嗎?&nbsp;&nbsp;<RouterLink to="/register" class="p-2">立即註冊新帳號</RouterLink>
         </div>
       </form>
     </div>
@@ -47,11 +30,11 @@
 
 <script>
 export default {
-  name: 'RegisterView',
+  name: 'ForgotView',
   components: {},
   data() {
     return {
-      title: '立即註冊',
+      title: '忘記密碼?',
       userData: {
         email: '',
         username: '',
