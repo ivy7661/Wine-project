@@ -8,6 +8,10 @@
 @import 'bootstrap-icons/font/bootstrap-icons.css';
 @import 'vue-loading-overlay/dist/css/index.css';
 
+body {
+  background-color: $bg-yellow;
+}
+
 #app {
   background-color: $bg-yellow;
 }

@@ -75,7 +75,7 @@ export default {
   methods: {
     login() {
       console.log(this.userData);
-      const api = `${import.meta.env.VITE_APP_API_URL}/login`;
+      const api = `${import.meta.env.VITE_API_URL}/login`;
       console.log('api:', api);
 
       this.$http.post(api, this.userData)

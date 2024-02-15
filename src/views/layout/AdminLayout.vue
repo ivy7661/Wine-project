@@ -22,6 +22,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 export default {
   name: 'AdminLayout',
@@ -30,6 +32,54 @@ export default {
     return {
       title: '後台頁面'
     };
+  },
+  mounted() {
+    const adminTokenCookie = document.cookie.replace(
+      /(?:(?:^|.*;\s*)adminToken\s*=\s*([^;]*).*$)|^.*$/,
+      '$1'
+    );
+    const adminIdCookie = document.cookie.replace(
+      /(?:(?:^|.*;\s*)adminId\s*=\s*([^;]*).*$)|^.*$/,
+      '$1'
+    );
+
+    if (!adminTokenCookie || !adminIdCookie) {
+      this.logout();
+    } else {
+      axios.defaults.headers.common.Authorization = `Bearer ${adminTokenCookie}`;
+      this.adminCheck(adminIdCookie);
+    }
+  },
+  methods: {
+    // 確認是否為管理員
+    adminCheck(adminId) {
+      const api = `${import.meta.env.VITE_API_URL}/600/users/${adminId}`;
+
+      this.$http.get(api)
+        .then((res) => {
+          // console.log(res.data);
+          if (res.data.role !== 'admin') {
+            this.logout();
+          }
+        })
+        .catch((err) => {
+          console.log(err.response);
+          this.logout();
+        });
+    },
+    // 登出
+    logout() {
+      document.cookie = `siteToken=0; expires=${new Date('2000/1/1 12:00')}; path=/`;
+      document.cookie = `userId=0; expires=${new Date('2000/1/1 12:00')}; path=/`;
+
+      Swal.fire({
+        title: '無授權，請重新登入',
+        text: '',
+        icon: 'error'
+      });
+
+      this.$router.push('/adminLogin');
+    }
   }
 };
 </script>
