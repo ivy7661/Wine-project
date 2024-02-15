@@ -1,10 +1,25 @@
 {
   "users": [
     {
-      "email": "casper@gmail.com",
-      "password": "casper1234",
-      "name": "Casper",
+      "email": "ray102467@gmail.com",
+      "password": "$2a$10$tceobxNjPSB/9iEuUeT73e9FKdmDFoLNQ9yhaVPwjlaSxOFhgWgmS",
+      "name": "RayRay",
+      "role": "user",
       "id": 1
+    },
+    {
+      "email": "rayadmin@gmail.com",
+      "password": "$2a$10$dg4kN7OdB5ow3iKTQDGgeOUXkrN3hOcUFWS1nXdYFlMP13DTDzf8S",
+      "name": "RayAdmin",
+      "role": "admin",
+      "id": 2
+    },
+    {
+      "email": "ivyadmin@gmail.com",
+      "password": "$2a$10$X0FlThWrXzinz70IcYvoUOTDaC7wuRDb6gC5EQ5U4lQ/B50PCD0Se",
+      "name": "IvyAdmin",
+      "role": "admin",
+      "id": 3
     }
   ],
   "products": [
@@ -21,7 +36,11 @@
       "winery": "莎普蒂爾酒莊",
       "content": "此酒不經過乳酸發酵，未在木桶陳年，採收完的冬季過後即裝瓶。擁有晶透的淡黃酒澤，果香、英國山楂花與白色花香撲鼻而至，口感清新而均衡。適合搭配炸比目魚、烤杏仁片鱒魚、新鮮羊奶起司。",
       "description": "超過40個滿分 隆河超級名莊",
-      "feature": ["主要以Gamay葡萄品種", "適合用在慶祝活動", "試飲期一到兩年飲用"],
+      "feature": [
+        "主要以Gamay葡萄品種",
+        "適合用在慶祝活動",
+        "試飲期一到兩年飲用"
+      ],
       "imageUrl": "主圖網址",
       "imagesUrl": "",
       "is_enabled": 1,
@@ -29,7 +48,11 @@
       "num": 1,
       "origin_price": 1600,
       "price": 1200,
-      "flavor": ["莓果", "櫻桃", "巧克力"],
+      "flavor": [
+        "莓果",
+        "櫻桃",
+        "巧克力"
+      ],
       "taste": {
         "tannin": 3,
         "sweetness": 2,

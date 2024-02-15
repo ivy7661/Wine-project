@@ -21,5 +21,8 @@
 		"files.trimFinalNewlines": true,
 		// 除存檔案時，自動修正空格
 		"files.trimTrailingWhitespace": true,
+		"cSpell.words": [
+			"VITE"
+		],
 	}
 }
