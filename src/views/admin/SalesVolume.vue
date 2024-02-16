@@ -10,7 +10,7 @@ export default {
   components: {},
   data() {
     return {
-      title: '後台 - 銷售數據'
+      title: '銷售數據'
     };
   },
   mounted() {}

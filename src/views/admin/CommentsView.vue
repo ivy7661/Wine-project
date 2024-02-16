@@ -10,7 +10,7 @@ export default {
   components: {},
   data() {
     return {
-      title: '後台 - 評論管理'
+      title: '評論管理'
     };
   },
   mounted() {}

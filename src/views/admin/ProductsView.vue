@@ -2,8 +2,6 @@
   <div class="row">
     <h1 class="mt-3">{{ title }}</h1>
     <div class="text-end mt-4">
-      <!-- 'new' 會傳到 status -->
-      <!-- 跟新增和編輯共用同一個方法openModal() -->
       <button class="btn btn-primary" @click="openModal('new')">建立新的產品</button>
     </div>
     <table class="table mt-4">
