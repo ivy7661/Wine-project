@@ -72,7 +72,14 @@ export default {
       title: '商品管理',
       products: [],
       tempProduct: {
-        imagesUrl: []
+        image: '',
+        flavor: [],
+        taste: {
+          tannin: '',
+          body: '',
+          acidity: '',
+          sweet: ''
+        }
       },
       pages: {},
       modalProduct: null,
@@ -119,13 +126,20 @@ export default {
     openModal(status, item) {
       if (status === 'new') {
         this.tempProduct = {
-          imagesUrl: []
+          image: '',
+          flavor: [],
+          taste: {
+            tannin: '',
+            body: '',
+            acidity: '',
+            sweet: ''
+          }
         };
         this.isNew = true;
         this.$refs.pModal.openModal();
       } else if (status === 'edit') {
         this.tempProduct = { ...item };
-        this.tempProduct.imagesUrl = [];
+        // this.tempProduct.imagesUrl = [];
         this.isNew = false;
         this.$refs.pModal.openModal();
       } else if (status === 'delete') {

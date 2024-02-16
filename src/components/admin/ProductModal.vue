@@ -185,20 +185,20 @@
               </div>
 
               <div class="row mb-3">
-                <!-- <div class="col-md-3">
-                  <label for="category" class="form-label">單寧</label>
+                <div class="col-md-3">
+                  <label for="tannin" class="form-label">單寧</label>
                   <input
                     id="tannin"
-                    v-model="editProduct.taste.tannin"
+                    v-model="editProduct.taste['tannin']"
                     type="text"
                     class="form-control"
                     placeholder="請輸入單寧"
                   />
-                </div> -->
-                <!-- <div class="col-md-3">
-                  <label for="unit" class="form-label">酒體</label>
+                </div>
+                <div class="col-md-3">
+                  <label for="body" class="form-label">酒體</label>
                   <input
-                    id="unit"
+                    id="body"
                     v-model="editProduct.taste.body"
                     type="text"
                     class="form-control"
@@ -206,23 +206,23 @@
                   />
                 </div>
                 <div class="col-md-3">
-                  <label for="category" class="form-label">酸度</label>
+                  <label for="acidity" class="form-label">酸度</label>
                   <input
-                    id="category"
+                    id="acidity"
                     v-model="editProduct.taste.acidity"
                     class="form-control"
                     placeholder="請輸入酸度"
                   />
                 </div>
                 <div class="col-md-3">
-                  <label for="category" class="form-label">甜度</label>
+                  <label for="sweet" class="form-label">甜度</label>
                   <input
-                    id="category"
+                    id="sweet"
                     v-model="editProduct.taste.sweet"
                     class="form-control"
                     placeholder="請輸入甜度"
                   />
-                </div> -->
+                </div>
               </div>
 
               <div class="row">
@@ -275,7 +275,16 @@ export default {
   data() {
     return {
       modalProduct: null,
-      editProduct: {}
+      editProduct: {
+        image: '',
+        flavor: [],
+        taste: {
+          tannin: '',
+          body: '',
+          acidity: '',
+          sweet: ''
+        }
+      }
     };
   },
   methods: {
