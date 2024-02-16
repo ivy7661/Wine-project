@@ -1,0 +1,298 @@
+<template>
+  <div
+    id="productModal"
+    ref="productModal"
+    class="modal fade"
+    tabindex="-1"
+    aria-labelledby="productModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content border-0">
+        <div class="modal-header bg-dark text-white">
+          <h5 id="productModalLabel" class="modal-title">
+            <span v-if="isNew">新增產品</span>
+            <span v-else>編輯產品</span>
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="mb-3">
+                <label for="image" class="form-label">主要圖片</label>
+                <input
+                  id="image"
+                  v-model="editProduct.image"
+                  type="text"
+                  class="form-control mb-2"
+                  placeholder="請輸入圖片連結"
+                />
+                <img class="img-fluid" :src="editProduct.image" />
+              </div>
+              <!-- <h3 class="mb-3">多圖新增</h3>
+              <div v-if="Array.isArray(editProduct.imagesUrl)">
+                <div class="mb-1" v-for="(image, key) in editProduct.imagesUrl" :key="key">
+                  <div class="mb-3">
+                    <label :for="image + key" class="form-label">圖片網址</label>
+                    <input
+                      :id="image + key"
+                      v-model="editProduct.imagesUrl[key]"
+                      type="text"
+                      class="form-control"
+                      placeholder="請輸入圖片連結"
+                    />
+                  </div>
+                  <img class="img-fluid" :src="image" />
+                </div>
+
+                <div
+                  v-if="
+                    !editProduct.imagesUrl.length ||
+                    editProduct.imagesUrl[editProduct.imagesUrl.length - 1]
+                  "
+                >
+                  <button
+                    class="btn btn-outline-primary btn-sm d-block w-100"
+                    @click="editProduct.imagesUrl.push('')"
+                  >
+                    新增圖片
+                  </button>
+                </div>
+                <div v-else>
+                  <button
+                    class="btn btn-outline-danger btn-sm d-block w-100"
+                    @click="editProduct.imagesUrl.pop()"
+                  >
+                    刪除圖片
+                  </button>
+                </div>
+              </div>
+              <div v-else>
+                <button class="btn btn-outline-primary btn-sm d-block w-100" @click="createImages">
+                  新增圖片
+                </button>
+              </div> -->
+            </div>
+            <div class="col-sm-8">
+              <pre>
+                {{ editProduct }}
+              </pre>
+              <div class="mb-3">
+                <label for="title" class="form-label">產品名稱</label>
+                <input
+                  id="title"
+                  v-model="editProduct.chineseName"
+                  type="text"
+                  class="form-control"
+                  placeholder="請輸入產品名稱"
+                />
+              </div>
+
+              <div class="mb-3">
+                <label for="title" class="form-label">英文名稱</label>
+                <input
+                  id="engtitle"
+                  v-model="editProduct.englishName"
+                  type="text"
+                  class="form-control"
+                  placeholder="請輸入英文名稱"
+                />
+              </div>
+
+              <div class="row">
+                <div class="mb-3 col-md-4">
+                  <label for="category" class="form-label">分類</label>
+                  <input
+                    id="category"
+                    v-model="editProduct.wineStyle"
+                    type="text"
+                    class="form-control"
+                    placeholder="請輸入分類"
+                  />
+                </div>
+                <div class="mb-3 col-md-4">
+                  <label for="unit" class="form-label">產區</label>
+                  <input
+                    id="place"
+                    v-model="editProduct.place"
+                    type="text"
+                    class="form-control"
+                    placeholder="請輸入產區"
+                  />
+                </div>
+                <div class="mb-3 col-md-4">
+                  <label for="category" class="form-label">售價</label>
+                  <input
+                    id="price"
+                    v-model.number="editProduct.price"
+                    type="number"
+                    min="0"
+                    class="form-control"
+                    placeholder="請輸入售價"
+                  />
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="mb-3 col-md-6">
+                  <label for="village" class="form-label">酒莊</label>
+                  <input
+                    id="village"
+                    v-model="editProduct.village"
+                    type="text"
+                    class="form-control"
+                    placeholder="請輸入酒莊"
+                  />
+                </div>
+                <div class="mb-3 col-md-6">
+                  <label for="price" class="form-label">葡萄品種</label>
+                  <input
+                    id="price"
+                    v-model="editProduct.grape"
+                    class="form-control"
+                    placeholder="請輸入葡萄品種"
+                  />
+                </div>
+              </div>
+              <hr />
+              <div class="row">
+                <div class="mb-3 col-md-4">
+                  <label for="origin_price" class="form-label">風味</label>
+                  <input
+                    id="origin_price"
+                    v-model="editProduct.flavor"
+                    type="text"
+                    class="form-control"
+                    placeholder="請輸入風味"
+                  />
+                </div>
+                <div class="mb-3 col-md-8">
+                  <label for="price" class="form-label">搭餐</label>
+                  <input
+                    id="price"
+                    v-model="editProduct.food"
+                    type="text"
+                    class="form-control"
+                    placeholder="請輸入搭餐"
+                  />
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <!-- <div class="col-md-3">
+                  <label for="category" class="form-label">單寧</label>
+                  <input
+                    id="tannin"
+                    v-model="editProduct.taste.tannin"
+                    type="text"
+                    class="form-control"
+                    placeholder="請輸入單寧"
+                  />
+                </div> -->
+                <!-- <div class="col-md-3">
+                  <label for="unit" class="form-label">酒體</label>
+                  <input
+                    id="unit"
+                    v-model="editProduct.taste.body"
+                    type="text"
+                    class="form-control"
+                    placeholder="請輸入酒體"
+                  />
+                </div>
+                <div class="col-md-3">
+                  <label for="category" class="form-label">酸度</label>
+                  <input
+                    id="category"
+                    v-model="editProduct.taste.acidity"
+                    class="form-control"
+                    placeholder="請輸入酸度"
+                  />
+                </div>
+                <div class="col-md-3">
+                  <label for="category" class="form-label">甜度</label>
+                  <input
+                    id="category"
+                    v-model="editProduct.taste.sweet"
+                    class="form-control"
+                    placeholder="請輸入甜度"
+                  />
+                </div> -->
+              </div>
+
+              <div class="row">
+                <div class="col-md-3 mb-3">
+                  <div class="form-check">
+                    <input
+                      id="is_enabled"
+                      v-model="editProduct.is_hot"
+                      class="form-check-input"
+                      type="checkbox"
+                      :true-value="1"
+                      :false-value="0"
+                    />
+                    <label class="form-check-label" for="is_enabled">是否熱銷</label>
+                  </div>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                  <div class="form-check">
+                    <input
+                      id="is_enabled"
+                      v-model="editProduct.is_enabled"
+                      class="form-check-input"
+                      type="checkbox"
+                      :true-value="1"
+                      :false-value="0"
+                    />
+                    <label class="form-check-label" for="is_enabled">是否啟用</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+            取消
+          </button>
+          <button type="button" class="btn btn-primary" @click="updateProduct">確認</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import { Modal } from 'bootstrap';
+export default {
+  props: ['tempProduct', 'updateProduct', 'isNew'],
+  data() {
+    return {
+      modalProduct: null,
+      editProduct: {}
+    };
+  },
+  methods: {
+    openModal() {
+      this.modalProduct.show();
+    },
+    closeModal() {
+      this.modalProduct.hide();
+    }
+  },
+  mounted() {
+    this.modalProduct = new Modal(this.$refs.productModal);
+  },
+  watch: {
+    tempProduct() {
+      this.editProduct = this.tempProduct;
+    }
+  }
+};
+</script>
