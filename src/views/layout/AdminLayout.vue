@@ -69,8 +69,8 @@ export default {
     },
     // 登出
     logout() {
-      document.cookie = `siteToken=0; expires=${new Date('2000/1/1 12:00')}; path=/`;
-      document.cookie = `userId=0; expires=${new Date('2000/1/1 12:00')}; path=/`;
+      document.cookie = `adminToken=0; expires=${new Date('2000/1/1 12:00')}; path=/`;
+      document.cookie = `adminId=0; expires=${new Date('2000/1/1 12:00')}; path=/`;
 
       Swal.fire({
         title: '無授權，請重新登入',
