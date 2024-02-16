@@ -98,8 +98,8 @@ export default {
           this.products = res.data;
           // this.pages = response.data.pagination;
         })
-        .catch((err) => {
-          alert(err.response.data.message);
+        .catch(() => {
+          alert('取得產品資訊失敗');
         });
     },
 
