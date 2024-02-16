@@ -30,7 +30,11 @@
       "price": 1275,
       "image": "https://github.com/ivy7661/Wine-project/blob/dev/public/images/pour%20red%20wine.jpg?raw=true",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/42382",
-      "flavor": ["橘子", "青梨", "蘋果"],
+      "flavor": [
+        "橘子",
+        "青梨",
+        "蘋果"
+      ],
       "wineStyle": "白氣泡酒",
       "taste": {
         "tannin": 20,
@@ -39,14 +43,39 @@
         "sweet": 20
       },
       "place": "香檳",
-      "food": ["海鮮開胃菜", "奶酪開胃菜", "蔬菜開胃菜", "魚類和海鮮"],
+      "food": [
+        "海鮮開胃菜",
+        "奶酪開胃菜",
+        "蔬菜開胃菜",
+        "魚類和海鮮"
+      ],
       "year": "",
-      "grape": ["Chardonnay", "Pinot Meunier", "Pinot noir"],
+      "grape": [
+        "Chardonnay",
+        "Pinot Meunier",
+        "Pinot noir"
+      ],
       "village": "Champagne Castelnau",
       "is_enabled": 1,
       "is_hot": 0,
       "num": 1,
       "star": 4
+    },
+    {
+      "imagesUrl": [],
+      "chineseName": "100",
+      "englishName": "2",
+      "wineStyle": "2",
+      "place": "2",
+      "price": 2,
+      "village": "2",
+      "grape": "3",
+      "flavor": "2",
+      "food": "2",
+      "is_hot": 1,
+      "is_enabled": 1,
+      "image": "2",
+      "id": "Ayo0AYD"
     }
   ]
 }

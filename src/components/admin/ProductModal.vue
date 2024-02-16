@@ -95,7 +95,7 @@
               </div>
 
               <div class="mb-3">
-                <label for="title" class="form-label">英文名稱</label>
+                <label for="engtitle" class="form-label">英文名稱</label>
                 <input
                   id="engtitle"
                   v-model="editProduct.englishName"
@@ -117,7 +117,7 @@
                   />
                 </div>
                 <div class="mb-3 col-md-4">
-                  <label for="unit" class="form-label">產區</label>
+                  <label for="place" class="form-label">產區</label>
                   <input
                     id="place"
                     v-model="editProduct.place"
@@ -127,7 +127,7 @@
                   />
                 </div>
                 <div class="mb-3 col-md-4">
-                  <label for="category" class="form-label">售價</label>
+                  <label for="price" class="form-label">售價</label>
                   <input
                     id="price"
                     v-model.number="editProduct.price"
@@ -151,9 +151,9 @@
                   />
                 </div>
                 <div class="mb-3 col-md-6">
-                  <label for="price" class="form-label">葡萄品種</label>
+                  <label for="grape" class="form-label">葡萄品種</label>
                   <input
-                    id="price"
+                    id="grape"
                     v-model="editProduct.grape"
                     class="form-control"
                     placeholder="請輸入葡萄品種"
@@ -163,9 +163,9 @@
               <hr />
               <div class="row">
                 <div class="mb-3 col-md-4">
-                  <label for="origin_price" class="form-label">風味</label>
+                  <label for="flavor" class="form-label">風味</label>
                   <input
-                    id="origin_price"
+                    id="flavor"
                     v-model="editProduct.flavor"
                     type="text"
                     class="form-control"
@@ -173,9 +173,9 @@
                   />
                 </div>
                 <div class="mb-3 col-md-8">
-                  <label for="price" class="form-label">搭餐</label>
+                  <label for="food" class="form-label">搭餐</label>
                   <input
-                    id="price"
+                    id="food"
                     v-model="editProduct.food"
                     type="text"
                     class="form-control"

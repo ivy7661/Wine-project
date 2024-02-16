@@ -106,8 +106,7 @@ export default {
         url = `${VITE_API_URL}/products/${this.tempProduct.id}`;
         http = 'put';
       }
-      // , { data: this.tempProduct }
-      axios[http](url)
+      axios[http](url, this.tempProduct)
         .then((res) => {
           alert('新增/修改成功');
           this.getData();
@@ -117,41 +116,36 @@ export default {
           alert('新增/修改失敗');
         });
     },
-    // 從這個方法，跳到 ref="pModal"，再去呼叫子元件的openModal()
     openModal(status, item) {
       if (status === 'new') {
         this.tempProduct = {
           imagesUrl: []
         };
         this.isNew = true;
-        // this.modalProduct.show();
         this.$refs.pModal.openModal();
       } else if (status === 'edit') {
         this.tempProduct = { ...item };
         this.tempProduct.imagesUrl = [];
         this.isNew = false;
-        // this.modalProduct.show();
         this.$refs.pModal.openModal();
       } else if (status === 'delete') {
         this.tempProduct = { ...item };
-        // this.delModalProduct.show();
         this.$refs.delModal.openDelModal();
       }
     },
 
     delProduct() {
-      const url = `${this.site}/api/${this.apiPath}/admin/product/${this.tempProduct.id}`;
+      const url = `${VITE_API_URL}/products/${this.tempProduct.id}`;
 
       axios
         .delete(url)
-        .then((response) => {
-          alert(response.data.message);
-          // this.delModalProduct.hide();
+        .then((res) => {
+          alert('刪除成功');
           this.$refs.delModal.closeDelModal();
           this.getData();
         })
-        .catch((err) => {
-          alert(err.response.data.message);
+        .catch(() => {
+          alert('刪除失敗');
         });
     },
     createImages() {
