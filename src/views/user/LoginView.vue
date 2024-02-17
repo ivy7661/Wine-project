@@ -56,6 +56,9 @@
 <script>
 import Swal from 'sweetalert2';
 
+import { mapActions } from 'pinia';
+import userStore from '@/stores/user';
+
 import verticalLine from '@/assets/icons/svg/vertical_line.svg';
 
 export default {
@@ -73,16 +76,25 @@ export default {
     };
   },
   methods: {
+    ...mapActions(userStore, ['setUser', 'setUserCookie']),
     login() {
-      console.log(this.userData);
+      // console.log(this.userData);
       const api = `${import.meta.env.VITE_API_URL}/login`;
-      console.log('api:', api);
 
       this.$http.post(api, this.userData)
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           if (res.data.accessToken && res.data.user.role === 'user') {
-            this.$router.push('/');
+            this.setUserCookie(res.data.user.id, res.data.accessToken);
+            this.setUser(res.data.user);
+
+            this.$router.replace('/');
+          } else {
+            Swal.fire({
+              title: '登入失敗',
+              text: '',
+              icon: 'error'
+            });
           }
         })
         .catch((err) => {
@@ -92,11 +104,8 @@ export default {
             text: '',
             icon: 'error'
           });
-          this.isLoading = false;
         });
     }
-  },
-  mounted() {
   }
 };
 </script>
