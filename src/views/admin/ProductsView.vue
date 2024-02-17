@@ -111,6 +111,7 @@ export default {
         url = `${VITE_API_URL}/products/${this.tempProduct.id}`;
         http = 'put';
       }
+      // 深拷貝 tempProduct flavor改陣列
       axios[http](url, this.tempProduct)
         .then((res) => {
           alert('新增/修改成功');

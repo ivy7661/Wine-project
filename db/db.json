@@ -47,6 +47,42 @@
       "is_hot": 0,
       "num": 1,
       "star": 4
+    },
+    {
+      "image": "https://github.com/ivy7661/Wine-project/blob/dev/public/images/pour%20red%20wine.jpg?raw=true",
+      "flavor": "橘子,青梨,蘋果",
+      "taste": {
+        "tannin": "",
+        "body": "",
+        "acidity": "",
+        "sweet": ""
+      },
+      "chineseName": "1",
+      "id": "-M2lgaf"
+    }
+  ],
+  "orders": [
+    {
+      "id": 1,
+      "user": {
+        "userId": 1,
+        "name": "ray",
+        "phone": "0912345678",
+        "email": "ray102467@gmail.com",
+        "address": "台北市"
+      },
+      "cart": [
+        {
+          "product_id": "-L9tH8jxVb2Ka_DYPwng",
+          "qty": 1
+        },
+        {
+          "product_id": "-L9tH8jxVb2Ka_DYPwng",
+          "qty": 2
+        }
+      ],
+      "is_paid": 1,
+      "orderStatus": "訂單已成立"
     }
   ]
 }
