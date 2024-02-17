@@ -35,49 +35,6 @@
                 />
                 <img class="img-fluid" :src="editProduct.image" />
               </div>
-              <!-- <h3 class="mb-3">多圖新增</h3>
-              <div v-if="Array.isArray(editProduct.imagesUrl)">
-                <div class="mb-1" v-for="(image, key) in editProduct.imagesUrl" :key="key">
-                  <div class="mb-3">
-                    <label :for="image + key" class="form-label">圖片網址</label>
-                    <input
-                      :id="image + key"
-                      v-model="editProduct.imagesUrl[key]"
-                      type="text"
-                      class="form-control"
-                      placeholder="請輸入圖片連結"
-                    />
-                  </div>
-                  <img class="img-fluid" :src="image" />
-                </div>
-
-                <div
-                  v-if="
-                    !editProduct.imagesUrl.length ||
-                    editProduct.imagesUrl[editProduct.imagesUrl.length - 1]
-                  "
-                >
-                  <button
-                    class="btn btn-outline-primary btn-sm d-block w-100"
-                    @click="editProduct.imagesUrl.push('')"
-                  >
-                    新增圖片
-                  </button>
-                </div>
-                <div v-else>
-                  <button
-                    class="btn btn-outline-danger btn-sm d-block w-100"
-                    @click="editProduct.imagesUrl.pop()"
-                  >
-                    刪除圖片
-                  </button>
-                </div>
-              </div>
-              <div v-else>
-                <button class="btn btn-outline-primary btn-sm d-block w-100" @click="createImages">
-                  新增圖片
-                </button>
-              </div> -->
             </div>
             <div class="col-sm-8">
               <pre>
