@@ -1,5 +1,5 @@
 <template>
-  <HeaderComponent :userId="user?.id" />
+  <HeaderComponent :userId="getUser?.id" />
 
   <div class="container">
     <RouterView />
@@ -65,7 +65,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(userStore, ['user', 'getUserCooke'])
+    ...mapState(userStore, ['getUser', 'getUserCooke'])
   }
 };
 </script>

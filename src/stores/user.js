@@ -7,6 +7,9 @@ export default defineStore('userStore', {
     user: null
   }),
   getters: {
+    getUser: ({ user }) => {
+      return user;
+    },
     getUserCooke: () => {
       const userToken = document.cookie.replace(
         /(?:(?:^|.*;\s*)userToken\s*=\s*([^;]*).*$)|^.*$/,
