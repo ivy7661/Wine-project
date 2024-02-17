@@ -15,12 +15,25 @@
 		"files.eol": "\n",
 		"files.defaultLanguage": "markdown",
 		"files.autoSave": "off",
+		// prettier configuration
+		"prettier.singleQuote": true,
+		"prettier.semi": true,
+		"prettier.tabWidth": 2,
+		// 字與括號保有空格
+		"prettier.bracketSpacing": true,
+		// 盡可能不加逗號
+		"prettier.trailingComma": "none",
+		"editor.tabSize": 2,
 		// 除存檔案時，自動插入新的一行
 		"files.insertFinalNewline": true,
 		// 除存檔案時，自動修正最後一行
 		"files.trimFinalNewlines": true,
 		// 除存檔案時，自動修正空格
 		"files.trimTrailingWhitespace": true,
+		"[json]": {
+			"editor.formatOnSave": true,
+			"editor.defaultFormatter": "esbenp.prettier-vscode"
+		},
 		"cSpell.words": [
 			"VITE"
 		],
