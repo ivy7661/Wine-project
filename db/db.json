@@ -26,7 +26,7 @@
     {
       "id": "1",
       "chineseName": "開心妞香檳.特級陳釀不甜香檳",
-      "engishName": "Chanpagne Castelnau,Brut Reserve NV",
+      "englishName": "Chanpagne Castelnau,Brut Reserve NV",
       "price": 1275,
       "image": "https://github.com/ivy7661/Wine-project/blob/dev/public/images/pour%20red%20wine.jpg?raw=true",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/42382",
@@ -46,8 +46,7 @@
       "is_enabled": 1,
       "is_hot": 0,
       "num": 1,
-      "star": 4,
-      "englishName": "Chanpagne Castelnau,Brut Reserve NV"
+      "star": 4
     }
   ]
 }
