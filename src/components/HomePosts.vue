@@ -12,12 +12,9 @@
 export default {
   name: 'HomePosts',
   data() {
-    return {
-
-    };
+    return {};
   }
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
