@@ -4,16 +4,18 @@
     <h2 class="mt-0 mb-5 font-weight-normal fw-bold text-center">若要開始購物，請先登入</h2>
 
     <div class="col-5 py-4">
-      <form id="form" class="form-signin" v-on:submit.prevent="login">
+      <VeeForm ref="form-login" class="form-signin" v-slot="{ errors }" @submit="login">
         <div class="form-floating mb-3">
-          <input type="email" class="form-control" id="email" placeholder="name@example.com" required autofocus
-            v-model="userData.email" />
+          <VeeField id="email" type="email" name="帳號" class="form-control" :class="{ 'is-invalid': errors['帳號'] }"
+            placeholder="請輸入 Email" rules="email|required" autofocus v-model="userData.email" />
           <label for="email">帳號</label>
+          <ErrorMessage name="帳號" class="invalid-feedback"></ErrorMessage>
         </div>
         <div class="form-floating">
-          <input type="password" class="form-control" id="password" placeholder="Password" autocomplete="false" required
-            v-model="userData.password" />
+          <VeeField id="password" name="密碼" type="password" class="form-control" :class="{ 'is-invalid': errors['密碼'] }"
+            placeholder="請輸入密碼" autocomplete="false" :rules="isPasswordRule" v-model="userData.password" />
           <label for="password">密碼</label>
+          <ErrorMessage name="密碼" class="invalid-feedback"></ErrorMessage>
         </div>
 
         <button class="btn btn-lg btn-primary w-100 mt-3" type="submit">
@@ -21,8 +23,8 @@
         </button>
 
         <div class="checkbox mb-3">
-          <label>
-            <input type="checkbox" value="remember-me" /> 記住我
+          <label for="isRemember">
+            <input id="isRemember" type="checkbox" value="false" v-model="isRemember" /> 記住我
           </label>
 
           <!-- 忘記密碼 -->
@@ -32,7 +34,7 @@
         <div class="text-center">
           還不是會員嗎?&nbsp;&nbsp;<RouterLink to="/register" class="p-2">立即註冊新帳號</RouterLink>
         </div>
-      </form>
+      </VeeForm>
     </div>
 
     <div class="col-2 text-center">
@@ -56,6 +58,10 @@
 <script>
 import Swal from 'sweetalert2';
 
+import { mapActions } from 'pinia';
+import userStore from '@/stores/user';
+
+import { userPassword } from '@/utils/regex';
 import verticalLine from '@/assets/icons/svg/vertical_line.svg';
 
 export default {
@@ -66,6 +72,7 @@ export default {
       verticalLine,
       title: '登入頁',
       isLoading: false,
+      isRemember: false,
       userData: {
         email: '',
         password: ''
@@ -73,16 +80,26 @@ export default {
     };
   },
   methods: {
+    ...mapActions(userStore, ['setUser', 'setUserCookie']),
     login() {
-      console.log(this.userData);
+      // console.log(this.userData, this.isRemember);
+
       const api = `${import.meta.env.VITE_API_URL}/login`;
-      console.log('api:', api);
 
       this.$http.post(api, this.userData)
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           if (res.data.accessToken && res.data.user.role === 'user') {
-            this.$router.push('/');
+            this.setUserCookie(res.data.user.id, res.data.accessToken);
+            this.setUser(res.data.user);
+
+            this.$router.replace('/');
+          } else {
+            Swal.fire({
+              title: '登入失敗',
+              text: '',
+              icon: 'error'
+            });
           }
         })
         .catch((err) => {
@@ -92,11 +109,11 @@ export default {
             text: '',
             icon: 'error'
           });
-          this.isLoading = false;
         });
+    },
+    isPasswordRule(value) {
+      return userPassword.test(value) ? true : '密碼長度為 6 ~ 12 碼，需包含英文及數字';
     }
-  },
-  mounted() {
   }
 };
 </script>
