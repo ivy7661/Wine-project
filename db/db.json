@@ -34,7 +34,7 @@
            "蔬菜開胃菜",
            "魚類和海鮮"
         ],
-        "year": "",
+   
         "grape": [
            "Chardonnay",
            "Pinot Meunier",
@@ -72,7 +72,7 @@
         "food": [
            "海鮮開胃菜"
         ],
-        "year": "2020",
+   
         "grape": [
            "Bordeaux Blend"
         ],
@@ -524,7 +524,7 @@
          "food": [
            "炸物開胃菜"
         ],
-        "year": "",
+   
         "Alcohol":"" ,
         "grape": [
            "Chardonnay",
@@ -599,7 +599,7 @@
            "焦糖和糖漬甜點",
            "蛋糕和點心"
         ],
-        "year": "",
+   
         "Alcohol":"" ,
         "grape": [
            "Chardonnay",
@@ -641,7 +641,7 @@
            "焦糖和糖漬甜點",
            "蛋糕和點心"
         ],
-        "year": "",
+   
         "grape": [
            ""
         ],
@@ -749,7 +749,7 @@
            "奶酪開胃菜",
            "蔬菜開胃菜"
         ],
-        "year": "",
+   
         "grape": [
            "Pinot Noir",
            "Chardonnay"
@@ -786,7 +786,7 @@
          "food": [
            "魚類和海鮮"
         ],
-        "year": "",
+   
         "grape": [
            "Champagne Blend"
         ],
@@ -1272,7 +1272,7 @@
            "奶酪開胃菜",
            "蔬菜開胃菜"
         ],
-        "year": "",
+   
         "grape": [
            "Pinot Noir"
         ],
@@ -1744,7 +1744,7 @@
         "food": [
            "魚類和海鮮"
         ],
-        "year": "",
+   
         "grape": [
            "Chenin Blanc"
         ],
@@ -1784,7 +1784,7 @@
            "蔬菜開胃菜",
            "素食菜肴"
         ],
-        "year": "",
+   
         "grape": [
            "Cabernet Franc",
            "Grolleau"
