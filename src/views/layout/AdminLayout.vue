@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+// import axios from 'axios';
 import Swal from 'sweetalert2';
 import headerLine from '@/assets/icons/svg/header_line.svg';
 
@@ -41,21 +41,20 @@ export default {
     };
   },
   mounted() {
-    const adminTokenCookie = document.cookie.replace(
-      /(?:(?:^|.*;\s*)adminToken\s*=\s*([^;]*).*$)|^.*$/,
-      '$1'
-    );
-    const adminIdCookie = document.cookie.replace(
-      /(?:(?:^|.*;\s*)adminId\s*=\s*([^;]*).*$)|^.*$/,
-      '$1'
-    );
-
-    if (!adminTokenCookie || !adminIdCookie) {
-      this.logout();
-    } else {
-      axios.defaults.headers.common.Authorization = `Bearer ${adminTokenCookie}`;
-      this.adminCheck(adminIdCookie);
-    }
+    // const adminTokenCookie = document.cookie.replace(
+    //   /(?:(?:^|.*;\s*)adminToken\s*=\s*([^;]*).*$)|^.*$/,
+    //   '$1'
+    // );
+    // const adminIdCookie = document.cookie.replace(
+    //   /(?:(?:^|.*;\s*)adminId\s*=\s*([^;]*).*$)|^.*$/,
+    //   '$1'
+    // );
+    // if (!adminTokenCookie || !adminIdCookie) {
+    //   this.logout();
+    // } else {
+    //   axios.defaults.headers.common.Authorization = `Bearer ${adminTokenCookie}`;
+    //   this.adminCheck(adminIdCookie);
+    // }
   },
   methods: {
     // 確認是否為管理員

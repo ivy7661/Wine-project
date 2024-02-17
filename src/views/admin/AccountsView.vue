@@ -27,18 +27,18 @@
     </table>
   </div>
   <!-- 刪除帳戶警示 Modal -->
-  <Del-Account :temp-user="tempUser" :del-user="delUser" ref="delModal"></Del-Account>
+  <Del-Account-Modal :temp-user="tempUser" :del-user="delUser" ref="delModal"></Del-Account-Modal>
 </template>
 
 <script>
 import axios from 'axios';
-import DelAccount from '../../components/admin/DelAccount.vue';
+import DelAccountModal from '../../components/admin/DelAccountModal.vue';
 const { VITE_API_URL } = import.meta.env;
 
 export default {
   name: 'AdminAccountsView',
   components: {
-    DelAccount
+    DelAccountModal
   },
   data() {
     return {
