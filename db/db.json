@@ -25,41 +25,41 @@
   "products": [
     {
       "id": "1",
-      "title": "莎普蒂爾酒莊．「貝拉芙」隆河白酒",
-      "title_en": "Chateau de Beaulieu Cotes du Rhone Blanc",
-      "subtitle": "「貝拉芙」隆河白酒",
-      "unit": "瓶",
-      "type": "葡萄酒",
-      "category": "紅酒",
-      "nation": "法國",
-      "region": "Bordeaux 波爾多",
-      "winery": "莎普蒂爾酒莊",
-      "content": "此酒不經過乳酸發酵，未在木桶陳年，採收完的冬季過後即裝瓶。擁有晶透的淡黃酒澤，果香、英國山楂花與白色花香撲鼻而至，口感清新而均衡。適合搭配炸比目魚、烤杏仁片鱒魚、新鮮羊奶起司。",
-      "description": "超過40個滿分 隆河超級名莊",
-      "feature": [
-        "主要以Gamay葡萄品種",
-        "適合用在慶祝活動",
-        "試飲期一到兩年飲用"
-      ],
-      "imageUrl": "主圖網址",
-      "imagesUrl": "",
-      "is_enabled": 1,
-      "is_hot": 1,
-      "num": 1,
-      "origin_price": 1600,
-      "price": 1200,
+      "chineseName": "開心妞香檳.特級陳釀不甜香檳",
+      "englishName": "Chanpagne Castelnau,Brut Reserve NV",
+      "price": 1275,
+      "image": "https://github.com/ivy7661/Wine-project/blob/dev/public/images/pour%20red%20wine.jpg?raw=true",
+      "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/42382",
       "flavor": [
-        "莓果",
-        "櫻桃",
-        "巧克力"
+        "橘子",
+        "青梨",
+        "蘋果"
       ],
+      "wineStyle": "白氣泡酒",
       "taste": {
-        "tannin": 3,
-        "sweetness": 2,
-        "acidity": 1,
-        "body": 5
+        "tannin": "20%",
+        "body": "60%",
+        "acidity": "80%",
+        "sweet": "20%"
       },
-      "rate": 5
+      "place": "香檳",
+      "food": [
+        "海鮮開胃菜",
+        "奶酪開胃菜",
+        "蔬菜開胃菜",
+        "魚類和海鮮"
+      ],
+      "year": "",
+      "grape": [
+        "Chardonnay",
+        "Pinot Meunier",
+        "Pinot noir"
+      ],
+      "village": "Champagne Castelnau",
+      "is_enabled": 1,
+      "is_hot": 0,
+      "num": 1,
+      "star": 4
     }
   ]
 }
