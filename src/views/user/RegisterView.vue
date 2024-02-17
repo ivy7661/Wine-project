@@ -6,31 +6,38 @@
     </h2>
 
     <div class="col-5 py-4">
-      <form id="form" class="form-signin" v-on:submit.prevent="signIn">
+      <VeeForm ref="register-form" class="form-signin" v-slot="{ errors }" @submit="register">
+        <!-- <code> {{ errors }} </code> -->
         <div class="form-floating mb-3">
-          <input type="email" class="form-control" id="email" placeholder="name@example.com" required autofocus
-            v-model="userData.email" />
+          <VeeField id="email" name="帳號" type="email" class="form-control" :class="{ 'is-invalid': errors['帳號'] }"
+            placeholder="請輸入 Email" rules="email|required" v-model="form.user.email" autofocus />
           <label for="email">帳號</label>
+          <ErrorMessage name="帳號" class="invalid-feedback"></ErrorMessage>
         </div>
         <div class="form-floating mb-3">
-          <input type="text" class="form-control" id="username" placeholder="name" required autofocus
-            v-model="userData.username" />
+          <VeeField id="username" name="名稱" type="text" class="form-control" :class="{ 'is-invalid': errors['名稱'] }"
+            placeholder="請輸入名稱" rules="required|min:2|max:10" v-model="form.user.username" />
           <label for="username">名稱</label>
+          <ErrorMessage name="名稱" class="invalid-feedback"></ErrorMessage>
         </div>
         <div class="form-floating mb-3">
-          <input type="text" class="form-control" id="phone" placeholder="0988888888" required autofocus
-            v-model="userData.phone" />
+          <VeeField id="phone" name="電話" type="text" class="form-control" :class="{ 'is-invalid': errors['電話'] }"
+            placeholder="請輸入電話" :rules="isPhoneRule" v-model="form.user.phone" />
           <label for="phone">電話</label>
+          <ErrorMessage name="電話" class="invalid-feedback"></ErrorMessage>
         </div>
         <div class="form-floating mb-3">
-          <input type="password" class="form-control" id="password" placeholder="Password" autocomplete="false" required
-            v-model="userData.password" />
+          <VeeField id="password" name="密碼" type="password" class="form-control" :class="{ 'is-invalid': errors['密碼'] }"
+            placeholder="請輸入密碼" autocomplete="false" :rules="isPasswordRule" v-model="form.user.password" />
           <label for="password">密碼</label>
+          <ErrorMessage name="密碼" class="invalid-feedback"></ErrorMessage>
         </div>
         <div class="form-floating mb-3">
-          <input type="password" class="form-control" id="checkPwd" placeholder="Password" autocomplete="false" required
-            v-model="userData.checkPwd" />
+          <VeeField id="checkPwd" name="確認密碼" type="password" class="form-control"
+            :class="{ 'is-invalid': errors['確認密碼'] }" placeholder="Password" autocomplete="false" :rules="checkPWDRule"
+            v-model="form.user.checkPwd" />
           <label for="checkPwd">確認密碼</label>
+          <ErrorMessage name="確認密碼" class="invalid-feedback"></ErrorMessage>
         </div>
 
         <button class="btn btn-lg btn-primary w-100 mt-3" type="submit">
@@ -40,33 +47,83 @@
         <div class="text-center mt-3">
           <RouterLink to="/" class="p-2">回首頁</RouterLink>
         </div>
-      </form>
+      </VeeForm>
     </div>
   </div>
 </template>
 
 <script>
+import Swal from 'sweetalert2';
+
+import { mapActions } from 'pinia';
+import userStore from '@/stores/user';
+
+import { phoneNumber, userPassword } from '@/utils/regex';
+
 export default {
   name: 'RegisterView',
   components: {},
   data() {
     return {
       title: '立即註冊',
-      userData: {
-        email: '',
-        username: '',
-        phone: '',
-        password: '',
-        checkPwd: ''
+      form: {
+        user: {
+          email: '',
+          username: '',
+          phone: '',
+          password: '',
+          checkPwd: ''
+        },
+        message: ''
       }
     };
   },
-  mounted() {
-
-  },
   methods: {
-    signIn() {
-      console.log('signIn: ', this.userData);
+    ...mapActions(userStore, ['setUser', 'setUserCookie']),
+    register() {
+      const api = `${import.meta.env.VITE_API_URL}/register1`;
+      // console.log('register: ', this.form.user);
+
+      const postData = {
+        email: this.form.user.email,
+        username: this.form.user.username,
+        phone: this.form.user.phone,
+        password: this.form.user.password,
+        role: 'user'
+      };
+
+      this.$http.post(api, postData)
+        .then((res) => {
+          // console.log(res.data);
+
+          this.setUserCookie(res.data.user.id, res.data.accessToken);
+          this.setUser(res.data.user);
+
+          Swal.fire({
+            title: '註冊成功',
+            text: `歡迎 ${res.data.user.username} 加入 Vin Chateau 會員`,
+            icon: 'success'
+          });
+
+          this.$router.push('/');
+        })
+        .catch((err) => {
+          console.log(err);
+          Swal.fire({
+            title: err.response?.data || '註冊失敗',
+            text: '',
+            icon: 'error'
+          });
+        });
+    },
+    checkPWDRule(value) {
+      return value === this.form.user.password ? true : '密碼不一致';
+    },
+    isPasswordRule(value) {
+      return userPassword.test(value) ? true : '密碼長度為 6 ~ 12 碼，需包含英文及數字';
+    },
+    isPhoneRule(value) {
+      return phoneNumber.test(value) ? true : '請輸入正確的電話號碼';
     }
   }
 };
