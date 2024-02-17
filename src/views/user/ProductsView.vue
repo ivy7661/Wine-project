@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div>
     <div class="row justify-content-between mt-5">
       <div class="col-md-6">
         <h1>法國五大產區 - 波爾多(Bordeaux)</h1>
@@ -26,14 +26,14 @@
         </div>
       </div>
     </div>
-    <img src="../../../public/images/footerContainer.png" class="w-100 my-5">
+    <img src="../../../images/footerContainer.png" class="w-100 my-5">
     <div class="productList pb-5">
       <div class="row mb-3">
         <div class="col-md-4">
           <div class="card">
             <div class="row">
               <div class="col-4">
-                <img src="../../../public/images/pour red wine.jpg" class="card-img-top h-100" alt="">
+                <img src="../../../images/pour red wine.jpg" class="card-img-top h-100" alt="">
               </div>
               <div class="col-8">
                 <div class="card-body">
@@ -57,7 +57,7 @@
           <div class="card">
             <div class="row">
               <div class="col-4">
-                <img src="../../../public/images/pour red wine.jpg" class="card-img-top h-100" alt="">
+                <img src="../../../images/pour red wine.jpg" class="card-img-top h-100" alt="">
               </div>
               <div class="col-8">
                 <div class="card-body">
@@ -81,81 +81,7 @@
           <div class="card">
             <div class="row">
               <div class="col-4">
-                <img src="../../../public/images/pour red wine.jpg" class="card-img-top h-100" alt="">
-              </div>
-              <div class="col-8">
-                <div class="card-body">
-                  <div class="text-warning d-flex gap-1 mb-1">
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                  </div>
-                  <span class="badge bg-danger mb-2">店長推薦</span>
-                  <h5 class="card-title">法國 特級薄酒萊 摩貢1926荖藤紅酒</h5>
-                  <p class="card-text">$ 1150</p>
-                  <a href="#" class="btn btn-primary w-100">加入購物車</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row mb-3">
-        <div class="col-md-4">
-          <div class="card">
-            <div class="row">
-              <div class="col-4">
-                <img src="../../../public/images/pour red wine.jpg" class="card-img-top h-100" alt="">
-              </div>
-              <div class="col-8">
-                <div class="card-body">
-                  <div class="text-warning d-flex gap-1 mb-1">
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                  </div>
-                  <span class="badge bg-danger mb-2">店長推薦</span>
-                  <h5 class="card-title">法國 特級薄酒萊 摩貢1926荖藤紅酒</h5>
-                  <p class="card-text">$ 1150</p>
-                  <a href="#" class="btn btn-primary w-100">加入購物車</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card">
-            <div class="row">
-              <div class="col-4">
-                <img src="../../../public/images/pour red wine.jpg" class="card-img-top h-100" alt="">
-              </div>
-              <div class="col-8">
-                <div class="card-body">
-                  <div class="text-warning d-flex gap-1 mb-1">
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                  </div>
-                  <span class="badge bg-danger mb-2">店長推薦</span>
-                  <h5 class="card-title">法國 特級薄酒萊 摩貢1926荖藤紅酒</h5>
-                  <p class="card-text">$ 1150</p>
-                  <a href="#" class="btn btn-primary w-100">加入購物車</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card">
-            <div class="row">
-              <div class="col-4">
-                <img src="../../../public/images/pour red wine.jpg" class="card-img-top h-100" alt="">
+                <img src="../../../images/pour red wine.jpg" class="card-img-top h-100" alt="">
               </div>
               <div class="col-8">
                 <div class="card-body">
@@ -181,7 +107,7 @@
           <div class="card">
             <div class="row">
               <div class="col-4">
-                <img src="../../../public/images/pour red wine.jpg" class="card-img-top h-100" alt="">
+                <img src="../../../images/pour red wine.jpg" class="card-img-top h-100" alt="">
               </div>
               <div class="col-8">
                 <div class="card-body">
@@ -205,7 +131,7 @@
           <div class="card">
             <div class="row">
               <div class="col-4">
-                <img src="../../../public/images/pour red wine.jpg" class="card-img-top h-100" alt="">
+                <img src="../../../images/pour red wine.jpg" class="card-img-top h-100" alt="">
               </div>
               <div class="col-8">
                 <div class="card-body">
@@ -229,7 +155,81 @@
           <div class="card">
             <div class="row">
               <div class="col-4">
-                <img src="../../../public/images/pour red wine.jpg" class="card-img-top h-100" alt="">
+                <img src="../../../images/pour red wine.jpg" class="card-img-top h-100" alt="">
+              </div>
+              <div class="col-8">
+                <div class="card-body">
+                  <div class="text-warning d-flex gap-1 mb-1">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                  </div>
+                  <span class="badge bg-danger mb-2">店長推薦</span>
+                  <h5 class="card-title">法國 特級薄酒萊 摩貢1926荖藤紅酒</h5>
+                  <p class="card-text">$ 1150</p>
+                  <a href="#" class="btn btn-primary w-100">加入購物車</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <div class="card">
+            <div class="row">
+              <div class="col-4">
+                <img src="../../../images/pour red wine.jpg" class="card-img-top h-100" alt="">
+              </div>
+              <div class="col-8">
+                <div class="card-body">
+                  <div class="text-warning d-flex gap-1 mb-1">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                  </div>
+                  <span class="badge bg-danger mb-2">店長推薦</span>
+                  <h5 class="card-title">法國 特級薄酒萊 摩貢1926荖藤紅酒</h5>
+                  <p class="card-text">$ 1150</p>
+                  <a href="#" class="btn btn-primary w-100">加入購物車</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="row">
+              <div class="col-4">
+                <img src="../../../images/pour red wine.jpg" class="card-img-top h-100" alt="">
+              </div>
+              <div class="col-8">
+                <div class="card-body">
+                  <div class="text-warning d-flex gap-1 mb-1">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                  </div>
+                  <span class="badge bg-danger mb-2">店長推薦</span>
+                  <h5 class="card-title">法國 特級薄酒萊 摩貢1926荖藤紅酒</h5>
+                  <p class="card-text">$ 1150</p>
+                  <a href="#" class="btn btn-primary w-100">加入購物車</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="row">
+              <div class="col-4">
+                <img src="../../../images/pour red wine.jpg" class="card-img-top h-100" alt="">
               </div>
               <div class="col-8">
                 <div class="card-body">
@@ -283,19 +283,17 @@ export default {
   }
 }
 .filterBox {
-  margin-top: 10px; /* 调整与上方搜索区域的间距 */
+  margin-top: 10px;
 }
 
-/* 样式化下拉框 */
 .filterBox select {
   width: 100%;
   padding: 5px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  margin-bottom: 10px; /* 调整下拉框与按钮组的间距 */
+  margin-bottom: 10px;
 }
 
-/* 样式化按钮组 */
 .filterBtn button {
   padding: 5px 10px;
   margin-right: 5px;
@@ -304,7 +302,6 @@ export default {
   cursor: pointer;
 }
 
-/* 增加悬停效果 */
 .filterBtn button:hover {
   background-color: #f0f0f0;
 }

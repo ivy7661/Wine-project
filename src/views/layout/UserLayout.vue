@@ -4,7 +4,7 @@
   <div class="container">
     <RouterView />
   </div>
-
+  
   <FooterComponent />
 </template>
 
