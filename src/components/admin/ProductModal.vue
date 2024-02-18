@@ -182,8 +182,32 @@
                 </div>
               </div>
 
-              <div class="row">
-                <div class="col-md-3 mb-3">
+              <div class="row mb-3">
+                <div class="col-md-3">
+                  <label for="num" class="form-label">數量</label>
+                  <input
+                    id="num"
+                    v-model.number="editProduct.num"
+                    type="number"
+                    min="0"
+                    class="form-control"
+                    placeholder="請輸入數量"
+                  />
+                </div>
+                <div class="col-md-3">
+                  <label for="star" class="form-label">評分</label>
+                  <input
+                    id="star"
+                    v-model.number="editProduct.star"
+                    type="number"
+                    min="1"
+                    max="5"
+                    class="form-control"
+                    placeholder="請輸入評分"
+                  />
+                </div>
+
+                <div class="col-md-3 mt-5 mb-3">
                   <div class="form-check">
                     <input
                       id="is_enabled"
@@ -197,7 +221,7 @@
                   </div>
                 </div>
 
-                <div class="col-md-3 mb-3">
+                <div class="col-md-3 mt-5 mb-3">
                   <div class="form-check">
                     <input
                       id="is_enabled"
