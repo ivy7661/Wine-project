@@ -24,12 +24,9 @@ export default {
   name: 'HomeView',
   components: { HomeWineSelection, HomeNews, HomeWineRegion, HomePosts },
   data() {
-    return {
-
-    };
+    return {};
   }
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
