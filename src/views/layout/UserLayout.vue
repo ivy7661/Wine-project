@@ -1,10 +1,8 @@
 <template>
   <HeaderComponent :userId="getUser?.id" />
 
-  <div class="container">
     <RouterView />
-  </div>
-  
+
   <FooterComponent />
 </template>
 

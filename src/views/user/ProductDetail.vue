@@ -202,7 +202,8 @@
                       <i class="bi bi-star-fill fs-5"></i>
                     </div>
                     <h5 class="card-title mb-3">法國 特級薄酒萊 荖藤紅酒</h5>
-                    <p class="card-text">Lukka: 性價比不錯，但偏酸，不是很愛．
+                    <p class="card-text">
+                      Lukka: 性價比不錯，但偏酸，不是很愛．
                       之前在這網站有買過其他推薦的紅酒都很不錯．
                     </p>
                   </div>
@@ -213,10 +214,78 @@
         </div>
       </div>
     </div>
-    <div class="moreProduct bg-warning ">
-      <h4>您可能會喜歡的商品</h4>
-      <div class="row">
-        <div class="col">
+    <div class="moreProduct">
+      <div class="container">
+        <h3 class="text-white pb-5">您可能會喜歡的商品</h3>
+        <div class="row">
+          <div class="col-3">
+            <div class="card">
+              <img src="../../../images/wine hand style.png" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <h5 class="card-title">法國 勃根地夜聖喬治村</h5>
+                <div class="text-warning d-flex gap-1 mb-1">
+                  <i class="bi bi-star-fill fs-5"></i>
+                  <i class="bi bi-star-fill fs-5"></i>
+                  <i class="bi bi-star-fill fs-5"></i>
+                  <i class="bi bi-star-fill fs-5"></i>
+                  <i class="bi bi-star-fill fs-5"></i>
+                </div>
+                <p class="card-text">Some quick example text to build on the card</p>
+                <a href="#" class="btn btn-primary w-100">加入購物車</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="card">
+              <img src="../../../images/wine hand style.png" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <h5 class="card-title">法國 勃根地夜聖喬治村</h5>
+                <div class="text-warning d-flex gap-1 mb-1">
+                  <i class="bi bi-star-fill fs-5"></i>
+                  <i class="bi bi-star-fill fs-5"></i>
+                  <i class="bi bi-star-fill fs-5"></i>
+                  <i class="bi bi-star-fill fs-5"></i>
+                  <i class="bi bi-star-fill fs-5"></i>
+                </div>
+                <p class="card-text">Some quick example text to build on the card</p>
+                <a href="#" class="btn btn-primary w-100">加入購物車</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="card">
+              <img src="../../../images/wine hand style.png" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <h5 class="card-title">法國 勃根地夜聖喬治村</h5>
+                <div class="text-warning d-flex gap-1 mb-1">
+                  <i class="bi bi-star-fill fs-5"></i>
+                  <i class="bi bi-star-fill fs-5"></i>
+                  <i class="bi bi-star-fill fs-5"></i>
+                  <i class="bi bi-star-fill fs-5"></i>
+                  <i class="bi bi-star-fill fs-5"></i>
+                </div>
+                <p class="card-text">Some quick example text to build on the card</p>
+                <a href="#" class="btn btn-primary w-100">加入購物車</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="card">
+              <img src="../../../images/wine hand style.png" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <h5 class="card-title">法國 勃根地夜聖喬治村</h5>
+                <div class="text-warning d-flex gap-1 mb-1">
+                  <i class="bi bi-star-fill fs-5"></i>
+                  <i class="bi bi-star-fill fs-5"></i>
+                  <i class="bi bi-star-fill fs-5"></i>
+                  <i class="bi bi-star-fill fs-5"></i>
+                  <i class="bi bi-star-fill fs-5"></i>
+                </div>
+                <p class="card-text">Some quick example text to build on the card</p>
+                <a href="#" class="btn btn-primary w-100">加入購物車</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -271,5 +340,15 @@ li {
       font-size: 32px;
     }
   }
+}
+.moreProduct {
+  background-image: url('../../../images/bg1.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  padding-top: 48px;
+  padding-bottom: 48px;
+
 }
 </style>

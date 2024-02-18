@@ -1,14 +1,14 @@
 <template>
-  <div>
-    <div class="row justify-content-between mt-5">
+  <div class="container">
+    <div class="row justify-content-between pt-5">
       <div class="col-md-6">
-        <h1>法國五大產區 - 波爾多(Bordeaux)</h1>
+        <h2>法國五大產區 - 波爾多(Bordeaux)</h2>
         <p>Lorem ipsum dolor pariatut. Excepturi magni minima odio voluptas consequatur provident similique, doloribus dolore accusamus repudiandae, ea quas. Totam molestias perferendis, recusandae nemo ratione magnam officiis ea laudantium modi quo?法國酒界的典範，著名的赤霞珠、梅洛、品丽珠等葡萄種植於此。波爾多葡萄酒以豐富的果香和優雅的口感聞名，由於氣候、土壤的多樣性，這片土地上誕生了許多世界頂級的酒莊。</p>
       </div>
       <div class="col-md-3 d-flex flex-column justify-content-around">
         <div class="searchArea">
           <i class="bi bi-search"></i>
-          <input type="text" value="請輸入關鍵字">
+          <input type="text" placeholder="請輸入關鍵字">
         </div>
         <div class="filterBox">
           <select id="wineRegion" name="wineRegion">
