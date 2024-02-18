@@ -1917,33 +1917,6 @@
       "is_hot": 0,
       "num": 1,
       "star": 4
-    },
-    {
-      "image": "https://github.com/ivy7661/Wine-project/blob/dev/public/images/pour%20red%20wine.jpg?raw=true",
-      "flavor": [
-        "橘子",
-        "青梨"
-      ],
-      "taste": {
-        "tannin": "",
-        "body": "",
-        "acidity": "",
-        "sweet": ""
-      },
-      "chineseName": "8",
-      "food": [
-        "海鮮開胃菜",
-        "奶酪開胃菜",
-        "蔬菜開胃菜",
-        "魚類和海鮮"
-      ],
-      "grape": [
-        "Chardonnay",
-        "Pinot Meunier",
-        "Pinot noir"
-      ],
-      "id": "_AEZC0m",
-      "wineStyle": "8"
     }
   ],
   "orders": [

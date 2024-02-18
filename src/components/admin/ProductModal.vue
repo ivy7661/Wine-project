@@ -37,9 +37,6 @@
               </div>
             </div>
             <div class="col-sm-8">
-              <pre>
-                {{ editProduct }}
-              </pre>
               <div class="mb-3">
                 <label for="title" class="form-label">產品名稱</label>
                 <input
