@@ -113,7 +113,7 @@ export default {
         http = 'put';
       }
 
-      // 格式轉換
+      // 型別轉換
       this.newProduct = JSON.parse(JSON.stringify(this.tempProduct));
 
       if (typeof this.newProduct.flavor === 'string') {
