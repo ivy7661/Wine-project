@@ -51,10 +51,12 @@
                   </select>
                 </div>
 
-                <div class="col-md-2">
+                <div class="col-md-4">
                   <label class="form-check-label">帳款狀態</label>
-                  <div class="form-check">
-                    <label class="form-check-label" for="is_paid">已付款</label>
+                  <div class="form-check mt-2">
+                    <label class="form-check-label" for="is_paid" style="font-size: 16px"
+                      >已付款</label
+                    >
                     <input
                       id="is_paid"
                       v-model="editOrder.is_paid"
@@ -62,6 +64,7 @@
                       type="checkbox"
                       :true-value="1"
                       :false-value="0"
+                      style="height: 18px; width: 18px"
                     />
                   </div>
                 </div>

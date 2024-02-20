@@ -27,7 +27,6 @@
             <span v-else-if="order.orderStatus === '訂單已成立'">訂單已成立</span>
             <span v-else>配送中</span>
           </td>
-          <!-- <td>{{ order.orderStatus }}</td> -->
           <td>
             <button
               type="button"
@@ -50,9 +49,7 @@
       </tbody>
     </table>
   </div>
-  <!-- 編輯 -->
   <Order-Modal ref="orderModal" :temp-order="tempOrder" :update-order="updateOrder"></Order-Modal>
-  <!-- 刪除 -->
   <Del-Order-Modal
     ref="delOrderModal"
     :temp-order="tempOrder"
@@ -92,7 +89,6 @@ export default {
         .then((res) => {
           console.log(res.data);
           this.orders = res.data;
-          // this.pages = response.data.pagination;
         })
         .catch(() => {
           alert('取得產品資訊失敗');
