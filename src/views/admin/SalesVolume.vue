@@ -2,14 +2,15 @@
   <div class="row">
     <h1 class="mt-3">{{ title }}</h1>
     <section class="wrap">
-      <h2 class="section-title">全品項營收比重</h2>
-      <Pie-Chart></Pie-Chart>
+      <Pie-Chart :modified-Data="modifiedData"></Pie-Chart>
     </section>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
 import PieChart from '../../components/admin/PieChart.vue';
+const { VITE_API_URL } = import.meta.env;
 export default {
   name: 'AdminSalesVolume',
   components: {
@@ -17,11 +18,41 @@ export default {
   },
   data() {
     return {
-      title: '銷售數據'
+      title: '銷售數據',
+      orders: [],
+      extractedData: null,
+      modifiedData: null
     };
   },
-  mounted() {},
-  methods: {}
+  mounted() {
+    this.getOrders();
+  },
+  methods: {
+    getOrders() {
+      const url = `${VITE_API_URL}/orders`;
+      axios
+        .get(url)
+        .then((res) => {
+          this.orders = res.data;
+
+          // 提取所需的資料
+          this.extractedData = this.orders[0].cart.map((item) => ({
+            chineseName: item.chineseName,
+            qty: item.qty
+          }));
+
+          this.modifiedData = this.extractedData.map((item) => ({
+            name: item.chineseName,
+            value: item.qty
+          }));
+
+          console.log(this.modifiedData);
+        })
+        .catch(() => {
+          alert('取得訂單資訊失敗');
+        });
+    }
+  }
 };
 </script>
 
