@@ -6,3 +6,10 @@ export function addDays(date, days) {
   res.setDate(res.getDate() + days);
   return res;
 }
+
+/**
+ * 回傳一個隨機的訂單編號
+ */
+export function generateOrderId() {
+  return `${Math.floor(Math.random() * 36 ** 8).toString(36).toLowerCase()}-${Date.now().toString(36)}`;
+}
