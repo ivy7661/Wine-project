@@ -1,13 +1,49 @@
 <template>
   <div class="container">
-    <div class="bg-cart">
-      <h2 class="pt-5">購物車資訊</h2>
+    <div class="bg-checkout">
+      <h2 class="pt-5">填寫訂單資訊</h2>
     </div>
     <img src="../../../images/footerContainer.png" class="w-100 my-5" />
     <div class="row">
       <div class="col-8">
+        <form class="pb-4">
+          <h4>1. 收件者資訊</h4>
+          <div class="mb-3">
+            <label for="customerName" class="form-label">收件者姓名</label>
+            <input type="text" class="form-control" id="customerName" />
+          </div>
+          <div class="mb-3">
+            <label for="customerAddress" class="form-label">寄送地址</label>
+            <input type="text" class="form-control" id="customerAddress" />
+          </div>
+          <div class="mb-3">
+            <label for="customerTel" class="form-label">電話</label>
+            <input type="tel" class="form-control" id="customerTel" />
+          </div>
+          <div class="mb-4">
+            <label for="customerEmail" class="form-label">電子郵件</label>
+            <input type="email" class="form-control" id="customerEmail" />
+          </div>
+          <h4>2. 付款資訊</h4>
+          <div class="mb-3">
+            <label for="creditCard" class="form-label">卡號</label>
+            <input type="number" class="form-control" id="creditCard" />
+          </div>
+          <div class="mb-3">
+            <label for="cardName" class="form-label">持卡人姓名</label>
+            <input type="text" class="form-control" id="cardName" />
+          </div>
+          <div class="mb-3">
+            <label for="cardExpiration" class="form-label">有效日期 (MM/YY)</label>
+            <input type="text" class="form-control" id="cardExpiration" />
+          </div>
+          <div class="mb-3">
+            <label for="secureCode" class="form-label">安全碼</label>
+            <input type="number" class="form-control" id="customerEmail" />
+          </div>
+        </form>
         <!-- 購物車清單外框 -->
-        <div class="cartList d-flex flex-column border border-primary rounded">
+        <div class="cartList d-flex flex-column border border-secondary rounded">
           <div class="bg-secondary text-white mb-3 p-3 ps-4">訂購清單</div>
           <div class="p-3">
             <div class="card d-flex flex-row justify-content-center mb-2">
@@ -78,7 +114,7 @@
       <div class="col-4">
         <div class="totalPrice">
           <div class="card">
-            <div class="card-header bg-secondary text-white">購物車</div>
+            <div class="card-header bg-secondary text-white">您的購物車</div>
             <div class="card-body">
               <div class="d-flex justify-content-between">
                 <p class="card-text">商品小計</p>
@@ -92,9 +128,19 @@
             <div class="d-flex justify-content-center">
               <div class="bg-black text-center line" style="height: 1px"></div>
             </div>
-            <div class="card-body d-flex justify-content-between fw-bold">
-              <p class="card-text">總計</p>
-              <p class="card-text text-danger">NT$ 8500</p>
+            <div class="card-body d-flex flex-column justify-content-between">
+              <div class="d-flex justify-content-between fw-bold">
+                <p class="card-text">總計</p>
+                <p class="card-text text-danger">NT$ 8500</p>
+              </div>
+              <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" value="" id="eighteenPlusAgree" />
+                <label class="form-check-label" for="eighteenPlusAgree"> 我已年滿18歲 </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="privacyAgree" />
+                <label class="form-check-label" for="privacyAgree"> 我同意服務及隱私權條款 </label>
+              </div>
             </div>
             <a href="#" class="btn btn-primary py-3">前往結帳頁面</a>
           </div>
@@ -106,7 +152,7 @@
 
 <script>
 export default {
-  name: 'CartView',
+  name: 'CheckoutPage',
   components: {},
   data() {
     return {
@@ -118,7 +164,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.bg-cart {
+.bg-checkout {
   padding-top: 50px;
   padding-bottom: 50px;
 }
