@@ -46,9 +46,7 @@
       </tbody>
     </table>
   </div>
-  <!-- 詳細評論內容 Modal -->
   <Comment-Modal :temp-comment="tempComment" ref="commentModal"></Comment-Modal>
-  <!-- 刪除警示 -->
   <Del-Comment-Modal
     :temp-comment="tempComment"
     :del-comment="delComment"
