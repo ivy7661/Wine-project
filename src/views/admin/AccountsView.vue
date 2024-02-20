@@ -26,7 +26,6 @@
       </tbody>
     </table>
   </div>
-  <!-- 刪除帳戶警示 Modal -->
   <Del-Account-Modal :temp-user="tempUser" :del-user="delUser" ref="delModal"></Del-Account-Modal>
 </template>
 
