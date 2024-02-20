@@ -1,1 +1,0 @@
-import{_ as t,c as s,a as o,t as r,o as c}from"./index-TpOZCpU6.js";const a={name:"UserProductsView",components:{},data(){return{title:"產品列表"}}},n={class:"row"};function i(_,l,p,d,e,u){return c(),s("div",n,[o("h1",null,r(e.title),1)])}const m=t(a,[["render",i]]);export{m as default};

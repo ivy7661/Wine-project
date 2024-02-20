@@ -1,1 +1,0 @@
-import{_ as t,c as s,a as o,t as n,o as r}from"./index-TpOZCpU6.js";const a={name:"RegisterView",components:{},data(){return{title:"註冊頁"}},mounted(){}},c={class:"row"};function i(_,l,p,d,e,m){return r(),s("div",c,[o("h1",null,n(e.title),1)])}const f=t(a,[["render",i]]);export{f as default};

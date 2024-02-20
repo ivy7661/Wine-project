@@ -1,1 +1,0 @@
-import{_ as e,c as o,a as s,t as n,o as c}from"./index-TpOZCpU6.js";const r={name:"AdminProductsView",components:{},data(){return{title:"後台 - 商品管理"}},mounted(){}},a={class:"row"};function i(d,_,l,p,t,u){return c(),o("div",a,[s("h1",null,n(t.title),1)])}const f=e(r,[["render",i]]);export{f as default};
