@@ -1,0 +1,1 @@
+import{_ as n,c as o,a as t,t as s,o as a}from"./index-d3Str99p.js";const r={name:"AdminLogin",components:{},data(){return{title:"管理者登入頁"}},mounted(){}},c={class:"row"},i=t("a",{href:"/",class:"btn btn-primary"},"回到首頁",-1);function _(d,l,p,m,e,f){return a(),o("div",c,[t("h1",null,s(e.title),1),i])}const h=n(r,[["render",_]]);export{h as default};
