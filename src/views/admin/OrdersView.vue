@@ -5,7 +5,7 @@
       <thead>
         <tr>
           <th width="120">訂單編號</th>
-          <th width="120">會員ID</th>
+          <th width="120">會員編號</th>
           <th width="120">會員名稱</th>
           <th width="120">帳款狀態</th>
           <th width="150">訂單狀態</th>
@@ -91,7 +91,7 @@ export default {
           this.orders = res.data;
         })
         .catch(() => {
-          alert('取得產品資訊失敗');
+          alert('取得訂單資訊失敗');
         });
     },
     openModal(status, order) {

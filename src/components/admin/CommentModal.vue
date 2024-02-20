@@ -25,7 +25,7 @@
             <div>
               <div class="row">
                 <div class="mb-3 col-md-2">
-                  <label for="commentId" class="form-label">評論ID</label>
+                  <label for="commentId" class="form-label">評論編號</label>
                   <input
                     id="commentId"
                     v-model="editComment.id"
@@ -36,7 +36,7 @@
                 </div>
 
                 <div class="mb-3 col-md-2">
-                  <label for="userId" class="form-label">使用者ID</label>
+                  <label for="userId" class="form-label">會員編號</label>
                   <input
                     id="userId"
                     v-model="editComment.userId"
@@ -47,7 +47,7 @@
                 </div>
 
                 <div class="mb-3 col-md-2">
-                  <label for="productId" class="form-label">產品ID</label>
+                  <label for="productId" class="form-label">產品編號</label>
                   <input
                     id="productId"
                     v-model="editComment.productId"
