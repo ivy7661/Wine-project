@@ -1,1 +1,0 @@
-import{_ as e,c as o,a as s,t as a,o as n}from"./index-d3Str99p.js";const r={name:"CartView",components:{},data(){return{title:"購物車"}},mounted(){}},c={class:"row"};function i(_,l,p,d,t,m){return n(),o("div",c,[s("h1",null,a(t.title),1)])}const f=e(r,[["render",i]]);export{f as default};

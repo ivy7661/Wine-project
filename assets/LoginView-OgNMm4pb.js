@@ -1,1 +1,0 @@
-import{_ as t,c as o,a as n,t as s,o as a}from"./index-d3Str99p.js";const c={name:"LoginView",components:{},data(){return{title:"登入頁"}},mounted(){}},r={class:"row"};function i(_,l,p,d,e,m){return a(),o("div",r,[n("h1",null,s(e.title),1)])}const f=t(c,[["render",i]]);export{f as default};

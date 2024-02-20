@@ -1,0 +1,1 @@
+import{_ as t,c as s,a as o,t as a,o as n}from"./index-ZoMiIMOt.js";const c={name:"AdminSalesVolume",components:{},data(){return{title:"銷售數據"}},mounted(){}},r={class:"row"},l={class:"mt-3"};function _(i,m,d,p,e,u){return n(),s("div",r,[o("h1",l,a(e.title),1)])}const h=t(c,[["render",_]]);export{h as default};
