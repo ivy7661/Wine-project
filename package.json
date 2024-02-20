@@ -23,6 +23,7 @@
     "normalize.css": "^8.0.1",
     "pinia": "^2.1.7",
     "sweetalert2": "^11.10.5",
+    "swiper": "^11.0.6",
     "vee-validate": "^4.12.5",
     "vue": "^3.4.19",
     "vue-axios": "^3.5.2",

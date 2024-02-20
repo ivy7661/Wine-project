@@ -82,7 +82,8 @@ export default {
       pages: {},
       modalProduct: null,
       delModalProduct: null,
-      isNew: false
+      isNew: false,
+      newProduct: {}
     };
   },
   mounted() {
@@ -111,8 +112,21 @@ export default {
         url = `${VITE_API_URL}/products/${this.tempProduct.id}`;
         http = 'put';
       }
-      // 深拷貝 tempProduct flavor改陣列
-      axios[http](url, this.tempProduct)
+
+      // 型別轉換
+      this.newProduct = JSON.parse(JSON.stringify(this.tempProduct));
+
+      if (typeof this.newProduct.flavor === 'string') {
+        this.newProduct.flavor = this.newProduct.flavor.split(',');
+      }
+      if (typeof this.newProduct.food === 'string') {
+        this.newProduct.food = this.newProduct.food.split(',');
+      }
+      if (typeof this.newProduct.grape === 'string') {
+        this.newProduct.grape = this.newProduct.grape.split(',');
+      }
+
+      axios[http](url, this.newProduct)
         .then((res) => {
           alert('新增/修改成功');
           this.getData();
