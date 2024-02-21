@@ -9,8 +9,16 @@ export default defineStore('userStore', {
   getters: {
     getUser: ({ user }) => {
       return user;
+    }
+  },
+  actions: {
+    setUser(newUser) {
+      // console.log('newUser', newUser);
+      this.user = {
+        ...newUser
+      };
     },
-    getUserCooke: () => {
+    getUserCookie() {
       const userToken = document.cookie.replace(
         /(?:(?:^|.*;\s*)userToken\s*=\s*([^;]*).*$)|^.*$/,
         '$1'
@@ -23,14 +31,6 @@ export default defineStore('userStore', {
       return {
         userToken: userToken || null,
         userId: userId || null
-      };
-    }
-  },
-  actions: {
-    setUser(newUser) {
-      // console.log('newUser', newUser);
-      this.user = {
-        ...newUser
       };
     },
     setUserCookie(userId, token) {

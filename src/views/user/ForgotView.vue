@@ -1,66 +1,68 @@
 <template>
-  <div class="row justify-content-center">
-    <h2 class="mt-5 font-weight-normal fw-bold text-center">{{ title }}</h2>
+  <div class="container">
+    <div class="row justify-content-center">
+      <h2 class="mt-5 font-weight-normal fw-bold text-center">{{ title }}</h2>
 
-    <div class="col-5 py-4">
-      <swiper :autoHeight="true" :spaceBetween="20" :allowTouchMove="false" :allowSlidePrev="false" @swiper="onSwiper"
-        class="mySwiper">
-        <swiper-slide>
-          <h3 class="mt-3 mb-3 font-weight-normal fw-bold text-center">請輸入資料</h3>
-          <VeeForm ref="form-login" class="form-signin" v-slot="{ errors }" @submit="checkUserInfo">
-            <div class="form-floating mb-3">
-              <VeeField id="email" name="帳號" type="email" class="form-control" :class="{ 'is-invalid': errors['帳號'] }"
-                placeholder="請輸入 Email" rules="email|required" v-model="userData.email" />
-              <label for="email">帳號</label>
-              <ErrorMessage name="帳號" class="invalid-feedback"></ErrorMessage>
-            </div>
+      <div class="col-5 py-4">
+        <swiper :autoHeight="true" :spaceBetween="20" :allowTouchMove="false" :allowSlidePrev="false" @swiper="onSwiper"
+          class="mySwiper">
+          <swiper-slide>
+            <h3 class="mt-3 mb-3 font-weight-normal fw-bold text-center">請輸入資料</h3>
+            <VeeForm ref="form-login" class="form-signin" v-slot="{ errors }" @submit="checkUserInfo">
+              <div class="form-floating mb-3">
+                <VeeField id="email" name="帳號" type="email" class="form-control" :class="{ 'is-invalid': errors['帳號'] }"
+                  placeholder="請輸入 Email" rules="email|required" v-model="userData.email" />
+                <label for="email">帳號</label>
+                <ErrorMessage name="帳號" class="invalid-feedback"></ErrorMessage>
+              </div>
 
-            <div class="form-floating mb-3">
-              <VeeField id="phone" name="電話" type="text" class="form-control" :class="{ 'is-invalid': errors['電話'] }"
-                placeholder="請輸入電話" :rules="isPhoneRule" v-model="userData.phone" />
-              <label for="phone">電話</label>
-              <ErrorMessage name="電話" class="invalid-feedback"></ErrorMessage>
-            </div>
+              <div class="form-floating mb-3">
+                <VeeField id="phone" name="電話" type="text" class="form-control" :class="{ 'is-invalid': errors['電話'] }"
+                  placeholder="請輸入電話" :rules="isPhoneRule" v-model="userData.phone" />
+                <label for="phone">電話</label>
+                <ErrorMessage name="電話" class="invalid-feedback"></ErrorMessage>
+              </div>
 
-            <button class="btn btn-lg btn-primary w-100 mt-3" type="submit">
-              下一步
-            </button>
+              <button class="btn btn-lg btn-primary w-100 mt-3" type="submit">
+                下一步
+              </button>
 
-            <div class="text-center mt-3">
-              還不是會員嗎?&nbsp;&nbsp;<RouterLink to="/register" class="p-2">立即註冊新帳號</RouterLink>
-            </div>
-          </VeeForm>
-        </swiper-slide>
-        <swiper-slide>
-          <h3 class="mt-3 mb-3 font-weight-normal fw-bold text-center">請重新輸入密碼</h3>
-          <VeeForm ref="form-login" class="form-signin" v-slot="{ errors }" @submit="confirmResetUser">
-            <div class="form-floating mb-3">
-              <VeeField id="password" name="密碼" type="password" class="form-control"
-                :class="{ 'is-invalid': errors['密碼'] }" placeholder="請輸入密碼" autocomplete="false" :rules="isPasswordRule"
-                v-model="userData.password" />
-              <label for="password">密碼</label>
-              <ErrorMessage name="密碼" class="invalid-feedback"></ErrorMessage>
-            </div>
+              <div class="text-center mt-3">
+                還不是會員嗎?&nbsp;&nbsp;<RouterLink to="/register" class="p-2">立即註冊新帳號</RouterLink>
+              </div>
+            </VeeForm>
+          </swiper-slide>
+          <swiper-slide>
+            <h3 class="mt-3 mb-3 font-weight-normal fw-bold text-center">請重新輸入密碼</h3>
+            <VeeForm ref="form-login" class="form-signin" v-slot="{ errors }" @submit="confirmResetUser">
+              <div class="form-floating mb-3">
+                <VeeField id="password" name="密碼" type="password" class="form-control"
+                  :class="{ 'is-invalid': errors['密碼'] }" placeholder="請輸入密碼" autocomplete="false" :rules="isPasswordRule"
+                  v-model="userData.password" />
+                <label for="password">密碼</label>
+                <ErrorMessage name="密碼" class="invalid-feedback"></ErrorMessage>
+              </div>
 
-            <div class="form-floating mb-3">
-              <VeeField id="checkPwd" name="確認密碼" type="password" class="form-control"
-                :class="{ 'is-invalid': errors['確認密碼'] }" placeholder="Password" autocomplete="false"
-                :rules="checkPWDRule" v-model="userData.checkPwd" />
-              <label for="checkPwd">確認密碼</label>
-              <ErrorMessage name="確認密碼" class="invalid-feedback"></ErrorMessage>
-            </div>
+              <div class="form-floating mb-3">
+                <VeeField id="checkPwd" name="確認密碼" type="password" class="form-control"
+                  :class="{ 'is-invalid': errors['確認密碼'] }" placeholder="Password" autocomplete="false"
+                  :rules="checkPWDRule" v-model="userData.checkPwd" />
+                <label for="checkPwd">確認密碼</label>
+                <ErrorMessage name="確認密碼" class="invalid-feedback"></ErrorMessage>
+              </div>
 
-            <button class="btn btn-lg btn-primary w-100 mt-3" type="submit">
-              修改密碼
-            </button>
+              <button class="btn btn-lg btn-primary w-100 mt-3" type="submit">
+                修改密碼
+              </button>
 
-            <div class="text-center mt-3">
-              還不是會員嗎?&nbsp;&nbsp;<RouterLink to="/register" class="p-2">立即註冊新帳號</RouterLink>
-            </div>
-          </VeeForm>
-        </swiper-slide>
-      </swiper>
+              <div class="text-center mt-3">
+                還不是會員嗎?&nbsp;&nbsp;<RouterLink to="/register" class="p-2">立即註冊新帳號</RouterLink>
+              </div>
+            </VeeForm>
+          </swiper-slide>
+        </swiper>
 
+      </div>
     </div>
   </div>
 </template>
