@@ -51,6 +51,11 @@ const router = createRouter({
           path: 'shippingInfo',
           name: 'ShippingInfo',
           component: () => import('@/views/user/ShippingInfo.vue')
+        },
+        {
+          path: 'favorite',
+          name: 'FavoritePage',
+          component: () => import('@/views/user/FavoriteView.vue')
         }
       ]
     },

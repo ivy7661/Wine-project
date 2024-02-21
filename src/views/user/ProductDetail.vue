@@ -308,47 +308,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-ul {
-  padding-left: 0;
-}
-
-li {
-  list-style: none;
-}
-.bi-heart {
-  font-size: 24px;
-}
-
-.product-image {
-  background-image: url('../../../images/pour red wine.jpg');
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 100%;
-  height: 520px;
-}
-.socialFriends {
-  padding-top: 40px;
-  padding-bottom: 40px;
-  gap: 20px;
-  li {
-    padding: 10px;
-    background-color: #fffbf5;
-    border-radius: 8px;
-    i {
-      font-size: 32px;
-    }
-  }
-}
-.moreProduct {
-  background-image: url('../../../images/bg1.jpg');
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 100%;
-  padding-top: 48px;
-  padding-bottom: 48px;
-
-}
-</style>
+<style lang="scss" scoped></style>

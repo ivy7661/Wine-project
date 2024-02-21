@@ -4,8 +4,8 @@
     <table class="table mt-4">
       <thead>
         <tr>
-          <th width="70">評論ID</th>
-          <th width="70">使用者ID</th>
+          <th width="70">評論編號</th>
+          <th width="70">會員編號</th>
           <th width="120">評論內容</th>
           <th width="120">詳細資訊</th>
           <th width="120">刪除評論</th>
@@ -46,9 +46,7 @@
       </tbody>
     </table>
   </div>
-  <!-- 詳細評論內容 Modal -->
   <Comment-Modal :temp-comment="tempComment" ref="commentModal"></Comment-Modal>
-  <!-- 刪除警示 -->
   <Del-Comment-Modal
     :temp-comment="tempComment"
     :del-comment="delComment"

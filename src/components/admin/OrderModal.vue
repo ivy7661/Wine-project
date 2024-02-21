@@ -38,12 +38,7 @@
 
                 <div class="col-md-3">
                   <label for="orderStatus" class="form-label">訂單狀態</label>
-                  <select
-                    id="orderStatus"
-                    v-model="editOrder.orderStatus"
-                    type="text"
-                    class="form-select"
-                  >
+                  <select id="orderStatus" v-model="editOrder.orderStatus" class="form-select">
                     <option value="">請選擇訂單狀態</option>
                     <option value="訂單已成立">訂單已成立</option>
                     <option value="配送中">配送中</option>
