@@ -2,6 +2,7 @@
   <div class="container-fluid">
     <div class="row">
       <h1 class="mt-3">{{ title }}</h1>
+      <h2 class="mt-4">產品營收比重</h2>
       <section class="wrap">
         <Pie-Chart :modified-Data="modifiedData"></Pie-Chart>
       </section>
