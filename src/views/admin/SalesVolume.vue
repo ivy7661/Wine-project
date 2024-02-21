@@ -1,9 +1,11 @@
 <template>
-  <div class="row">
-    <h1 class="mt-3">{{ title }}</h1>
-    <section class="wrap">
-      <Pie-Chart :modified-Data="modifiedData"></Pie-Chart>
-    </section>
+  <div class="container-fluid">
+    <div class="row">
+      <h1 class="mt-3">{{ title }}</h1>
+      <section class="wrap">
+        <Pie-Chart :modified-Data="modifiedData"></Pie-Chart>
+      </section>
+    </div>
   </div>
 </template>
 

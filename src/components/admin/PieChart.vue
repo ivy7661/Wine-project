@@ -1,5 +1,5 @@
 <template>
-  <div id="main" style="width: 600px; height: 400px" class="m-5"></div>
+  <div id="main" style="width: 1140px; height: 400px" class="my-5"></div>
 </template>
 
 <script>
@@ -7,27 +7,8 @@ import * as echarts from 'echarts';
 export default {
   name: 'PieBase',
   props: ['modifiedData'],
-  data() {
-    return {
-      data: [
-        {
-          name: '波瑪酒莊.香波蜜思妮紅酒',
-          value: 8
-        },
-        {
-          name: '貝拉格斯酒莊.(戈登)安茹白酒',
-          value: 1
-        },
-        {
-          name: '開心妞香檳.特級陳釀不甜香檳',
-          value: 5
-        }
-      ]
-    };
-  },
   mounted() {
     setTimeout(this.getChart, 100);
-    // this.getChart();
   },
   methods: {
     getChart() {
@@ -42,13 +23,13 @@ export default {
         },
         legend: {
           orient: 'vertical',
-          left: 'left'
+          left: 0,
+          fontSize: 8
         },
         series: [
           {
-            name: 'Access From',
             type: 'pie',
-            radius: '50%',
+            radius: '70%',
             data: this.modifiedData,
             emphasis: {
               itemStyle: {
