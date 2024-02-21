@@ -1,5 +1,5 @@
 <template>
-  <div id="main" style="width: 600px; height: 400px"></div>
+  <div id="main" style="width: 600px; height: 400px" class="m-5"></div>
 </template>
 
 <script>
@@ -9,21 +9,25 @@ export default {
   props: ['modifiedData'],
   data() {
     return {
-      // data: [
-      //   {
-      //     name: '波瑪酒莊.香波蜜思妮紅酒',
-      //     value: 2
-      //   },
-      //   {
-      //     name: '貝拉格斯酒莊.(戈登)安茹白酒',
-      //     value: 1
-      //   }
-      // ]
+      data: [
+        {
+          name: '波瑪酒莊.香波蜜思妮紅酒',
+          value: 8
+        },
+        {
+          name: '貝拉格斯酒莊.(戈登)安茹白酒',
+          value: 1
+        },
+        {
+          name: '開心妞香檳.特級陳釀不甜香檳',
+          value: 5
+        }
+      ]
     };
   },
   mounted() {
-    // 圖表
-    this.getChart();
+    setTimeout(this.getChart, 100);
+    // this.getChart();
   },
   methods: {
     getChart() {
@@ -31,7 +35,6 @@ export default {
       const option = {
         title: {
           text: '全品項營收比重',
-          // subtext: 'Fake Data',
           left: 'center'
         },
         tooltip: {

@@ -28,6 +28,30 @@ export default {
     this.getOrders();
   },
   methods: {
+    // getOrders() {
+    //   const url = `${VITE_API_URL}/orders`;
+    //   axios
+    //     .get(url)
+    //     .then((res) => {
+    //       this.orders = res.data;
+
+    //       // 提取所需的資料
+    //       this.extractedData = this.orders[0].cart.map((item) => ({
+    //         chineseName: item.chineseName,
+    //         qty: item.qty
+    //       }));
+
+    //       this.modifiedData = this.extractedData.map((item) => ({
+    //         name: item.chineseName,
+    //         value: item.qty
+    //       }));
+
+    //       console.log(this.modifiedData);
+    //     })
+    //     .catch(() => {
+    //       alert('取得訂單資訊失敗');
+    //     });
+    // },
     getOrders() {
       const url = `${VITE_API_URL}/orders`;
       axios
@@ -35,16 +59,20 @@ export default {
         .then((res) => {
           this.orders = res.data;
 
-          // 提取所需的資料
-          this.extractedData = this.orders[0].cart.map((item) => ({
-            chineseName: item.chineseName,
-            qty: item.qty
-          }));
+          this.extractedData = this.orders.flatMap((order) =>
+            order.cart.map((item) => ({ name: item.chineseName, value: item.qty }))
+          );
 
-          this.modifiedData = this.extractedData.map((item) => ({
-            name: item.chineseName,
-            value: item.qty
-          }));
+          // 合併重複的
+          this.modifiedData = this.extractedData.reduce((acc, curr) => {
+            const existingItem = acc.find((item) => item.name === curr.name);
+            if (existingItem) {
+              existingItem.value += curr.value;
+            } else {
+              acc.push({ name: curr.name, value: curr.value });
+            }
+            return acc;
+          }, []);
 
           console.log(this.modifiedData);
         })
