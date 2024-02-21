@@ -1,11 +1,19 @@
 <template>
   <div class="container mb-5">
     <div class="row">
-      <h2 class="mt-5 fs-3 font-weight-normal fw-bold">會員 / {{ title }}</h2>
+      <div class="d-flex justify-content-between align-items-end mt-3">
+        <h2 class="mt-5 mb-1 fs-3 font-weight-normal fw-bold">會員 / {{ title }}</h2>
 
-      <div class="col-md-3 mt-3" v-for="item in list" :key="item.id">
-        <div class="card" style="width: 18rem;">
-          <img class="card-img-top" src="/images/wine images/wine33.jpg" alt="Card image cap">
+        <select class="filter-sort" v-model="sortFilter">
+          <option value="1">依價格排序 ⬆</option>
+          <option value="2">依價格排序 ⬇</option>
+        </select>
+      </div>
+      <img src="/images/footerContainer.png" class="w-100 my-5" />
+
+      <div class="col-md-3 mt-3" v-for="item in getSortList" :key="item.id">
+        <div class="card">
+          <img class=" card-img-top" src="/images/wine images/wine33.jpg" alt="Card image cap">
           <div class="card-body">
             <div>
               <h5 class="card-title text-wrap">{{ item.product.chineseName }}</h5>
@@ -39,6 +47,7 @@ export default {
   data() {
     return {
       title: '慾望酒單',
+      sortFilter: '1',
       list: []
     };
   },
@@ -48,6 +57,16 @@ export default {
       this.getFavoriteList(userId);
     } else {
       this.$router.push('/login');
+    }
+  },
+  computed: {
+    getSortList() {
+      const copyData = JSON.parse(JSON.stringify(this.list));
+      if (this.sortFilter === '1') {
+        return copyData.sort((a, b) => a.product.price - b.product.price);
+      } else {
+        return copyData.sort((a, b) => b.product.price - a.product.price);
+      }
     }
   },
   methods: {
@@ -78,9 +97,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.filter-sort {
+  height: 40px;
+  margin-bottom: 3px;
+}
+
 .card {
   img {
-    height: 466px;
+    height: 470px;
   }
 }
 
