@@ -41,6 +41,11 @@ const router = createRouter({
           path: 'cart',
           name: 'CartPage',
           component: () => import('@/views/user/CartView.vue')
+        },
+        {
+          path: 'favorite',
+          name: 'FavoritePage',
+          component: () => import('@/views/user/FavoriteView.vue')
         }
       ]
     },
