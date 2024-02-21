@@ -25,7 +25,7 @@
           <div class="row">
             <div class="col-sm-4">
               <div class="mb-3">
-                <label for="image" class="form-label">主要圖片</label>
+                <label for="image" class="form-label">圖片</label>
                 <input
                   id="image"
                   v-model="editProduct.image"

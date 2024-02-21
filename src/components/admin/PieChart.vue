@@ -1,5 +1,5 @@
 <template>
-  <div id="main" style="width: 600px; height: 400px"></div>
+  <div id="main" style="width: 1140px; height: 400px" class="my-3"></div>
 </template>
 
 <script>
@@ -7,23 +7,8 @@ import * as echarts from 'echarts';
 export default {
   name: 'PieBase',
   props: ['modifiedData'],
-  data() {
-    return {
-      // data: [
-      //   {
-      //     name: '波瑪酒莊.香波蜜思妮紅酒',
-      //     value: 2
-      //   },
-      //   {
-      //     name: '貝拉格斯酒莊.(戈登)安茹白酒',
-      //     value: 1
-      //   }
-      // ]
-    };
-  },
   mounted() {
-    // 圖表
-    this.getChart();
+    setTimeout(this.getChart, 100);
   },
   methods: {
     getChart() {
@@ -31,7 +16,6 @@ export default {
       const option = {
         title: {
           text: '全品項營收比重',
-          // subtext: 'Fake Data',
           left: 'center'
         },
         tooltip: {
@@ -39,13 +23,12 @@ export default {
         },
         legend: {
           orient: 'vertical',
-          left: 'left'
+          left: 0
         },
         series: [
           {
-            name: 'Access From',
             type: 'pie',
-            radius: '50%',
+            radius: '70%',
             data: this.modifiedData,
             emphasis: {
               itemStyle: {
