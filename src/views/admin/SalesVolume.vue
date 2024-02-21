@@ -79,7 +79,7 @@ export default {
           );
           console.log(transformedData);
 
-          // 將相同 product_id 的項目進行合併
+          // 將相同 product_id 項目進行合併
           this.cartData = transformedData.reduce((acc, curr) => {
             const existingItem = acc.find((item) => item.product_id === curr.product_id);
             if (existingItem) {
@@ -102,5 +102,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped></style>
