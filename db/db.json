@@ -21,6 +21,22 @@
       "name": "IvyAdmin",
       "role": "admin",
       "id": 3
+    },
+    {
+      "email": "testuser@gmail.com",
+      "password": "$2a$10$A9uLXiFiIoIfF0HM/93QG.JDtndEQXryDGa/qreLeWxQC9v6uNC.i",
+      "username": "User1",
+      "phone": "0988987987",
+      "role": "user",
+      "id": 4
+    },
+    {
+      "email": "rayray@gmail.com",
+      "password": "$2a$10$KblEzNhVoiyGraGt0GMG5eaHXz64PRVd1QuWYNV9k8fT8BLJnLfh2",
+      "username": "RayRay",
+      "phone": "0989789789",
+      "role": "user",
+      "id": 5
     }
   ],
   "products": [
@@ -1399,6 +1415,44 @@
     {
       "title": "法國五大產區 - 阿爾薩斯（Alsace）",
       "content": "阿爾薩斯，清新芬芳的寶地，以其多樣性的白葡萄酒風格而受到讚譽。這片風景如畫的土地產出雷司令和呼拉蘇等經典品種，風味層次豐富。阿爾薩斯的葡萄酒充滿了獨特的風土特色，清新的口感中蘊含著該地區千年來的釀酒智慧。品味阿爾薩斯，彷彿走進了一場香氣四溢的花園，每一口都是對於自然之美的敬仰。"
+    }
+  ],
+  "favorite": [
+    {
+      "userId": 5,
+      "productId": "12",
+      "created_at": "2024/02/21",
+      "id": 1
+    },
+    {
+      "userId": 5,
+      "productId": "3",
+      "created_at": "2024/02/21",
+      "id": 2
+    },
+    {
+      "userId": 5,
+      "productId": "6",
+      "created_at": "2024/02/21",
+      "id": 3
+    },
+    {
+      "userId": 5,
+      "productId": "9",
+      "created_at": "2024/02/21",
+      "id": 4
+    },
+    {
+      "userId": 5,
+      "productId": "7",
+      "created_at": "2024/02/21",
+      "id": 5
+    },
+    {
+      "userId": 5,
+      "productId": "13",
+      "created_at": "2024/02/21",
+      "id": 6
     }
   ]
 }
