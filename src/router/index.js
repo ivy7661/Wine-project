@@ -43,6 +43,16 @@ const router = createRouter({
           component: () => import('@/views/user/CartView.vue')
         },
         {
+          path: 'checkout',
+          name: 'CheckoutPage',
+          component: () => import('@/views/user/CheckoutView.vue')
+        },
+        {
+          path: 'shippingInfo',
+          name: 'ShippingInfo',
+          component: () => import('@/views/user/ShippingInfo.vue')
+        },
+        {
           path: 'favorite',
           name: 'FavoritePage',
           component: () => import('@/views/user/FavoriteView.vue')

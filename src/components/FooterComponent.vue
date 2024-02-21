@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-md-6 flex-column">
           <a href="#">
-            <img src="../../public/images/Logo.png" class="footer-logo" alt="Vin Chateau" />
+            <img src="../../images/Logo.png" class="footer-logo" alt="Vin Chateau" />
           </a>
           <div class="footer-page row mt-4 mb-4">
             <div class="col">
@@ -24,14 +24,14 @@
         <!-- desktop -->
         <div class="d-none d-md-block col-6">
           <ul class="footer-social d-flex justify-content-end">
-            <li><a href="#"><img src="../../public/images/facebook.png" alt="facebook"></a></li>
-            <li><a href="#"><img src="../../public/images/instagram.png" alt="instagram"></a></li>
-            <li><a href="#"><img src="../../public/images/tiktok.png" alt="tiktok"></a></li>
+            <li><a href="#"><img src="../../images/facebook.png" alt="facebook"></a></li>
+            <li><a href="#"><img src="../../images/instagram.png" alt="instagram"></a></li>
+            <li><a href="#"><img src="../../images/tiktok.png" alt="tiktok"></a></li>
           </ul>
           <div class="d-flex flex-column align-items-end">
             <ul class="footer-contact">
-              <li class="pb-2"><img width="24px" class="pe-2" src="../../public/images/footerPhone.png" alt="phone"><a href="#">0912345678</a></li>
-              <li><img width="24px" class="pe-2" src="../../public/images/footerMail.png" alt="email"><a href="#">vinchateau@mail.com</a></li>
+              <li class="pb-2"><img width="24px" class="pe-2" src="../../images/footerPhone.png" alt="phone"><a href="#">0912345678</a></li>
+              <li><img width="24px" class="pe-2" src="../../images/footerMail.png" alt="email"><a href="#">vinchateau@mail.com</a></li>
             </ul>
           </div>
         </div>
@@ -39,18 +39,18 @@
         <div class="col-12 d-md-none">
           <div class="d-flex flex-column ">
             <ul class="footer-contact-mobile mb-4">
-              <li class="pb-2"><img width="24px" class="pe-2" src="../../public/images/footerPhone.png" alt="phone"><a href="#">0912345678</a></li>
-              <li><img width="24px" class="pe-2" src="../../public/images/footerMail.png" alt="email"><a href="#">vinchateau@mail.com</a></li>
+              <li class="pb-2"><img width="24px" class="pe-2" src="../../images/footerPhone.png" alt="phone"><a href="#">0912345678</a></li>
+              <li><img width="24px" class="pe-2" src="../../images/footerMail.png" alt="email"><a href="#">vinchateau@mail.com</a></li>
             </ul>
           </div>
           <ul class="footer-social-mobile d-flex justify-content-center">
-            <li><a href="#"><img src="../../public/images/facebook.png" alt="facebook"></a></li>
-            <li><a href="#"><img src="../../public/images/instagram.png" alt="instagram"></a></li>
-            <li><a href="#"><img src="../../public/images/tiktok.png" alt="tiktok"></a></li>
+            <li><a href="#"><img src="../../images/facebook.png" alt="facebook"></a></li>
+            <li><a href="#"><img src="../../images/instagram.png" alt="instagram"></a></li>
+            <li><a href="#"><img src="../../images/tiktok.png" alt="tiktok"></a></li>
           </ul>
         </div>
       </div>
-      <img width="100%" src="../../public/images/footerContainer.png">
+      <img width="100%" src="../../images/footerContainer.png">
       <p class="text-center copyright">Copyright © 2024 Vin Chateau</p>
     </div>
   </footer>
