@@ -5,6 +5,7 @@
       <h2 class="mt-4">產品營收比重</h2>
       <section class="wrap">
         <Pie-Chart :modified-Data="modifiedData"></Pie-Chart>
+        <Revenue-Statistics :cart-data="cartData"></Revenue-Statistics>
       </section>
     </div>
   </div>
@@ -13,48 +14,28 @@
 <script>
 import axios from 'axios';
 import PieChart from '../../components/admin/PieChart.vue';
+import RevenueStatistics from '../../components/admin/RevenueStatistics.vue';
 const { VITE_API_URL } = import.meta.env;
 export default {
   name: 'AdminSalesVolume',
   components: {
-    PieChart
+    PieChart,
+    RevenueStatistics
   },
   data() {
     return {
       title: '銷售數據',
       orders: [],
       extractedData: null,
-      modifiedData: null
+      modifiedData: null,
+      cartData: null
     };
   },
   mounted() {
     this.getOrders();
+    this.getCart();
   },
   methods: {
-    // getOrders() {
-    //   const url = `${VITE_API_URL}/orders`;
-    //   axios
-    //     .get(url)
-    //     .then((res) => {
-    //       this.orders = res.data;
-
-    //       // 提取所需的資料
-    //       this.extractedData = this.orders[0].cart.map((item) => ({
-    //         chineseName: item.chineseName,
-    //         qty: item.qty
-    //       }));
-
-    //       this.modifiedData = this.extractedData.map((item) => ({
-    //         name: item.chineseName,
-    //         value: item.qty
-    //       }));
-
-    //       console.log(this.modifiedData);
-    //     })
-    //     .catch(() => {
-    //       alert('取得訂單資訊失敗');
-    //     });
-    // },
     getOrders() {
       const url = `${VITE_API_URL}/orders`;
       axios
@@ -76,8 +57,43 @@ export default {
             }
             return acc;
           }, []);
+        })
+        .catch(() => {
+          alert('取得訂單資訊失敗');
+        });
+    },
+    getCart() {
+      const url = `${VITE_API_URL}/orders`;
+      axios
+        .get(url)
+        .then((res) => {
+          this.orders = res.data;
 
-          console.log(this.modifiedData);
+          const transformedData = this.orders.flatMap((order) =>
+            order.cart.map((item) => ({
+              product_id: item.product_id,
+              chineseName: item.chineseName,
+              price: item.price,
+              qty: item.qty
+            }))
+          );
+          console.log(transformedData);
+
+          // 將相同 product_id 的項目進行合併
+          this.cartData = transformedData.reduce((acc, curr) => {
+            const existingItem = acc.find((item) => item.product_id === curr.product_id);
+            if (existingItem) {
+              existingItem.qty += curr.qty;
+            } else {
+              acc.push({
+                product_id: curr.product_id,
+                chineseName: curr.chineseName,
+                price: curr.price,
+                qty: curr.qty
+              });
+            }
+            return acc;
+          }, []);
         })
         .catch(() => {
           alert('取得訂單資訊失敗');

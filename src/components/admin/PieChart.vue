@@ -23,8 +23,7 @@ export default {
         },
         legend: {
           orient: 'vertical',
-          left: 0,
-          fontSize: 8
+          left: 0
         },
         series: [
           {
