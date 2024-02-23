@@ -6,12 +6,12 @@
           <div class="col-md-6">
             <div v-for="productTitle in productsContent" :key="productTitle.title">
               <div v-if="selectedRegion === productTitle.title">
-                <h2>{{ productTitle.title }}</h2>
+                <h2 class="pb-5">法國五大產區 - {{ productTitle.title }}</h2>
                 <p>{{ productTitle.content }}</p>
               </div>
             </div>
           </div>
-          <div class="col-md-3 d-flex flex-column justify-content-around">
+          <div class="col-md-3 d-flex flex-column justify-content-between">
             <div class="searchArea">
               <i class="bi bi-search"></i>
               <input type="text" placeholder="請輸入關鍵字" />
@@ -20,23 +20,25 @@
               <select
                 id="wineRegion"
                 name="wineRegion"
+                class="mb-3"
                 v-model="selectedRegion"
-                @change="updateContent"
+                @change="updateContent(selectedRegion)"
               >
-                <option value="" disabled selected hidden>產區: 請選擇產區</option>
+                <option value="" disabled selected hidden >產區: 請選擇產區</option>
                 <option value="波爾多">波爾多</option>
-                <option value="勃艮第">勃艮第</option>
+                <option value="布根地">布根地</option>
                 <option value="香檳">香檳</option>
-                <option value="隆河谷">隆河谷</option>
-                <option value="阿爾薩斯">阿爾薩斯</option>
+                <option value="羅亞爾河谷">羅亞爾河谷</option>
+                <option value="薄酒萊">薄酒萊</option>
+                <option value="熱賣酒品">熱賣酒品</option>
               </select>
               <div class="filterBtn d-flex justify-content-between">
-                <button type="button" class="btn btn-primary btn-lg px-4 py-2">
-                  價格 <i class="bi bi-arrow-down"></i>
-                </button>
-                <button type="button" class="btn btn-primary btn-lg px-4 py-2 me-0">
-                  評價 <i class="bi bi-arrow-down"></i>
-                </button>
+                <a type="button" class="btn btn-primary btn-lg px-4 py-2" @click="sortBy('price')">
+                  價格 <i :class="ascendingOrderPrice ? 'bi bi-arrow-down' : 'bi bi-arrow-up'"></i>
+                </a>
+                <a type="button" class="btn btn-primary btn-lg px-4 py-2 me-0" @click="sortBy('star')">
+                  評價 <i :class="ascendingOrderStar ? 'bi bi-arrow-down' : 'bi bi-arrow-up'"></i>
+                </a>
               </div>
             </div>
           </div>
@@ -44,10 +46,11 @@
       </div>
     </div>
     <div class="container">
+      {{ cart }}
       <img src="../../../images/footerContainer.png" class="w-100 mt-3 mb-5" />
       <div class="productList pb-5 align-items-stretch">
         <div class="row mb-3 gy-3">
-          <div class="col-12 col-md-4" v-for="(product, key) in products" :key="key">
+          <div class="col-12 col-md-4" v-for="(product, key) in sortedProducts" :key="key">
             <div class="card">
               <div class="row">
                 <div class="col-4">
@@ -71,7 +74,7 @@
                     </div>
                     <h5 class="card-title">{{ product.chineseName }}</h5>
                     <p class="card-text text-danger fw-bold">$ {{ product.price }}</p>
-                    <a href="#" class="btn btn-primary w-100">加入購物車</a>
+                    <a href="#" class="btn btn-primary w-100" @click="addToCart(product)">加入購物車</a>
                   </div>
                 </div>
               </div>
@@ -92,8 +95,13 @@ export default {
   data() {
     return {
       products: [],
-      selectedRegion: '',
-      productsContent: ''
+      selectedRegion: '熱賣酒品',
+      productsContent: '',
+      currentSort: '',
+      selectedRegionProducts: [],
+      cart: [],
+      ascendingOrderPrice: true,
+      ascendingOrderStar: true
     };
   },
   methods: {
@@ -109,17 +117,68 @@ export default {
           alert('未正確取得產品資訊，請稍後再試～');
         });
     },
-    updateContent() {
+    updateContent(selectedRegion) {
       const url = `${VITE_API_URL}/productsContent`;
       axios
         .get(url)
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
+          this.productsContent = res.data;
         })
         .catch((err) => {
           console.log(err.data);
           alert('未正確取得文檔');
         });
+    },
+    sortBy(sortKey) {
+      if (sortKey === 'price') {
+        this.ascendingOrderPrice = !this.ascendingOrderPrice;
+      } else if (sortKey === 'star') {
+        this.ascendingOrderStar = !this.ascendingOrderStar;
+      }
+      this.currentSort = sortKey;
+    },
+    addToCart(product) {
+      const url = `${VITE_API_URL}/carts`;
+      const existingProductIndex = this.cart.findIndex(item => item.product_id === product.id);
+      if (existingProductIndex === -1) {
+        this.cart.push({
+          product_id: product.id,
+          chineseName: product.chineseName,
+          price: product.price,
+          qty: 1
+        });
+      } else {
+        this.cart[existingProductIndex].qty += 1;
+      }
+      axios.post(url, this.cart)
+        .then((res) => {
+          console.log(res.data);
+        });
+    }
+  },
+  computed: {
+    sortedProducts() {
+      return this.selectedRegionProducts.slice().sort((a, b) => {
+        if (this.currentSort === 'price') {
+          return this.ascendingOrderPrice ? a.price - b.price : b.price - a.price;
+        } else if (this.currentSort === 'star') {
+          return this.ascendingOrderStar ? a.star - b.star : b.star - a.star;
+        }
+        return 0;
+      });
+    }
+  },
+  watch: {
+    selectedRegion(newRegion) {
+      this.updateContent(newRegion);
+      if (newRegion === '熱賣酒品') {
+      // 根据 is_hot 过滤热卖酒品
+        this.selectedRegionProducts = this.products.filter(product => product.is_hot === 1);
+      } else {
+      // 根据地区过滤其他情况
+        this.selectedRegionProducts = this.products.filter(product => product.place === newRegion);
+      }
     }
   },
   mounted() {
@@ -132,6 +191,9 @@ export default {
 <style lang="scss" scoped>
 .bg-products {
   padding-top: 50px;
+}
+.btn-primary:hover {
+  filter: brightness(150%);
 }
 .searchArea {
   display: flex;
