@@ -1,7 +1,7 @@
 <template>
   <HeaderComponent :userId="getUser?.id" />
 
-    <RouterView />
+  <RouterView />
 
   <FooterComponent />
 </template>
@@ -24,7 +24,7 @@ export default {
     };
   },
   mounted() {
-    const { userToken, userId } = this.getUserCooke;
+    const { userToken, userId } = this.getUserCookie();
 
     if (!userToken || !userId) {
       this.logout();
@@ -34,7 +34,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(userStore, ['setUser', 'cleanUser']),
+    ...mapActions(userStore, ['setUser', 'cleanUser', 'getUserCookie']),
     userCheck(userId) {
       const api = `${import.meta.env.VITE_API_URL}/600/users/${userId}`;
 
@@ -63,7 +63,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(userStore, ['getUser', 'getUserCooke'])
+    ...mapState(userStore, ['getUser'])
   }
 };
 </script>
