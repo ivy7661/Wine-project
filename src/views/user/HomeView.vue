@@ -1,17 +1,15 @@
 <template>
-  <div class="row">
-    <!-- 熱賣商品、引導選酒 -->
-    <HomeWineSelection />
+  <!-- 熱賣商品、引導選酒 -->
+  <HomeWineSelection />
 
-    <!-- 最新消息 -->
-    <HomeNews />
+  <!-- 最新消息 -->
+  <HomeNews />
 
-    <!-- 法國特色產區 -->
-    <HomeWineRegion />
+  <!-- 法國特色產區 -->
+  <HomeWineRegion />
 
-    <!-- 好文分享 -->
-    <HomePosts />
-  </div>
+  <!-- 好文分享 -->
+  <HomePosts />
 </template>
 
 <script>
@@ -29,4 +27,5 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+</style>
