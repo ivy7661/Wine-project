@@ -14,7 +14,7 @@
           <div class="col-md-3 d-flex flex-column justify-content-between">
             <div class="searchArea">
               <i class="bi bi-search"></i>
-              <input type="text" placeholder="請輸入關鍵字" />
+              <input type="text" placeholder="請輸入關鍵字" class="w-100" v-model="searchKeyword" />
             </div>
             <div class="filterBox">
               <select
@@ -32,8 +32,8 @@
                 <option value="薄酒萊">薄酒萊</option>
                 <option value="熱賣酒品">熱賣酒品</option>
               </select>
-              <div class="filterBtn d-flex justify-content-between">
-                <a type="button" class="btn btn-primary btn-lg px-4 py-2" @click="sortBy('price')">
+              <div class="filterBtn d-flex justify-content-between gap-3">
+                <a type="button" class="btn btn-primary btn-lg px-4 py-2 " @click="sortBy('price')">
                   價格 <i :class="ascendingOrderPrice ? 'bi bi-arrow-down' : 'bi bi-arrow-up'"></i>
                 </a>
                 <a type="button" class="btn btn-primary btn-lg px-4 py-2 me-0" @click="sortBy('star')">
@@ -46,22 +46,24 @@
       </div>
     </div>
     <div class="container">
-      {{ cart }}
       <img src="../../../images/footerContainer.png" class="w-100 mt-3 mb-5" />
       <div class="productList pb-5 align-items-stretch">
         <div class="row mb-3 gy-3">
-          <div class="col-12 col-md-4" v-for="(product, key) in sortedProducts" :key="key">
-            <div class="card">
-              <div class="row">
+          <div class="col-12 col-md-6 col-lg-4" v-for="(product, key) in sortedProducts" :key="key">
+            <div class="card h-100">
+                <div class="row h-100">
                 <div class="col-4">
-                  <img
-                    :src="`../../../images/wine images/${product.image}.jpg`"
-                    class="card-img-top h-100"
-                    :alt="product.title"
-                  />
+                  <a href="#"><i class="bi bi-heart position-absolute top-5 start-5"></i></a>
+                  <a href="#" @click="seeProduct(product.id)">
+                    <img
+                      :src="`../../../images/wine images/${product.image}.jpg`"
+                      class="card-img-top h-100"
+                      :alt="product.chineseName"
+                    />
+                  </a>
                 </div>
                 <div class="col-8">
-                  <div class="card-body">
+                  <div class="card-body d-flex flex-column h-100">
                     <div class="d-flex mb-1 justify-content-between">
                       <span class="badge bg-danger mb-2" v-if="product.is_hot">熱門推薦</span>
                       <div class="d-flex gap-1">
@@ -72,7 +74,9 @@
                         ></i>
                       </div>
                     </div>
-                    <h5 class="card-title">{{ product.chineseName }}</h5>
+                    <a href="#" @click="seeProduct(product.id)">
+                      <h5 class="card-title flex-grow-1 flex-fill">{{ product.chineseName }}</h5>
+                    </a>
                     <p class="card-text text-danger fw-bold">$ {{ product.price }}</p>
                     <a href="#" class="btn btn-primary w-100" @click="addToCart(product)">加入購物車</a>
                   </div>
@@ -101,7 +105,8 @@ export default {
       selectedRegionProducts: [],
       cart: [],
       ascendingOrderPrice: true,
-      ascendingOrderStar: true
+      ascendingOrderStar: true,
+      searchKeyword: ''
     };
   },
   methods: {
@@ -112,6 +117,7 @@ export default {
         .then((res) => {
           console.log(res.data);
           this.products = res.data;
+          this.selectedRegionProducts = this.products.filter(product => product.is_hot === 1);
         })
         .catch(() => {
           alert('未正確取得產品資訊，請稍後再試～');
@@ -155,6 +161,9 @@ export default {
         .then((res) => {
           console.log(res.data);
         });
+    },
+    seeProduct(id) {
+      this.$router.push({ name: 'ProductDetail', params: { id } });
     }
   },
   computed: {
@@ -173,10 +182,10 @@ export default {
     selectedRegion(newRegion) {
       this.updateContent(newRegion);
       if (newRegion === '熱賣酒品') {
-      // 根据 is_hot 过滤热卖酒品
+      // 跟據 is_hot 過濾熱賣酒品
         this.selectedRegionProducts = this.products.filter(product => product.is_hot === 1);
       } else {
-      // 根据地区过滤其他情况
+      // 根據地區 過濾
         this.selectedRegionProducts = this.products.filter(product => product.place === newRegion);
       }
     }
@@ -195,12 +204,18 @@ export default {
 .btn-primary:hover {
   filter: brightness(150%);
 }
+.bi-heart:hover {
+  color: red;
+  transform: scale(1.5);
+  transition: color 0.3s ease, transform 0.3s ease;
+}
 .searchArea {
   display: flex;
   align-items: center;
   padding: 5px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  background-color: #fff;
   i {
     margin-right: 5px;
   }

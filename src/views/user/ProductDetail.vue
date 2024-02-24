@@ -4,7 +4,7 @@
       <div class="productDisplay pt-5 pb-5">
         <div class="row justify-content-between mb-4">
           <div class="col-4 product-image-block">
-            <div class="product-image position-relative">
+            <div class="product-image position-relative" :style="{ 'background': 'url(`../../../images/wine images/wine49.jpg`)' }">
               <a href="#"><i class="bi bi-heart position-absolute top-5 start-5"></i></a>
             </div>
             <ul class="socialFriends d-flex">
@@ -22,7 +22,7 @@
           <div class="col-6">
             <div class="card-body">
               <div class="d-flex justify-content-between mb-3">
-                <span class="badge bg-danger fs-5">熱賣推薦</span>
+                <span class="badge bg-danger fs-5" v-if="selectedProduct.is_hot" >熱賣推薦</span>
                 <div class="text-warning d-flex gap-1 mb-1">
                   <i class="bi bi-star-fill fs-5"></i>
                   <i class="bi bi-star-fill fs-5"></i>
@@ -293,19 +293,79 @@
 </template>
 
 <script>
+import axios from 'axios';
+const { VITE_API_URL } = import.meta.env;
+
 export default {
   name: 'ProductDetail',
   components: {},
   data() {
     return {
-      title: '產品詳情'
+      title: '產品詳情',
+      products: [],
+      selectedProduct: {}
     };
+  },
+  methods: {
+    getProduct() {
+      const url = `${VITE_API_URL}/products`;
+      axios
+        .get(url)
+        .then((res) => {
+          // console.log(res.data);
+          this.products = res.data;
+          this.selectedProduct = this.products.find((item) => item.id === this.$route.params.id);
+          console.log(this.selectedProduct);
+        })
+        .catch(() => {
+          alert('未正確取得產品資訊，請稍後再試～');
+        });
+    },
+    getImageUrl(imageName) {
+      return `../../../images/wine images/${imageName}.jpg`;
+    }
   },
   mounted() {
     console.log('ProductDetail.vue mounted', this.$route.params.id);
     this.title = '產品詳情 - ' + this.$route.params.id;
+    this.getProduct();
   }
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+ul {
+  padding-left: 0;
+}
+li {
+  list-style: none;
+}
+.bi-heart {
+  font-size: 20px;
+}
+.bi-heart:hover {
+  color: red;
+  transform: scale(1.5);
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+.product-image {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 520px;
+}
+.socialFriends {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  gap: 20px;
+  li {
+    padding: 10px;
+    background-color: #fffbf5;
+    border-radius: 8px;
+    i {
+      font-size: 32px;
+    }
+  }
+}
+</style>
