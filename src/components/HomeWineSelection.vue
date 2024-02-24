@@ -206,3 +206,232 @@ export default {
 </script>
 
 <style lang="scss" scoped></style>
+
+
+<script>
+
+const questions = [
+  {
+    id: '1',
+    options: ['偏甜', '偏酸', '偏乾'],
+    next: {
+      "偏乾": '2',
+      "偏酸": '3',
+      "偏甜": '4',
+    },
+  },
+  {
+    id: '2',
+    options: ['氣泡', '無氣泡'],
+    next: {
+      "氣泡": '5',
+      "無氣泡": '6',
+    },
+  },
+  {
+    id: '5',
+    options: ['白葡萄酒', '紅葡萄酒'],
+    // You can add more questions here
+  },  {
+    id: '6',
+    options: ['白葡萄酒', '紅葡萄酒'],
+    // You can add more questions here
+  },
+  {
+    id: '3',
+    options: ['飽滿', '輕盈'],
+    next: {
+      "飽滿": '7',
+      "輕盈": '8',
+    },
+  },
+  {
+    id: '7',
+    options: ['氣泡', '無氣泡'],
+      next: {
+      "氣泡": '5',
+      "無氣泡": '6',
+    }
+  },
+      {
+    id: '8',
+    options: ['氣泡', '無氣泡'],
+      next: {
+      "氣泡": '5',
+      "無氣泡": '6',
+    },
+      },
+    // You can add more questions here
+ {
+    id: '4',
+    options: ['飽滿', '輕盈'],
+    next: {
+      "飽滿": '7',
+      "輕盈": '8',
+    },
+  },
+   {
+    id: '24',
+    options: ['開胃菜', '主菜','甜點'],
+    next: {
+      "開胃菜": '9',
+      "主菜": '10',
+      "甜點":'11'
+    },
+     
+  },
+    {
+    id: '9',
+    options: ['氣泡', '無氣泡'],
+    next: {
+      "氣泡": '5',
+      "無氣泡": '6',
+    },
+     
+  },
+     {
+    id: '10',
+    options: ['搭配紅肉', '搭配白肉','搭配辛辣食物','搭配海鮮'],
+    next: {
+      "搭配紅肉": '12',
+      "搭配白肉": '13',
+      "搭配辛辣食物": '14',
+        "搭配海鮮": '15',
+    },
+     
+  },
+       {
+    id: '12',
+    options: ['飽滿'],
+    next: {
+     //紅葡萄酒頁面
+    },
+     
+  },
+       {
+    id: '13',
+    options: ['中等酒體','輕盈'],
+    next: {
+      //"中等酒體": '',白葡萄酒頁面
+      //"輕盈":'',紅葡萄酒頁面
+    },
+     
+  },
+         {
+    id: '14',
+    options: ['甜味和果香味'],
+    next: {
+    //白葡萄酒頁面
+    },
+     
+  },
+           {
+    id: '15',
+    options: ['輕盈'],
+    next: {
+    //白葡萄酒頁面
+    },
+     
+  },
+        {
+    id: '11',
+    options: ['巧克力','水果','奶油蛋糕'],
+    next: {
+     "巧克力": '16',
+      "水果": '17',
+      "奶油蛋糕": '18',
+    },
+     
+  },
+           {
+    id: '16',
+    options: ['濃郁果味甜度'],
+    next: {
+     //紅葡萄酒頁面
+    },
+     
+  },
+           {
+    id: '17',
+    options: ['清新果味'],
+    next: {
+     //白葡萄酒頁面
+    },
+     
+  },
+              {
+    id: '18',
+    options: ['輕盈氣泡酒'],
+    next: {
+     "白葡萄氣泡酒": '19',
+      "紅葡萄氣泡酒": '20',
+    },
+     
+  },
+                  {
+    id: '19',
+    options: ['白葡萄氣泡酒'],
+    next: {
+ //白葡萄氣泡酒頁面
+    },
+     
+  },
+                     {
+    id: '20',
+    options: ['紅葡萄氣泡酒'],
+    next: {
+    //紅葡萄氣泡酒頁面
+    },
+     
+  },
+    
+];
+
+let currentQuestionId = '1';
+
+function getNextQuestion(currentQuestionId, selectedOption) {
+    const currentQuestion = questions.find(question => question.id === currentQuestionId);
+    if (!currentQuestion) {
+        return null;
+    }
+    
+    const nextQuestionId = currentQuestion.next[selectedOption];
+    return nextQuestionId;
+}
+
+function displayQuestionAndOptions() {
+    const currentQuestion = questions.find(question => question.id === currentQuestionId);
+    if (!currentQuestion) {
+        return;
+    }
+
+    const questionText = currentQuestion.text;
+    const options = currentQuestion.options;
+    
+    document.getElementById('current-question').textContent = questionText;
+    
+    const optionsContainer = document.getElementById('options');
+    optionsContainer.innerHTML = ''; // Clear previous options
+    
+    options.forEach(option => {
+        const button = document.createElement('button');
+        button.textContent = option;
+        button.addEventListener('click', () => {
+            const nextQuestionId = getNextQuestion(currentQuestionId, option);
+            if (nextQuestionId) {
+                currentQuestionId = nextQuestionId;
+                displayQuestionAndOptions();
+                document.getElementById('user-selection').textContent = `您的选择：${option}`;
+            } else {
+                alert('问卷结束');
+            }
+        });
+        optionsContainer.appendChild(button);
+    });
+}
+
+displayQuestionAndOptions();
+
+
+
+</script>
