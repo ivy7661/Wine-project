@@ -61,6 +61,11 @@ const router = createRouter({
           path: 'userOrders',
           name: 'userOrders',
           component: () => import('@/views/user/UserOrders.vue')
+        },
+        {
+          path: 'privacyPolicy',
+          name: 'privacyPolicy',
+          component: () => import('@/views/user/PrivacyPolicy.vue')
         }
       ]
     },
