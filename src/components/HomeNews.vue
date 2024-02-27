@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="col-md-12 news-container">
+      <div class="col-md-12 news-container mt-5 mb-5">
         <h2 class="text-primary text-center">最新消息</h2>
         <div class="news-image">
           <div class="bg-slider"></div>
@@ -50,8 +50,8 @@ export default {
 <style lang="scss" scoped>
 .news-container {
   width: 100%;
-  height: 738px;
-  margin-top: 36px;
+  // height: 738px;
+  // margin-top: 36px;
 }
 
 h2 {
