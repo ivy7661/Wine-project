@@ -7,7 +7,8 @@
             <h3 class="title text-primary">法國特色產區</h3>
             <div>
               <label for="select-region" class="form-label region-label">選擇產區</label>
-              <select id="select-region" class="form-select region text-primary" aria-label="選擇產區" v-model="selectRegion">
+              <select id="select-region" class="form-select region text-primary" aria-label="選擇產區" v-model="selectRegion"
+                @change="onSelectChange">
                 <option value="1" selected>法國產區 薄酒萊</option>
                 <option value="2">法國產區 波爾多</option>
               </select>
@@ -44,98 +45,105 @@
         </div>
 
         <div class="col-md-5">
-          <div class="region-card card bg-white">
+          <swiper :pagination="{ el: '.swiper-pagination' }" @swiper="onSwiper" :modules="[Pagination]" class="mySwiper">
             <template v-for="item in getFilterWine" :key="item.id">
-              <div>
-                <div class="card-body px-0">
-                  <div class="region-card_head d-flex">
-                    <div class="image-wine">
-                      <img :src="`/images/wine images/${item.image}.jpg`" alt="wine">
-                    </div>
-                    <img class="image-switch" src="/images/switch.png" alt="wine">
-                    <div class="single-ellipsis">
-                      <h5 class="text-black mt-2">{{ item.chineseName }}</h5>
-                      <h6 class="card-subtitle mt-2 single-ellipsis">{{ item.englishName }}</h6>
+              <swiper-slide>
+                <div class="region-card card bg-white">
+                  <div>
+                    <div class="card-body px-0">
+                      <div class="region-card_head d-flex">
+                        <div class="image-wine">
+                          <img :src="`/images/wine_images/${item.image}.jpg`" alt="wine">
+                        </div>
+                        <img class="image-switch" src="/images/switch.png" alt="wine">
+                        <div class="single-ellipsis">
+                          <h5 class="text-black mt-2">{{ item.chineseName }}</h5>
+                          <h6 class="card-subtitle mt-2 single-ellipsis">{{ item.englishName }}</h6>
 
-                      <h5 class="price text-primary mt-3">NT$ {{ $filters.currency(item.price) }}</h5>
-                    </div>
-                  </div>
-                  <div class="region-info mt-2">
-                    <img src="/images/card-top-line.svg" class="line-image" alt="line">
+                          <h5 class="price text-primary mt-3">NT$ {{ $filters.currency(item.price) }}</h5>
+                        </div>
+                      </div>
+                      <div class="region-info mt-2">
+                        <img src="/images/card-top-line.svg" class="line-image" alt="line">
 
-                    <div class="taste mt-4">
-                      <p class="taste-title mb-3">這款酒喝起來的味道如何？</p>
+                        <div class="taste mt-4">
+                          <p class="taste-title mb-3">這款酒喝起來的味道如何？</p>
 
-                      <div class="container-fluid taste-content px-0 mt-1">
+                          <div class="container-fluid taste-content px-0 mt-1">
+                            <div class="row">
+                              <div class="col-md-6 d-flex align-items-center mb-1">
+                                <p>單寧</p>
+                                <div class="progress-bar">
+                                  <div class="progress" :style="{ 'width': item.taste.tannin }"></div>
+                                </div>
+                              </div>
+                              <div class="col-md-6 d-flex align-items-center mb-1">
+                                <p>酸度</p>
+                                <div class="progress-bar">
+                                  <div class="progress" :style="{ 'width': item.taste.acidity }"></div>
+                                </div>
+                              </div>
+                              <div class="col-md-6 d-flex align-items-center mb-1">
+                                <p>甜度</p>
+                                <div class="progress-bar">
+                                  <div class="progress" :style="{ 'width': item.taste.sweet }"></div>
+                                </div>
+                              </div>
+                              <div class="col-md-6 d-flex align-items-center mb-1">
+                                <p>酒體</p>
+                                <div class="progress-bar">
+                                  <div class="progress" :style="{ 'width': item.taste.body }"></div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="region-taste container-fluid px-0 my-4">
                         <div class="row">
-                          <div class="col-md-6 d-flex align-items-center mb-1">
-                            <p>單寧</p>
-                            <div class="progress-bar">
-                              <div class="progress" :style="{ 'width': item.taste.tannin }"></div>
+                          <div class="col-6">
+                            <p class="mb-2">風味分類</p>
+                            <div class="d-flex justify-content-between">
+                              <div class="icon-container" v-for="(flavor, index) in item.flavor.slice(0, 3)"
+                                :key="flavor">
+                                <img :src="`/images/taste/t${index + 1}.png`" alt="Icon" class="icon mb-1">
+                                <p class="icon-text text-center">{{ flavor }}</p>
+                              </div>
                             </div>
                           </div>
-                          <div class="col-md-6 d-flex align-items-center mb-1">
-                            <p>酸度</p>
-                            <div class="progress-bar">
-                              <div class="progress" :style="{ 'width': item.taste.acidity }"></div>
-                            </div>
-                          </div>
-                          <div class="col-md-6 d-flex align-items-center mb-1">
-                            <p>甜度</p>
-                            <div class="progress-bar">
-                              <div class="progress" :style="{ 'width': item.taste.sweet }"></div>
-                            </div>
-                          </div>
-                          <div class="col-md-6 d-flex align-items-center mb-1">
-                            <p>酒體</p>
-                            <div class="progress-bar">
-                              <div class="progress" :style="{ 'width': item.taste.body }"></div>
+                          <div class="col-6">
+                            <p class="mb-2">搭配餐酒</p>
+                            <div class="d-flex justify-content-between">
+                              <div class="icon-container" v-for="(food, index) in item.food.slice(0, 3)" :key="food">
+                                <img :src="`/images/taste/f${index + 1}.png`" alt="Icon" class="icon mb-1">
+                                <p class="icon-text text-center">{{ food }}</p>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
 
-                  </div>
+                      <div class="region-button d-flex justify-content-between">
+                        <button type="button" class="btn btn-black me-0" @click="addToFavorite(item.id)"
+                          :disabled="!userData.getUser?.id">
+                          <i class="bi bi-heart me-1"></i>
+                          加入收藏
+                        </button>
+                        <button type="button" class="btn btn-primary me-0" :disabled="!userData.getUser?.id">
+                          <i class="bi bi-cart3 me-1"></i>
+                          加入購物車
+                        </button>
+                      </div>
 
-                  <div class="region-taste container-fluid px-0 my-4">
-                    <div class="row">
-                      <div class="col-6">
-                        <p class="mb-2">風味分類</p>
-                        <div class="d-flex justify-content-between">
-                          <div class="icon-container" v-for="(flavor, index) in item.flavor.slice(0, 3)" :key="flavor">
-                            <img :src="`/images/taste/t${index + 1}.png`" alt="Icon" class="icon mb-1">
-                            <p class="icon-text text-center">{{ flavor }}</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-6">
-                        <p class="mb-2">搭配餐酒</p>
-                        <div class="d-flex justify-content-between">
-                          <div class="icon-container" v-for="(food, index) in item.food.slice(0, 3)" :key="food">
-                            <img :src="`/images/taste/f${index + 1}.png`" alt="Icon" class="icon mb-1">
-                            <p class="icon-text text-center">{{ food }}</p>
-                          </div>
-                        </div>
-                      </div>
                     </div>
                   </div>
-
-                  <div class="region-button d-flex justify-content-between">
-                    <button type="button" class="btn btn-black me-0" data-v-afe7204c="">
-                      <i class="bi bi-heart me-1" data-v-afe7204c=""></i>
-                      加入收藏
-                    </button>
-                    <button type="button" class="btn btn-primary me-0" data-v-afe7204c="">
-                      <i class="bi bi-cart3 me-1" data-v-afe7204c=""></i>
-                      加入購物車
-                    </button>
-                  </div>
-
                 </div>
-              </div>
+              </swiper-slide>
             </template>
-          </div>
+          </swiper>
+
+          <div class="swiper-pagination homeswiper-pagination mt-3"></div>
         </div>
       </div>
     </div>
@@ -143,15 +151,24 @@
 </template>
 
 <script setup>
-// import 'swiper/css';
+import 'swiper/css';
+import 'swiper/css/pagination';
 
 import axios from 'axios';
-// import { Swiper, SwiperSlide } from 'swiper/vue';
+import Swal from 'sweetalert2';
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Pagination } from 'swiper/modules';
 
 import { ref, computed, onMounted } from 'vue';
 
+import { getFormattedDate } from '@/utils/helpers';
+
+import userStore from '@/stores/user';
+
+const userData = userStore();
+
 // 變數
-// const swiperModule = ref(null);
+const swiperModule = ref(null);
 const selectRegion = ref('1');
 const products = ref([]);
 
@@ -175,9 +192,46 @@ const getProductList = () => {
     });
 };
 
-// const onSwiper = (swiper) => {
-//   swiperModule.value = swiper;
-// };
+const addToFavorite = (id) => {
+  if (id && userData.getUser.id) {
+    const postData = {
+      userId: userData.getUser.id,
+      productId: id,
+      created_at: getFormattedDate()
+    };
+
+    axios.post(`${import.meta.env.VITE_API_URL}/favorite`, postData)
+      .then((res) => {
+        // console.log(res.data);
+        Swal.fire({
+          title: '收藏成功',
+          text: '',
+          icon: 'success'
+        });
+      })
+      .catch((error) => {
+        console.log(error.response);
+        Swal.fire({
+          title: '收藏失敗',
+          text: '',
+          icon: 'error'
+        });
+      });
+  }
+};
+
+const onSelectChange = () => {
+  if (swiperModule.value) {
+    swiperModule.value.slideReset();
+    swiperModule.value.slideTo(0);
+  }
+};
+
+const onSwiper = (swiper) => {
+  swiperModule.value = swiper;
+  swiperModule.value.slideReset();
+  swiperModule.value.slideTo(0);
+};
 
 onMounted(() => {
   getProductList();

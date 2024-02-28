@@ -34,3 +34,12 @@ header {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+.swiper-pagination.homeswiper-pagination {
+  position: relative;
+
+  .swiper-pagination-bullet {
+    margin: 0 6px !important;
+    background-color: $primary;
+  }
+}
