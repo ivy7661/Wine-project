@@ -87,8 +87,8 @@
           </div>
         </div>
         <div class="row justify-content-between mb-4">
-          <div class="col-12 col-md-6">
-            <h4>葡萄酒品味</h4>
+          <div class="col-12 col-md-6 mt-4">
+            <h4 class="mb-4">葡萄酒品味</h4>
             <p class="mb-1">單寧</p>
             <div
               class="progress"
@@ -142,7 +142,7 @@
               ></div>
             </div>
           </div>
-          <div class="col-12 col-md-5">
+          <div class="col-12 col-md-5 mt-4">
             <h4 class="mb-4">產品介紹</h4>
             <table class="table table-striped table-hover">
               <tbody>
@@ -173,8 +173,8 @@
         </div>
         <div class="row">
           <div class="col">
-            <h4 class="mb-3">好評推推推</h4>
-            <div class="row d-flex align-items-stretch">
+            <h4 class="mb-4">好評推推推</h4>
+            <div class="row d-flex align-items-stretch gy-3">
               <div class="col-6 col-md-3">
                 <div class="card h-100 pb-3">
                   <div class="card-body px-4">

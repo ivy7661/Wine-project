@@ -57,7 +57,9 @@
             <div class="card h-100 p-2">
               <div class="row h-100">
                 <div class="col-4">
-                  <a href="#"><i class="bi bi-heart position-absolute top-5 start-5"></i></a>
+                  <a href="#" @click="addToFavorite(product.id)"
+                    ><i class="bi bi-heart position-absolute top-5 start-5"></i
+                  ></a>
                   <a href="#" @click="seeProduct(product.id)">
                     <img
                       :src="`/images/wine_images/${product.image}.jpg`"
@@ -102,6 +104,8 @@
 
 <script>
 import axios from 'axios';
+import { mapState, mapActions } from 'pinia';
+import userStore from '@/stores/user';
 const { VITE_API_URL } = import.meta.env;
 
 export default {
@@ -116,21 +120,36 @@ export default {
       cart: [],
       ascendingOrderPrice: true,
       ascendingOrderStar: true,
-      searchKeyword: ''
+      searchKeyword: '',
+      userId: ''
     };
   },
   methods: {
+    ...mapActions(userStore, ['setUser', 'cleanUser', 'getUserCookie']),
     getProductList() {
       const url = `${VITE_API_URL}/products`;
       axios
         .get(url)
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           this.products = res.data;
           this.selectedRegionProducts = this.products.filter((product) => product.is_hot === 1);
         })
         .catch(() => {
           alert('未正確取得產品資訊，請稍後再試～');
+        });
+    },
+    getCartList() {
+      const url = `${VITE_API_URL}/carts`;
+      axios
+        .get(url)
+        .then((res) => {
+          console.log(res.data);
+          this.cart = res.data;
+        })
+        .catch((err) => {
+          console.log('未正確取得購物車');
+          console.log(err.data);
         });
     },
     updateContent(selectedRegion) {
@@ -143,7 +162,7 @@ export default {
         })
         .catch((err) => {
           console.log(err.data);
-          alert('未正確取得文檔');
+          console.log('未正確取得文檔');
         });
     },
     sortBy(sortKey) {
@@ -165,40 +184,55 @@ export default {
           chineseName: product.chineseName,
           price: product.price,
           qty: 1,
-          userId: 123
+          userId: this.userId
         };
-
-        this.cart.push(newCartItem);
-
         axios
           .post(url, newCartItem)
           .then((res) => {
-            console.log(res.data);
-            // 在這裡你可能需要處理後端返回的資料，例如更新購物車狀態
+            // console.log(res.data);
           })
-          .catch((err) => {
-            console.log(err);
+          .catch(() => {
+            // console.log(err);
           });
       } else {
         // 如果存在相同的 product_id，更新數量
         this.cart[existingProductIndex].qty += 1;
-        console.log(this.cart[existingProductIndex]);
+        const updateQty = {
+          qty: this.cart[existingProductIndex].qty
+        };
         axios
-          .post(url, this.cart[existingProductIndex])
+          .patch(`${url}/${product.id}`, updateQty)
           .then((res) => {
             console.log(res.data);
-            // 在這裡你可能需要處理後端返回的資料，例如更新購物車狀態
           })
           .catch((err) => {
-            console.log(err);
+            console.log(err.response);
           });
       }
+      this.getCartList();
     },
     seeProduct(id) {
       this.$router.push({ name: 'ProductDetail', params: { id } });
+    },
+    addToFavorite(id) {
+      const url = `${VITE_API_URL}/favorite`;
+      const favoriteData = {
+        userId: this.userId,
+        productId: id,
+        created_at: '2024/02/21'
+      };
+      axios
+        .post(url, favoriteData)
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch(() => {
+          alert('未正確取得，請稍後再試～');
+        });
     }
   },
   computed: {
+    ...mapState(userStore, ['getUser']),
     sortedProducts() {
       return this.selectedRegionProducts.slice().sort((a, b) => {
         if (this.currentSort === 'price') {
@@ -225,8 +259,11 @@ export default {
     }
   },
   mounted() {
+    const { userId } = this.getUserCookie();
     this.getProductList();
+    this.getCartList();
     this.updateContent();
+    this.userId = userId;
   }
 };
 </script>
