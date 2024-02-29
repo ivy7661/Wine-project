@@ -2058,9 +2058,49 @@
       "product_id": "12",
       "chineseName": "雷米杜費酒莊.薄酒萊村莊白酒",
       "price": 1100,
-      "qty": 1,
+      "qty": 4,
       "userId": "6",
       "id": 8
+    },
+    [
+      {
+        "product_id": "12",
+        "chineseName": "雷米杜費酒莊.薄酒萊村莊白酒",
+        "price": 1100,
+        "qty": 1
+      }
+    ],
+    {
+      "product_id": "1",
+      "chineseName": "開心妞香檳.特級陳釀不甜香檳",
+      "price": 1275,
+      "qty": 5,
+      "userId": "6",
+      "id": 10
+    },
+    {
+      "product_id": "47",
+      "chineseName": "阿密候酒莊.噴泉系列 自然氣泡酒",
+      "price": 1190,
+      "qty": 3,
+      "userId": "6",
+      "id": 11
+    },
+    {
+      "product_id": "50",
+      "chineseName": "貝拉格斯酒莊.(戈登)安茹白酒",
+      "price": 1650,
+      "qty": 1,
+      "userId": "6",
+      "id": 12
+    },
+    {
+      "product_id": "49",
+      "chineseName": "貝拉格斯酒莊.(布蘭奇)安茹白酒",
+      "price": 2630,
+      "qty": 1,
+      "userId": "6",
+      "id": 13
     }
   ],
   "favorite": [
@@ -2090,15 +2130,15 @@
     },
     {
       "userId": "6",
-      "productId": "9",
-      "created_at": "2024/02/28",
-      "id": 7
-    },
-    {
-      "userId": "6",
       "productId": "6",
       "created_at": "2024/02/28",
       "id": 8
+    },
+    {
+      "userId": "6",
+      "productId": "12",
+      "created_at": "2024/02/28",
+      "id": 10
     }
   ]
 }

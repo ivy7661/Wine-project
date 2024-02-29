@@ -12,7 +12,15 @@
                 class="product-image"
                 :alt="selectedProduct.chineseName"
               />
-              <a href="#"><i class="bi bi-heart position-absolute top-5 start-10"></i></a>
+              <a href="#" @click="toggleFavorite(selectedProduct)"
+                ><i
+                  class="bi heart position-absolute top-5 start-10"
+                  :class="{
+                    'bi-heart': !selectedProduct.isFavorite,
+                    'bi-heart-fill': selectedProduct.isFavorite
+                  }"
+                ></i
+              ></a>
             </div>
             <ul class="socialFriends d-flex">
               <li>
@@ -271,7 +279,7 @@
                   </a>
                   <p class="card-text text-danger fw-bold">$ {{ wine.price }}</p>
                 </div>
-                <a href="#" class="btn btn-primary w-100">加入購物車</a>
+                <a href="#" class="btn btn-primary w-100" @click="addToCart(wine)">加入購物車</a>
               </div>
             </div>
           </div>
@@ -282,7 +290,10 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2';
 import axios from 'axios';
+import { mapState, mapActions } from 'pinia';
+import userStore from '@/stores/user';
 const { VITE_API_URL } = import.meta.env;
 
 export default {
@@ -294,10 +305,14 @@ export default {
       products: [],
       selectedProduct: {},
       similarWines: [],
-      cart: []
+      cart: [],
+      favoriteList: [],
+      allFavoriteList: [],
+      userId: ''
     };
   },
   methods: {
+    ...mapActions(userStore, ['setUser', 'cleanUser', 'getUserCookie']),
     getProduct() {
       const url = `${VITE_API_URL}/products`;
       axios
@@ -305,7 +320,7 @@ export default {
         .then((res) => {
           // console.log(res.data);
           this.products = res.data;
-          console.log(this.selectedProduct);
+          // console.log(this.selectedProduct);
           this.selectedProduct = this.products.find((item) => item.id === this.$route.params.id);
           this.findSimilarWinesByGrape(this.selectedProduct, this.products);
         })
@@ -313,27 +328,179 @@ export default {
           alert('未正確取得產品資訊，請稍後再試～');
         });
     },
-    addToCart(product) {
+    getCartList() {
       const url = `${VITE_API_URL}/carts`;
-      const existingProductIndex = this.cart.findIndex((item) => item.product_id === product.id);
+      axios
+        .get(url)
+        .then((res) => {
+          // console.log(res.data);
+          this.cart = res.data;
+        })
+        .catch((err) => {
+          console.log('未正確取得購物車');
+          console.log(err.data);
+        });
+    },
+    addToCart(product) {
+      if (!this.userId) {
+        alert('請先登入');
+        return;
+      }
+      const url = `${VITE_API_URL}/carts`;
+
+      // 找出這位會員的購物車內是否已經有這個商品
+      const existingProductIndex = this.cart.findIndex(
+        (item) => item.product_id === product.id && item.userId === this.userId
+      );
       if (existingProductIndex === -1) {
-        this.cart.push({
+        // 如果不存在相同的 product_id及 user id，添加新商品
+        const newCartItem = {
           product_id: product.id,
           chineseName: product.chineseName,
           price: product.price,
-          qty: 1
-        });
+          qty: 1,
+          userId: this.userId
+        };
+        axios
+          .post(url, newCartItem)
+          .then((res) => {
+            // console.log(res.data);
+            Swal.fire({
+              title: '成功加入購物車',
+              text: '商品已經成功加入購物車',
+              icon: 'success'
+            });
+          })
+          .catch(() => {
+            // console.log(err);
+            Swal.fire({
+              title: '加入購物車失敗',
+              text: '請稍後再試',
+              icon: 'error'
+            });
+          });
       } else {
+        // 如果存在相同的 product_id，更新數量
+        // 購物車的 id
+        const cartId = this.cart[existingProductIndex].id;
+        // 更新數量
         this.cart[existingProductIndex].qty += 1;
+        const updateQty = {
+          qty: this.cart[existingProductIndex].qty
+        };
+        axios
+          .patch(`${url}/${cartId}`, updateQty)
+          .then((res) => {
+            // console.log(res.data);
+            Swal.fire({
+              title: '成功加入購物車',
+              text: '商品已經成功加入購物車',
+              icon: 'success'
+            });
+          })
+          .catch((err) => {
+            console.log(err.response);
+            Swal.fire({
+              title: '加入購物車失敗',
+              text: '請稍後再試',
+              icon: 'error'
+            });
+          });
       }
-      axios.post(url, this.cart).then((res) => {
-        // console.log(res.data);
-      });
+      this.getCartList();
+    },
+    getFavoriteList() {
+      const url = `${VITE_API_URL}/favorite`;
+      axios
+        .get(url)
+        .then((res) => {
+          this.allFavoriteList = res.data;
+          this.favoriteList = res.data.filter((item) => item.userId === this.userId);
+          this.checkFavoriteStatus();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    checkFavoriteStatus() {
+      this.selectedProduct.isFavorite = this.favoriteList.some(
+        (favorite) => favorite.productId === this.selectedProduct.id
+      );
+    },
+    addToFavorite(id) {
+      if (!this.userId) {
+        alert('請先登入');
+        return;
+      }
+      const url = `${VITE_API_URL}/favorite`;
+
+      const currentDate = new Date();
+      // 將日期轉化格式 'YYYY/MM/DD'
+      const formattedDate = `${currentDate.getFullYear()}/${(currentDate.getMonth() + 1).toString().padStart(2, '0')}/${currentDate.getDate().toString().padStart(2, '0')}`;
+      const favoriteData = {
+        userId: this.userId,
+        productId: this.selectedProduct.id,
+        created_at: formattedDate
+      };
+      axios
+        .post(url, favoriteData)
+        .then((res) => {
+          console.log(res.data);
+          this.getFavoriteList();
+          Swal.fire({
+            title: '加入最愛',
+            text: '商品已經成功加入最愛清單。',
+            icon: 'success'
+          });
+        })
+        .catch(() => {
+          alert('未正確取得，請稍後再試～');
+        });
+    },
+    toggleFavorite(product) {
+      // 檢查產品是否在最愛清單中
+      const isFavorite = this.selectedProduct.isFavorite;
+
+      // 如果產品已經在最愛清單中，從最愛清單中移除，否則加入到最愛清單
+      if (isFavorite) {
+        this.removeFromFavorite(product.id);
+      } else {
+        this.addToFavorite(product.id);
+      }
+    },
+    removeFromFavorite(id) {
+      if (!this.userId) {
+        alert('請先登入');
+        return;
+      }
+      const url = `${VITE_API_URL}/favorite`;
+      const existingProductIndex = this.allFavoriteList.findIndex(
+        (item) => item.productId === id && item.userId === this.userId
+      );
+      console.log(this.allFavoriteList[existingProductIndex].id);
+      const deleteItem = this.allFavoriteList[existingProductIndex].id;
+      axios
+        .delete(`${url}/${deleteItem}`, {
+          userId: this.userId,
+          id: existingProductIndex
+        })
+        .then((res) => {
+          console.log(res);
+          this.getFavoriteList();
+          Swal.fire({
+            title: '移出最愛',
+            text: '商品已經成功移出最愛清單',
+            icon: 'success'
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
     findSimilarWinesByGrape(selectedProduct, products, numberOfSimilarWines = 4) {
       // 提取目標酒的葡萄品種
       const targetGrapes = selectedProduct.grape;
-      console.log(this.selectedProduct);
+      // console.log(this.selectedProduct);
 
       // 遍歷所有酒，找出具有相同或相似葡萄品種的其他酒
       const similarWines = products.filter((wine) => {
@@ -358,10 +525,17 @@ export default {
       this.getProduct();
     }
   },
+  computed: {
+    ...mapState(userStore, ['getUser'])
+  },
   mounted() {
-    console.log('ProductDetail.vue mounted', this.$route.params.id);
-    this.title = '產品詳情 - ' + this.$route.params.id;
+    // console.log('ProductDetail.vue mounted', this.$route.params.id);
+    // this.title = '產品詳情 - ' + this.$route.params.id;
+    const { userId } = this.getUserCookie();
+    this.userId = userId;
     this.getProduct();
+    this.getCartList();
+    this.getFavoriteList();
   }
 };
 </script>
@@ -373,8 +547,15 @@ ul {
 li {
   list-style: none;
 }
-.bi-heart {
+.heart {
   font-size: 20px;
+}
+.heart:hover {
+  color: red;
+  transform: scale(1.5);
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
 }
 .bi-heart:hover {
   color: red;

@@ -88,7 +88,7 @@
                         </div>
                       </div>
                       <div>
-                        <a href="#" @click="seeProduct(product.id)">
+                        <a href="#" class="text-black" @click="seeProduct(product.id)">
                           <h5 class="card-title flex-fill">{{ product.chineseName }}</h5>
                         </a>
                         <p class="card-text text-danger fw-bold">$ {{ product.price }}</p>
@@ -376,11 +376,11 @@ export default {
   },
   mounted() {
     const { userId } = this.getUserCookie();
+    this.userId = userId;
     this.getProductList();
     this.getCartList();
     this.updateContent();
     this.getFavoriteList();
-    this.userId = userId;
   }
 };
 </script>
