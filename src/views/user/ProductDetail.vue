@@ -334,7 +334,7 @@ export default {
         .get(url)
         .then((res) => {
           // console.log(res.data);
-          this.cart = res.data;
+          this.cart = res.data.filter((item) => item.userId === this.userId);
         })
         .catch((err) => {
           console.log('未正確取得購物車');
@@ -357,7 +357,10 @@ export default {
         const newCartItem = {
           product_id: product.id,
           chineseName: product.chineseName,
+          image: product.image,
           price: product.price,
+          is_hot: product.is_hot,
+          star: product.star,
           qty: 1,
           userId: this.userId
         };
