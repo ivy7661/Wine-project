@@ -151,17 +151,17 @@
       <div class="col-md-6">
         <strong class="d-inline-block mb-4 text-primary"><h3>引導選酒區</h3></strong>
         <div class="row">
-        <div class="col-5 mx-2 card mb-4 radius">
+        <div class="col-6 card mb-4 radius d-flex justify-content-center">
           <button class="btn btn-lg btn-primary w-100 mt-3" type="button" @click="openModal">
-            <img src="/images/lead_wine/純品酒.webp" class="card-img-top object-fit p-5"  style="width: 500px; height: 300px alt='Wine and Glass'">
+            <img src="/images/lead_wine/純品酒.webp" class="object-fit p-5"  style="width: 300px; alt='Wine and Glass'">
     </button>
           <div class="card-body">
             <h3 class="card-text text-center pb-3">純品酒</h3>
         </div>
       </div>
-        <div class="col-5 mx-2 card mb-4 radius">
+        <div class="col-6 card mb-4 radius ">
           <button class="btn btn-lg btn-primary w-100 mt-3" type="button" @click="openModal">
-          <img src="/images/lead_wine/餐酒搭配.webp" class="card-img-top object-fit p-5"  style="width: 500px; height: 300px alt='Wine and Glass'">
+          <img src="/images/lead_wine/餐酒搭配.webp" class="object-fit p-5"  style="width: 300px;alt='Wine and Glass'">
     </button>
           <div class="card-body">
             <h3 class="card-text text-center pb-3">餐酒搭配</h3>
