@@ -126,11 +126,18 @@
 
                       <div class="region-button d-flex justify-content-between">
                         <button type="button" class="btn btn-black me-0" @click="addToFavorite(item.id)"
-                          :disabled="!userData.getUser?.id">
-                          <i class="bi bi-heart me-1"></i>
-                          加入收藏
+                          :disabled="!getUser?.id">
+                          <template v-if="getFavorites.includes(item.id)">
+                            <i class="bi bi-heart-fill me-1"></i>
+                            已收藏
+                          </template>
+                          <template v-else>
+                            <i class="bi bi-heart me-1"></i>
+                            加入收藏
+                          </template>
                         </button>
-                        <button type="button" class="btn btn-primary me-0" :disabled="!userData.getUser?.id">
+                        <button type="button" class="btn btn-primary me-0" :disabled="!getUser?.id"
+                          @click="addToCart(item)">
                           <i class="bi bi-cart3 me-1"></i>
                           加入購物車
                         </button>
@@ -154,6 +161,7 @@
 import 'swiper/css';
 import 'swiper/css/pagination';
 
+import { storeToRefs } from 'pinia';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { Swiper, SwiperSlide } from 'swiper/vue';
@@ -168,6 +176,7 @@ import userStore from '@/stores/user';
 const userData = userStore();
 
 // 變數
+const { getUser, getFavorites } = storeToRefs(userData);
 const swiperModule = ref(null);
 const selectRegion = ref('1');
 const products = ref([]);
@@ -192,17 +201,19 @@ const getProductList = () => {
     });
 };
 
-const addToFavorite = (id) => {
-  if (id && userData.getUser.id) {
+const addToFavorite = (productId) => {
+  if (productId && getUser.value.id && !getFavorites.value.includes(productId)) {
     const postData = {
-      userId: userData.getUser.id,
-      productId: id,
+      userId: getUser.value.id,
+      productId,
       created_at: getFormattedDate()
     };
 
     axios.post(`${import.meta.env.VITE_API_URL}/favorite`, postData)
       .then((res) => {
         // console.log(res.data);
+        userData.resetUserFavorites();
+
         Swal.fire({
           title: '收藏成功',
           text: '',
@@ -217,6 +228,13 @@ const addToFavorite = (id) => {
           icon: 'error'
         });
       });
+  }
+};
+
+const addToCart = (product) => {
+  // console.log('addToCart: ', product);
+  if (product && product.id && getUser.value.id) {
+    userData.addToCart(product);
   }
 };
 
