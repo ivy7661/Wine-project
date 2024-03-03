@@ -33,13 +33,13 @@
                 <option value="熱賣酒品">熱賣酒品</option>
               </select>
               <div class="filterBtn d-flex justify-content-between gap-3">
-                <a type="button" class="btn btn-primary btn-lg px-4 py-2" @click="sortBy('price')">
+                <a type="button" class="btn btn-primary btn-lg px-4 py-2" @click.prevent="sortBy('price')">
                   價格 <i :class="ascendingOrderPrice ? 'bi bi-arrow-down' : 'bi bi-arrow-up'"></i>
                 </a>
                 <a
                   type="button"
                   class="btn btn-primary btn-lg px-4 py-2 me-0"
-                  @click="sortBy('star')"
+                  @click.prevent="sortBy('star')"
                 >
                   評價 <i :class="ascendingOrderStar ? 'bi bi-arrow-down' : 'bi bi-arrow-up'"></i>
                 </a>
@@ -57,7 +57,7 @@
             <div class="card h-100 p-2">
               <div class="row h-100">
                 <div class="col-4">
-                  <a href="#" @click="toggleFavorite(product)">
+                  <a href="#" @click.prevent="toggleFavorite(product)">
                     <i
                       class="bi heart position-absolute top-5 start-5"
                       :class="{
@@ -66,7 +66,7 @@
                       }"
                     ></i>
                   </a>
-                  <a href="#" @click="seeProduct(product.id)">
+                  <a href="#" @click.prevent="seeProduct(product.id)">
                     <img
                       :src="`/images/wine_images/${product.image}.jpg`"
                       class="card-img-top h-100"
@@ -88,13 +88,13 @@
                         </div>
                       </div>
                       <div>
-                        <a href="#" class="text-black" @click="seeProduct(product.id)">
+                        <a href="#" class="text-black" @click.prevent="seeProduct(product.id)">
                           <h5 class="card-title flex-fill">{{ product.chineseName }}</h5>
                         </a>
                         <p class="card-text text-danger fw-bold">$ {{ product.price }}</p>
                       </div>
                     </div>
-                    <a href="#" class="btn btn-primary w-100" @click="addToCart(product)" v-on:click="showCartToast"
+                    <a href="#" class="btn btn-primary w-100" @click.prevent="addToCart(product)"
                       >加入購物車</a
                     >
                   </div>
@@ -153,12 +153,10 @@ export default {
       axios
         .get(url)
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           this.cart = res.data.filter((item) => item.userId === this.userId);
         })
-        .catch((err) => {
-          console.log('未正確取得購物車');
-          console.log(err.data);
+        .catch(() => {
         });
     },
     updateContent(selectedRegion) {
@@ -169,9 +167,7 @@ export default {
           // console.log(res.data);
           this.productsContent = res.data;
         })
-        .catch((err) => {
-          console.log(err.data);
-          console.log('未正確取得文檔');
+        .catch(() => {
         });
     },
     sortBy(sortKey) {
@@ -235,15 +231,15 @@ export default {
         axios
           .patch(`${url}/${cartId}`, updateQty)
           .then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
             Swal.fire({
               title: '成功加入購物車',
               text: '商品已經成功加入購物車',
               icon: 'success'
             });
           })
-          .catch((err) => {
-            console.log(err.response);
+          .catch(() => {
+            // console.log(err.response);
             Swal.fire({
               title: '加入購物車失敗',
               text: '請稍後再試',
@@ -297,7 +293,7 @@ export default {
       axios
         .post(url, favoriteData)
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           this.getFavoriteList();
           Swal.fire({
             title: '加入最愛',
@@ -306,7 +302,7 @@ export default {
           });
         })
         .catch(() => {
-          alert('未正確取得，請稍後再試～');
+          // alert('未正確取得，請稍後再試～');
         });
     },
     toggleFavorite(product) {
@@ -329,7 +325,7 @@ export default {
       const existingProductIndex = this.allFavoriteList.findIndex(
         (item) => item.productId === id && item.userId === this.userId
       );
-      console.log(this.allFavoriteList[existingProductIndex].id);
+      // console.log(this.allFavoriteList[existingProductIndex].id);
       const deleteItem = this.allFavoriteList[existingProductIndex].id;
       axios
         .delete(`${url}/${deleteItem}`, {
@@ -337,7 +333,7 @@ export default {
           id: existingProductIndex
         })
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           this.getFavoriteList();
           Swal.fire({
             title: '移出最愛',
@@ -345,8 +341,8 @@ export default {
             icon: 'success'
           });
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
+          // console.log(err);
         });
     }
   },
