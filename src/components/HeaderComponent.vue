@@ -19,7 +19,7 @@
       <div class="header-img">
         <RouterLink to="/"><img src="/images/Logo.png" alt="LOGO"></RouterLink>
       </div>
-      <div class="header-title text-center">
+      <div class="header-title text-center d-none d-md-block">
         <h2 class="text-primary">法國葡萄酒之旅</h2>
         <p class="m-0 text-dark">探索五大產區的珍品</p>
       </div>
@@ -114,7 +114,7 @@ export default {
 }
 
 .header-main {
-  padding: 12px 40px;
+  padding: 12px 20px;
 
   .header-title {
     h2 {
@@ -133,7 +133,7 @@ export default {
   }
 
   .header-img {
-    width: 232px;
+    width: 150px;
 
     img {
       height: 90px;
@@ -146,7 +146,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 24px;
+    margin-right: 8px;
 
     &:last-child {
       margin-right: 0;
@@ -176,6 +176,22 @@ export default {
 
   img {
     width: 100%;
+  }
+}
+
+@media (min-width:768px) {
+  .header-main {
+    padding: 12px 40px;
+
+    .header-img {
+      width: 232px;
+    }
+
+    .header-nav a {
+      width: 40px;
+      height: 40px;
+      margin-right: 24px;
+    }
   }
 }
 </style>

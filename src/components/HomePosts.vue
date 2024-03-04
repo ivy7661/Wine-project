@@ -94,4 +94,9 @@ a {
   top: -40px;
   left: 0;
 }
+@media (max-width: 375px) {
+  .card {
+    max-width: 310px;
+  }
+}
 </style>
