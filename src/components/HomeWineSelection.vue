@@ -1,39 +1,8 @@
 <template>
   <div>
-    <div class="row">
-      <div class="col-6">
-        <strong class="d-inline-block mb-2 text-primary">熱賣商品</strong>
-        <swiper-container class="mySwiper" pagination="true">
-          <swiper-slide>Slide 1</swiper-slide>
-          <swiper-slide>Slide 2</swiper-slide>
-          <swiper-slide>Slide 3</swiper-slide>
-          <swiper-slide>Slide 4</swiper-slide>
-          <swiper-slide>Slide 5</swiper-slide>
-          <swiper-slide>Slide 6</swiper-slide>
-          <swiper-slide>Slide 7</swiper-slide>
-          <swiper-slide>Slide 8</swiper-slide>
-          <swiper-slide>Slide 9</swiper-slide>
-        </swiper-container>
-      </div>
-      <div class="col-6">
-        <strong class="d-inline-block mb-2 text-primary">引導選酒區</strong>
-        <swiper-container class="mySwiper" pagination="true">
-          <swiper-slide>Slide 1</swiper-slide>
-          <swiper-slide>Slide 2</swiper-slide>
-          <swiper-slide>Slide 3</swiper-slide>
-          <swiper-slide>Slide 4</swiper-slide>
-          <swiper-slide>Slide 5</swiper-slide>
-          <swiper-slide>Slide 6</swiper-slide>
-          <swiper-slide>Slide 7</swiper-slide>
-          <swiper-slide>Slide 8</swiper-slide>
-          <swiper-slide>Slide 9</swiper-slide>
-        </swiper-container>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-          <div class="card-body d-flex flex-column align-items-start"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
         </div>
       </div>
     </div>
