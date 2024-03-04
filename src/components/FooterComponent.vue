@@ -27,13 +27,13 @@
         <div class="d-none d-md-block col-6">
           <ul class="footer-social d-flex justify-content-end">
             <li>
-              <a href="#"><img src="../../images/facebook.png" alt="facebook" /></a>
+              <a href="#"><i class="bi bi-facebook"></i></a>
             </li>
             <li>
-              <a href="#"><img src="../../images/instagram.png" alt="instagram" /></a>
+              <a href="#"><i class="bi bi-instagram"></i></a>
             </li>
             <li>
-              <a href="#"><img src="../../images/tiktok.png" alt="tiktok" /></a>
+              <a href="#"><i class="bi bi-line"></i></a>
             </li>
           </ul>
           <div class="d-flex flex-column align-items-end">
@@ -73,13 +73,13 @@
           </div>
           <ul class="footer-social-mobile d-flex justify-content-center">
             <li>
-              <a href="#"><img src="../../images/facebook.png" alt="facebook" /></a>
+              <a href="#"><i class="bi bi-facebook"></i></a>
             </li>
             <li>
-              <a href="#"><img src="../../images/instagram.png" alt="instagram" /></a>
+              <a href="#"><i class="bi bi-instagram"></i></a>
             </li>
             <li>
-              <a href="#"><img src="../../images/tiktok.png" alt="tiktok" /></a>
+              <a href="#"><i class="bi bi-line"></i></a>
             </li>
           </ul>
         </div>
@@ -131,8 +131,12 @@ li {
     padding: 10px;
     background-color: #fffbf5;
     border-radius: 8px;
-    img {
-      width: 32px;
+    transition: background-color 0.3s ease;
+    &:hover {
+      background-color: #e0e0e0;
+    }
+    i {
+      font-size: 32px;
     }
   }
 }
@@ -142,8 +146,12 @@ li {
     padding: 10px;
     background-color: #fffbf5;
     border-radius: 8px;
-    img {
-      width: 32px;
+    transition: background-color 0.3s ease;
+    &:hover {
+      background-color: #e0e0e0;
+    }
+    i {
+      font-size: 32px;
     }
   }
 }

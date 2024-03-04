@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div class="bg-products">
+    <div class="bg-products pb-4">
       <div class="container">
         <div class="row justify-content-between">
           <div class="col-md-6">
             <div v-for="productTitle in productsContent" :key="productTitle.title">
               <div v-if="selectedRegion === productTitle.title">
-                <h2 class="pb-5">法國五大產區 - {{ productTitle.title }}</h2>
-                <p>{{ productTitle.content }}</p>
+                <h2 class="pb-5 text-white">法國五大產區 - {{ productTitle.title }}</h2>
+                <p class="text-white lh-large">{{ productTitle.content }}</p>
               </div>
             </div>
           </div>
@@ -33,13 +33,13 @@
                 <option value="熱賣酒品">熱賣酒品</option>
               </select>
               <div class="filterBtn d-flex justify-content-between gap-3">
-                <a type="button" class="btn btn-primary btn-lg px-4 py-2" @click="sortBy('price')">
+                <a type="button" class="btn btn-primary btn-lg px-4 py-2" @click.prevent="sortBy('price')">
                   價格 <i :class="ascendingOrderPrice ? 'bi bi-arrow-down' : 'bi bi-arrow-up'"></i>
                 </a>
                 <a
                   type="button"
                   class="btn btn-primary btn-lg px-4 py-2 me-0"
-                  @click="sortBy('star')"
+                  @click.prevent="sortBy('star')"
                 >
                   評價 <i :class="ascendingOrderStar ? 'bi bi-arrow-down' : 'bi bi-arrow-up'"></i>
                 </a>
@@ -50,15 +50,23 @@
       </div>
     </div>
     <div class="container">
-      <img src="/images/footerContainer.png" class="w-100 mt-3 mb-5" />
+      <img src="/images/footerContainer.png" class="w-100 mb-5" />
       <div class="productList pb-5 align-items-stretch">
         <div class="row mb-3 gy-3">
           <div class="col-12 col-md-6 col-lg-4" v-for="(product, key) in sortedProducts" :key="key">
             <div class="card h-100 p-2">
               <div class="row h-100">
                 <div class="col-4">
-                  <a href="#"><i class="bi bi-heart position-absolute top-5 start-5"></i></a>
-                  <a href="#" @click="seeProduct(product.id)">
+                  <a href="#" @click.prevent="toggleFavorite(product)">
+                    <i
+                      class="bi heart position-absolute top-5 start-5"
+                      :class="{
+                        'bi-heart': !product.isFavorite,
+                        'bi-heart-fill': product.isFavorite
+                      }"
+                    ></i>
+                  </a>
+                  <a href="#" @click.prevent="seeProduct(product.id)">
                     <img
                       :src="`/images/wine_images/${product.image}.jpg`"
                       class="card-img-top h-100"
@@ -80,13 +88,13 @@
                         </div>
                       </div>
                       <div>
-                        <a href="#" @click="seeProduct(product.id)">
+                        <a href="#" class="text-black" @click.prevent="seeProduct(product.id)">
                           <h5 class="card-title flex-fill">{{ product.chineseName }}</h5>
                         </a>
                         <p class="card-text text-danger fw-bold">$ {{ product.price }}</p>
                       </div>
                     </div>
-                    <a href="#" class="btn btn-primary w-100" @click="addToCart(product)"
+                    <a href="#" class="btn btn-primary w-100" @click.prevent="addToCart(product)"
                       >加入購物車</a
                     >
                   </div>
@@ -101,7 +109,10 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2';
 import axios from 'axios';
+import { mapState, mapActions } from 'pinia';
+import userStore from '@/stores/user';
 const { VITE_API_URL } = import.meta.env;
 
 export default {
@@ -116,21 +127,36 @@ export default {
       cart: [],
       ascendingOrderPrice: true,
       ascendingOrderStar: true,
-      searchKeyword: ''
+      searchKeyword: '',
+      favoriteList: [],
+      allFavoriteList: [],
+      userId: ''
     };
   },
   methods: {
+    ...mapActions(userStore, ['setUser', 'cleanUser', 'getUserCookie']),
     getProductList() {
       const url = `${VITE_API_URL}/products`;
       axios
         .get(url)
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           this.products = res.data;
           this.selectedRegionProducts = this.products.filter((product) => product.is_hot === 1);
         })
         .catch(() => {
           alert('未正確取得產品資訊，請稍後再試～');
+        });
+    },
+    getCartList() {
+      const url = `${VITE_API_URL}/carts`;
+      axios
+        .get(url)
+        .then((res) => {
+          // console.log(res.data);
+          this.cart = res.data.filter((item) => item.userId === this.userId);
+        })
+        .catch(() => {
         });
     },
     updateContent(selectedRegion) {
@@ -141,9 +167,7 @@ export default {
           // console.log(res.data);
           this.productsContent = res.data;
         })
-        .catch((err) => {
-          console.log(err.data);
-          alert('未正確取得文檔');
+        .catch(() => {
         });
     },
     sortBy(sortKey) {
@@ -155,50 +179,175 @@ export default {
       this.currentSort = sortKey;
     },
     addToCart(product) {
+      if (!this.userId) {
+        alert('請先登入');
+        return;
+      }
       const url = `${VITE_API_URL}/carts`;
 
-      const existingProductIndex = this.cart.findIndex((item) => item.product_id === product.id);
+      // 找出這位會員的購物車內是否已經有這個商品
+      const existingProductIndex = this.cart.findIndex(
+        (item) => item.product_id === product.id && item.userId === this.userId
+      );
       if (existingProductIndex === -1) {
-        // 如果不存在相同的 product_id，添加新商品
+        // 如果不存在相同的 product_id及 user id，添加新商品
         const newCartItem = {
           product_id: product.id,
           chineseName: product.chineseName,
+          image: product.image,
           price: product.price,
+          is_hot: product.is_hot,
+          star: product.star,
           qty: 1,
-          userId: 123
+          userId: this.userId
         };
-
-        this.cart.push(newCartItem);
-
         axios
           .post(url, newCartItem)
           .then((res) => {
-            console.log(res.data);
-            // 在這裡你可能需要處理後端返回的資料，例如更新購物車狀態
+            // console.log(res.data);
+            Swal.fire({
+              title: '成功加入購物車',
+              text: '商品已經成功加入購物車',
+              icon: 'success'
+            });
           })
-          .catch((err) => {
-            console.log(err);
+          .catch(() => {
+            // console.log(err);
+            Swal.fire({
+              title: '加入購物車失敗',
+              text: '請稍後再試',
+              icon: 'error'
+            });
           });
       } else {
         // 如果存在相同的 product_id，更新數量
+        // 購物車的 id
+        const cartId = this.cart[existingProductIndex].id;
+        // 更新數量
         this.cart[existingProductIndex].qty += 1;
-        console.log(this.cart[existingProductIndex]);
+        const updateQty = {
+          qty: this.cart[existingProductIndex].qty
+        };
         axios
-          .post(url, this.cart[existingProductIndex])
+          .patch(`${url}/${cartId}`, updateQty)
           .then((res) => {
-            console.log(res.data);
-            // 在這裡你可能需要處理後端返回的資料，例如更新購物車狀態
+            // console.log(res.data);
+            Swal.fire({
+              title: '成功加入購物車',
+              text: '商品已經成功加入購物車',
+              icon: 'success'
+            });
           })
-          .catch((err) => {
-            console.log(err);
+          .catch(() => {
+            // console.log(err.response);
+            Swal.fire({
+              title: '加入購物車失敗',
+              text: '請稍後再試',
+              icon: 'error'
+            });
           });
       }
+      this.getCartList();
     },
     seeProduct(id) {
       this.$router.push({ name: 'ProductDetail', params: { id } });
+    },
+    getFavoriteList() {
+      const url = `${VITE_API_URL}/favorite`;
+      axios
+        .get(url)
+        .then((res) => {
+          this.allFavoriteList = res.data;
+          this.favoriteList = res.data.filter((item) => item.userId === this.userId);
+          this.checkFavoriteStatus();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    checkFavoriteStatus() {
+      // 遍歷所有產品，檢查它們是否在願望清單中
+      this.sortedProducts.forEach((product) => {
+        product.isFavorite = this.isProductInFavorite(product.id);
+      });
+    },
+    isProductInFavorite(productId) {
+      // 根據產品ID檢查產品是否在最愛清單中
+      return this.favoriteList.some((favorite) => favorite.productId === productId);
+    },
+    addToFavorite(id) {
+      if (!this.userId) {
+        alert('請先登入');
+        return;
+      }
+      const url = `${VITE_API_URL}/favorite`;
+
+      const currentDate = new Date();
+      // 將日期轉化格式 'YYYY/MM/DD'
+      const formattedDate = `${currentDate.getFullYear()}/${(currentDate.getMonth() + 1).toString().padStart(2, '0')}/${currentDate.getDate().toString().padStart(2, '0')}`;
+      const favoriteData = {
+        userId: this.userId,
+        productId: id,
+        created_at: formattedDate
+      };
+      axios
+        .post(url, favoriteData)
+        .then((res) => {
+          // console.log(res.data);
+          this.getFavoriteList();
+          Swal.fire({
+            title: '加入最愛',
+            text: '商品已經成功加入最愛清單。',
+            icon: 'success'
+          });
+        })
+        .catch(() => {
+          // alert('未正確取得，請稍後再試～');
+        });
+    },
+    toggleFavorite(product) {
+      // 檢查產品是否在最愛清單中
+      const isFavorite = this.isProductInFavorite(product.id);
+
+      // 如果產品已經在最愛清單中，從最愛清單中移除，否則加入到最愛清單
+      if (isFavorite) {
+        this.removeFromFavorite(product.id);
+      } else {
+        this.addToFavorite(product.id);
+      }
+    },
+    removeFromFavorite(id) {
+      if (!this.userId) {
+        alert('請先登入');
+        return;
+      }
+      const url = `${VITE_API_URL}/favorite`;
+      const existingProductIndex = this.allFavoriteList.findIndex(
+        (item) => item.productId === id && item.userId === this.userId
+      );
+      // console.log(this.allFavoriteList[existingProductIndex].id);
+      const deleteItem = this.allFavoriteList[existingProductIndex].id;
+      axios
+        .delete(`${url}/${deleteItem}`, {
+          userId: this.userId,
+          id: existingProductIndex
+        })
+        .then((res) => {
+          // console.log(res);
+          this.getFavoriteList();
+          Swal.fire({
+            title: '移出最愛',
+            text: '商品已經成功移出最愛清單',
+            icon: 'success'
+          });
+        })
+        .catch(() => {
+          // console.log(err);
+        });
     }
   },
   computed: {
+    ...mapState(userStore, ['getUser']),
     sortedProducts() {
       return this.selectedRegionProducts.slice().sort((a, b) => {
         if (this.currentSort === 'price') {
@@ -225,20 +374,29 @@ export default {
     }
   },
   mounted() {
+    const { userId } = this.getUserCookie();
+    this.userId = userId;
     this.getProductList();
+    this.getCartList();
     this.updateContent();
+    this.getFavoriteList();
   }
 };
 </script>
 
 <style lang="scss" scoped>
 .bg-products {
-  padding-top: 50px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url('./images/bg wine shelf.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  padding-top: 90px;
 }
 .btn-primary:hover {
-  filter: brightness(150%);
+  background-color: #d9381e;
 }
-.bi-heart:hover {
+.heart:hover {
   color: red;
   transform: scale(1.5);
   transition:

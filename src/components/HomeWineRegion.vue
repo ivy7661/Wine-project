@@ -1,14 +1,14 @@
 <template>
   <div class="region-container bg-accent-brown">
     <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-md-5">
-          <div class="d-flex justify-content-between align-items-center">
+      <div class="row justify-content-center flex-lg-row flex-column align-content-center">
+        <div class="col-lg-5 col-md-8">
+          <div class="d-flex justify-content-between flex-lg-row flex-column align-items-center">
             <h3 class="title text-primary">法國特色產區</h3>
             <div>
               <label for="select-region" class="form-label region-label">選擇產區</label>
-              <select id="select-region" class="form-select region text-primary" aria-label="選擇產區" v-model="selectRegion"
-                @change="onSelectChange">
+              <select id="select-region" class="form-select region text-primary" aria-label="選擇產區"
+                v-model="selectRegion" @change="onSelectChange">
                 <option value="1" selected>法國產區 薄酒萊</option>
                 <option value="2">法國產區 波爾多</option>
               </select>
@@ -23,6 +23,7 @@
                 <p>Beaujolais Nouveau</p>
               </div>
             </template>
+
             <template v-if="selectRegion === '2'">
               <img src="/images/region1.jpg" alt="region image">
               <div class="info bg-primary d-flex flex-wrap align-content-center justify-content-center">
@@ -44,8 +45,10 @@
           </div>
         </div>
 
-        <div class="col-md-5">
-          <swiper :pagination="{ el: '.swiper-pagination' }" @swiper="onSwiper" :modules="[Pagination]" class="mySwiper">
+        <div class="col-lg-5 col-md-8">
+          <swiper :pagination="{ el: '.swiper-pagination' }" @swiper="onSwiper" :modules="[Pagination]"
+            class="mySwiper">
+
             <template v-for="item in getFilterWine" :key="item.id">
               <swiper-slide>
                 <div class="region-card card bg-white">
@@ -131,6 +134,7 @@
                             <i class="bi bi-heart-fill me-1"></i>
                             已收藏
                           </template>
+
                           <template v-else>
                             <i class="bi bi-heart me-1"></i>
                             加入收藏
@@ -299,14 +303,14 @@ onMounted(() => {
   margin: 40px 0 40px 0;
 
   img {
-    width: 263px;
+    width: 50%;
     height: 204px;
     border-radius: 24px 0 0 24px;
   }
 
   .info {
     color: #FFF;
-    width: 263px;
+    width: 50%;
     height: 204px;
     border-radius: 0 24px 24px 0;
     box-shadow: -2px 0px 4px 0px #0000004D;
@@ -469,6 +473,18 @@ onMounted(() => {
       height: 48px;
       padding: 12px 20px 12px 20px;
       border-radius: 100px;
+    }
+  }
+}
+
+@media (min-width:1200px) {
+  .region-image {
+    img {
+      width: 263px;
+    }
+
+    .info {
+      width: 263px;
     }
   }
 }
