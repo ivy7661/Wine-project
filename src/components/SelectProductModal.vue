@@ -26,7 +26,7 @@
                         :class="{ 'bi-heart': !product.isFavorite, 'bi-heart-fill': product.isFavorite }"></i> -->
                     </a>
                     <a href="#" @click.prevent="seeProduct(product.id)">
-                      <img :src="`/images/wine_images/${product.image}.jpg`" class="card-img-top"
+                      <img :src="$filters.imgPath(`/images/wine_images/${product.image}.jpg`)" class="card-img-top"
                         :alt="product.chineseName" />
                     </a>
                   </div>

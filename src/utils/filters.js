@@ -7,3 +7,11 @@ export function date(time) {
   const localDate = new Date(time * 1000);
   return localDate.toLocaleDateString();
 }
+
+export function imgPath(url) {
+  const getRepository = import.meta.env.VITE_REPO_NAME || '';
+  if (getRepository) {
+    return `/${getRepository}${url}`;
+  }
+  return url;
+}

@@ -56,7 +56,7 @@
                     <div class="card-body px-0">
                       <div class="region-card_head d-flex">
                         <div class="image-wine">
-                          <img :src="`/images/wine_images/${item.image}.jpg`" alt="wine">
+                          <img :src="$filters.imgPath(`/images/wine_images/${item.image}.jpg`)" alt="wine">
                         </div>
                         <img class="image-switch" src="/images/switch.png" alt="wine">
                         <div class="single-ellipsis">
@@ -110,7 +110,8 @@
                             <div class="d-flex justify-content-between">
                               <div class="icon-container" v-for="(flavor, index) in item.flavor.slice(0, 3)"
                                 :key="flavor">
-                                <img :src="`/images/taste/t${index + 1}.png`" alt="Icon" class="icon mb-1">
+                                <img :src="$filters.imgPath(`/images/taste/t${index + 1}.png`)" alt="Icon"
+                                  class="icon mb-1">
                                 <p class="icon-text text-center">{{ flavor }}</p>
                               </div>
                             </div>
@@ -119,7 +120,8 @@
                             <p class="mb-2">搭配餐酒</p>
                             <div class="d-flex justify-content-between">
                               <div class="icon-container" v-for="(food, index) in item.food.slice(0, 3)" :key="food">
-                                <img :src="`/images/taste/f${index + 1}.png`" alt="Icon" class="icon mb-1">
+                                <img :src="$filters.imgPath(`/images/taste/f${index + 1}.png`)" alt="Icon"
+                                  class="icon mb-1">
                                 <p class="icon-text text-center">{{ food }}</p>
                               </div>
                             </div>

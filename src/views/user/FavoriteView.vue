@@ -13,7 +13,8 @@
 
       <div class="col-md-3 mt-3" v-for="item in getSortList" :key="item.id">
         <div class="card">
-          <img class=" card-img-top" :src="`/images/wine_images/${item.product.image}.jpg`" alt="Card image cap">
+          <img class=" card-img-top" :src="$filters.imgPath(`/images/wine_images/${item.product.image}.jpg`)"
+            alt="Card image cap">
           <div class="card-body">
             <div>
               <h5 class="card-title text-wrap">{{ item.product.chineseName }}</h5>
