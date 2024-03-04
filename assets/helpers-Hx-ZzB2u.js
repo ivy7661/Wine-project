@@ -1,0 +1,1 @@
+function o(e,n){const t=new Date(e);return t.setDate(t.getDate()+n),t}function r(){const e=new Date,n=e.getFullYear();let t=e.getMonth()+1,a=e.getDate();return t<10&&(t="0"+t),a<10&&(a="0"+a),n+"/"+t+"/"+a}export{o as a,r as g};
