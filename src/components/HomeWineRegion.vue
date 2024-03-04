@@ -46,7 +46,7 @@
         </div>
 
         <div class="col-lg-5 col-md-8">
-          <swiper :pagination="{ el: '.swiper-pagination' }" @swiper="onSwiper" :modules="[Pagination]"
+          <swiper :pagination="{ el: '#region_pagination' }" @swiper="onSwiper" :modules="[Pagination]"
             class="mySwiper">
 
             <template v-for="item in getFilterWine" :key="item.id">
@@ -154,7 +154,7 @@
             </template>
           </swiper>
 
-          <div class="swiper-pagination homeswiper-pagination mt-3"></div>
+          <div id="region_pagination" class="swiper-pagination homeswiper-pagination mt-3"></div>
         </div>
       </div>
     </div>
