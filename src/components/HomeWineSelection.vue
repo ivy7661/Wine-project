@@ -103,7 +103,7 @@
   <div class="container mt-3 d-flex justify-content-between">
     <div class="row">
       <!-- Product 1 -->
-      <div class="col-md-6">
+      <!-- <div class="col-md-6">
         <strong class="d-inline-block mb-2 text-primary">
           <h3>熱賣商品</h3>
         </strong>
@@ -115,7 +115,7 @@
                   <div class="col-4">
                     <a href="#"><i class="bi bi-heart position-absolute top-5 start-5"></i></a>
                     <a href="#">
-                      <img src="/images/wine images/wine1.jpg" class="object-fit w-100 h-100"/>
+                      <img src="/images/wine images/wine1.jpg" class="object-fit w-100 h-100" />
                     </a>
                   </div>
                   <div class="col-8">
@@ -138,31 +138,50 @@
             </div>
           </div>
         </div>
-      </div>
-    <div class="col-md-6">
-      <strong class="d-inline-block mb-4 text-primary">
-        <h3>引導選酒區</h3>
-      </strong>
-      <div class="row">
-        <div class="col-6 card mb-4 radius d-flex justify-content-center">
-          <button class="btn btn-lg btn-primary w-100 mt-3" type="button" @click="openModal">
-            <img src="/images/lead_wine/純品酒.webp" class="object-fit p-5" style="width: 300px;">
-          </button>
-          <div class="card-body">
-            <h3 class="card-text text-center pb-3">純品酒</h3>
-          </div>
+      </div> -->
+      <div class="col-md-4 mb-3">
+      <div class="card">
+        <img src="/images/wine images/wine1.jpg" class="card-img-top" alt="Wine">
+        <i class="fas fa-heart card-love"></i>
+        <div class="card-badge">熱門商品</div>
+        <div class="card-rating">
+          <span class="fas fa-star"></span>
+          <span class="fas fa-star"></span>
+          <span class="fas fa-star"></span>
+          <span class="fas fa-star"></span>
+          <span class="fas fa-star"></span>
         </div>
-        <div class="col-6 card mb-4 radius">
-          <button class="btn btn-lg btn-primary w-100 mt-3" type="button" @click="openModal">
-            <img src="/images/lead_wine/餐酒搭配.webp" class="object-fit p-5" style="width: 300px;">
-          </button>
-          <div class="card-body">
-            <h3 class="card-text text-center pb-3">餐酒搭配</h3>
+        <div class="card-body">
+          <h5 class="card-title">酒的名稱</h5>
+          <p class="card-text">價格</p>
+          <a href="#" class="btn btn-primary btn-full-width">加入購物車</a>
+        </div>
+      </div>
+    </div>
+      <div class="col-md-6">
+        <strong class="d-inline-block mb-4 text-primary">
+          <h3>引導選酒區</h3>
+        </strong>
+        <div class="row  d-grid gap-1">
+          <div class="col-5 card mb-4 radius d-flex justify-content-center">
+            <button class="btn btn-lg btn-primary w-100 mt-3" type="button" @click="openModal">
+              <img src="/images/lead_wine/純品酒.webp" class="object-fit p-5" style="width: 300px;">
+            </button>
+            <div class="card-body">
+              <h3 class="card-text text-center pb-3">純品酒</h3>
+            </div>
+          </div>
+          <div class="col-5 card mb-4 radius ">
+            <button class="btn btn-lg btn-primary w-100 mt-3" type="button" @click="openModal">
+              <img src="/images/lead_wine/餐酒搭配.webp" class="object-fit p-5" style="width: 300px;">
+            </button>
+            <div class="card-body">
+              <h3 class="card-text text-center pb-3">餐酒搭配</h3>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
   </div>
   <div>
     <button class="btn btn-lg btn-primary w-100 mt-3" type="button" @click="openModal">
@@ -383,12 +402,70 @@ export default {
 .radius {
   border-radius: 10%;
 }
+
 .btn-primary:hover {
   filter: brightness(150%);
 }
+
 .bi-heart:hover {
   color: red;
   transform: scale(1.5);
   transition: color 0.3s ease, transform 0.3s ease;
 }
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .card img {
+    width: 50%; /* Adjust image width as needed */
+  }
+
+  .card-body {
+    width: 50%; /* Adjust card body width as needed */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .card-love {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 24px; /* Adjust the size as needed */
+    padding: 10px;
+    color: #ff4466; /* Love icon color */
+  }
+
+  .card-title {
+    margin-top: 10px; /* Adjust spacing as needed */
+  }
+
+  .card-text {
+    font-weight: bold;
+    color: #333; /* Price text color */
+  }
+
+  .card-badge {
+    position: absolute;
+    top: 10px;
+    left: 50%; /* Adjust to align with the image */
+    background-color: red;
+    color: white;
+    padding: 5px;
+    font-size: 14px;
+  }
+
+  .card-rating {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #ffc107; /* Star rating color */
+  }
+
+  .btn-full-width {
+    width: 100%;
+  }
+
 </style>
