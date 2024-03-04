@@ -46,7 +46,7 @@
         </div>
 
         <div class="col-lg-5 col-md-8">
-          <swiper :pagination="{ el: '.swiper-pagination' }" @swiper="onSwiper" :modules="[Pagination]"
+          <swiper :pagination="{ el: '#region_pagination' }" @swiper="onSwiper" :modules="[Pagination]"
             class="mySwiper">
 
             <template v-for="item in getFilterWine" :key="item.id">
@@ -154,7 +154,7 @@
             </template>
           </swiper>
 
-          <div class="swiper-pagination homeswiper-pagination mt-3"></div>
+          <div id="region_pagination" class="swiper-pagination homeswiper-pagination mt-3"></div>
         </div>
       </div>
     </div>
@@ -167,7 +167,7 @@ import 'swiper/css/pagination';
 
 import { storeToRefs } from 'pinia';
 import axios from 'axios';
-import Swal from 'sweetalert2';
+// import Swal from 'sweetalert2';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Pagination } from 'swiper/modules';
 
@@ -213,25 +213,7 @@ const addToFavorite = (productId) => {
       created_at: getFormattedDate()
     };
 
-    axios.post(`${import.meta.env.VITE_API_URL}/favorite`, postData)
-      .then((res) => {
-        // console.log(res.data);
-        userData.resetUserFavorites();
-
-        Swal.fire({
-          title: '收藏成功',
-          text: '',
-          icon: 'success'
-        });
-      })
-      .catch((error) => {
-        console.log(error.response);
-        Swal.fire({
-          title: '收藏失敗',
-          text: '',
-          icon: 'error'
-        });
-      });
+    userData.addToFavorite(postData);
   }
 };
 
