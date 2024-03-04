@@ -139,6 +139,27 @@ export default defineStore('userStore', {
         }
       }
     },
+    addToFavorite(data) {
+      axios.post(`${import.meta.env.VITE_API_URL}/favorite`, data)
+        .then((res) => {
+          // console.log(res.data);
+          this.resetUserFavorites();
+
+          Swal.fire({
+            title: '收藏成功',
+            text: '',
+            icon: 'success'
+          });
+        })
+        .catch((error) => {
+          console.log(error.response);
+          Swal.fire({
+            title: '收藏失敗',
+            text: '',
+            icon: 'error'
+          });
+        });
+    },
     setUserCookie(userId, token) {
       const getDateTime = addDays(new Date(), 2);
       document.cookie = `userToken=${token}; expires=${new Date(getDateTime)}; path=/`;

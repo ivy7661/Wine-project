@@ -10,10 +10,48 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-4">
-              <div class="mb-3">
-                IMAGE
+            <div class="col-12 col-md-6 col-lg-4 mb-3" v-for="product in tempProducts" :key="product.id">
+              <div class="card h-100 p-2">
+                <div class="row h-100">
+                  <div class="col-4">
+                    <a href="#" @click.prevent="addFavorite(product)">
+                      <template v-if="favorites.includes(product.id)">
+                        <i class="bi bi-heart-fill me-1"></i>
+                      </template>
+
+                      <template v-else>
+                        <i class="bi bi-heart me-1"></i>
+                      </template>
+                      <!-- <i class="bi heart position-absolute top-5 start-5"
+                        :class="{ 'bi-heart': !product.isFavorite, 'bi-heart-fill': product.isFavorite }"></i> -->
+                    </a>
+                    <a href="#" @click.prevent="seeProduct(product.id)">
+                      <img :src="`/images/wine_images/${product.image}.jpg`" class="card-img-top"
+                        :alt="product.chineseName" />
+                    </a>
+                  </div>
+                  <div class="col-8">
+                    <div class="card-body d-flex flex-column h-100 justify-content-between">
+                      <div class="mb-2">
+                        <div class="d-flex mb-1 justify-content-between">
+                          <span class="badge bg-danger mb-2" v-if="product.is_hot">熱門推薦</span>
+                          <div class="d-flex gap-1">
+                            <i class="bi bi-star-fill text-warning" v-for="star in product.star" :key="star"></i>
+                          </div>
+                        </div>
+                        <div>
+                          <a href="#" class="text-black" @click.prevent="seeProduct(product.id)">
+                            <h5 class="card-title flex-fill">{{ product.chineseName }}</h5>
+                          </a>
+                          <p class="card-text text-danger fw-bold">$ {{ product.price }}</p>
+                        </div>
+                      </div>
+                      <a href="#" class="btn btn-primary w-100" @click.prevent="addToCart(product)">加入購物車</a>
+                    </div>
+                  </div>
+                </div>
               </div>
+
             </div>
           </div>
         </div>
@@ -31,7 +69,7 @@
 import { Modal } from 'bootstrap';
 
 export default {
-  props: ['tempProducts'],
+  props: ['tempProducts', 'favorites'],
   data() {
     return {
       modalProduct: null
@@ -43,6 +81,18 @@ export default {
     },
     closeModal() {
       this.modalProduct.hide();
+    },
+    seeProduct(id) {
+      this.closeModal();
+      setTimeout(() => {
+        this.$router.push({ name: 'ProductDetail', params: { id } });
+      }, 0);
+    },
+    addToCart(product) {
+      this.$emit('add-to-cart', product);
+    },
+    addFavorite(product) {
+      this.$emit('add-to-favorite', product);
     }
   },
   mounted() {

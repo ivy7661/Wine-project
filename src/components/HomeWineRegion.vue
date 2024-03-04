@@ -167,7 +167,7 @@ import 'swiper/css/pagination';
 
 import { storeToRefs } from 'pinia';
 import axios from 'axios';
-import Swal from 'sweetalert2';
+// import Swal from 'sweetalert2';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Pagination } from 'swiper/modules';
 
@@ -213,25 +213,7 @@ const addToFavorite = (productId) => {
       created_at: getFormattedDate()
     };
 
-    axios.post(`${import.meta.env.VITE_API_URL}/favorite`, postData)
-      .then((res) => {
-        // console.log(res.data);
-        userData.resetUserFavorites();
-
-        Swal.fire({
-          title: '收藏成功',
-          text: '',
-          icon: 'success'
-        });
-      })
-      .catch((error) => {
-        console.log(error.response);
-        Swal.fire({
-          title: '收藏失敗',
-          text: '',
-          icon: 'error'
-        });
-      });
+    userData.addToFavorite(postData);
   }
 };
 

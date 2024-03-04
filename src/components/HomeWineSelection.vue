@@ -1,5 +1,5 @@
 <template>
-  <div class="container-lg mt-5 mb-5">
+  <div class="selection-container container-lg mt-5">
     <div class="row justify-content-between">
       <div class="hot-container col-md-12 col-lg-6">
         <div class="info">
@@ -12,7 +12,7 @@
           </div>
 
           <swiper :pagination="{ el: '#hot_pagination' }" @swiper="onSwiper" :modules="[Pagination]" class="mySwiper">
-            <template v-for="item in products" :key="item.id">
+            <template v-for="item in hotProducts" :key="item.id">
               <swiper-slide>
                 <div class="region-card card bg-white">
                   <div>
@@ -25,9 +25,12 @@
                         <div class="info single-ellipsis">
                           <h5 class="text-black mt-2">{{ item.chineseName }}</h5>
                           <h6 class="card-subtitle mt-2 single-ellipsis">{{ item.englishName }}</h6>
+                          <div class="d-flex gap-1 mt-2">
+                            <i class="bi bi-star-fill text-warning" v-for="star in item.star" :key="star"></i>
+                          </div>
 
                           <div class="price-block d-flex justify-content-between align-items-center">
-                            <h5 class="price text-primary">NT$ {{ $filters.currency(item.price) }}</h5>
+                            <h5 class="price text-primary">NT${{ $filters.currency(item.price) }}</h5>
                             <button type="button" class="btn btn-primary me-0" :disabled="!getUser?.id"
                               @click="addToCart(item)">
                               <span>立即購買</span> <i class="bi bi-arrow-right"></i>
@@ -55,12 +58,15 @@
               <img src="/images/wine_icon.svg" class="mb-2 me-1" alt="hot" />
               <h5 class="d-inline-block text-primary">引導選酒區</h5>
             </div>
-            <button type="button" class="btn btn-primary btn-next">下一步</button>
+            <button type="button" class="btn btn-primary btn-next" @click="handleCurrentSelect">
+              <span v-if="currentSelect === -1">重新選擇</span>
+              <span v-else>下一步</span>
+            </button>
           </div>
 
-          <swiper @swiper="onSwiperSelect" :allowTouchMove="false" :allowSlidePrev="false" class="mySwiper">
+          <swiper @swiper="onSwiperSelect" :allowTouchMove="false" class="mySwiper">
 
-            <template v-for="item in selectWineTastingData" :key="item.id">
+            <template v-for="item in getSelectProductData" :key="item.id">
               <swiper-slide>
                 <div class="container">
                   <div class="row justify-content-between">
@@ -83,6 +89,9 @@
 
       </div>
     </div>
+
+    <SelectProductModal ref="selectProductModal" :tempProducts="selectProducts" :favorites="getFavorites"
+      @add-to-cart="addToCart" @add-to-favorite="addToFavorite" />
   </div>
 </template>
 
@@ -96,91 +105,130 @@ import { storeToRefs } from 'pinia';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Pagination } from 'swiper/modules';
 
-import { ref, onMounted } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 
+import SelectProductModal from '@/components/SelectProductModal.vue';
 import verticalLine from '@/assets/icons/svg/vertical_line.svg';
+import { getFormattedDate } from '@/utils/helpers';
 
 import userStore from '@/stores/user';
 
 const userData = userStore();
 
 // 變數
-const { getUser } = storeToRefs(userData);
+const { getUser, getFavorites } = storeToRefs(userData);
+const selectType = ref('taste');
+const currentSelect = ref(0);
+const selectProductModal = ref(null);
 const swiperModule = ref(null);
 const swiperSelectModule = ref(null);
-const products = ref([]);
+const hotProducts = ref([]);
+const originalProducts = ref([]);
+const selectProducts = ref([]);
 const selectWineTastingData = [
   {
     id: 0,
+    type: ['taste', 'food'],
     options: [
       {
         name: '純品酒',
         image: '/images/select_wine1.png',
         next: 1
-      }, {
+      },
+      {
         name: '搭配餐酒',
         image: '/images/select_wine2.png',
-        next: 0
+        next: 10
       }
     ]
   },
   {
     id: 1,
+    type: ['taste'],
     options: [
       {
         name: '偏甜',
-        image: '/images/select_wine1.png',
+        image: '/images/lead_wine/sweet.png',
         next: 2
-      }, {
+      },
+      {
         name: '偏酸',
-        image: '/images/select_wine1.png',
-        next: 3
-      }, {
+        image: '/images/lead_wine/sour.png',
+        next: 2
+      },
+      {
         name: '偏乾',
-        image: '/images/select_wine1.png',
-        next: 3
+        image: '/images/lead_wine/dry.png',
+        next: 90
       }
     ]
   },
   {
     id: 2,
-    options: [
-      {
-        name: '氣泡',
-        image: '/images/select_wine1.png',
-        next: 9
-      }, {
-        name: '無氣泡',
-        image: '/images/select_wine1.png',
-        next: 9
-      }
-    ]
-  },
-  {
-    id: 3,
+    type: ['taste'],
     options: [
       {
         name: '飽滿',
-        image: '/images/select_wine1.png',
-        next: 2
-      }, {
+        image: '/images/lead_wine/filling.png',
+        next: 90
+      },
+      {
         name: '輕盈',
-        image: '/images/select_wine1.png',
-        next: 2
+        image: '/images/lead_wine/light.png',
+        next: 90
       }
     ]
   },
   {
-    id: 9,
+    id: 10,
+    type: ['food'],
+    options: [
+      {
+        name: '開胃菜',
+        image: '/images/lead_wine/appetizer.png',
+        next: 90
+      },
+      {
+        name: '主菜',
+        image: '/images/lead_wine/main_course.png',
+        next: 90
+      },
+      {
+        name: '甜點',
+        image: '/images/lead_wine/dessert.png',
+        next: 90
+      }
+    ]
+  },
+  {
+    id: 90,
+    type: ['taste', 'food'],
+    options: [
+      {
+        name: '氣泡',
+        image: '/images/lead_wine/sparkling.png',
+        next: 99
+      },
+      {
+        name: '無氣泡',
+        image: '/images/lead_wine/sparkling_non.png',
+        next: 99
+      }
+    ]
+  },
+  {
+    id: 99,
+    type: ['taste', 'food'],
     options: [
       {
         name: '紅葡萄酒',
-        image: '/images/select_wine1.png',
-        next: 0
-      }, {
+        image: '/images/lead_wine/red_wine.png',
+        next: -1
+      },
+      {
         name: '白葡萄酒',
-        image: '/images/select_wine1.png',
-        next: 0
+        image: '/images/lead_wine/white_wine.png',
+        next: -1
       }
     ]
   }
@@ -188,33 +236,85 @@ const selectWineTastingData = [
 
 // methods
 const getProductList = () => {
-  axios.get(`${import.meta.env.VITE_API_URL}/products?is_hot=1`)
+  axios.get(`${import.meta.env.VITE_API_URL}/products`)
     .then((res) => {
-      console.log(res.data);
-      products.value = res.data.slice(0, 3);
-      console.log('getProductList', products.value);
+      // console.log(res.data);
+      originalProducts.value = res.data;
+      hotProducts.value = res.data.filter(item => !!item.is_hot && item.star > 3).slice(0, 3);
     })
     .catch((error) => {
       console.log(error.response);
     });
 };
 
+// 熱賣商品 swiper
 const onSwiper = (swiper) => {
   swiperModule.value = swiper;
   swiperModule.value.slideReset();
   swiperModule.value.slideTo(0);
 };
 
+// 引導選酒區 swiper
 const onSwiperSelect = (swiper) => {
   swiperSelectModule.value = swiper;
   swiperSelectModule.value.slideReset();
   swiperSelectModule.value.slideTo(0);
 };
 
+// 選擇引導酒品
 const onSelectChange = (data) => {
-  console.log(data);
-  swiperSelectModule.value.slideNext();
+  if (data.name === '搭配餐酒') {
+    selectType.value = 'food';
+  } else if (data.name === '純品酒') {
+    selectType.value = 'taste';
+  }
+
+  if (data && data.next > 0) {
+    swiperSelectModule.value.slideNext();
+  } else {
+    currentSelect.value = data.next;
+    handleSelectProduct(data);
+  }
 };
+
+// 加入購物車
+const addToCart = (product) => {
+  if (product && product.id && getUser.value?.id) {
+    userData.addToCart(product);
+  }
+};
+
+// 加入最愛
+const addToFavorite = (product) => {
+  if (product.id && getUser.value?.id && !getFavorites.value.includes(product.id)) {
+    const postData = {
+      userId: getUser.value.id,
+      productId: product.id,
+      created_at: getFormattedDate()
+    };
+
+    userData.addToFavorite(postData);
+  }
+};
+
+// 顯示選擇酒品 modal
+const handleSelectProduct = (data) => {
+  // console.log(data);
+  selectProducts.value = originalProducts.value.filter(item => item.wineStyle === data.name).slice(0, 6);
+  selectProductModal.value.openModal();
+};
+
+const handleCurrentSelect = () => {
+  if (currentSelect.value === -1) {
+    swiperSelectModule.value.slideReset();
+    swiperSelectModule.value.slideTo(0);
+  }
+};
+
+// computed
+const getSelectProductData = computed(() => {
+  return selectWineTastingData.filter(item => item.type.includes(selectType.value));
+});
 
 onMounted(() => {
   getProductList();
@@ -222,6 +322,10 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+.selection-container {
+  margin-bottom: 0;
+}
+
 .title {
   h5 {
     font-size: 20px;
@@ -237,7 +341,6 @@ onMounted(() => {
   }
 
   .btn-next {
-    width: 80px;
     height: 37px;
     padding: 8px 16px 8px 16px;
     background: #4D403C1A;
@@ -261,7 +364,7 @@ onMounted(() => {
   position: relative;
 
   .info {
-    width: 90%;
+    width: 100%;
   }
 
   .vertical-line {
@@ -272,8 +375,10 @@ onMounted(() => {
 }
 
 .select-container {
+  margin-top: 32px;
+
   .info {
-    width: 90%;
+    width: 100%;
   }
 
   .card-select {
@@ -376,6 +481,32 @@ onMounted(() => {
         padding: 5px 15px 5px 15px;
         border-radius: 100px;
       }
+    }
+  }
+}
+
+@media (min-width:992px) {
+  .selection-container {
+    margin-bottom: 48px;
+  }
+
+  .select-container {
+    margin-top: 0;
+
+    .info {
+      width: 90%;
+    }
+  }
+
+  .hot-container {
+    .info {
+      width: 90%;
+    }
+
+    .vertical-line {
+      position: absolute;
+      top: 0;
+      right: 0%;
     }
   }
 }
