@@ -19,7 +19,7 @@
                     <div class="card-body px-0">
                       <div class="region-card_head d-flex">
                         <div class="image-wine">
-                          <img :src="`/images/wine_images/${item.image}.jpg`" alt="wine">
+                          <img :src="$filters.imgPath(`/images/wine_images/${item.image}.jpg`)" alt="wine">
                         </div>
                         <img class="image-switch" src="/images/switch.png" alt="wine">
                         <div class="info single-ellipsis">
@@ -74,7 +74,7 @@
                     <div class="" :class="[item.options.length >= 3 ? 'col-4' : 'col-6 g-0']"
                       v-for="selectItem in item.options" :key="`child-${selectItem.id}`">
                       <div class="card-select" @click="onSelectChange(selectItem)">
-                        <img :src="selectItem.image" alt="wine">
+                        <img :src="$filters.imgPath(selectItem.image)" alt="wine">
                         <h5>
                           {{ selectItem.name }}
                         </h5>
