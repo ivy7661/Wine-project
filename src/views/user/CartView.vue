@@ -5,6 +5,38 @@
     </div>
     <div class="container pb-5">
       <img src="/images/footerContainer.png" class="w-100 mb-5" />
+      <div class="progress mb-5 fs-5" role="progressbar" aria-label="Animated striped example">
+        <div
+          class="progress-bar bg-primary progress-bar-striped progress-bar-animated"
+          role="progressbar"
+          style="width: 33%"
+          aria-valuenow="33"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        >
+          確認購物車
+        </div>
+        <div
+          class="progress-bar bg-secondary"
+          role="progressbar"
+          style="width: 33%"
+          aria-valuenow="33"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        >
+          填寫資料
+        </div>
+        <div
+          class="progress-bar bg-secondary"
+          role="progressbar"
+          style="width: 34%"
+          aria-valuenow="34"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        >
+          完成訂單
+        </div>
+      </div>
       <div class="row gy-4 flex-column-reverse flex-md-row">
         <div class="col-12 col-md-8">
           <!-- 購物車清單外框 -->
@@ -168,8 +200,7 @@ export default {
           .then((res) => {
             // console.log(res.data);
           })
-          .catch(() => {
-          });
+          .catch(() => {});
       }
     },
     deleteCartItem(product) {
@@ -359,6 +390,9 @@ export default {
 a:hover {
   cursor: pointer;
 }
+.progress {
+  height: 30px;
+}
 .heart:hover {
   color: red;
   transform: scale(1.5);
@@ -375,7 +409,7 @@ a:hover {
 .bg-cart {
   padding-top: 90px;
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url('./images/bg wine shelf.jpg');
+    url('./images/bg1.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
