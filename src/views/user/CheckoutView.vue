@@ -3,7 +3,7 @@
     <div class="bg-checkout pb-4">
       <h2 class="pb-5 text-white container">填寫訂單資訊</h2>
     </div>
-    <div class="container">
+    <div class="container pb-5">
       <img src="/images/footerContainer.png" class="w-100 mb-5" />
       <VeeForm ref="checkout-form" v-slot="{ errors }" @submit="createOrder">
         <div class="row gy-4 flex-column-reverse flex-md-row">
@@ -256,7 +256,7 @@
                 再 {{ 3000 - calculateSubtotal }} 元即可獲得免運唷！
               </p>
               <div>
-                <p class="text-end mb-1">(共 {{ cart.length }}件商品)</p>
+                <p class="text-end mb-1">(共 {{ cart.length }} 件商品)</p>
                 <p class="fs-4">小計: NT$ {{ calculateSubtotal }} 元</p>
               </div>
             </div>

@@ -46,7 +46,7 @@
         </div>
 
         <div class="col-lg-5 col-md-8">
-          <swiper :pagination="{ el: '.swiper-pagination' }" @swiper="onSwiper" :modules="[Pagination]"
+          <swiper :pagination="{ el: '#region_pagination' }" @swiper="onSwiper" :modules="[Pagination]"
             class="mySwiper">
 
             <template v-for="item in getFilterWine" :key="item.id">
@@ -56,7 +56,7 @@
                     <div class="card-body px-0">
                       <div class="region-card_head d-flex">
                         <div class="image-wine">
-                          <img :src="`/images/wine_images/${item.image}.jpg`" alt="wine">
+                          <img :src="$filters.imgPath(`/images/wine_images/${item.image}.jpg`)" alt="wine">
                         </div>
                         <img class="image-switch" src="/images/switch.png" alt="wine">
                         <div class="single-ellipsis">
@@ -110,7 +110,8 @@
                             <div class="d-flex justify-content-between">
                               <div class="icon-container" v-for="(flavor, index) in item.flavor.slice(0, 3)"
                                 :key="flavor">
-                                <img :src="`/images/taste/t${index + 1}.png`" alt="Icon" class="icon mb-1">
+                                <img :src="$filters.imgPath(`/images/taste/t${index + 1}.png`)" alt="Icon"
+                                  class="icon mb-1">
                                 <p class="icon-text text-center">{{ flavor }}</p>
                               </div>
                             </div>
@@ -119,7 +120,8 @@
                             <p class="mb-2">搭配餐酒</p>
                             <div class="d-flex justify-content-between">
                               <div class="icon-container" v-for="(food, index) in item.food.slice(0, 3)" :key="food">
-                                <img :src="`/images/taste/f${index + 1}.png`" alt="Icon" class="icon mb-1">
+                                <img :src="$filters.imgPath(`/images/taste/f${index + 1}.png`)" alt="Icon"
+                                  class="icon mb-1">
                                 <p class="icon-text text-center">{{ food }}</p>
                               </div>
                             </div>
@@ -154,7 +156,7 @@
             </template>
           </swiper>
 
-          <div class="swiper-pagination homeswiper-pagination mt-3"></div>
+          <div id="region_pagination" class="swiper-pagination homeswiper-pagination mt-3"></div>
         </div>
       </div>
     </div>
@@ -167,7 +169,7 @@ import 'swiper/css/pagination';
 
 import { storeToRefs } from 'pinia';
 import axios from 'axios';
-import Swal from 'sweetalert2';
+// import Swal from 'sweetalert2';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Pagination } from 'swiper/modules';
 
@@ -213,25 +215,7 @@ const addToFavorite = (productId) => {
       created_at: getFormattedDate()
     };
 
-    axios.post(`${import.meta.env.VITE_API_URL}/favorite`, postData)
-      .then((res) => {
-        // console.log(res.data);
-        userData.resetUserFavorites();
-
-        Swal.fire({
-          title: '收藏成功',
-          text: '',
-          icon: 'success'
-        });
-      })
-      .catch((error) => {
-        console.log(error.response);
-        Swal.fire({
-          title: '收藏失敗',
-          text: '',
-          icon: 'error'
-        });
-      });
+    userData.addToFavorite(postData);
   }
 };
 

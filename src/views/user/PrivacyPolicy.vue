@@ -80,6 +80,10 @@
 </template>
 
 <style lang="scss" scoped>
+.policy-title {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
 h5 {
   margin-top: 20px;
 }

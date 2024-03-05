@@ -1,21 +1,26 @@
 <template>
-  <footer class="footer pt-5 pb-3">
+  <footer class="footer pb-3">
+    <img src="/images/footerContainer.png" class="w-100 mb-5" />
     <div class="container mb-2">
       <div class="row">
         <div class="col-md-6 flex-column">
           <a href="#">
-            <img src="../../images/Logo.png" class="footer-logo" alt="Vin Chateau" />
+            <RouterLink to="/"><img class="footer-logo" src="/images/Logo.png" alt="LOGO"></RouterLink>
           </a>
           <div class="footer-page row mt-4 mb-4">
             <div class="col">
               <ul>
-                <li class="mb-2"><a href="#">會員專區</a></li>
+                <li class="mb-2">
+                  <RouterLink to="/login" class="footer-link">會員專區</RouterLink>
+                </li>
                 <li class="mb-2"><a href="#">知識充電站</a></li>
               </ul>
             </div>
             <div class="col">
               <ul>
-                <li class="mb-2"><a href="#">貨品寄送資訊</a></li>
+                <li class="mb-2">
+                  <RouterLink to="/shippingInfo" class="footer-link">貨品寄送資訊</RouterLink>
+                </li>
                 <li class="mb-2">
                   <RouterLink to="/privacyPolicy" class="footer-link">隱私權政策</RouterLink>
                 </li>
@@ -39,13 +44,13 @@
           <div class="d-flex flex-column align-items-end">
             <ul class="footer-contact">
               <li class="pb-2">
-                <img width="24px" class="pe-2" src="../../images/footerPhone.png" alt="phone" /><a
+                <img width="24px" class="pe-2" src="/images/footerPhone.png" alt="phone" /><a
                   href="#"
                   >0912345678</a
                 >
               </li>
               <li>
-                <img width="24px" class="pe-2" src="../../images/footerMail.png" alt="email" /><a
+                <img width="24px" class="pe-2" src="/images/footerMail.png" alt="email" /><a
                   href="#"
                   >vinchateau@mail.com</a
                 >
@@ -58,13 +63,13 @@
           <div class="d-flex flex-column">
             <ul class="footer-contact-mobile mb-4">
               <li class="pb-2">
-                <img width="24px" class="pe-2" src="../../images/footerPhone.png" alt="phone" /><a
+                <img width="24px" class="pe-2" src="/images/footerPhone.png" alt="phone" /><a
                   href="#"
                   >0912345678</a
                 >
               </li>
               <li>
-                <img width="24px" class="pe-2" src="../../images/footerMail.png" alt="email" /><a
+                <img width="24px" class="pe-2" src="/images/footerMail.png" alt="email" /><a
                   href="#"
                   >vinchateau@mail.com</a
                 >
@@ -84,7 +89,7 @@
           </ul>
         </div>
       </div>
-      <img width="100%" src="../../images/footerContainer.png" />
+      <img width="100%" src="/images/footerContainer.png" />
       <p class="text-center copyright">Copyright © 2024 Vin Chateau</p>
     </div>
   </footer>

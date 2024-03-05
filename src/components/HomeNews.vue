@@ -2,7 +2,7 @@
   <div class="container-xl">
     <div class="row">
       <div class="col-md-12 news-container mt-5 mb-5">
-        <h2 class="text-primary text-center">最新消息</h2>
+        <h2 class="text-primary text-center mt-5">最新消息</h2>
         <div class="news-image d-none d-lg-flex justify-content-lg-center align-items-lg-center">
           <div class="bg-slider"></div>
           <img src="/images/slider-image.png" class="img-slider2" alt="slider image">

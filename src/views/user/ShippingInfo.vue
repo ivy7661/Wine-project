@@ -1,10 +1,9 @@
 <template>
   <div class="container">
     <div class="bg-shipping">
-      <h2 class="pt-5">貨品寄送資訊</h2>
+      <h2 class="text-primary my-4">貨品寄送資訊</h2>
     </div>
-    <img src="../../../images/footerContainer.png" class="w-100 my-5" />
-    <ul class="fs-5">
+    <ul class="fs-5 bg-accent-brown rounded py-4">
       <li>
         <strong>運送範圍：</strong>
         <p>我們提供全台灣的送貨服務，包括偏遠地區。您可以在結帳時選擇您的送貨地址。</p>
