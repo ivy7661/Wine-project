@@ -26,6 +26,7 @@ export default defineConfig({
     }
   },
   build: {
+    chunkSizeWarningLimit: 1500,
     rollupOptions: {
       output: {
         // https://github.com/rollup/rollup/blob/master/src/utils/sanitizeFileName.ts
@@ -35,8 +36,7 @@ export default defineConfig({
           // substr 是被淘汰語法，因此要改 slice
           return driveLetter + name.slice(driveLetter.length).replace(INVALID_CHAR_REGEX, '');
         }
-      },
-      chunkSizeWarningLimit: 1500
+      }
     }
   }
 });
