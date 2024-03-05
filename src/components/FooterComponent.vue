@@ -1,5 +1,6 @@
 <template>
-  <footer class="footer pt-5 pb-3">
+  <footer class="footer pb-3">
+    <img src="/images/footerContainer.png" class="w-100 mb-5" />
     <div class="container mb-2">
       <div class="row">
         <div class="col-md-6 flex-column">
@@ -10,7 +11,7 @@
             <div class="col">
               <ul>
                 <li class="mb-2">
-                  <RouterLink to="/loginView" class="footer-link">會員專區</RouterLink>
+                  <RouterLink to="/login" class="footer-link">會員專區</RouterLink>
                 </li>
                 <li class="mb-2"><a href="#">知識充電站</a></li>
               </ul>
