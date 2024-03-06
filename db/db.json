@@ -59,6 +59,13 @@
       "name": "PoWeiAdmin",
       "role": "admin",
       "id": 8
+    },
+    {
+      "email": "anyadmin@gmail.com",
+      "password": "$2a$10$kAIv.tkssBt.IjLdcwgy0.j7fTKJVwLO2lyu225V8R2Ab61fLkKqu",
+      "name": "AnyAdmin",
+      "role": "admin",
+      "id": 9
     }
   ],
   "products": [
