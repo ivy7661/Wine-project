@@ -71,6 +71,11 @@ const router = createRouter({
           path: 'privacyPolicy',
           name: 'privacyPolicy',
           component: () => import('@/views/user/PrivacyPolicy.vue')
+        },
+        {
+          path: 'Knowledge',
+          name: 'Knowledge',
+          component: () => import('@/views/user/KnowledgeView.vue')
         }
       ]
     },
