@@ -311,7 +311,7 @@ export default {
   components: {},
   data() {
     return {
-      title: '購物車',
+      title: '結帳頁面',
       cartAll: [],
       cart: [],
       userData: {
@@ -534,17 +534,12 @@ export default {
         },
         cart: this.cart,
         is_paid: 1,
-        orderStatus: '配送中',
+        orderStatus: '待出貨',
         create_at: formattedDateTime
       };
       axios
         .post(url, orderData)
         .then((res) => {
-          Swal.fire({
-            title: '訂單已完成',
-            text: '感謝您的購物，請查看您的電子郵件以獲取訂單狀態。',
-            icon: 'success'
-          });
           this.userData = {
             user: {
               customerEmail: '',
@@ -559,6 +554,7 @@ export default {
               secureCode: ''
             }
           };
+          this.toPaymentReceived();
         })
         .catch(() => {
           Swal.fire({
@@ -567,6 +563,9 @@ export default {
             icon: 'error'
           });
         });
+    },
+    toPaymentReceived() {
+      this.$router.push({ name: 'PaymentReceived' });
     }
   },
   watch: {
@@ -628,7 +627,7 @@ export default {
 .bg-checkout {
   padding-top: 90px;
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url('./images/bg1.jpg');
+    url('/images/bg1.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
