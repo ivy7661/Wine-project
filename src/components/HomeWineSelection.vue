@@ -306,6 +306,7 @@ const handleSelectProduct = (data) => {
 
 const handleCurrentSelect = () => {
   if (currentSelect.value === -1) {
+    currentSelect.value = 0;
     swiperSelectModule.value.slideReset();
     swiperSelectModule.value.slideTo(0);
   }

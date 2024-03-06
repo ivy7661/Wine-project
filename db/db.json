@@ -45,6 +45,20 @@
       "phone": "0955555555",
       "role": "user",
       "id": 6
+    },
+    {
+      "email": "porayadmin@gmail.com",
+      "password": "$2a$10$wbk2eWxoug3fYVWrsoBNYOFjJvnKazIAfzR0WDhYJBogqAxKBPY.W",
+      "name": "PoRayAdmin",
+      "role": "admin",
+      "id": 7
+    },
+    {
+      "email": "poweiadmin@gmail.com",
+      "password": "$2a$10$y6IAkq8BWrOQ4M3l44uPG.Ko8gieWpQbskNvQ0SCQHoAnfXGLW0E2",
+      "name": "PoWeiAdmin",
+      "role": "admin",
+      "id": 8
     }
   ],
   "products": [
