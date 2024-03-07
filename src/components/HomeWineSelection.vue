@@ -323,6 +323,10 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+img:hover {
+  transform: translateY(-2px);
+}
+
 .selection-container {
   margin-bottom: 0;
 }
