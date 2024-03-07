@@ -11,7 +11,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-3 d-flex flex-column justify-content-between">
+          <div class="col-12 col-md-5 col-lg-3 d-flex flex-column justify-content-between">
             <div class="searchArea">
               <i class="bi bi-search"></i>
               <input type="text" placeholder="請輸入關鍵字" class="w-100" v-model="searchKeyword" />
@@ -68,7 +68,7 @@
                   </a>
                   <a href="#" @click.prevent="seeProduct(product.id)">
                     <img
-                      :src="`/images/wine_images/${product.image}.jpg`"
+                      :src="$filters.imgPath(`/images/wine_images/${product.image}.jpg`)"
                       class="card-img-top h-100"
                       :alt="product.chineseName"
                     />

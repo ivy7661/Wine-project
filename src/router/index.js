@@ -116,7 +116,13 @@ const router = createRouter({
       component: () => import('@/views/NotFound.vue')
     }
   ],
-  linkActiveClass: 'active'
+  linkActiveClass: 'active',
+  scrollBehavior(to, from, savedPosition) {
+    return {
+      behavior: 'smooth',
+      top: 0
+    };
+  }
 });
 
 export default router;

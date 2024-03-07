@@ -8,11 +8,11 @@
           >
             <div class="position-relative">
               <img
-                :src="`/images/wine_images/${selectedProduct.image}.jpg`"
+                :src="$filters.imgPath(`/images/wine_images/${selectedProduct.image}.jpg`)"
                 class="product-image"
                 :alt="selectedProduct.chineseName"
               />
-              <a href="#" @click="toggleFavorite(selectedProduct)"
+              <a href="#" @click.prevent="toggleFavorite(selectedProduct)"
                 ><i
                   class="bi heart position-absolute top-5 start-10"
                   :class="{
@@ -51,7 +51,7 @@
                 <p class="card-text">750ml</p>
                 <p class="card-text fs-4 text-danger fw-bold">$ {{ selectedProduct.price }}</p>
               </div>
-              <div>
+              <div class="pb-3">
                 <h5 class="pb-2">風味分類</h5>
                 <div class="row">
                   <div
@@ -60,7 +60,7 @@
                     :key="key"
                   >
                     <img
-                      :src="`/images/fruit_images/${flavor}.jpg`"
+                      :src="$filters.imgPath(`/images/fruit_images/${flavor}.jpg`)"
                       :alt="flavor"
                       class="fruit-image rounded-circle mb-2"
                     />
@@ -72,14 +72,14 @@
                 <h5 class="pb-2">餐酒搭配選擇</h5>
                 <div class="row">
                   <div
-                    class="col-4 d-flex flex-column align-items-center"
+                    class="col-4 col-md-2 d-flex flex-column align-items-center"
                     v-for="(food, key) in selectedProduct.food"
                     :key="key"
                   >
                     <img
-                      :src="`/images/food_images/${food}.jpg`"
+                      :src="$filters.imgPath(`/images/food_images/${food}.jpg`)"
                       :alt="food"
-                      class="w-100 rounded-pill mb-2"
+                      class="food-image rounded-circle mb-2"
                     />
                     <p>{{ food }}</p>
                   </div>
@@ -88,7 +88,7 @@
               <a
                 href="#"
                 class="btn btn-primary w-100 py-2 mt-3"
-                @click="addToCart(selectedProduct)"
+                @click.prevent="addToCart(selectedProduct)"
                 >加入購物車</a
               >
             </div>
@@ -255,9 +255,9 @@
         <div class="row gy-3">
           <div class="col-6 col-md-3" v-for="(wine, key) in similarWines" :key="key">
             <div class="card d-flex flex-column h-100">
-              <a href="#" @click="seeProduct(wine.id)">
+              <a href="#" @click.prevent="seeProduct(wine.id)">
                 <img
-                  :src="`/images/wine_images/${wine.image}.jpg`"
+                  :src="$filters.imgPath(`/images/wine_images/${wine.image}.jpg`)"
                   class="card-img-top"
                   :alt="wine.chineseName"
                 />
@@ -274,12 +274,12 @@
                       ></i>
                     </div>
                   </div>
-                  <a href="#" @click="seeProduct(wine.id)">
-                    <h5 class="card-title">{{ wine.chineseName }}</h5>
+                  <a href="#" @click.prevent="seeProduct(wine.id)">
+                    <h5 class="card-title text-black">{{ wine.chineseName }}</h5>
                   </a>
                   <p class="card-text text-danger fw-bold">$ {{ wine.price }}</p>
                 </div>
-                <a href="#" class="btn btn-primary w-100" @click="addToCart(wine)">加入購物車</a>
+                <a href="#" class="btn btn-primary w-100" @click.prevent="addToCart(wine)">加入購物車</a>
               </div>
             </div>
           </div>
@@ -320,12 +320,11 @@ export default {
         .then((res) => {
           // console.log(res.data);
           this.products = res.data;
-          // console.log(this.selectedProduct);
           this.selectedProduct = this.products.find((item) => item.id === this.$route.params.id);
+          // console.log(this.selectedProduct);
           this.findSimilarWinesByGrape(this.selectedProduct, this.products);
         })
         .catch(() => {
-          alert('未正確取得產品資訊，請稍後再試～');
         });
     },
     getCartList() {
@@ -453,7 +452,6 @@ export default {
           });
         })
         .catch(() => {
-          alert('未正確取得，請稍後再試～');
         });
     },
     toggleFavorite(product) {
@@ -594,7 +592,10 @@ li {
   max-width: 100px;
   border: 2px solid #691a06;
 }
-
+.food-image {
+  max-width: 100px;
+  border: 2px solid #691a06;
+}
 .btn-primary:hover {
   background-color: #d9381e;
 }
