@@ -48,7 +48,7 @@
                 v-for="(product, key) in cart"
                 :key="key"
               >
-                <a href="#" @click="toggleFavorite(product)">
+                <a href="#" @click.prevent="toggleFavorite(product)">
                   <i
                     class="bi heart position-absolute top-5 start-5"
                     :class="{
@@ -57,12 +57,12 @@
                     }"
                   ></i>
                 </a>
-                <a href="#" @click="seeProduct(product.product_id)" class="wine_image_block">
+                <a href="#" @click.prevent="seeProduct(product.product_id)" class="wine_image_block">
                   <div
                     class="wine_image"
-                    :style="{
+                    :style="$filters.imgPath({
                       'background-image': 'url(/images/wine_images/' + product.image + '.jpg)'
-                    }"
+                    })"
                   ></div>
                 </a>
                 <div class="card-body d-flex flex-column justify-content-around">
@@ -76,7 +76,7 @@
                       ></i>
                     </div>
                   </div>
-                  <a href="#" @click="seeProduct(product.id)">
+                  <a href="#" @click.prevent="seeProduct(product.id)">
                     <h5 class="card-title text-black fs-4">{{ product.chineseName }}</h5>
                   </a>
                   <p>750 ml</p>
@@ -87,7 +87,7 @@
                       min="0"
                       class="form-control text-end"
                       v-model.number="product.qty"
-                      @click="updateCartQty(product)"
+                      @click.prevent="updateCartQty(product)"
                     />
                   </div>
                   <div class="d-flex">
@@ -344,7 +344,12 @@ export default {
         });
     },
     toCheckoutPage() {
-      this.$router.push({ name: 'CheckoutPage' });
+      if (this.cart.length > 0) {
+        console.log(this.cart.length);
+        this.$router.push({ name: 'CheckoutPage' });
+      } else if (this.cart.length === 0) {
+        alert('目前購物車沒有商品唷！！');
+      }
     }
   },
   watch: {

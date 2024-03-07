@@ -231,7 +231,7 @@
                 v-for="(product, key) in cart"
                 :key="key"
               >
-                <a href="#" @click="toggleFavorite(product)">
+                <a href="#" @click.prevent="toggleFavorite(product)">
                   <i
                     class="bi heart position-absolute top-5 start-5"
                     :class="{
@@ -240,12 +240,12 @@
                     }"
                   ></i>
                 </a>
-                <a href="#" @click="seeProduct(product.product_id)" class="wine_image_block">
+                <a href="#" @click.prevent="seeProduct(product.product_id)" class="wine_image_block">
                   <div
                     class="wine_image"
-                    :style="{
+                    :style="$filters.imgPath({
                       'background-image': 'url(/images/wine_images/' + product.image + '.jpg)'
-                    }"
+                    })"
                   ></div>
                 </a>
                 <div class="card-body d-flex flex-column justify-content-around">
@@ -259,7 +259,7 @@
                       ></i>
                     </div>
                   </div>
-                  <a href="#" @click="seeProduct(product.id)">
+                  <a href="#" @click.prevent="seeProduct(product.id)">
                     <h5 class="card-title text-black fs-4">{{ product.chineseName }}</h5>
                   </a>
                   <p>750 ml</p>
@@ -270,7 +270,7 @@
                       min="0"
                       class="form-control text-end"
                       v-model.number="product.qty"
-                      @click="updateCartQty(product)"
+                      @click.prevent="updateCartQty(product)"
                     />
                   </div>
                   <div class="d-flex">
@@ -400,6 +400,18 @@ export default {
         } else {
           product.qty = 1;
         }
+      });
+    },
+    clearCart() {
+      const url = `${VITE_API_URL}/carts`;
+      this.cart.forEach((product) => {
+        console.log(product);
+        axios.delete(`${url}/${product.id}`)
+          .then(() => {
+          })
+          .catch((error) => {
+            console.error('刪除購物車商品失敗:', error);
+          });
       });
     },
     getFavoriteList() {
@@ -540,6 +552,7 @@ export default {
       axios
         .post(url, orderData)
         .then((res) => {
+          this.clearCart();
           this.userData = {
             user: {
               customerEmail: '',
