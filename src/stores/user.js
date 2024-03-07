@@ -42,7 +42,7 @@ export default defineStore('userStore', {
 
       return {
         userToken: userToken || null,
-        userId: userId || null
+        userId: parseInt(userId, 10) || null
       };
     },
     reGetAllData() {
