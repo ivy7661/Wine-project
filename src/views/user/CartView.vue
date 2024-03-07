@@ -183,7 +183,6 @@ export default {
           // console.log(res.data);
           this.cartAll = res.data;
           this.cart = res.data.filter((item) => item.userId === this.userId);
-          console.log(this.cart);
         })
         .catch(() => {});
     },
@@ -340,10 +339,8 @@ export default {
         .get(url)
         .then((res) => {
           this.coupon = res.data[0];
-          console.log(this.coupon);
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
         });
     },
     toCheckoutPage() {
@@ -409,7 +406,7 @@ a:hover {
 .bg-cart {
   padding-top: 90px;
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url('./images/bg1.jpg');
+    url('/images/bg1.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

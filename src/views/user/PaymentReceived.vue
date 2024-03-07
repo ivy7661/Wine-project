@@ -37,7 +37,7 @@
           完成訂單
         </div>
       </div>
-      <div class="bg-accent-brown p-3">
+      <div v-if="order" class="bg-accent-brown p-3">
         <h3 class="pb-4">訂單編號 #{{ order.id }} ({{ order.create_at }})</h3>
         <table class="table mb-4">
           <thead>
@@ -109,10 +109,12 @@ export default {
       axios
         .get(url)
         .then((res) => {
-          const userOrders = res.data.filter((order) => order.user.userId === this.userId);
-          this.order = userOrders[userOrders.length - 1];
+          this.orderList = res.data;
+          const userOrder = this.orderList.filter((order) => order.user.userId === this.userId);
+          this.order = userOrder[userOrder.length - 1];
         })
-        .catch(() => {});
+        .catch(() => {
+        });
     }
   },
   computed: {
@@ -130,7 +132,7 @@ export default {
 .bg-paymentReceived {
   padding-top: 90px;
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url('./images/bg1.jpg');
+    url('/images/bg1.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

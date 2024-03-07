@@ -261,8 +261,7 @@ export default {
           this.favoriteList = res.data.filter((item) => item.userId === this.userId);
           this.checkFavoriteStatus();
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
         });
     },
     checkFavoriteStatus() {
@@ -387,7 +386,7 @@ export default {
 <style lang="scss" scoped>
 .bg-products {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url('./images/bg wine shelf.jpg');
+    url('/images/bg_wine_shelf.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

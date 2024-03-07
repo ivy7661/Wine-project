@@ -52,7 +52,7 @@
                 <p class="card-text fs-4 text-danger fw-bold">$ {{ selectedProduct.price }}</p>
               </div>
               <div>
-                <h5>風味分類</h5>
+                <h5 class="pb-2">風味分類</h5>
                 <div class="row">
                   <div
                     class="col-2 d-flex flex-column align-items-center"
@@ -69,7 +69,7 @@
                 </div>
               </div>
               <div>
-                <h5>餐酒搭配選擇</h5>
+                <h5 class="pb-2">餐酒搭配選擇</h5>
                 <div class="row">
                   <div
                     class="col-4 d-flex flex-column align-items-center"
@@ -77,8 +77,8 @@
                     :key="key"
                   >
                     <img
-                      src="/images/wine with food.jpg"
-                      alt="grape"
+                      :src="`/images/food_images/${food}.jpg`"
+                      :alt="food"
                       class="w-100 rounded-pill mb-2"
                     />
                     <p>{{ food }}</p>
@@ -336,9 +336,7 @@ export default {
           // console.log(res.data);
           this.cart = res.data.filter((item) => item.userId === this.userId);
         })
-        .catch((err) => {
-          console.log('未正確取得購物車');
-          console.log(err.data);
+        .catch(() => {
         });
     },
     addToCart(product) {
@@ -401,8 +399,7 @@ export default {
               icon: 'success'
             });
           })
-          .catch((err) => {
-            console.log(err.response);
+          .catch(() => {
             Swal.fire({
               title: '加入購物車失敗',
               text: '請稍後再試',
@@ -421,8 +418,7 @@ export default {
           this.favoriteList = res.data.filter((item) => item.userId === this.userId);
           this.checkFavoriteStatus();
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
         });
     },
     checkFavoriteStatus() {
@@ -448,7 +444,7 @@ export default {
       axios
         .post(url, favoriteData)
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           this.getFavoriteList();
           Swal.fire({
             title: '加入最愛',
@@ -480,7 +476,7 @@ export default {
       const existingProductIndex = this.allFavoriteList.findIndex(
         (item) => item.productId === id && item.userId === this.userId
       );
-      console.log(this.allFavoriteList[existingProductIndex].id);
+      // console.log(this.allFavoriteList[existingProductIndex].id);
       const deleteItem = this.allFavoriteList[existingProductIndex].id;
       axios
         .delete(`${url}/${deleteItem}`, {
@@ -488,7 +484,7 @@ export default {
           id: existingProductIndex
         })
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           this.getFavoriteList();
           Swal.fire({
             title: '移出最愛',
@@ -496,8 +492,7 @@ export default {
             icon: 'success'
           });
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
         });
     },
     findSimilarWinesByGrape(selectedProduct, products, numberOfSimilarWines = 4) {
