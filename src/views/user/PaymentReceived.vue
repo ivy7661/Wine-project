@@ -1,5 +1,10 @@
 <template>
   <div>
+    <loading v-model:active="isLoading" :is-full-page="fullPage">
+      <template #default>
+        <WineGlassLoader />
+      </template>
+    </loading>
     <div class="bg-paymentReceived pb-4">
       <h2 class="pb-5 text-white container">訂單已成立</h2>
     </div>
@@ -37,32 +42,29 @@
           完成訂單
         </div>
       </div>
-      <div v-if="order" class="bg-accent-brown p-3">
+      <div v-if="order" class="bg-accent-brown p-3 table-responsive">
         <h3 class="pb-4">訂單編號 #{{ order.id }} ({{ order.create_at }})</h3>
-        <table class="table mb-4">
-          <thead>
-            <tr class="fs-5">
-              <th>訂單編號</th>
-              <th>顧客姓名</th>
-              <th>連絡電話</th>
-              <th>連絡信箱</th>
-              <th>送貨地址</th>
-              <th>付款狀態</th>
-              <th>訂單狀態</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="fs-5">
-              <td>{{ order.id }}</td>
-              <td>{{ order.user.name }}</td>
-              <td>{{ order.user.phone }}</td>
-              <td>{{ order.user.email }}</td>
-              <td>{{ order.user.address }}</td>
-              <td>{{ order.is_paid ? '已付款' : '未付款' }}</td>
-              <td>{{ order.orderStatus }}</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="row">
+          <div class="col-6">
+            <div class="mb-3"><strong>訂單編號:</strong> {{ order.id }}</div>
+            <div class="mb-3"><strong>顧客姓名:</strong> {{ order.user.name }}</div>
+            <div class="mb-3"><strong>連絡電話:</strong> {{ order.user.phone }}</div>
+          </div>
+          <div class="col-6">
+            <div class="mb-3">
+              <strong>付款狀態:</strong> {{ order.is_paid ? '已付款' : '未付款' }}
+            </div>
+            <div class="mb-3"><strong>訂單狀態:</strong> {{ order.orderStatus }}</div>
+          </div>
+        </div>
+        <div class="row pb-3">
+          <div class="col-12 col-md-6">
+            <div class="mb-3"><strong>連絡信箱:</strong> {{ order.user.email }}</div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="mb-3"><strong>送貨地址:</strong> {{ order.user.address }}</div>
+          </div>
+        </div>
         <h3 class="pb-3">購買商品清單</h3>
         <div>
           <table class="table">
@@ -91,30 +93,64 @@
 import axios from 'axios';
 import { mapState, mapActions } from 'pinia';
 import userStore from '@/stores/user';
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/css/index.css';
+import { h } from 'vue';
+import WineGlassLoader from './WineGlassLoader.vue';
 const { VITE_API_URL } = import.meta.env;
 
 export default {
   name: 'PaymentReceived',
-  components: {},
   data() {
     return {
       order: null,
-      userId: ''
+      userId: '',
+      isLoading: false,
+      fullPage: true
     };
+  },
+  components: {
+    Loading,
+    WineGlassLoader
   },
   methods: {
     ...mapActions(userStore, ['setUser', 'cleanUser', 'getUserCookie']),
+    doLoading() {
+      const loader = this.$loading.show({
+        props: { spinner: WineGlassLoader },
+        // Pass props by their camelCased names
+        container: this.$refs.loadingContainer,
+        canCancel: true,
+        color: '#000000',
+        loader: 'spinner',
+        width: 64,
+        height: 64,
+        backgroundColor: '#ffffff',
+        opacity: 0.5,
+        zIndex: 999
+      }, {
+        // Pass slots by their names
+        default: h('WineGlassLoader')
+      });
+      loader.hide();
+    },
+    setLoadingTime() {
+      this.isLoading = true;
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 800);
+    },
     getUserOrderList() {
       const url = `${VITE_API_URL}/orders`;
       axios
         .get(url)
         .then((res) => {
+          this.setLoadingTime();
           this.orderList = res.data;
           const userOrder = this.orderList.filter((order) => order.user.userId === this.userId);
           this.order = userOrder[userOrder.length - 1];
         })
-        .catch(() => {
-        });
+        .catch(() => {});
     }
   },
   computed: {
@@ -131,14 +167,18 @@ export default {
 <style lang="scss" scoped>
 .bg-paymentReceived {
   padding-top: 90px;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url('/images/bg1.jpg');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/bg1.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 }
 .progress {
-  height: 30px;
+  height: 48px;
+}
+@media (max-width: 767px) {
+  .progress {
+    font-size: 14px;
+  }
 }
 .bg-paymentReceived {
   padding-top: 50px;

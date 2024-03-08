@@ -1,6 +1,11 @@
 <template>
   <div>
     <div class="container">
+      <loading v-model:active="isLoading" :is-full-page="fullPage">
+        <template #default>
+          <WineGlassLoader />
+        </template>
+      </loading>
       <div class="productDisplay pt-5 pb-5">
         <div class="row justify-content-between mb-4">
           <div
@@ -99,7 +104,7 @@
             <h4 class="mb-4">葡萄酒品味</h4>
             <p class="mb-1">單寧</p>
             <div
-              class="progress"
+              class="progress bg-white"
               role="progressbar"
               aria-label="Default striped example"
               aria-valuemin="0"
@@ -112,7 +117,7 @@
             </div>
             <p class="mb-1">酸度</p>
             <div
-              class="progress"
+              class="progress bg-white"
               role="progressbar"
               aria-label="Default striped example"
               aria-valuemin="0"
@@ -125,7 +130,7 @@
             </div>
             <p class="mb-1">甜度</p>
             <div
-              class="progress"
+              class="progress bg-white"
               role="progressbar"
               aria-label="Default striped example"
               aria-valuemin="0"
@@ -138,7 +143,7 @@
             </div>
             <p class="mb-1">酒體</p>
             <div
-              class="progress"
+              class="progress bg-white"
               role="progressbar"
               aria-label="Default striped example"
               aria-valuemin="0"
@@ -183,7 +188,7 @@
           <div class="col">
             <h4 class="mb-4">好評推推推</h4>
             <div class="row d-flex align-items-stretch gy-3">
-              <div class="col-6 col-md-3">
+              <div class="col-12 col-md-3">
                 <div class="card h-100 pb-3">
                   <div class="card-body px-4">
                     <div class="text-warning d-flex gap-1 mb-1">
@@ -200,7 +205,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-6 col-md-3">
+              <div class="col-12 col-md-3">
                 <div class="card h-100 pb-3">
                   <div class="card-body px-4">
                     <div class="text-warning d-flex gap-1 mb-1">
@@ -215,7 +220,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-6 col-md-3">
+              <div class="col-12 col-md-3">
                 <div class="card h-100 pb-3">
                   <div class="card-body px-4">
                     <div class="text-warning d-flex gap-1 mb-1">
@@ -227,7 +232,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-6 col-md-3">
+              <div class="col-12 col-md-3">
                 <div class="card h-100 pb-3">
                   <div class="card-body px-4">
                     <div class="text-warning d-flex gap-1 mb-1">
@@ -254,7 +259,7 @@
         <h3 class="text-white pb-5">您可能會喜歡的商品</h3>
         <div class="row gy-3">
           <div class="col-6 col-md-3" v-for="(wine, key) in similarWines" :key="key">
-            <div class="card d-flex flex-column h-100">
+            <div class="card d-flex flex-column h-100 product_card">
               <a href="#" @click.prevent="seeProduct(wine.id)">
                 <img
                   :src="$filters.imgPath(`/images/wine_images/${wine.image}.jpg`)"
@@ -279,7 +284,9 @@
                   </a>
                   <p class="card-text text-danger fw-bold">$ {{ wine.price }}</p>
                 </div>
-                <a href="#" class="btn btn-primary w-100" @click.prevent="addToCart(wine)">加入購物車</a>
+                <a href="#" class="btn btn-primary w-100" @click.prevent="addToCart(wine)"
+                  >加入購物車</a
+                >
               </div>
             </div>
           </div>
@@ -294,11 +301,18 @@ import Swal from 'sweetalert2';
 import axios from 'axios';
 import { mapState, mapActions } from 'pinia';
 import userStore from '@/stores/user';
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/css/index.css';
+import { h } from 'vue';
+import WineGlassLoader from './WineGlassLoader.vue';
 const { VITE_API_URL } = import.meta.env;
 
 export default {
   name: 'ProductDetail',
-  components: {},
+  components: {
+    Loading,
+    WineGlassLoader
+  },
   data() {
     return {
       title: '產品詳情',
@@ -308,24 +322,51 @@ export default {
       cart: [],
       favoriteList: [],
       allFavoriteList: [],
-      userId: ''
+      userId: '',
+      isLoading: false,
+      fullPage: true
     };
   },
   methods: {
     ...mapActions(userStore, ['setUser', 'cleanUser', 'getUserCookie']),
+    doLoading() {
+      const loader = this.$loading.show({
+        props: { spinner: WineGlassLoader },
+        // Pass props by their camelCased names
+        container: this.$refs.loadingContainer,
+        canCancel: true,
+        color: '#000000',
+        loader: 'spinner',
+        width: 64,
+        height: 64,
+        backgroundColor: '#ffffff',
+        opacity: 0.5,
+        zIndex: 999
+      }, {
+        // Pass slots by their names
+        default: h('WineGlassLoader')
+      });
+      loader.hide();
+    },
+    setLoadingTime() {
+      this.isLoading = true;
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 800);
+    },
     getProduct() {
       const url = `${VITE_API_URL}/products`;
       axios
         .get(url)
         .then((res) => {
           // console.log(res.data);
+          this.setLoadingTime();
           this.products = res.data;
           this.selectedProduct = this.products.find((item) => item.id === this.$route.params.id);
           // console.log(this.selectedProduct);
           this.findSimilarWinesByGrape(this.selectedProduct, this.products);
         })
-        .catch(() => {
-        });
+        .catch(() => {});
     },
     getCartList() {
       const url = `${VITE_API_URL}/carts`;
@@ -335,8 +376,7 @@ export default {
           // console.log(res.data);
           this.cart = res.data.filter((item) => item.userId === this.userId);
         })
-        .catch(() => {
-        });
+        .catch(() => {});
     },
     addToCart(product) {
       if (!this.userId) {
@@ -417,8 +457,7 @@ export default {
           this.favoriteList = res.data.filter((item) => item.userId === this.userId);
           this.checkFavoriteStatus();
         })
-        .catch(() => {
-        });
+        .catch(() => {});
     },
     checkFavoriteStatus() {
       this.selectedProduct.isFavorite = this.favoriteList.some(
@@ -451,8 +490,7 @@ export default {
             icon: 'success'
           });
         })
-        .catch(() => {
-        });
+        .catch(() => {});
     },
     toggleFavorite(product) {
       // 檢查產品是否在最愛清單中
@@ -490,8 +528,7 @@ export default {
             icon: 'success'
           });
         })
-        .catch(() => {
-        });
+        .catch(() => {});
     },
     findSimilarWinesByGrape(selectedProduct, products, numberOfSimilarWines = 4) {
       // 提取目標酒的葡萄品種
@@ -599,8 +636,27 @@ li {
 .btn-primary:hover {
   background-color: #d9381e;
 }
+.progress-container {
+  background-color: white;
+  border-radius: 5px; /* 可視情況調整邊框半徑 */
+  overflow: hidden;
+  margin-bottom: 15px; /* 可視情況調整底邊距 */
+}
+
+.progress-bar {
+  border-radius: 5px; /* 可視情況調整邊框半徑，需與 .progress-container 一致 */
+}
 .moreProduct {
   background: linear-gradient(to left top, #f5ebd8, #ead8ab, #d4b685);
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+}
+.product_card {
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
 }
 </style>
