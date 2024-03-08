@@ -21,6 +21,7 @@
     "bootstrap-icons": "^1.11.3",
     "cors": "^2.8.5",
     "echarts": "^5.5.0",
+    "epic-spinners": "^2.0.0",
     "normalize.css": "^8.0.1",
     "pinia": "^2.1.7",
     "sweetalert2": "^11.10.5",
@@ -28,7 +29,7 @@
     "vee-validate": "^4.12.5",
     "vue": "^3.4.19",
     "vue-axios": "^3.5.2",
-    "vue-loading-overlay": "^6.0.3",
+    "vue-loading-overlay": "^6.0.4",
     "vue-router": "^4.2.5"
   },
   "devDependencies": {

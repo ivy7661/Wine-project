@@ -2488,6 +2488,39 @@
     },
     {
       "id": 14
+    },
+    {
+      "product_id": "11",
+      "chineseName": "翹鬍子亨利酒莊.薄酒萊白酒",
+      "image": "wine11",
+      "price": 810,
+      "is_hot": 1,
+      "star": 3,
+      "qty": 3,
+      "userId": "6",
+      "id": 15
+    },
+    {
+      "product_id": "8",
+      "chineseName": "約瑟夫.杜亨酒莊.馬貢白酒",
+      "image": "wine8",
+      "price": 950,
+      "is_hot": 0,
+      "star": 3,
+      "qty": 1,
+      "userId": "6",
+      "id": 16
+    },
+    {
+      "product_id": "33",
+      "chineseName": "羅曼尼.康帝酒莊.(羅曼尼.康帝)特級園紅酒",
+      "image": "wine33",
+      "price": 1110000,
+      "is_hot": 1,
+      "star": 5,
+      "qty": 1,
+      "userId": "6",
+      "id": 17
     }
   ],
   "favorite": [
@@ -2547,12 +2580,6 @@
     },
     {
       "userId": "6",
-      "productId": "9",
-      "created_at": "2024/03/06",
-      "id": 26
-    },
-    {
-      "userId": "6",
       "productId": "14",
       "created_at": "2024/03/06",
       "id": 27
@@ -2562,6 +2589,12 @@
       "productId": "48",
       "created_at": "2024/03/06",
       "id": 28
+    },
+    {
+      "userId": "6",
+      "productId": "9",
+      "created_at": "2024/03/06",
+      "id": 29
     }
   ]
 }
