@@ -66,6 +66,13 @@
       "name": "AnyAdmin",
       "role": "admin",
       "id": 9
+    },
+    {
+      "email": "hexadmin@gmail.com",
+      "password": "$2a$10$iWYDrMEBv.LVOmi245WnNe79kQMYL2KezR6o66ItTDW0UzFXKIs7i",
+      "name": "HexAdmin",
+      "role": "admin",
+      "id": 10
     }
   ],
   "products": [
@@ -2460,67 +2467,6 @@
       "qty": 3,
       "userId": 6,
       "id": 5
-    },
-    {
-      "product_id": "14",
-      "chineseName": "開心妞香檳.粉紅不甜香檳",
-      "image": "wine14",
-      "price": 1650,
-      "is_hot": 1,
-      "star": 4,
-      "qty": 1,
-      "userId": 6,
-      "id": 6
-    },
-    {
-      "product_id": "3",
-      "chineseName": "隆得帕克酒莊.夏布利(穆克派)一級園白酒",
-      "image": "wine3",
-      "price": 1800,
-      "is_hot": 0,
-      "star": 5,
-      "qty": 2,
-      "userId": 6,
-      "id": 11
-    },
-    {
-      "id": 13
-    },
-    {
-      "id": 14
-    },
-    {
-      "product_id": "11",
-      "chineseName": "翹鬍子亨利酒莊.薄酒萊白酒",
-      "image": "wine11",
-      "price": 810,
-      "is_hot": 1,
-      "star": 3,
-      "qty": 3,
-      "userId": "6",
-      "id": 15
-    },
-    {
-      "product_id": "8",
-      "chineseName": "約瑟夫.杜亨酒莊.馬貢白酒",
-      "image": "wine8",
-      "price": 950,
-      "is_hot": 0,
-      "star": 3,
-      "qty": 1,
-      "userId": "6",
-      "id": 16
-    },
-    {
-      "product_id": "33",
-      "chineseName": "羅曼尼.康帝酒莊.(羅曼尼.康帝)特級園紅酒",
-      "image": "wine33",
-      "price": 1110000,
-      "is_hot": 1,
-      "star": 5,
-      "qty": 1,
-      "userId": "6",
-      "id": 17
     }
   ],
   "favorite": [
@@ -2538,42 +2484,6 @@
     },
     {
       "userId": 5,
-      "productId": "7",
-      "created_at": "2024/02/21",
-      "id": 5
-    },
-    {
-      "userId": "6",
-      "productId": "6",
-      "created_at": "2024/02/28",
-      "id": 8
-    },
-    {
-      "userId": "6",
-      "productId": 3,
-      "created_at": "2024/03/01",
-      "id": 16
-    },
-    {
-      "userId": "6",
-      "productId": 4,
-      "created_at": "2024/03/06",
-      "id": 20
-    },
-    {
-      "userId": "6",
-      "productId": 6,
-      "created_at": "2024/03/06",
-      "id": 22
-    },
-    {
-      "userId": "6",
-      "productId": "16",
-      "created_at": "2024/03/06",
-      "id": 23
-    },
-    {
-      "userId": "6",
       "productId": "11",
       "created_at": "2024/03/06",
       "id": 25
