@@ -116,6 +116,7 @@ import userStore from '@/stores/user';
 const userData = userStore();
 
 // 變數
+const emit = defineEmits(['isReady']);
 const { getUser, getFavorites } = storeToRefs(userData);
 const selectType = ref('taste');
 const currentSelect = ref(0);
@@ -241,6 +242,7 @@ const getProductList = () => {
       // console.log(res.data);
       originalProducts.value = res.data;
       hotProducts.value = res.data.filter(item => !!item.is_hot && item.star > 3).slice(0, 3);
+      emit('isReady');
     })
     .catch((error) => {
       console.log(error.response);
@@ -323,6 +325,10 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+img:hover {
+  transform: translateY(-2px);
+}
+
 .selection-container {
   margin-bottom: 0;
 }

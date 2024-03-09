@@ -1,26 +1,32 @@
 <template>
   <div>
     <div class="bg-products pb-4">
+      <loading v-model:active="isLoading" :is-full-page="fullPage">
+        <template #default>
+          <WineGlassLoader />
+        </template>
+      </loading>
       <div class="container">
         <div class="row justify-content-between">
-          <div class="col-md-6">
-            <div v-for="productTitle in productsContent" :key="productTitle.title">
+          <div class="col-lg-6">
+            <div class="px-3" v-for="productTitle in productsContent" :key="productTitle.title">
               <div v-if="selectedRegion === productTitle.title">
                 <h2 class="pb-5 text-white">法國五大產區 - {{ productTitle.title }}</h2>
-                <p class="text-white lh-large">{{ productTitle.content }}</p>
+                <p class="text-white lh-large fs-5 font-monospace">{{ productTitle.content }}</p>
               </div>
             </div>
           </div>
-          <div class="col-md-3 d-flex flex-column justify-content-between">
-            <div class="searchArea">
+          <div class="col-12 col-lg-5 d-flex flex-column justify-content-end">
+            <div class="searchArea  mx-3">
               <i class="bi bi-search"></i>
-              <input type="text" placeholder="請輸入關鍵字" class="w-100" v-model="searchKeyword" />
+              <input type="text" placeholder="請輸入關鍵字" class="w-100 fs-5" v-model="searchKeyword" />
             </div>
-            <div class="filterBox">
+            <div class="filterBox mx-3">
+              <label for="wineRegion" class="text-white fs-5 pb-1">請選擇產區:</label>
               <select
                 id="wineRegion"
                 name="wineRegion"
-                class="mb-3"
+                class="mb-3 fs-5"
                 v-model="selectedRegion"
                 @change="updateContent(selectedRegion)"
               >
@@ -33,7 +39,11 @@
                 <option value="熱賣酒品">熱賣酒品</option>
               </select>
               <div class="filterBtn d-flex justify-content-between gap-3">
-                <a type="button" class="btn btn-primary btn-lg px-4 py-2" @click.prevent="sortBy('price')">
+                <a
+                  type="button"
+                  class="btn btn-primary btn-lg px-4 py-2"
+                  @click.prevent="sortBy('price')"
+                >
                   價格 <i :class="ascendingOrderPrice ? 'bi bi-arrow-down' : 'bi bi-arrow-up'"></i>
                 </a>
                 <a
@@ -54,7 +64,7 @@
       <div class="productList pb-5 align-items-stretch">
         <div class="row mb-3 gy-3">
           <div class="col-12 col-md-6 col-lg-4" v-for="(product, key) in sortedProducts" :key="key">
-            <div class="card h-100 p-2">
+            <div class="card h-100 p-2 product_card">
               <div class="row h-100">
                 <div class="col-4">
                   <a href="#" @click.prevent="toggleFavorite(product)">
@@ -68,7 +78,7 @@
                   </a>
                   <a href="#" @click.prevent="seeProduct(product.id)">
                     <img
-                      :src="`/images/wine_images/${product.image}.jpg`"
+                      :src="$filters.imgPath(`/images/wine_images/${product.image}.jpg`)"
                       class="card-img-top h-100"
                       :alt="product.chineseName"
                     />
@@ -113,6 +123,10 @@ import Swal from 'sweetalert2';
 import axios from 'axios';
 import { mapState, mapActions } from 'pinia';
 import userStore from '@/stores/user';
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/css/index.css';
+import { h } from 'vue';
+import WineGlassLoader from './WineGlassLoader.vue';
 const { VITE_API_URL } = import.meta.env;
 
 export default {
@@ -130,17 +144,52 @@ export default {
       searchKeyword: '',
       favoriteList: [],
       allFavoriteList: [],
-      userId: ''
+      userId: '',
+      isLoading: false,
+      fullPage: true
     };
+  },
+  components: {
+    Loading,
+    WineGlassLoader
   },
   methods: {
     ...mapActions(userStore, ['setUser', 'cleanUser', 'getUserCookie']),
+    doLoading() {
+      const loader = this.$loading.show(
+        {
+          props: { spinner: WineGlassLoader },
+          // Pass props by their camelCased names
+          container: this.$refs.loadingContainer,
+          canCancel: true,
+          color: '#000000',
+          loader: 'spinner',
+          width: 64,
+          height: 64,
+          backgroundColor: '#ffffff',
+          opacity: 0.5,
+          zIndex: 999
+        },
+        {
+          // Pass slots by their names
+          default: h('WineGlassLoader')
+        }
+      );
+      loader.hide();
+    },
+    setLoadingTime() {
+      this.isLoading = true;
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 800);
+    },
     getProductList() {
       const url = `${VITE_API_URL}/products`;
       axios
         .get(url)
         .then((res) => {
           // console.log(res.data);
+          this.setLoadingTime();
           this.products = res.data;
           this.selectedRegionProducts = this.products.filter((product) => product.is_hot === 1);
         })
@@ -156,8 +205,7 @@ export default {
           // console.log(res.data);
           this.cart = res.data.filter((item) => item.userId === this.userId);
         })
-        .catch(() => {
-        });
+        .catch(() => {});
     },
     updateContent(selectedRegion) {
       const url = `${VITE_API_URL}/productsContent`;
@@ -167,8 +215,7 @@ export default {
           // console.log(res.data);
           this.productsContent = res.data;
         })
-        .catch(() => {
-        });
+        .catch(() => {});
     },
     sortBy(sortKey) {
       if (sortKey === 'price') {
@@ -261,8 +308,7 @@ export default {
           this.favoriteList = res.data.filter((item) => item.userId === this.userId);
           this.checkFavoriteStatus();
         })
-        .catch(() => {
-        });
+        .catch(() => {});
     },
     checkFavoriteStatus() {
       // 遍歷所有產品，檢查它們是否在願望清單中
@@ -334,11 +380,6 @@ export default {
         .then((res) => {
           // console.log(res);
           this.getFavoriteList();
-          Swal.fire({
-            title: '移出最愛',
-            text: '商品已經成功移出最愛清單',
-            icon: 'success'
-          });
         })
         .catch(() => {
           // console.log(err);
@@ -440,5 +481,14 @@ export default {
 
 .filterBtn button:hover {
   background-color: #f0f0f0;
+}
+.product_card {
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
 }
 </style>

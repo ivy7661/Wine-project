@@ -1,5 +1,10 @@
 <template>
   <div>
+    <loading v-model:active="isLoading" :is-full-page="fullPage">
+      <template #default>
+        <WineGlassLoader />
+      </template>
+    </loading>
     <div class="bg-cart pb-4">
       <h2 class="pb-5 text-white container">購物車資訊</h2>
     </div>
@@ -48,7 +53,7 @@
                 v-for="(product, key) in cart"
                 :key="key"
               >
-                <a href="#" @click="toggleFavorite(product)">
+                <a href="#" @click.prevent="toggleFavorite(product)">
                   <i
                     class="bi heart position-absolute top-5 start-5"
                     :class="{
@@ -57,11 +62,15 @@
                     }"
                   ></i>
                 </a>
-                <a href="#" @click="seeProduct(product.product_id)" class="wine_image_block">
+                <a
+                  href="#"
+                  @click.prevent="seeProduct(product.product_id)"
+                  class="wine_image_block"
+                >
                   <div
                     class="wine_image"
                     :style="{
-                      'background-image': 'url(/images/wine_images/' + product.image + '.jpg)'
+                      'background-image': `url(${$filters.imgPath('/images/wine_images/' + product.image + '.jpg')})`
                     }"
                   ></div>
                 </a>
@@ -76,19 +85,21 @@
                       ></i>
                     </div>
                   </div>
-                  <a href="#" @click="seeProduct(product.id)">
+                  <a href="#" @click.prevent="seeProduct(product.id)">
                     <h5 class="card-title text-black fs-4">{{ product.chineseName }}</h5>
                   </a>
                   <p>750 ml</p>
                   <div class="input-group mb-3">
                     <span class="input-group-text">數量</span>
-                    <input
-                      type="number"
-                      min="0"
-                      class="form-control text-end"
-                      v-model.number="product.qty"
-                      @click="updateCartQty(product)"
-                    />
+                    <select
+                      class="form-select"
+                      v-model="product.qty"
+                      @change="updateCartQty(product)"
+                    >
+                      <option v-for="quantity in quantityOptions" :key="quantity" :value="quantity">
+                        {{ quantity }}
+                      </option>
+                    </select>
                   </div>
                   <div class="d-flex">
                     <p class="text-danger">$ {{ product.price }}</p>
@@ -156,6 +167,10 @@ import Swal from 'sweetalert2';
 import axios from 'axios';
 import { mapState, mapActions } from 'pinia';
 import userStore from '@/stores/user';
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/css/index.css';
+import { h } from 'vue';
+import WineGlassLoader from './WineGlassLoader.vue';
 const { VITE_API_URL } = import.meta.env;
 
 export default {
@@ -163,6 +178,7 @@ export default {
   data() {
     return {
       title: '購物車',
+      quantityOptions: [1, 2, 3, 4, 5, 6, 7, 8],
       cartAll: [],
       cart: [],
       favoriteList: [],
@@ -170,17 +186,49 @@ export default {
       coupon: null,
       shipping: 300,
       newQty: 1,
-      userId: ''
+      userId: '',
+      isLoading: false,
+      fullPage: true
     };
+  },
+  components: {
+    Loading,
+    WineGlassLoader
   },
   methods: {
     ...mapActions(userStore, ['setUser', 'cleanUser', 'getUserCookie']),
+    doLoading() {
+      const loader = this.$loading.show({
+        props: { spinner: WineGlassLoader },
+        // Pass props by their camelCased names
+        container: this.$refs.loadingContainer,
+        canCancel: true,
+        color: '#000000',
+        loader: 'spinner',
+        width: 64,
+        height: 64,
+        backgroundColor: '#ffffff',
+        opacity: 0.5,
+        zIndex: 999
+      }, {
+        // Pass slots by their names
+        default: h('WineGlassLoader')
+      });
+      loader.hide();
+    },
+    setLoadingTime() {
+      this.isLoading = true;
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 800);
+    },
     getCartList() {
       const url = `${VITE_API_URL}/carts`;
       axios
         .get(url)
         .then((res) => {
           // console.log(res.data);
+          this.setLoadingTime();
           this.cartAll = res.data;
           this.cart = res.data.filter((item) => item.userId === this.userId);
         })
@@ -323,11 +371,6 @@ export default {
         .then((res) => {
           // console.log(res);
           this.getFavoriteList();
-          Swal.fire({
-            title: '移出最愛',
-            text: '商品已經成功移出最愛清單',
-            icon: 'success'
-          });
         })
         .catch(() => {
           // console.log(err);
@@ -340,11 +383,14 @@ export default {
         .then((res) => {
           this.coupon = res.data[0];
         })
-        .catch(() => {
-        });
+        .catch(() => {});
     },
     toCheckoutPage() {
-      this.$router.push({ name: 'CheckoutPage' });
+      if (this.cart.length > 0) {
+        this.$router.push({ name: 'CheckoutPage' });
+      } else if (this.cart.length === 0) {
+        alert('目前購物車沒有商品唷！！');
+      }
     }
   },
   watch: {
@@ -388,7 +434,12 @@ a:hover {
   cursor: pointer;
 }
 .progress {
-  height: 30px;
+  height: 48px;
+}
+@media (max-width: 767px) {
+  .progress {
+    font-size: 14px;
+  }
 }
 .heart:hover {
   color: red;
@@ -405,8 +456,7 @@ a:hover {
 }
 .bg-cart {
   padding-top: 90px;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url('/images/bg1.jpg');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/bg1.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
