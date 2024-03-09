@@ -1,9 +1,10 @@
 <template>
   <div class="container-fluid d-flex justify-content-center bg-white-2 container-post">
+    <img src="/images/Deco_3.png" alt="Deco_3" class="deco w-100" />
     <div>
       <h2 class="text-primary text-center my-5">好文分享</h2>
       <div class="row mb-5" style="max-width: 1296px">
-        <div class="col-12 col-lg-4 mb-3 mb-lg-0">
+        <div class="col-12 col-lg-4 mb-3 mb-lg-0 d-flex justify-content-center">
           <div class="card border-0">
             <img src="/images/Article_3.png" class="card-img-top" alt="" />
             <div class="card-body">
@@ -21,7 +22,7 @@
             </div>
           </div>
         </div>
-        <div class="col-12 col-lg-4 mb-3 mb-lg-0">
+        <div class="col-12 col-lg-4 mb-3 mb-lg-0 d-flex justify-content-center">
           <div class="card border-0">
             <img src="/images/Article_2.png" class="card-img-top" alt="" />
             <div class="card-body">
@@ -39,7 +40,7 @@
             </div>
           </div>
         </div>
-        <div class="col-12 col-lg-4 mb-3 mb-lg-0">
+        <div class="col-12 col-lg-4 mb-3 mb-lg-0 d-flex justify-content-center">
           <div class="card border-0">
             <img src="/images/Article_1.png" class="card-img-top" alt="" />
             <div class="card-body">
@@ -59,7 +60,6 @@
         </div>
       </div>
     </div>
-    <img src="/images/Deco_3.png" alt="Deco_3" class="deco" />
   </div>
 </template>
 
@@ -89,14 +89,17 @@ a {
 }
 .deco {
   position: absolute;
-  width: 728px;
-  height: 120px;
+  max-width: 728px;
+  max-height: 120px;
   top: -40px;
   left: 0;
 }
 @media (max-width: 375px) {
   .card {
     max-width: 310px;
+  }
+  .deco {
+    max-width: 300px;
   }
 }
 </style>
