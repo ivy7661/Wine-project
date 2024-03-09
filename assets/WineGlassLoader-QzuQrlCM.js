@@ -1,0 +1,1 @@
+import{_ as e,o as t,c as o}from"./index-r8EpH2Jf.js";const s="/undefined/images/drawn_cocktail.png",a={props:{width:{type:Number,default:24},height:{type:Number,default:24}}},c={src:s,class:"image_rotate",width:"200px",height:"200px",alt:"cocktail"};function r(n,i,p,_,d,l){return t(),o("img",c)}const f=e(a,[["render",r],["__scopeId","data-v-11d42662"]]);export{f as W};
