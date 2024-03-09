@@ -9,7 +9,7 @@
         <ol>
           <li v-for="(variety, index) in redGrapeVarieties" :key="`variety-${index}`">
             <h3>{{ variety.name }}</h3>
-            <img :src="variety.image" class="w-100 mb-5">
+            <img :src="$filters.imgPath(variety.image)" class="w-100 mb-5">
             <p v-html="variety.description"></p>
           </li>
         </ol>
@@ -30,7 +30,7 @@
         </div>
         <div v-if="opener.isOpen" class="collapse show">
           <div class="card-body" v-html="opener.description"></div>
-          <img :src="opener.image" class="w-100 mb-5">
+          <img :src="$filters.imgPath(opener.image)" class="w-100 mb-5">
         </div>
       </div>
     </div>
@@ -49,7 +49,7 @@
       </div>
       <div v-if="technique.isOpen" class="collapse show">
         <div class="card-body" v-html="technique.description"></div>
-        <img :src="technique.image" class="w-100 mb-5">
+        <img :src="$filters.imgPath(technique.image)" class="w-100 mb-5">
       </div>
     </div>
   </div>
@@ -62,7 +62,7 @@ export default {
       redGrapeVarieties: [
         {
           name: '希拉',
-          image: $filters.imgPath('/images/knowledge/syrah.png'),
+          image: '/images/knowledge/syrah.png',
           description: `起源：希拉葡萄品種最初起源於法國的羅納河谷，並在整個法國多個葡萄酒產區中廣泛種植，尤其是在隆河谷地區。然而，它也在全球范圍內廣泛種植，包括澳大利亞、南非、美國、智利、阿根廷等地。
 葡萄特性：希拉葡萄是黑皮葡萄，通常呈現深紫色至黑色的果實。葡萄叢小而緊湊，葡萄粒小，皮薄含有豐富的色素和單寧。
 風味特點：希拉葡萄釀造的葡萄酒通常具有豐富的水果風味，包括黑莓、覆盆子、李子和黑櫻桃等。此外，它還可能伴隨著辛香和香料的味道，如胡椒、肉桂和丁香。希拉葡萄酒的風格因產地、氣候和釀酒師的不同而有所差異，可以是濃烈的、濃郁的，也可以是較輕盈和優雅的。
@@ -72,7 +72,7 @@ export default {
         },
         {
           name: '黑皮諾',
-          image: $filters.imgPath('/images/knowledge/pinot noir.png'),
+          image: '/images/knowledge/pinot noir.png',
           description: `起源：黑皮諾葡萄品種起源於法國，特別是勃艮第地區，被認為是世界上最古老的葡萄品種之一。它也在其他法國地區（如阿爾薩斯）、德國、意大利、美國（特別是加州和俄勒岡）、紐西蘭等地區廣泛種植。
               葡萄特性：黑皮諾葡萄通常呈現小而緊湊的葡萄叢，葡萄粒小，皮薄，色素相對少。這使得黑皮諾葡萄容易受到氣候和土壤的影響，因此它是一種具有挑戰性的品種，需要特別的照顧和釀酒技術。
               風味特點：黑皮諾葡萄酒通常呈現出紅果風味，如紅櫻桃、草莓和覆盆子，以及花香和香料的氣息。它們的風味可以非常優雅和複雜，具有柔滑的口感和悅耳的酸度。由於其敏感性，不同產區和釀酒師的手法可以產生多種風格的黑皮諾葡萄酒。
@@ -81,7 +81,7 @@ export default {
         },
         {
           name: '梅洛',
-          image: $filters.imgPath('/images/knowledge/merlot.png'),
+          image: '/images/knowledge/merlot.png',
           description: `起源：梅洛葡萄品種最早起源於法國波爾多地區，特別是聖愛美倫（Saint-Émilion）和波美侯（Pomerol）等產區。它也在全球各地廣泛種植，包括法國、意大利、美國、智利、阿根廷、澳大利亞和南非等葡萄酒產區。
               葡萄特性：梅洛葡萄通常呈現中等大小的葡萄粒，皮薄，呈現深紅色至紫色的果實。這個品種的葡萄粒具有柔軟的單寧和悅耳的酸度，使其成為一種容易釀造的葡萄品種。
               風味特點：梅洛葡萄酒通常呈現出紅果風味，如紅櫻桃、紅李子、草莓和覆盆子，並伴隨著一些香料、巧克力、咖啡和煙燻的氣息。這些葡萄酒的風格可以從輕盈和果香濃郁到濃厚和豐滿的不同風格。
@@ -90,7 +90,7 @@ export default {
         },
         {
           name: '卡本內蘇維濃',
-          image: $filters.imgPath('/images/knowledge/cabernet sauvignon.png'),
+          image: '/images/knowledge/cabernet sauvignon.png',
           description: `起源：卡本內蘇維濃葡萄品種最初起源於法國波爾多地區，是卡本內佈朗（Cabernet Franc）和蘇維濃（Sauvignon
               Blanc）兩個葡萄品種的杂交品种。它在波爾多地區的聖愛美倫（Saint-Émilion）、帕烏克拉特-梅德克（Pauillac-Médoc）和格拉夫（Graves）等地區廣泛種植。
               葡萄特性：卡本內蘇維濃葡萄通常呈現中等大小的葡萄粒，皮薄但具有濃厚的色素和單寧。這種葡萄品種對氣候和土壤具有很高的適應性，可以在不同的葡萄酒產區中生長和釀造。
@@ -100,7 +100,7 @@ export default {
         },
         {
           name: '佳美',
-          image: $filters.imgPath('/images/knowledge/gamay.png'),
+          image: '/images/knowledge/gamay.png',
           description: `葡萄是一种主要用于酿造红葡萄酒的葡萄品种，最著名的产区位于法国的博若莱（Beaujolais）地区。这种葡萄品种产生的葡萄酒通常具有浓郁的果香、鲜明的酸度和较低的单宁含量，使得这些葡萄酒易于饮用且适合年轻饮用。
               Gamay 葡萄的特点是成熟早、颜色浅、酒体轻盈。这些葡萄酒常常展现出红色水果的味道，如草莓、樱桃和覆盆子，有时还会有一点香料或花卉的味道。在博若莱地区，Gamay
               葡萄酒有多种风格，包括新鲜、果味浓郁的博若莱新酒（Beaujolais Nouveau）和更为复杂、陈年潜力更大的博若莱村庄酒（Beaujolais-Villages）和十大特级园酒（Beaujolais
@@ -111,7 +111,7 @@ export default {
       whiteGrapeVarieties: [
         {
           name: '雷司令',
-          image: $filters.imgPath('/images/knowledge/riesling.png'),
+          image: '/images/knowledge/riesling.png',
           description: `起源：雷司令葡萄品種起源於德國，特別是來自萊茵蘭-普法茲（Rheingau）和摩澤爾（Mosel）等地區。它也在法國的阿爾薩斯（Alsace）地區、奧地利、澳大利亞、美國、紐西蘭等葡萄酒產區廣泛種植。
               葡萄特性：雷司令葡萄通常呈現小而緊湊的葡萄叢，葡萄粒小，皮薄，具有高酸度。這使得雷司令葡萄成熟後可以保持其新鮮和清新的風味。
               風味特點：雷司令葡萄酒具有多種風味，取決於產地和釀造風格。它們通常呈現蘋果、橙子、柚子、桃子等各種柑橘和石果風味，伴隨著蜂蜜、花香、礦物質和石墨的氣息。雷司令葡萄酒的風格可以從非常乾燥和清新到甜度較高的冰酒，因此適合各種口味的人。
@@ -120,7 +120,7 @@ export default {
         },
         {
           name: '白蘇維濃',
-          image: $filters.imgPath('/images/knowledge/Sauvignon blanc.png'),
+          image: '/images/knowledge/Sauvignon blanc.png',
           description: `起源：白蘇維濃葡萄品種起源於法國，最早可以追溯到波爾多地區。它是卡本內蘇維濃（Cabernet Sauvignon）和蘇維濃（Sauvignon
               Blanc）兩個葡萄品種的家族成員。蘇維濃（Sauvignon）一詞意為"野生"，因為這種葡萄品種的野生品種在法國野外生長得相當廣泛。
               葡萄特性：白蘇維濃葡萄通常呈現中等大小的葡萄粒，皮薄並呈現淡綠色至淡黃色的果實。這種葡萄品種通常具有高酸度和悅耳的芳香，這使得它們成為釀造清新的白葡萄酒的理想選擇。
@@ -131,7 +131,7 @@ export default {
         },
         {
           name: '夏多麗',
-          image: $filters.imgPath('/images/knowledge/chardonnay.png'),
+          image: '/images/knowledge/chardonnay.png',
           description: `起源：夏多麗葡萄品種最早起源於法國，特別是勃艮第地區。它是由希瓦（Pinot）和貝爾布蘭克（Gouais
               Blanc）兩個葡萄品種的自然杂交所形成。夏多麗葡萄在全球各地廣泛種植，成為世界上最重要的白葡萄品種之一。
               葡萄特性：夏多麗葡萄通常呈現中等大小的葡萄粒，皮厚。這種葡萄品種具有高酸度，這使得它成熟後保持清新和活潑的風味，同時也易於釀造不同風格的白葡萄酒。
@@ -148,7 +148,7 @@ export default {
               旋转手柄，将螺旋钻缓慢旋入软木塞中。<br>
               当螺旋钻几乎完全进入软木塞时停止。<br>
               使用开瓶器的杠杆部分抵住瓶颈边缘，轻轻拉起手柄，将软木塞从瓶子中取出。`,
-          image: $filters.imgPath('/images/knowledge/opener1.png'),
+          image: '/images/knowledge/opener1.png',
           isOpen: false
         },
         {
@@ -157,7 +157,7 @@ export default {
               旋转顶部的手柄，使螺旋钻进入软木塞。<br>
               继续旋转直到两边的“翼”完全上升。<br>
               按下两边的“翼”，以此力量将软木塞从瓶中拔出。`,
-          image: $filters.imgPath('/images/knowledge/opener2.png'),
+          image: '/images/knowledge/opener2.png',
           isOpen: false
         },
         {
@@ -166,7 +166,7 @@ export default {
               启动电动机，让其自动将螺旋钻旋入软木塞中。<br>
               当开瓶器停止旋转时，说明软木塞已被完全拔出。<br>
               可能需要按下另一个按钮来释放软木塞。`,
-          image: $filters.imgPath('/images/knowledge/opener3.png'),
+          image: '/images/knowledge/opener3.png',
           isOpen: false
         }
 
@@ -176,35 +176,35 @@ export default {
           title: '使用醒酒器（Decanter）',
           description: `<strong>操作方法：</strong>将葡萄酒缓缓倒入醒酒器中。醒酒器通常有宽阔的底部，可以增加葡萄酒与空气的接触面积。<br>
           <strong>适用类型：</strong>适用于年份较老的红葡萄酒，或者需要释放更多香气和风味的年轻、单宁较重的葡萄酒。`,
-          image: $filters.imgPath('/images/knowledge/glass1.png'),
+          image: '/images/knowledge/glass1.png',
           isOpen: false
         },
         {
           title: '直接在酒杯中醒酒',
           description: `<strong>操作方法：</strong>将葡萄酒倒入宽口酒杯中，让它在杯中摇晃几分钟。<br>
           <strong>适用类型：</strong>适用于不需要长时间醒酒的葡萄酒，或当你没有醒酒器时的临时解决方案。`,
-          image: $filters.imgPath('/images/knowledge/glass2.png'),
+          image: '/images/knowledge/glass2.png',
           isOpen: false
         },
         {
           title: '旋转酒杯',
           description: `<strong>操作方法：</strong>倒入少量葡萄酒后，轻轻旋转酒杯，让葡萄酒沿杯壁转动，这样可以增加葡萄酒与空气的接触。<br>
           <strong>适用类型：</strong>几乎适用于所有类型的葡萄酒，特别是在品酒时。`,
-          image: $filters.imgPath('/images/knowledge/glass3.png'),
+          image: '/images/knowledge/glass3.png',
           isOpen: false
         },
         {
           title: '使用醒酒塞或醒酒漏斗',
           description: `<strong>操作方法：</strong>这些工具可以在倒酒时帮助葡萄酒与空气混合。醒酒塞或漏斗安装在瓶口，当酒倒出时自然引入空气。<br>
           <strong>适用类型：</strong>适合需要稍微醒酒的年轻红葡萄酒和某些白葡萄酒。`,
-          image: $filters.imgPath('/images/knowledge/glass4.png'),
+          image: '/images/knowledge/glass4.png',
           isOpen: false
         },
         {
           title: '提前开瓶',
           description: `<strong>操作方法：</strong>提前几小时打开葡萄酒瓶，让酒瓶口与空气接触。<br>
           <strong>适用类型：</strong>适用于大多数红葡萄酒，尤其是单宁较重的品种。`,
-          image: $filters.imgPath('/images/knowledge/glass5.png'),
+          image: '/images/knowledge/glass5.png',
           isOpen: false
         }
       ]
