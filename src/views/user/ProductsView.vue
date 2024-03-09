@@ -17,11 +17,11 @@
             </div>
           </div>
           <div class="col-12 col-lg-5 d-flex flex-column justify-content-end">
-            <!-- <div class="searchArea">
+            <div class="searchArea  mx-3">
               <i class="bi bi-search"></i>
-              <input type="text" placeholder="請輸入關鍵字" class="w-100" v-model="searchKeyword" />
-            </div> -->
-            <div class="filterBox px-3">
+              <input type="text" placeholder="請輸入關鍵字" class="w-100 fs-5" v-model="searchKeyword" />
+            </div>
+            <div class="filterBox mx-3">
               <label for="wineRegion" class="text-white fs-5 pb-1">請選擇產區:</label>
               <select
                 id="wineRegion"
