@@ -4,8 +4,8 @@
       <h1 class="mt-3">{{ title }}</h1>
       <h2 class="mt-4">產品營收比重</h2>
       <section class="wrap">
-        <Pie-Chart :modified-Data="modifiedData"></Pie-Chart>
-        <Revenue-Statistics :cart-data="cartData"></Revenue-Statistics>
+        <Pie-Chart></Pie-Chart>
+        <Revenue-Statistics></Revenue-Statistics>
       </section>
     </div>
   </div>
@@ -25,10 +25,7 @@ export default {
   data() {
     return {
       title: '銷售數據',
-      orders: [],
-      extractedData: null,
-      modifiedData: null,
-      cartData: null
+      orders: []
     };
   },
   mounted() {
@@ -42,21 +39,6 @@ export default {
         .get(url)
         .then((res) => {
           this.orders = res.data;
-
-          this.extractedData = this.orders.flatMap((order) =>
-            order.cart.map((item) => ({ name: item.chineseName, value: item.qty }))
-          );
-
-          // 合併重複的
-          this.modifiedData = this.extractedData.reduce((acc, curr) => {
-            const existingItem = acc.find((item) => item.name === curr.name);
-            if (existingItem) {
-              existingItem.value += curr.value;
-            } else {
-              acc.push({ name: curr.name, value: curr.value });
-            }
-            return acc;
-          }, []);
         })
         .catch(() => {
           alert('取得訂單資訊失敗');
@@ -68,32 +50,6 @@ export default {
         .get(url)
         .then((res) => {
           this.orders = res.data;
-
-          const transformedData = this.orders.flatMap((order) =>
-            order.cart.map((item) => ({
-              product_id: item.product_id,
-              chineseName: item.chineseName,
-              price: item.price,
-              qty: item.qty
-            }))
-          );
-          console.log(transformedData);
-
-          // 將相同 product_id 項目進行合併
-          this.cartData = transformedData.reduce((acc, curr) => {
-            const existingItem = acc.find((item) => item.product_id === curr.product_id);
-            if (existingItem) {
-              existingItem.qty += curr.qty;
-            } else {
-              acc.push({
-                product_id: curr.product_id,
-                chineseName: curr.chineseName,
-                price: curr.price,
-                qty: curr.qty
-              });
-            }
-            return acc;
-          }, []);
         })
         .catch(() => {
           alert('取得訂單資訊失敗');

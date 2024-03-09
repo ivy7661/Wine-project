@@ -4,10 +4,19 @@
 
 <script>
 import * as echarts from 'echarts';
+import axios from 'axios';
+const { VITE_API_URL } = import.meta.env;
+
 export default {
   name: 'PieBase',
-  props: ['modifiedData'],
+  data() {
+    return {
+      extractedData: null,
+      modifiedData: null
+    };
+  },
   mounted() {
+    this.getOrders();
     setTimeout(this.getChart, 100);
   },
   methods: {
@@ -43,6 +52,32 @@ export default {
 
       // 使用刚指定的配置项和数据显示图表。
       myChart.setOption(option);
+    },
+    getOrders() {
+      const url = `${VITE_API_URL}/orders`;
+      axios
+        .get(url)
+        .then((res) => {
+          this.orders = res.data;
+
+          this.extractedData = this.orders.flatMap((order) =>
+            order.cart.map((item) => ({ name: item.chineseName, value: item.qty }))
+          );
+
+          // 合併重複的
+          this.modifiedData = this.extractedData.reduce((acc, curr) => {
+            const existingItem = acc.find((item) => item.name === curr.name);
+            if (existingItem) {
+              existingItem.value += curr.value;
+            } else {
+              acc.push({ name: curr.name, value: curr.value });
+            }
+            return acc;
+          }, []);
+        })
+        .catch(() => {
+          alert('取得訂單資訊失敗');
+        });
     }
   }
 };
