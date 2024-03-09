@@ -81,7 +81,7 @@
       "chineseName": "開心妞香檳.特級陳釀不甜香檳",
       "englishName": "Chanpagne Castelnau,Brut Reserve NV",
       "price": 1275,
-      "image": "wine1",
+      "image": "https://github.com/ivy7661/Wine-project/blob/dev/public/images/wine_images/wine1.jpg?raw=true",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/42382",
       "flavor": [
         "橘子",
@@ -118,7 +118,7 @@
       "chineseName": "克萊蒙教皇堡.克萊蒙教皇一軍白酒",
       "englishName": "Chateau Pape Clement,Chateau Pape Clement Blanc 2020",
       "price": 4900,
-      "image": "wine2",
+      "image": "https://github.com/ivy7661/Wine-project/blob/dev/public/images/wine_images/wine2.jpg?raw=true",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/40484",
       "flavor": [
         "香草",
@@ -154,7 +154,7 @@
       "chineseName": "隆得帕克酒莊.夏布利(穆克派)一級園白酒",
       "englishName": "Domaine Long-Depaquit,Chablis 1er Cru 'Les Vaucopins'2020",
       "price": 1800,
-      "image": "wine3",
+      "image": "https://github.com/ivy7661/Wine-project/blob/dev/public/images/wine_images/wine3.jpg?raw=true",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/40850",
       "flavor": [
         "蘋果",
@@ -192,7 +192,7 @@
       "chineseName": "夏布利酒莊.小夏布利白酒",
       "englishName": "La Chablisienne,Pas Si Petit Petit Chablis 2020",
       "price": 935,
-      "image": "wine4",
+      "image": "https://github.com/ivy7661/Wine-project/blob/dev/public/images/wine_images/wine4.jpg?raw=true",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/40042",
       "flavor": [
         "蘋果",
@@ -228,7 +228,7 @@
       "chineseName": "派翠比烏酒莊.夏布利(波瑟)特級園白酒",
       "englishName": "Patrick Piuze,Chablis 'Les Preuses' Grand Cru 2021",
       "price": 6030,
-      "image": "wine5",
+      "image": "https://github.com/ivy7661/Wine-project/blob/dev/public/images/wine_images/wine5.jpg?raw=true",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/42969",
       "flavor": [
         "蘋果",
@@ -265,7 +265,7 @@
       "chineseName": "路易拉圖酒莊.夏山蒙哈榭白酒",
       "englishName": "Maison Louis Latour,Chassagne-Montrachet Blanc 2011",
       "price": 4200,
-      "image": "wine6",
+      "image": "https://github.com/ivy7661/Wine-project/blob/dev/public/images/wine_images/wine6.jpg?raw=true",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/44164",
       "flavor": [
         "水蜜桃",
@@ -304,7 +304,7 @@
       "chineseName": "聖羅蘭.馬貢村莊級新白酒",
       "englishName": "Jean Loron,Macon-Villages Nouveau 2023",
       "price": 1200,
-      "image": "wine7",
+      "image": "https://github.com/ivy7661/Wine-project/blob/dev/public/images/wine_images/wine7.jpg?raw=true",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/42262",
       "flavor": [
         "蘋果",
@@ -342,7 +342,7 @@
       "chineseName": "約瑟夫.杜亨酒莊.馬貢白酒",
       "englishName": "Maison Joseph-Drouhin,Macon-Villages 2021",
       "price": 950,
-      "image": "wine8",
+      "image": "https://github.com/ivy7661/Wine-project/blob/dev/public/images/wine_images/wine8.jpg?raw=true",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/40511",
       "flavor": [
         "蘋果",
@@ -378,7 +378,7 @@
       "chineseName": "費赫酒莊.普依富塞白酒",
       "englishName": "Domaine Ferret,Pouilly-Fuisse 2020",
       "price": 1350,
-      "image": "wine9",
+      "image": "https://github.com/ivy7661/Wine-project/blob/dev/public/images/wine_images/wine9.jpg?raw=true",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/40086",
       "flavor": [
         "橘子",
@@ -416,7 +416,7 @@
       "chineseName": "蔻蒂酒莊.普依富塞老藤白酒",
       "englishName": "Domaine Cordier,Pouilly-Fuisse Vieilles Vignes 1994",
       "price": 8280,
-      "image": "wine10",
+      "image": "https://github.com/ivy7661/Wine-project/blob/dev/public/images/wine_images/wine10.jpg?raw=true",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/6455",
       "flavor": [
         "蜂蜜",
@@ -454,7 +454,7 @@
       "chineseName": "翹鬍子亨利酒莊.薄酒萊白酒",
       "englishName": "Henry Fessy,Beaujolais Blanc 2019",
       "price": 810,
-      "image": "wine11",
+      "image": "https://github.com/ivy7661/Wine-project/blob/dev/public/images/wine_images/wine11.jpg?raw=true",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/35632",
       "flavor": [
         "石灰",
@@ -493,7 +493,7 @@
       "chineseName": "雷米杜費酒莊.薄酒萊村莊白酒",
       "englishName": "Laurence et Remi Dufaitre,Remi Dufaitre Beaujolais Villages Blanc 2021",
       "price": 1100,
-      "image": "wine12",
+      "image": "https://github.com/ivy7661/Wine-project/blob/dev/public/images/wine_images/wine12.jpg?raw=true",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/35389",
       "flavor": [
         "草莓",
@@ -531,7 +531,7 @@
       "chineseName": "帝亞東酒莊.薄酒萊白酒",
       "englishName": "Domaine Thillardon,Beaujolais Blanc 2018",
       "price": 1600,
-      "image": "wine13",
+      "image": "https://github.com/ivy7661/Wine-project/blob/dev/public/images/wine_images/wine13.jpg?raw=true",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/21671",
       "flavor": [
         "蘋果",
@@ -571,7 +571,7 @@
       "chineseName": "開心妞香檳.粉紅不甜香檳",
       "englishName": "Champagne Castelnau,Rose Brut NV",
       "price": 1650,
-      "image": "wine14",
+      "image": "https://github.com/ivy7661/Wine-project/blob/dev/public/images/wine_images/wine14.jpg?raw=true",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/42385",
       "flavor": [
         "玫瑰",
@@ -608,7 +608,7 @@
       "chineseName": "凱歌香檳.(貴婦)年份不甜粉紅香檳(裸瓶)",
       "englishName": "Maison Veuve Clicquot,'La Grande Dame' Rose Brut Millesime 2012",
       "price": 8990,
-      "image": "wine15",
+      "image": "https://github.com/ivy7661/Wine-project/blob/dev/public/images/wine_images/wine15.jpg?raw=true",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/39389",
       "flavor": [
         "草莓",
@@ -641,7 +641,7 @@
       "chineseName": "雨果.戈德梅香檳.一級園 微甜香檳",
       "englishName": "Champagne Hugues Godme,Douce Reserve Premier Cru Extra Dry",
       "price": 2070,
-      "image": "wine16",
+      "image": "https://github.com/ivy7661/Wine-project/blob/dev/public/images/wine_images/wine16.jpg?raw=true",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/40112",
       "flavor": [
         "蘋果",
@@ -682,7 +682,7 @@
       "chineseName": "朵雅香檳.(自由人)甜型香檳",
       "englishName": "Champagne Doyard,Cuvee La Libertine Doux NV",
       "price": 7040,
-      "image": "wine17",
+      "image": "https://github.com/ivy7661/Wine-project/blob/dev/public/images/wine_images/wine17.jpg?raw=true",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/12254",
       "flavor": [
         "青梨",
@@ -720,7 +720,7 @@
       "chineseName": "凱歌香檳.(貴婦X草間彌生)年份不甜香檳",
       "englishName": "Maison Veuve Clicqot,'La Grande DameXYayoi Kusama'Brut Millesime 2012",
       "price": 9000,
-      "image": "wine18",
+      "image": "https://github.com/ivy7661/Wine-project/blob/dev/public/images/wine_images/wine18.jpg?raw=true",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/23474",
       "flavor": [
         "水蜜桃",
@@ -756,7 +756,7 @@
       "chineseName": "路易.侯德爾香檳.水晶不甜香檳(裸瓶)",
       "englishName": "Champagne Louis Roederer,Cristal Brut 1993",
       "price": 23500,
-      "image": "wine19",
+      "image": "https://github.com/ivy7661/Wine-project/blob/dev/public/images/wine_images/wine19.jpg?raw=true",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/38314",
       "flavor": [
         "石灰",
@@ -792,7 +792,7 @@
       "chineseName": "葛萊美香檳.(微泡泡)不甜香檳",
       "englishName": "Champagne Gremillet,'Demi Bulles'Extra Brut NV",
       "price": 1400,
-      "image": "wine20",
+      "image": "https://github.com/ivy7661/Wine-project/blob/dev/public/images/wine_images/wine20.jpg?raw=true",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/18685",
       "flavor": [
         "橘子",
@@ -828,7 +828,7 @@
       "chineseName": "A.R.貴族香檳酒莊.熱情系列(窖藏19)不甜香檳",
       "englishName": "Champagne A.R. Lenoble,Intense Mag 19 NV",
       "price": 1120,
-      "image": "wine21",
+      "image": "https://github.com/ivy7661/Wine-project/blob/dev/public/images/wine_images/wine21.jpg?raw=true",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/39706",
       "flavor": [
         "櫻桃",
@@ -905,7 +905,7 @@
       "chineseName": "歐布里雍堡.歐布里雍二軍白酒",
       "englishName": "Chateau Haut-Brion,La Clarte de Haut-Brion Blanc 2020 ",
       "price": 4300,
-      "image": "wine23",
+      "image": "https://github.com/ivy7661/Wine-project/blob/dev/public/images/wine_images/wine23.jpg?raw=true",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/42612",
       "flavor": [
         "橘子",
@@ -940,7 +940,7 @@
       "chineseName": "伊更堡.伊更一軍甜白酒",
       "englishName": "Chateau d'Yquem,Chateau d'Yquem 2020 ",
       "price": 7610,
-      "image": "wine24",
+      "image": "https://github.com/ivy7661/Wine-project/blob/dev/public/images/wine_images/wine24.jpg?raw=true",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/43182",
       "flavor": [
         "蜂蜜",
@@ -979,7 +979,7 @@
       "chineseName": "胡賽克堡.湖賽克一軍甜白酒",
       "englishName": "Chateau Rieussec,Chateau Rieussec 2019",
       "price": 3650,
-      "image": "wine25",
+      "image": "https://github.com/ivy7661/Wine-project/blob/dev/public/images/wine_images/wine25.jpg?raw=true",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/31323",
       "flavor": [
         "水蜜桃",
@@ -1020,7 +1020,7 @@
       "chineseName": "康瑟雍堡.康瑟雍堡一軍紅酒",
       "englishName": "Chateau La Conseillante,Chateau La Conseillante 2020",
       "price": 10050,
-      "image": "wine26",
+      "image": "https://github.com/ivy7661/Wine-project/blob/dev/public/images/wine_images/wine26.jpg?raw=true",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/43175",
       "flavor": [
         "皮革",
@@ -1059,7 +1059,7 @@
       "chineseName": "侯松加西堡.侯松加西一軍紅酒",
       "englishName": "Chateau Rauzan-Gassies,Chateau Rauzan-Gassies 1985",
       "price": 4980,
-      "image": "wine27",
+      "image": "https://github.com/ivy7661/Wine-project/blob/dev/public/images/wine_images/wine27.jpg?raw=true",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/30538",
       "flavor": [
         "黑醋栗",
@@ -1095,7 +1095,7 @@
       "chineseName": "天使堡.(卡瑞園)紅酒",
       "englishName": "Chateau Teyssier,Le Carre 2018",
       "price": 5370,
-      "image": "wine28",
+      "image": "https://github.com/ivy7661/Wine-project/blob/dev/public/images/wine_images/wine28.jpg?raw=true",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/28429",
       "flavor": [
         "黑醋栗",
@@ -1133,7 +1133,7 @@
       "chineseName": "天使堡.(圓頂園)紅酒",
       "englishName": "Chateau Teyssier,Le Dome 2014",
       "price": 5580,
-      "image": "wine29",
+      "image": "https://github.com/ivy7661/Wine-project/blob/dev/public/images/wine_images/wine29.jpg?raw=true",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/21472",
       "flavor": [
         "香草",
@@ -1170,7 +1170,7 @@
       "chineseName": "幾斯庫堡.幾斯庫一軍紅酒",
       "englishName": "Chateau Giscours,Chateau Giscours 2020",
       "price": 1899,
-      "image": "wine30",
+      "image": "https://github.com/ivy7661/Wine-project/blob/dev/public/images/wine_images/wine30.jpg?raw=true",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/35842",
       "flavor": [
         "黑醋栗",
