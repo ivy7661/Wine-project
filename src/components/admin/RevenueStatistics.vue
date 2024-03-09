@@ -2,14 +2,14 @@
   <h2>營業收入統計表</h2>
   <div class="row mt-4">
     <div class="px-3">
-      <table class="table align-middle" style="width: 800px">
+      <table class="table align-middle">
         <thead class="table-light">
           <tr>
-            <td>商品編號</td>
-            <td>商品名稱</td>
-            <td class="text-end">價格</td>
-            <td class="text-end">售出數量</td>
-            <td class="text-end">營收</td>
+            <th>商品編號</th>
+            <th>商品名稱</th>
+            <th class="text-end">價格</th>
+            <th class="text-end">售出數量</th>
+            <th class="text-end">營收</th>
           </tr>
         </thead>
         <tbody>

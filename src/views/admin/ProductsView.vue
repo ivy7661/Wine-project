@@ -9,7 +9,7 @@
     </div>
     <div class="row">
       <table class="table mt-4 mx-2">
-        <thead>
+        <thead class="table-light">
           <tr>
             <th width="120">分類</th>
             <th width="300">產品名稱</th>
