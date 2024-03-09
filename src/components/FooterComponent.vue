@@ -13,7 +13,9 @@
                 <li class="mb-2">
                   <RouterLink to="/login" class="footer-link">會員專區</RouterLink>
                 </li>
-                <li class="mb-2"><a href="#">知識充電站</a></li>
+                <li class="mb-2">
+                  <RouterLink to="/Knowledge" class="footer-link">知識充電站</RouterLink>
+                </li>
               </ul>
             </div>
             <div class="col">
