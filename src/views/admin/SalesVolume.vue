@@ -1,8 +1,12 @@
 <template>
   <div class="container-fluid">
     <div class="row">
-      <h1 class="mt-3">{{ title }}</h1>
+      <h1 class="my-3">{{ title }}</h1>
+      <div class="header-line">
+        <img :src="headerLine" alt="header line" />
+      </div>
       <h2 class="mt-4">產品營收比重</h2>
+
       <section class="wrap">
         <Pie-Chart></Pie-Chart>
         <Revenue-Statistics></Revenue-Statistics>
@@ -15,6 +19,8 @@
 import axios from 'axios';
 import PieChart from '../../components/admin/PieChart.vue';
 import RevenueStatistics from '../../components/admin/RevenueStatistics.vue';
+import headerLine from '@/assets/icons/svg/header_line.svg';
+
 const { VITE_API_URL } = import.meta.env;
 export default {
   name: 'AdminSalesVolume',
@@ -24,6 +30,7 @@ export default {
   },
   data() {
     return {
+      headerLine,
       title: '銷售數據',
       orders: []
     };
@@ -58,3 +65,14 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.header-line {
+  display: flex;
+  justify-content: left;
+
+  img {
+    width: 100%;
+  }
+}
+</style>

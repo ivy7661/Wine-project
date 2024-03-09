@@ -1,27 +1,30 @@
 <template>
   <div class="row">
-    <h1 class="mt-3">{{ title }}</h1>
-    <table class="table mt-4">
-      <thead>
-        <tr>
-          <th width="70">評論編號</th>
-          <th width="70">會員編號</th>
-          <th width="120">評論內容</th>
-          <th width="120">詳細資訊</th>
-          <th width="120">刪除評論</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="comment in comments" :key="comment.id">
-          <td>{{ comment.id }}</td>
-          <td>{{ comment.userId }}</td>
-          <td>
-            <p class="commentContent">
-              {{ comment.comment }}
-            </p>
-          </td>
-          <td>
-            <div class="btn-group">
+    <h1 class="my-3">{{ title }}</h1>
+    <div class="header-line">
+      <img :src="headerLine" alt="header line" />
+    </div>
+    <div class="row">
+      <table class="table mt-4 mx-2">
+        <thead>
+          <tr>
+            <th width="70">評論編號</th>
+            <th width="70">會員編號</th>
+            <th width="120">評論內容</th>
+            <th width="120">詳細資訊</th>
+            <th width="120" class="text-center">刪除評論</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="comment in comments" :key="comment.id">
+            <td>{{ comment.id }}</td>
+            <td>{{ comment.userId }}</td>
+            <td>
+              <p class="commentContent">
+                {{ comment.comment }}
+              </p>
+            </td>
+            <td class="text-center">
               <button
                 type="button"
                 class="btn btn-outline-primary btn-sm"
@@ -29,22 +32,22 @@
               >
                 查看
               </button>
-            </div>
-          </td>
-          <td>
-            <div class="btn-group">
-              <button
-                type="button"
-                class="btn btn-outline-danger btn-sm"
-                @click="openModal('delete', comment)"
-              >
-                刪除
-              </button>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+            </td>
+            <td>
+              <div class="btn-group">
+                <button
+                  type="button"
+                  class="btn btn-outline-danger btn-sm"
+                  @click="openModal('delete', comment)"
+                >
+                  刪除
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
   <Comment-Modal :temp-comment="tempComment" ref="commentModal"></Comment-Modal>
   <Del-Comment-Modal
@@ -58,6 +61,8 @@
 import axios from 'axios';
 import CommentModal from '../../components/admin/CommentModal.vue';
 import DelCommentModal from '../../components/admin/DelCommentModal.vue';
+import headerLine from '@/assets/icons/svg/header_line.svg';
+
 const { VITE_API_URL } = import.meta.env;
 export default {
   name: 'AdminCommentsView',
@@ -68,6 +73,7 @@ export default {
   data() {
     return {
       title: '評論管理',
+      headerLine,
       comments: [],
       tempComment: {}
     };
@@ -121,5 +127,29 @@ export default {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.header-line {
+  display: flex;
+  justify-content: left;
+
+  img {
+    width: 100%;
+  }
+}
+th,
+td {
+  padding: 8px 30px;
+}
+tr:first-child th:first-child {
+  border-top-left-radius: 5px;
+}
+tr:last-child td:first-child {
+  border-bottom-left-radius: 5px;
+}
+tr:first-child th:last-child {
+  border-top-right-radius: 5px;
+}
+tr:last-child td:last-child {
+  border-bottom-right-radius: 5px;
 }
 </style>

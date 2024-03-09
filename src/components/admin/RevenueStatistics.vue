@@ -2,7 +2,7 @@
   <h2>營業收入統計表</h2>
   <div class="row mt-4">
     <div class="px-3">
-      <table class="table align-middle border border-primary" style="width: 800px">
+      <table class="table align-middle" style="width: 800px">
         <thead class="table-light">
           <tr>
             <td>商品編號</td>
@@ -96,7 +96,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+th,
 td {
-  padding: 15px;
+  padding: 8px 30px;
+}
+tr:first-child th:first-child {
+  border-top-left-radius: 5px;
+}
+tr:last-child td:first-child {
+  border-bottom-left-radius: 5px;
+}
+tr:first-child th:last-child {
+  border-top-right-radius: 5px;
+}
+tr:last-child td:last-child {
+  border-bottom-right-radius: 5px;
 }
 </style>

@@ -1,43 +1,56 @@
 <template>
-  <header>
-    <div class="p-3">
-      <!-- <img src="/images/Logo.png" alt="LOGO"> -->
-      <nav class="nav d-flex">
-        <RouterLink to="/" class="p-2">回前台首頁</RouterLink>
-        <RouterLink to="/admin/accounts" class="p-2">帳戶管理</RouterLink>
-        <RouterLink to="/admin/products" class="p-2">商品管理</RouterLink>
-        <RouterLink to="/admin/orders" class="p-2">訂單管理</RouterLink>
-        <RouterLink to="/admin/comments" class="p-2">評論管理</RouterLink>
-        <RouterLink to="/admin/sales" class="p-2">銷售數據</RouterLink>
-        <RouterLink to="/adminLogin" class="p-2">登出</RouterLink>
-      </nav>
+  <div class="container-fluid">
+    <div class="row vh-100">
+      <div class="col-2 bg-accent-brown pt-5">
+        <div class="text-center">
+          <img src="/images/Logo.png" alt="logo" class="img-fluid mb-6 px-2 logo" />
+        </div>
+        <ul class="nav flex-column px-2">
+          <li class="nav-item">
+            <RouterLink to="/admin/accounts" class="nav-link">帳戶管理</RouterLink>
+          </li>
+          <li class="nav-item">
+            <RouterLink to="/admin/products" class="nav-link">商品管理</RouterLink>
+          </li>
+          <li class="nav-item">
+            <RouterLink to="/admin/orders" class="nav-link">訂單管理</RouterLink>
+          </li>
+          <li class="nav-item">
+            <RouterLink to="/admin/comments" class="nav-link">評論管理</RouterLink>
+          </li>
+          <li class="nav-item">
+            <RouterLink to="/admin/sales" class="nav-link">銷售數據</RouterLink>
+          </li>
+          <li class="nav-item">
+            <RouterLink to="/" class="nav-link">回前台首頁</RouterLink>
+          </li>
+
+          <li class="nav-item mt-5">
+            <RouterLink to="/adminLogin" class="nav-link d-flex align-items-center"
+              ><span class="material-icons"> logout </span>登出</RouterLink
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="col-10 py-5">
+        <div class="container">
+          <RouterView></RouterView>
+        </div>
+      </div>
     </div>
-  </header>
-  <div class="header-line">
-    <img :src="headerLine" alt="header line" />
   </div>
-
-  <div class="container">
-    <RouterView />
-  </div>
-
-  <!-- <footer class="footer pt-5 pb-5">
-    <div class="container p-3 mb-2">ADMIN FOOTER</div>
-  </footer> -->
 </template>
 
 <script>
 // import axios from 'axios';
 import Swal from 'sweetalert2';
-import headerLine from '@/assets/icons/svg/header_line.svg';
 
 export default {
   name: 'AdminLayout',
   components: {},
   data() {
     return {
-      title: '後台頁面',
-      headerLine
+      title: '後台頁面'
     };
   },
   mounted() {
@@ -92,14 +105,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.header-line {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  img {
-    width: 100%;
-  }
+.nav-link {
+  font-weight: 500;
+  border-left: 4px solid transparent;
+  margin-top: 20px;
+}
+.nav-link.active {
+  border-left: 4px solid #752525;
+  font-weight: bold;
 }
 </style>
