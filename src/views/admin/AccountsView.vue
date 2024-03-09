@@ -7,7 +7,7 @@
     <div class="row">
       <div>
         <table class="table mt-4 mx-2">
-          <thead>
+          <thead class="table-light">
             <tr>
               <th width="120">身分</th>
               <th width="120">名稱</th>
