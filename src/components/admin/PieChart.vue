@@ -17,7 +17,7 @@ export default {
   },
   mounted() {
     this.getOrders();
-    setTimeout(this.getChart, 100);
+    setTimeout(this.getChart, 1000);
   },
   methods: {
     getChart() {
