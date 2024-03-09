@@ -45,7 +45,7 @@ export default {
   },
   mounted() {
     this.getCart();
-    setTimeout(this.calculate, 100);
+    setTimeout(this.calculate, 1000);
   },
   methods: {
     calculate() {
@@ -54,6 +54,7 @@ export default {
         total += item.qty * item.price;
       });
       this.sum = total;
+      this.getCart();
     },
     getCart() {
       const url = `${VITE_API_URL}/orders`;
