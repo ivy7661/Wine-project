@@ -83,7 +83,11 @@
       "price": 1275,
       "image": "wine1",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/42382",
-      "flavor": ["橘子", "青梨", "蘋果"],
+      "flavor": [
+        "橘子",
+        "青梨",
+        "蘋果"
+      ],
       "wineStyle": "白氣泡酒",
       "taste": {
         "tannin": "20%",
@@ -92,8 +96,17 @@
         "sweet": "20%"
       },
       "place": "香檳",
-      "food": ["海鮮開胃菜", "奶酪開胃菜", "蔬菜開胃菜", "魚類和海鮮"],
-      "grape": ["Chardonnay", "Pinot Meunier", "Pinot noir"],
+      "food": [
+        "海鮮開胃菜",
+        "奶酪開胃菜",
+        "蔬菜開胃菜",
+        "魚類和海鮮"
+      ],
+      "grape": [
+        "Chardonnay",
+        "Pinot Meunier",
+        "Pinot noir"
+      ],
       "village": "Champagne Castelnau",
       "is_enabled": 1,
       "is_hot": 0,
@@ -107,7 +120,14 @@
       "price": 4900,
       "image": "wine2",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/40484",
-      "flavor": ["香草", "椰子", "石灰", "橘子", "水蜜桃", "葡萄柚"],
+      "flavor": [
+        "香草",
+        "椰子",
+        "石灰",
+        "橘子",
+        "水蜜桃",
+        "葡萄柚"
+      ],
       "wineStyle": "白葡萄酒",
       "taste": {
         "tannin": "20%",
@@ -116,9 +136,13 @@
         "sweet": "40%"
       },
       "place": "波爾多",
-      "food": ["海鮮開胃菜"],
+      "food": [
+        "海鮮開胃菜"
+      ],
       "year": "2020",
-      "grape": ["Bordeaux Blend"],
+      "grape": [
+        "Bordeaux Blend"
+      ],
       "village": "Chateau Pape Clement",
       "is_enabled": 1,
       "is_hot": 0,
@@ -132,7 +156,12 @@
       "price": 1800,
       "image": "wine3",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/40850",
-      "flavor": ["蘋果", "檸檬", "茉莉", "椰子"],
+      "flavor": [
+        "蘋果",
+        "檸檬",
+        "茉莉",
+        "椰子"
+      ],
       "wineStyle": "白葡萄酒",
       "taste": {
         "tannin": "20%",
@@ -141,9 +170,17 @@
         "sweet": "20%"
       },
       "place": "布根地",
-      "food": ["肉類開胃菜", "雞肉豬肉", "奶酪開胃菜", "蔬菜開胃菜", "素食菜肴"],
+      "food": [
+        "肉類開胃菜",
+        "雞肉豬肉",
+        "奶酪開胃菜",
+        "蔬菜開胃菜",
+        "素食菜肴"
+      ],
       "year": "2020",
-      "grape": [""],
+      "grape": [
+        ""
+      ],
       "village": "Domaine Long-Depaquit",
       "is_enabled": 1,
       "is_hot": 0,
@@ -157,7 +194,12 @@
       "price": 935,
       "image": "wine4",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/40042",
-      "flavor": ["蘋果", "橘子", "茉莉", "石灰"],
+      "flavor": [
+        "蘋果",
+        "橘子",
+        "茉莉",
+        "石灰"
+      ],
       "wineStyle": "白葡萄酒",
       "taste": {
         "tannin": "20%",
@@ -166,9 +208,15 @@
         "sweet": "20%"
       },
       "place": "布根地",
-      "food": ["奶酪開胃菜", "蔬菜開胃菜", "魚類和海鮮"],
+      "food": [
+        "奶酪開胃菜",
+        "蔬菜開胃菜",
+        "魚類和海鮮"
+      ],
       "year": "2020",
-      "grape": ["Chardonnay"],
+      "grape": [
+        "Chardonnay"
+      ],
       "village": "La Chablisienne",
       "is_enabled": 1,
       "is_hot": 0,
@@ -182,7 +230,13 @@
       "price": 6030,
       "image": "wine5",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/42969",
-      "flavor": ["蘋果", "橘子", "檸檬", "香草", "迷迭"],
+      "flavor": [
+        "蘋果",
+        "橘子",
+        "檸檬",
+        "香草",
+        "迷迭"
+      ],
       "wineStyle": "白葡萄酒",
       "taste": {
         "tannin": "0",
@@ -191,9 +245,15 @@
         "sweet": "20%"
       },
       "place": "布根地",
-      "food": ["奶酪開胃菜", "蔬菜開胃菜", "魚類和海鮮"],
+      "food": [
+        "奶酪開胃菜",
+        "蔬菜開胃菜",
+        "魚類和海鮮"
+      ],
       "year": "2021",
-      "grape": ["Chardonnay"],
+      "grape": [
+        "Chardonnay"
+      ],
       "village": "Patrick Piuze",
       "is_enabled": 1,
       "is_hot": 0,
@@ -207,7 +267,14 @@
       "price": 4200,
       "image": "wine6",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/44164",
-      "flavor": ["水蜜桃", "橘子", "蘋果", "青梨", "香草", "石灰"],
+      "flavor": [
+        "水蜜桃",
+        "橘子",
+        "蘋果",
+        "青梨",
+        "香草",
+        "石灰"
+      ],
       "wineStyle": "白葡萄酒",
       "taste": {
         "tannin": "20%",
@@ -216,10 +283,16 @@
         "sweet": "20%"
       },
       "place": "布根地",
-      "food": ["奶酪開胃菜", "蔬菜開胃菜", "魚類和海鮮"],
+      "food": [
+        "奶酪開胃菜",
+        "蔬菜開胃菜",
+        "魚類和海鮮"
+      ],
       "year": "2011",
       "Alcohol": "",
-      "grape": ["Chardonnay"],
+      "grape": [
+        "Chardonnay"
+      ],
       "village": "Maison Louis Latour",
       "is_enabled": 1,
       "is_hot": 1,
@@ -233,7 +306,13 @@
       "price": 1200,
       "image": "wine7",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/42262",
-      "flavor": ["蘋果", "青梨", "橘子", "香草", "椰子"],
+      "flavor": [
+        "蘋果",
+        "青梨",
+        "橘子",
+        "香草",
+        "椰子"
+      ],
       "wineStyle": "白葡萄酒",
       "taste": {
         "tannin": "80%",
@@ -242,10 +321,16 @@
         "sweet": "20%"
       },
       "place": "布根地",
-      "food": ["奶酪開胃菜", "蔬菜開胃菜", "魚類和海鮮"],
+      "food": [
+        "奶酪開胃菜",
+        "蔬菜開胃菜",
+        "魚類和海鮮"
+      ],
       "year": "2023",
       "Alcohol": "",
-      "grape": ["Chardonnay"],
+      "grape": [
+        "Chardonnay"
+      ],
       "village": "Jean Loron",
       "is_enabled": 1,
       "is_hot": 0,
@@ -259,7 +344,12 @@
       "price": 950,
       "image": "wine8",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/40511",
-      "flavor": ["蘋果", "椰子", "茉莉", "檸檬"],
+      "flavor": [
+        "蘋果",
+        "椰子",
+        "茉莉",
+        "檸檬"
+      ],
       "wineStyle": "白葡萄酒",
       "taste": {
         "tannin": "20%",
@@ -268,9 +358,15 @@
         "sweet": "20%"
       },
       "place": "布根地",
-      "food": ["奶酪開胃菜", "蔬菜開胃菜", "魚類和海鮮"],
+      "food": [
+        "奶酪開胃菜",
+        "蔬菜開胃菜",
+        "魚類和海鮮"
+      ],
       "year": "2021",
-      "grape": ["Chardonnay"],
+      "grape": [
+        "Chardonnay"
+      ],
       "village": "Maconnais",
       "is_enabled": 1,
       "is_hot": 0,
@@ -284,7 +380,13 @@
       "price": 1350,
       "image": "wine9",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/40086",
-      "flavor": ["橘子", "蘋果", "水蜜桃", "香草", "石灰"],
+      "flavor": [
+        "橘子",
+        "蘋果",
+        "水蜜桃",
+        "香草",
+        "石灰"
+      ],
       "wineStyle": "白葡萄酒",
       "taste": {
         "tannin": "20%",
@@ -293,10 +395,16 @@
         "sweet": "20%"
       },
       "place": "布根地",
-      "food": ["奶酪開胃菜", "蔬菜開胃菜", "魚類和海鮮"],
+      "food": [
+        "奶酪開胃菜",
+        "蔬菜開胃菜",
+        "魚類和海鮮"
+      ],
       "year": "2020",
       "Alcohol": "",
-      "grape": ["Chardonnay"],
+      "grape": [
+        "Chardonnay"
+      ],
       "village": "Domaine Ferret",
       "is_enabled": 1,
       "is_hot": 1,
@@ -310,7 +418,13 @@
       "price": 8280,
       "image": "wine10",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/6455",
-      "flavor": ["蜂蜜", "核桃", "蘋果", "青梨", "蜂蜜"],
+      "flavor": [
+        "蜂蜜",
+        "核桃",
+        "蘋果",
+        "青梨",
+        "蜂蜜"
+      ],
       "wineStyle": "白葡萄酒",
       "taste": {
         "tannin": "20%",
@@ -319,10 +433,16 @@
         "sweet": "20%"
       },
       "place": "布根地",
-      "food": ["奶酪開胃菜", "蔬菜開胃菜", "魚類和海鮮"],
+      "food": [
+        "奶酪開胃菜",
+        "蔬菜開胃菜",
+        "魚類和海鮮"
+      ],
       "year": "1994",
       "Alcohol": "",
-      "grape": ["Chardonnay"],
+      "grape": [
+        "Chardonnay"
+      ],
       "village": "Domaine Corider",
       "is_enabled": 1,
       "is_hot": 0,
@@ -336,7 +456,14 @@
       "price": 810,
       "image": "wine11",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/35632",
-      "flavor": ["石灰", "蘋果", "橘子", "葡萄柚", "核果", "毛皮"],
+      "flavor": [
+        "石灰",
+        "蘋果",
+        "橘子",
+        "葡萄柚",
+        "核果",
+        "毛皮"
+      ],
       "wineStyle": "白葡萄酒",
       "taste": {
         "tannin": "20%",
@@ -345,10 +472,16 @@
         "sweet": "40%"
       },
       "place": "薄酒萊",
-      "food": ["奶酪開胃菜", "蔬菜開胃菜", "魚類和海鮮"],
+      "food": [
+        "奶酪開胃菜",
+        "蔬菜開胃菜",
+        "魚類和海鮮"
+      ],
       "year": "2019",
       "Alcohol": "",
-      "grape": ["Chardonnay"],
+      "grape": [
+        "Chardonnay"
+      ],
       "village": "Henry Fessy",
       "is_enabled": 1,
       "is_hot": 1,
@@ -362,7 +495,11 @@
       "price": 1100,
       "image": "wine12",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/35389",
-      "flavor": ["草莓", "覆盆子", "香草"],
+      "flavor": [
+        "草莓",
+        "覆盆子",
+        "香草"
+      ],
       "wineStyle": "白葡萄酒",
       "taste": {
         "tannin": "40%",
@@ -371,10 +508,18 @@
         "sweet": "20%"
       },
       "place": "薄酒萊",
-      "food": ["海鮮開胃菜", "肉類開胃菜", "奶酪開胃菜", "蔬菜開胃菜", "意大利面和披薩"],
+      "food": [
+        "海鮮開胃菜",
+        "肉類開胃菜",
+        "奶酪開胃菜",
+        "蔬菜開胃菜",
+        "意大利面和披薩"
+      ],
       "year": "2021",
       "Alcohol": "",
-      "grape": ["Chardonnay"],
+      "grape": [
+        "Chardonnay"
+      ],
       "village": "Laurence et Remi Dufaitre",
       "is_enabled": 1,
       "is_hot": 0,
@@ -388,7 +533,13 @@
       "price": 1600,
       "image": "wine13",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/21671",
-      "flavor": ["蘋果", "橘子", "茉莉", "香草", "蘋果"],
+      "flavor": [
+        "蘋果",
+        "橘子",
+        "茉莉",
+        "香草",
+        "蘋果"
+      ],
       "wineStyle": "白葡萄酒",
       "taste": {
         "tannin": "20%",
@@ -406,7 +557,9 @@
         "素食菜肴"
       ],
       "year": "2018",
-      "grape": ["Chardonnay"],
+      "grape": [
+        "Chardonnay"
+      ],
       "village": "Domaine Thillardon",
       "is_enabled": 1,
       "is_hot": 0,
@@ -420,7 +573,13 @@
       "price": 1650,
       "image": "wine14",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/42385",
-      "flavor": ["玫瑰", "草莓", "覆盆子", "橘子", "香草"],
+      "flavor": [
+        "玫瑰",
+        "草莓",
+        "覆盆子",
+        "橘子",
+        "香草"
+      ],
       "wineStyle": "粉紅葡萄酒",
       "taste": {
         "tannin": "20%",
@@ -429,9 +588,15 @@
         "sweet": "20%"
       },
       "place": "香檳",
-      "food": ["炸物開胃菜"],
+      "food": [
+        "炸物開胃菜"
+      ],
       "Alcohol": "",
-      "grape": ["Chardonnay", "Pinot Meunier", "Pinot Noir"],
+      "grape": [
+        "Chardonnay",
+        "Pinot Meunier",
+        "Pinot Noir"
+      ],
       "village": "Champagne CastelNau",
       "is_enabled": 1,
       "is_hot": 1,
@@ -445,7 +610,11 @@
       "price": 8990,
       "image": "wine15",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/39389",
-      "flavor": ["草莓", "覆盆子", "核桃"],
+      "flavor": [
+        "草莓",
+        "覆盆子",
+        "核桃"
+      ],
       "wineStyle": "粉紅氣泡酒",
       "taste": {
         "tannin": "20%",
@@ -454,9 +623,13 @@
         "sweet": "20%"
       },
       "place": "香檳",
-      "food": ["炸物開胃菜"],
+      "food": [
+        "炸物開胃菜"
+      ],
       "year": "2012",
-      "grape": ["Champagne Blend"],
+      "grape": [
+        "Champagne Blend"
+      ],
       "village": "Maison Veuve Clicquot",
       "is_enabled": 1,
       "is_hot": 0,
@@ -470,7 +643,12 @@
       "price": 2070,
       "image": "wine16",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/40112",
-      "flavor": ["蘋果", "青梨", "橘子", "水蜜桃"],
+      "flavor": [
+        "蘋果",
+        "青梨",
+        "橘子",
+        "水蜜桃"
+      ],
       "wineStyle": "白氣泡酒",
       "taste": {
         "tannin": "20%",
@@ -488,7 +666,11 @@
         "蛋糕和點心"
       ],
       "Alcohol": "",
-      "grape": ["Chardonnay", "Pinot Meunier", "Pinot Noir"],
+      "grape": [
+        "Chardonnay",
+        "Pinot Meunier",
+        "Pinot Noir"
+      ],
       "village": "Champagne Hugues Godme",
       "is_enabled": 1,
       "is_hot": 1,
@@ -502,7 +684,12 @@
       "price": 7040,
       "image": "wine17",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/12254",
-      "flavor": ["青梨", "水蜜桃", "蜂蜜", "橘子"],
+      "flavor": [
+        "青梨",
+        "水蜜桃",
+        "蜂蜜",
+        "橘子"
+      ],
       "wineStyle": "白氣泡酒",
       "taste": {
         "tannin": "20%",
@@ -519,7 +706,9 @@
         "焦糖和糖漬甜點",
         "蛋糕和點心"
       ],
-      "grape": [""],
+      "grape": [
+        ""
+      ],
       "village": "Champagne Doyard",
       "is_enabled": 1,
       "is_hot": 0,
@@ -533,7 +722,12 @@
       "price": 9000,
       "image": "wine18",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/23474",
-      "flavor": ["水蜜桃", "檸檬", "核果", "石灰"],
+      "flavor": [
+        "水蜜桃",
+        "檸檬",
+        "核果",
+        "石灰"
+      ],
       "wineStyle": "白氣泡酒",
       "taste": {
         "tannin": "20%",
@@ -542,9 +736,15 @@
         "sweet": "20%"
       },
       "place": "香檳",
-      "food": ["奶酪開胃菜", "蔬菜開胃菜"],
+      "food": [
+        "奶酪開胃菜",
+        "蔬菜開胃菜"
+      ],
       "year": "2012",
-      "grape": ["Chardonnay", "Pinot Noir"],
+      "grape": [
+        "Chardonnay",
+        "Pinot Noir"
+      ],
       "village": "Maison Veuve Clicquot",
       "is_enabled": 1,
       "is_hot": 0,
@@ -558,7 +758,13 @@
       "price": 23500,
       "image": "wine19",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/38314",
-      "flavor": ["石灰", "橘子", "水蜜桃", "核果", "蜂蜜"],
+      "flavor": [
+        "石灰",
+        "橘子",
+        "水蜜桃",
+        "核果",
+        "蜂蜜"
+      ],
       "wineStyle": "白氣泡酒",
       "taste": {
         "tannin": "20%",
@@ -567,9 +773,14 @@
         "sweet": "20%"
       },
       "place": "香檳",
-      "food": ["奶酪開胃菜", "蔬菜開胃菜"],
+      "food": [
+        "奶酪開胃菜",
+        "蔬菜開胃菜"
+      ],
       "year": "1993",
-      "grape": ["Champagne Blend"],
+      "grape": [
+        "Champagne Blend"
+      ],
       "village": "Champagne Louis Roederer",
       "is_enabled": 1,
       "is_hot": 0,
@@ -583,7 +794,13 @@
       "price": 1400,
       "image": "wine20",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/18685",
-      "flavor": ["橘子", "核果", "葡萄乾", "蘋果", "蔓越莓"],
+      "flavor": [
+        "橘子",
+        "核果",
+        "葡萄乾",
+        "蘋果",
+        "蔓越莓"
+      ],
       "wineStyle": "白氣泡酒",
       "taste": {
         "tannin": "20%",
@@ -592,8 +809,14 @@
         "sweet": "20%"
       },
       "place": "香檳",
-      "food": ["奶酪開胃菜", "蔬菜開胃菜"],
-      "grape": ["Pinot Noir", "Chardonnay"],
+      "food": [
+        "奶酪開胃菜",
+        "蔬菜開胃菜"
+      ],
+      "grape": [
+        "Pinot Noir",
+        "Chardonnay"
+      ],
       "village": "Champagne Gremillet",
       "is_enabled": 1,
       "is_hot": 0,
@@ -607,7 +830,14 @@
       "price": 1120,
       "image": "wine21",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/39706",
-      "flavor": ["櫻桃", "覆盆子", "玫瑰", "皮革", "煙草", "菌菇"],
+      "flavor": [
+        "櫻桃",
+        "覆盆子",
+        "玫瑰",
+        "皮革",
+        "煙草",
+        "菌菇"
+      ],
       "wineStyle": "白氣泡酒",
       "taste": {
         "tannin": "60%",
@@ -616,8 +846,12 @@
         "sweet": "20%"
       },
       "place": "香檳",
-      "food": ["魚類和海鮮"],
-      "grape": ["Champagne Blend"],
+      "food": [
+        "魚類和海鮮"
+      ],
+      "grape": [
+        "Champagne Blend"
+      ],
       "village": "Champagne A.R. Lenoble",
       "is_enabled": 1,
       "is_hot": 0,
@@ -631,7 +865,15 @@
       "price": 1810,
       "image": "wine22",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/17265",
-      "flavor": ["核果", "葡萄乾", "薑", "黑胡椒", "蜂蜜", "水蜜桃", "芭樂"],
+      "flavor": [
+        "核果",
+        "葡萄乾",
+        "薑",
+        "黑胡椒",
+        "蜂蜜",
+        "水蜜桃",
+        "芭樂"
+      ],
       "wineStyle": "白葡萄酒",
       "taste": {
         "tannin": "20%",
@@ -649,7 +891,9 @@
         "蛋糕和點心"
       ],
       "year": "2006",
-      "grape": ["Bordeaux Blend"],
+      "grape": [
+        "Bordeaux Blend"
+      ],
       "village": "Chateau de Malle",
       "is_enabled": 1,
       "is_hot": 0,
@@ -663,7 +907,13 @@
       "price": 4300,
       "image": "wine23",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/42612",
-      "flavor": ["橘子", "水蜜桃", "香草", "芭樂", "茉莉"],
+      "flavor": [
+        "橘子",
+        "水蜜桃",
+        "香草",
+        "芭樂",
+        "茉莉"
+      ],
       "wineStyle": "白葡萄酒",
       "taste": {
         "tannin": "20%",
@@ -672,9 +922,13 @@
         "sweet": "20%"
       },
       "place": "波爾多",
-      "food": ["魚類和海鮮"],
+      "food": [
+        "魚類和海鮮"
+      ],
       "year": "2020",
-      "grape": [""],
+      "grape": [
+        ""
+      ],
       "village": "Chateau Haut-Brion",
       "is_enabled": 1,
       "is_hot": 0,
@@ -688,7 +942,12 @@
       "price": 7610,
       "image": "wine24",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/43182",
-      "flavor": ["蜂蜜", "茉莉", "檸檬", "水蜜桃"],
+      "flavor": [
+        "蜂蜜",
+        "茉莉",
+        "檸檬",
+        "水蜜桃"
+      ],
       "wineStyle": "白葡萄酒",
       "taste": {
         "tannin": "20%",
@@ -706,7 +965,9 @@
         "蛋糕和點心"
       ],
       "year": "2020",
-      "grape": [""],
+      "grape": [
+        ""
+      ],
       "village": "Chateau d'Yquem",
       "is_enabled": 1,
       "is_hot": 0,
@@ -720,7 +981,14 @@
       "price": 3650,
       "image": "wine25",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/31323",
-      "flavor": ["水蜜桃", "蜂蜜", "鳳梨", "香蕉", "核果", "葡萄乾"],
+      "flavor": [
+        "水蜜桃",
+        "蜂蜜",
+        "鳳梨",
+        "香蕉",
+        "核果",
+        "葡萄乾"
+      ],
       "wineStyle": "白葡萄酒",
       "taste": {
         "tannin": "20%",
@@ -738,7 +1006,9 @@
         "蛋糕和點心"
       ],
       "year": "2019",
-      "grape": [""],
+      "grape": [
+        ""
+      ],
       "village": "Chateau Rieussec",
       "is_enabled": 1,
       "is_hot": 0,
@@ -752,7 +1022,16 @@
       "price": 10050,
       "image": "wine26",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/43175",
-      "flavor": ["皮革", "巧克力", "黑胡椒", "菌菇", "皮毛", "黑醋栗", "李子", "櫻桃"],
+      "flavor": [
+        "皮革",
+        "巧克力",
+        "黑胡椒",
+        "菌菇",
+        "皮毛",
+        "黑醋栗",
+        "李子",
+        "櫻桃"
+      ],
       "wineStyle": "紅葡萄酒",
       "taste": {
         "tannin": "60%",
@@ -761,9 +1040,14 @@
         "sweet": "20%"
       },
       "place": "波爾多",
-      "food": ["肉類開胃菜", "意大利面和披薩"],
+      "food": [
+        "肉類開胃菜",
+        "意大利面和披薩"
+      ],
       "year": "2020",
-      "grape": ["Bordeaux Blend"],
+      "grape": [
+        "Bordeaux Blend"
+      ],
       "village": "Chateau La Conseillante",
       "is_enabled": 1,
       "is_hot": 0,
@@ -777,7 +1061,13 @@
       "price": 4980,
       "image": "wine27",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/30538",
-      "flavor": ["黑醋栗", "李子", "皮革", "菌菇", "黑胡椒"],
+      "flavor": [
+        "黑醋栗",
+        "李子",
+        "皮革",
+        "菌菇",
+        "黑胡椒"
+      ],
       "wineStyle": "紅葡萄酒",
       "taste": {
         "tannin": "80%",
@@ -786,9 +1076,14 @@
         "sweet": "20%"
       },
       "place": "波爾多",
-      "food": ["肉類開胃菜", "意大利面和披薩"],
+      "food": [
+        "肉類開胃菜",
+        "意大利面和披薩"
+      ],
       "year": "1985",
-      "grape": [""],
+      "grape": [
+        ""
+      ],
       "village": "Chateau Rauzan-Gassies",
       "is_enabled": 1,
       "is_hot": 1,
@@ -802,7 +1097,15 @@
       "price": 5370,
       "image": "wine28",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/28429",
-      "flavor": ["黑醋栗", "李子", "櫻桃", "皮革", "薑", "黑胡椒", "菌菇"],
+      "flavor": [
+        "黑醋栗",
+        "李子",
+        "櫻桃",
+        "皮革",
+        "薑",
+        "黑胡椒",
+        "菌菇"
+      ],
       "wineStyle": "紅葡萄酒",
       "taste": {
         "tannin": "80%",
@@ -811,9 +1114,14 @@
         "sweet": "20%"
       },
       "place": "波爾多",
-      "food": ["肉類開胃菜", "意大利面和披薩"],
+      "food": [
+        "肉類開胃菜",
+        "意大利面和披薩"
+      ],
       "year": "2018",
-      "grape": ["Bordeaux Blend"],
+      "grape": [
+        "Bordeaux Blend"
+      ],
       "village": "Chateau Teyssier",
       "is_enabled": 1,
       "is_hot": 0,
@@ -827,7 +1135,14 @@
       "price": 5580,
       "image": "wine29",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/21472",
-      "flavor": ["香草", "煙草", "櫻桃", "黑胡椒", "黑醋栗", "李子"],
+      "flavor": [
+        "香草",
+        "煙草",
+        "櫻桃",
+        "黑胡椒",
+        "黑醋栗",
+        "李子"
+      ],
       "wineStyle": "紅葡萄酒",
       "taste": {
         "tannin": "80%",
@@ -836,9 +1151,14 @@
         "sweet": "20%"
       },
       "place": "波爾多",
-      "food": ["肉類開胃菜", "意大利面和披薩"],
+      "food": [
+        "肉類開胃菜",
+        "意大利面和披薩"
+      ],
       "year": "2014",
-      "grape": ["Bordeaux Blend"],
+      "grape": [
+        "Bordeaux Blend"
+      ],
       "village": "Chateau Teyssier",
       "is_enabled": 1,
       "is_hot": 0,
@@ -852,7 +1172,13 @@
       "price": 1899,
       "image": "wine30",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/35842",
-      "flavor": ["黑醋栗", "黑莓", "煙草", "菌菇", "皮革"],
+      "flavor": [
+        "黑醋栗",
+        "黑莓",
+        "煙草",
+        "菌菇",
+        "皮革"
+      ],
       "wineStyle": "紅葡萄酒",
       "taste": {
         "tannin": "80%",
@@ -861,9 +1187,14 @@
         "sweet": "20%"
       },
       "place": "波爾多",
-      "food": ["肉類開胃菜", "意大利面和披薩"],
+      "food": [
+        "肉類開胃菜",
+        "意大利面和披薩"
+      ],
       "year": "2020",
-      "grape": ["Bordeaux Blend"],
+      "grape": [
+        "Bordeaux Blend"
+      ],
       "village": "Chateau Giscours",
       "is_enabled": 1,
       "is_hot": 0,
@@ -877,7 +1208,11 @@
       "price": 21099,
       "image": "wine31",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/35846",
-      "flavor": ["黑醋栗", "毛皮", "皮革"],
+      "flavor": [
+        "黑醋栗",
+        "毛皮",
+        "皮革"
+      ],
       "wineStyle": "紅葡萄酒",
       "taste": {
         "tannin": "100%",
@@ -886,9 +1221,14 @@
         "sweet": "20%"
       },
       "place": "波爾多",
-      "food": ["肉類開胃菜", "意大利面和披薩"],
+      "food": [
+        "肉類開胃菜",
+        "意大利面和披薩"
+      ],
       "year": "2020",
-      "grape": ["Bordeaux Blend"],
+      "grape": [
+        "Bordeaux Blend"
+      ],
       "village": "Chateau Haut-Brion",
       "is_enabled": 1,
       "is_hot": 0,
@@ -902,7 +1242,11 @@
       "price": 6820,
       "image": "wine32",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/43192",
-      "flavor": ["黑醋栗", "皮革", "黑胡椒"],
+      "flavor": [
+        "黑醋栗",
+        "皮革",
+        "黑胡椒"
+      ],
       "wineStyle": "紅葡萄酒",
       "taste": {
         "tannin": "80%",
@@ -911,9 +1255,14 @@
         "sweet": "20%"
       },
       "place": "波爾多",
-      "food": ["肉類開胃菜", "意大利面和披薩"],
+      "food": [
+        "肉類開胃菜",
+        "意大利面和披薩"
+      ],
       "year": "1992",
-      "grape": [""],
+      "grape": [
+        ""
+      ],
       "village": "Chateau Montrose",
       "is_enabled": 1,
       "is_hot": 0,
@@ -927,7 +1276,15 @@
       "price": 1110000,
       "image": "wine33",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/36852",
-      "flavor": ["覆盆子", "櫻桃", "菌菇", "毛皮", "石灰", "玫瑰", "黑胡椒"],
+      "flavor": [
+        "覆盆子",
+        "櫻桃",
+        "菌菇",
+        "毛皮",
+        "石灰",
+        "玫瑰",
+        "黑胡椒"
+      ],
       "wineStyle": "紅葡萄酒",
       "taste": {
         "tannin": "60%",
@@ -936,9 +1293,15 @@
         "sweet": "20%"
       },
       "place": "布根地",
-      "food": ["肉類開胃菜", "意大利面和披薩", "素食菜肴"],
+      "food": [
+        "肉類開胃菜",
+        "意大利面和披薩",
+        "素食菜肴"
+      ],
       "year": "2000",
-      "grape": ["Pinot Noir"],
+      "grape": [
+        "Pinot Noir"
+      ],
       "village": "Domaine de la Romanee Conti",
       "is_enabled": 1,
       "is_hot": 1,
@@ -952,7 +1315,13 @@
       "price": 1080,
       "image": "wine34",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/11849",
-      "flavor": ["橘子", "核果", "櫻桃", "覆盆子", "草莓"],
+      "flavor": [
+        "橘子",
+        "核果",
+        "櫻桃",
+        "覆盆子",
+        "草莓"
+      ],
       "wineStyle": "白氣泡酒",
       "taste": {
         "tannin": "20%",
@@ -961,8 +1330,13 @@
         "sweet": "20%"
       },
       "place": "布根地",
-      "food": ["奶酪開胃菜", "蔬菜開胃菜"],
-      "grape": ["Pinot Noir"],
+      "food": [
+        "奶酪開胃菜",
+        "蔬菜開胃菜"
+      ],
+      "grape": [
+        "Pinot Noir"
+      ],
       "village": "Simonnet-Febvre",
       "is_enabled": 1,
       "is_hot": 0,
@@ -976,7 +1350,14 @@
       "price": 5150,
       "image": "wine35",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/15391",
-      "flavor": ["橘子", "水蜜桃", "蘋果", "青梨", "香草", "椰子"],
+      "flavor": [
+        "橘子",
+        "水蜜桃",
+        "蘋果",
+        "青梨",
+        "香草",
+        "椰子"
+      ],
       "wineStyle": "紅葡萄酒",
       "taste": {
         "tannin": "20%",
@@ -985,9 +1366,15 @@
         "sweet": "20%"
       },
       "place": "布根地",
-      "food": ["肉類開胃菜", "意大利面和披薩", "素食菜肴"],
+      "food": [
+        "肉類開胃菜",
+        "意大利面和披薩",
+        "素食菜肴"
+      ],
       "year": "2016",
-      "grape": ["Pinot Noir"],
+      "grape": [
+        "Pinot Noir"
+      ],
       "village": "Maison Louis Latour",
       "is_enabled": 1,
       "is_hot": 0,
@@ -1001,7 +1388,13 @@
       "price": 2304,
       "image": "wine36",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/44058",
-      "flavor": ["櫻桃", "覆盆子", "黑醋栗", "菌菇", "毛皮"],
+      "flavor": [
+        "櫻桃",
+        "覆盆子",
+        "黑醋栗",
+        "菌菇",
+        "毛皮"
+      ],
       "wineStyle": "紅葡萄酒",
       "taste": {
         "tannin": "60%",
@@ -1010,9 +1403,14 @@
         "sweet": "20%"
       },
       "place": "布根地",
-      "food": ["肉類開胃菜", "意大利面和披薩"],
+      "food": [
+        "肉類開胃菜",
+        "意大利面和披薩"
+      ],
       "year": "2019",
-      "grape": ["Pinot Noir"],
+      "grape": [
+        "Pinot Noir"
+      ],
       "village": "Antoine Olivier",
       "is_enabled": 1,
       "is_hot": 0,
@@ -1026,7 +1424,13 @@
       "price": 5440,
       "image": "wine37",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/43951",
-      "flavor": ["櫻桃", "黑醋栗", "菌菇", "皮革", "黑胡椒"],
+      "flavor": [
+        "櫻桃",
+        "黑醋栗",
+        "菌菇",
+        "皮革",
+        "黑胡椒"
+      ],
       "wineStyle": "紅葡萄酒",
       "taste": {
         "tannin": "60%",
@@ -1035,9 +1439,14 @@
         "sweet": "20%"
       },
       "place": "布根地",
-      "food": ["肉類開胃菜", "意大利面和披薩"],
+      "food": [
+        "肉類開胃菜",
+        "意大利面和披薩"
+      ],
       "year": "2019",
-      "grape": ["Pinot Noir"],
+      "grape": [
+        "Pinot Noir"
+      ],
       "village": "Nuiton-Beaunoy Chateau de Bligny",
       "is_enabled": 1,
       "is_hot": 0,
@@ -1051,7 +1460,15 @@
       "price": 68900,
       "image": "wine38",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/38329",
-      "flavor": ["黑胡椒", "皮革", "菌菇", "毛皮", "玫瑰", "櫻桃", "覆盆子"],
+      "flavor": [
+        "黑胡椒",
+        "皮革",
+        "菌菇",
+        "毛皮",
+        "玫瑰",
+        "櫻桃",
+        "覆盆子"
+      ],
       "wineStyle": "紅葡萄酒",
       "taste": {
         "tannin": "80%",
@@ -1060,9 +1477,14 @@
         "sweet": "20%"
       },
       "place": "布根地",
-      "food": ["肉類開胃菜", "意大利面和披薩"],
+      "food": [
+        "肉類開胃菜",
+        "意大利面和披薩"
+      ],
       "year": "2021",
-      "grape": ["Pinot Noir"],
+      "grape": [
+        "Pinot Noir"
+      ],
       "village": "Domaine Hudelot-Noellat",
       "is_enabled": 1,
       "is_hot": 0,
@@ -1076,7 +1498,12 @@
       "price": 1200,
       "image": "wine39",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/42262",
-      "flavor": ["蘋果", "橘子", "青梨", "香草"],
+      "flavor": [
+        "蘋果",
+        "橘子",
+        "青梨",
+        "香草"
+      ],
       "wineStyle": "白葡萄酒",
       "taste": {
         "tannin": "20%",
@@ -1085,9 +1512,14 @@
         "sweet": "20%"
       },
       "place": "布根地",
-      "food": ["肉類開胃菜", "意大利面和披薩"],
+      "food": [
+        "肉類開胃菜",
+        "意大利面和披薩"
+      ],
       "year": "2023",
-      "grape": ["Chardonnay"],
+      "grape": [
+        "Chardonnay"
+      ],
       "village": "Jean Loron",
       "is_enabled": 1,
       "is_hot": 0,
@@ -1101,7 +1533,12 @@
       "price": 1420,
       "image": "wine40",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/22943",
-      "flavor": ["草莓", "覆盆子", "茉莉", "香草"],
+      "flavor": [
+        "草莓",
+        "覆盆子",
+        "茉莉",
+        "香草"
+      ],
       "wineStyle": "紅葡萄酒",
       "taste": {
         "tannin": "40%",
@@ -1110,9 +1547,14 @@
         "sweet": "20%"
       },
       "place": "薄酒萊",
-      "food": ["肉類開胃菜", "意大利面和披薩"],
+      "food": [
+        "肉類開胃菜",
+        "意大利面和披薩"
+      ],
       "year": "2018",
-      "grape": ["Gamay"],
+      "grape": [
+        "Gamay"
+      ],
       "village": "Domaine Lafarge Vial",
       "is_enabled": 1,
       "is_hot": 0,
@@ -1126,7 +1568,13 @@
       "price": 920,
       "image": "wine41",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/42070",
-      "flavor": ["草莓", "櫻桃", "黑胡椒", "薑", "玫瑰花"],
+      "flavor": [
+        "草莓",
+        "櫻桃",
+        "黑胡椒",
+        "薑",
+        "玫瑰花"
+      ],
       "wineStyle": "紅葡萄酒",
       "taste": {
         "tannin": "40%",
@@ -1135,9 +1583,14 @@
         "sweet": "40%"
       },
       "place": "薄酒萊",
-      "food": ["肉類開胃菜", "意大利面和披薩"],
+      "food": [
+        "肉類開胃菜",
+        "意大利面和披薩"
+      ],
       "year": "2023",
-      "grape": ["Gamay"],
+      "grape": [
+        "Gamay"
+      ],
       "village": "Jean Loron",
       "is_enabled": 1,
       "is_hot": 0,
@@ -1151,7 +1604,12 @@
       "price": 990,
       "image": "wine42",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/30747",
-      "flavor": ["草莓", "覆盆子", "香蕉", "玫瑰"],
+      "flavor": [
+        "草莓",
+        "覆盆子",
+        "香蕉",
+        "玫瑰"
+      ],
       "wineStyle": "紅葡萄酒",
       "taste": {
         "tannin": "40%",
@@ -1160,9 +1618,14 @@
         "sweet": "20%"
       },
       "place": "薄酒萊",
-      "food": ["肉類開胃菜", "意大利面和披薩"],
+      "food": [
+        "肉類開胃菜",
+        "意大利面和披薩"
+      ],
       "year": "2021",
-      "grape": ["Gamay"],
+      "grape": [
+        "Gamay"
+      ],
       "village": "Domaine Guy Breton",
       "is_enabled": 1,
       "is_hot": 0,
@@ -1176,7 +1639,15 @@
       "price": 816,
       "image": "wine43",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/39020",
-      "flavor": ["草莓", "覆盆子", "櫻桃", "玫瑰", "橘子", "荔枝", "芭樂"],
+      "flavor": [
+        "草莓",
+        "覆盆子",
+        "櫻桃",
+        "玫瑰",
+        "橘子",
+        "荔枝",
+        "芭樂"
+      ],
       "wineStyle": "粉紅葡萄酒",
       "taste": {
         "tannin": "20%",
@@ -1185,10 +1656,15 @@
         "sweet": "20%"
       },
       "place": "薄酒萊",
-      "food": ["肉類開胃菜"],
+      "food": [
+        "肉類開胃菜"
+      ],
       "year": "2021",
       "Alcohol": "",
-      "grape": ["Gamay", "Chardonnay"],
+      "grape": [
+        "Gamay",
+        "Chardonnay"
+      ],
       "village": "Christophe Pacalet",
       "is_enabled": 1,
       "is_hot": 0,
@@ -1202,7 +1678,12 @@
       "price": 1800,
       "image": "wine44",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/42268",
-      "flavor": ["草莓", "覆盆子", "茉莉", "香草"],
+      "flavor": [
+        "草莓",
+        "覆盆子",
+        "茉莉",
+        "香草"
+      ],
       "wineStyle": "紅葡萄酒",
       "taste": {
         "tannin": "40%",
@@ -1211,10 +1692,15 @@
         "sweet": "20%"
       },
       "place": "薄酒萊",
-      "food": ["肉類開胃菜", "意大利面和披薩"],
+      "food": [
+        "肉類開胃菜",
+        "意大利面和披薩"
+      ],
       "year": "2023",
       "Alcohol": "",
-      "grape": ["Gamay"],
+      "grape": [
+        "Gamay"
+      ],
       "village": "Maison Leroy",
       "is_enabled": 1,
       "is_hot": 0,
@@ -1228,7 +1714,11 @@
       "price": 950,
       "image": "wine45",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/35078",
-      "flavor": ["覆盆子", "草莓", "香草"],
+      "flavor": [
+        "覆盆子",
+        "草莓",
+        "香草"
+      ],
       "wineStyle": "紅葡萄酒",
       "taste": {
         "tannin": "40%",
@@ -1237,10 +1727,15 @@
         "sweet": "20%"
       },
       "place": "薄酒萊",
-      "food": ["肉類開胃菜", "意大利面和披薩"],
+      "food": [
+        "肉類開胃菜",
+        "意大利面和披薩"
+      ],
       "year": "2022",
       "Alcohol": "",
-      "grape": ["Gamay"],
+      "grape": [
+        "Gamay"
+      ],
       "village": "Chateau Cambon",
       "is_enabled": 1,
       "is_hot": 0,
@@ -1254,7 +1749,12 @@
       "price": 750,
       "image": "wine46",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/25769",
-      "flavor": ["櫻桃", "覆盆子", "黑胡椒", "薑"],
+      "flavor": [
+        "櫻桃",
+        "覆盆子",
+        "黑胡椒",
+        "薑"
+      ],
       "wineStyle": "紅葡萄酒",
       "taste": {
         "tannin": "40%",
@@ -1263,9 +1763,14 @@
         "sweet": "20%"
       },
       "place": "薄酒萊",
-      "food": ["肉類開胃菜", "意大利面和披薩"],
+      "food": [
+        "肉類開胃菜",
+        "意大利面和披薩"
+      ],
       "year": "2020",
-      "grape": ["Gamay"],
+      "grape": [
+        "Gamay"
+      ],
       "village": "Christophe Pacalet",
       "is_enabled": 1,
       "is_hot": 0,
@@ -1279,7 +1784,12 @@
       "price": 1190,
       "image": "wine47",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/42393",
-      "flavor": ["青蘋果", "橘子", "茉莉", "石灰"],
+      "flavor": [
+        "青蘋果",
+        "橘子",
+        "茉莉",
+        "石灰"
+      ],
       "wineStyle": "白氣泡酒",
       "taste": {
         "tannin": "0",
@@ -1288,8 +1798,12 @@
         "sweet": "20%"
       },
       "place": "羅亞爾河谷",
-      "food": ["魚類和海鮮"],
-      "grape": ["Chenin Blanc"],
+      "food": [
+        "魚類和海鮮"
+      ],
+      "grape": [
+        "Chenin Blanc"
+      ],
       "village": "Domaine Amirault",
       "is_enabled": 1,
       "is_hot": 0,
@@ -1303,7 +1817,14 @@
       "price": 741,
       "image": "wine48",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/41875",
-      "flavor": ["草莓", "覆盆子", "橘子", "葡萄柚", "石灰", "玫瑰花"],
+      "flavor": [
+        "草莓",
+        "覆盆子",
+        "橘子",
+        "葡萄柚",
+        "石灰",
+        "玫瑰花"
+      ],
       "wineStyle": "粉紅氣泡酒",
       "taste": {
         "tannin": "20%",
@@ -1312,8 +1833,17 @@
         "sweet": "40%"
       },
       "place": "羅亞爾河谷",
-      "food": ["雞肉豬肉", "魚類和海鮮", "奶酪開胃菜", "蔬菜開胃菜", "素食菜肴"],
-      "grape": ["Cabernet Franc", "Grolleau"],
+      "food": [
+        "雞肉豬肉",
+        "魚類和海鮮",
+        "奶酪開胃菜",
+        "蔬菜開胃菜",
+        "素食菜肴"
+      ],
+      "grape": [
+        "Cabernet Franc",
+        "Grolleau"
+      ],
       "village": "Monmousseau",
       "is_enabled": 1,
       "is_hot": 0,
@@ -1327,7 +1857,13 @@
       "price": 2630,
       "image": "wine49",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/42333",
-      "flavor": ["蘋果", "青梨", "哈密瓜", "石灰", "蜂蜜"],
+      "flavor": [
+        "蘋果",
+        "青梨",
+        "哈密瓜",
+        "石灰",
+        "蜂蜜"
+      ],
       "wineStyle": "白葡萄酒",
       "taste": {
         "tannin": "0",
@@ -1336,10 +1872,18 @@
         "sweet": "20%"
       },
       "place": "羅亞爾河谷",
-      "food": ["雞肉豬肉", "魚類和海鮮", "奶酪開胃菜", "蔬菜開胃菜", "素食菜肴"],
+      "food": [
+        "雞肉豬肉",
+        "魚類和海鮮",
+        "奶酪開胃菜",
+        "蔬菜開胃菜",
+        "素食菜肴"
+      ],
       "year": "2020",
       "Alcohol": "",
-      "grape": ["Chenin Blanc"],
+      "grape": [
+        "Chenin Blanc"
+      ],
       "village": "Domaine Belargus",
       "is_enabled": 1,
       "is_hot": 0,
@@ -1353,7 +1897,13 @@
       "price": 1650,
       "image": "wine50",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/42328",
-      "flavor": ["蘋果", "青梨", "蜂蜜", "橘子", "茉莉"],
+      "flavor": [
+        "蘋果",
+        "青梨",
+        "蜂蜜",
+        "橘子",
+        "茉莉"
+      ],
       "wineStyle": "白葡萄酒",
       "taste": {
         "tannin": "20%",
@@ -1362,10 +1912,18 @@
         "sweet": "20%"
       },
       "place": "羅亞爾河谷",
-      "food": ["雞肉豬肉", "魚類和海鮮", "奶酪開胃菜", "蔬菜開胃菜", "素食菜肴"],
+      "food": [
+        "雞肉豬肉",
+        "魚類和海鮮",
+        "奶酪開胃菜",
+        "蔬菜開胃菜",
+        "素食菜肴"
+      ],
       "year": "2020",
       "Alcohol": "",
-      "grape": ["Chenin Blanc"],
+      "grape": [
+        "Chenin Blanc"
+      ],
       "village": "Domaine Belargus",
       "is_enabled": 1,
       "is_hot": 0,
@@ -1379,7 +1937,14 @@
       "price": 3200,
       "image": "wine51",
       "internet": "https://www.icheers.tw/iCheers/Wine/WineDetail/wine_detail/42243",
-      "flavor": ["覆盆子", "香草", "櫻桃", "石灰", "皮革", "菌菇"],
+      "flavor": [
+        "覆盆子",
+        "香草",
+        "櫻桃",
+        "石灰",
+        "皮革",
+        "菌菇"
+      ],
       "wineStyle": "紅葡萄酒",
       "taste": {
         "tannin": "60%",
@@ -1388,10 +1953,17 @@
         "sweet": "20%"
       },
       "place": "布根地",
-      "food": ["炸物開胃菜", "意大利面和披薩", "蛋糕和點心", "素食菜肴"],
+      "food": [
+        "炸物開胃菜",
+        "意大利面和披薩",
+        "蛋糕和點心",
+        "素食菜肴"
+      ],
       "year": "2020",
       "Alcohol": "",
-      "grape": ["Pinot Noir"],
+      "grape": [
+        "Pinot Noir"
+      ],
       "village": "Chateau de Pommard",
       "is_enabled": 1,
       "is_hot": 0,
