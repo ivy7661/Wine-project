@@ -31,9 +31,14 @@
                   v-model="editProduct.image"
                   type="text"
                   class="form-control mb-2"
-                  placeholder="請輸入圖片連結"
+                  placeholder="請輸入圖片名稱"
                 />
-                <img class="img-fluid" :src="editProduct.image" />
+                <div v-if="editProduct.image">
+                  <img
+                    class="img-fluid"
+                    :src="$filters.imgPath(`/images/wine_images/${editProduct.image}.jpg`)"
+                  />
+                </div>
               </div>
             </div>
             <div class="col-sm-8">
