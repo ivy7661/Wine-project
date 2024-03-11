@@ -1,4 +1,10 @@
 <template>
+  <loading v-model:active="isLoading">
+    <template #default>
+      <WineGlassLoader />
+    </template>
+  </loading>
+
   <div class="container mb-5">
     <div class="row">
       <div class="d-flex justify-content-between align-items-end mt-3">
@@ -53,6 +59,8 @@
 <script>
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import Loading from 'vue-loading-overlay';
+import WineGlassLoader from './WineGlassLoader.vue';
 
 import { mapActions } from 'pinia';
 import userStore from '@/stores/user';
@@ -61,10 +69,11 @@ import OrderProductModal from '@/components/OrderProductModal.vue';
 
 export default {
   name: 'UserOrders',
-  components: { OrderProductModal },
+  components: { OrderProductModal, WineGlassLoader, Loading },
   data() {
     return {
       title: '會員訂單',
+      isLoading: true,
       orders: [],
       cartProduct: [],
       userData: {},
@@ -95,6 +104,11 @@ export default {
         })
         .catch((err) => {
           console.log(err.response);
+        })
+        .finally(() => {
+          setTimeout(() => {
+            this.isLoading = false;
+          }, 500);
         });
     },
     comment(item) {
