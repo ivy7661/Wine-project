@@ -46,7 +46,7 @@
           </swiper>
         </div>
 
-        <div class="text-center vertical-line">
+        <div class="text-center vertical-line d-none d-lg-block">
           <img :src="verticalLine" alt="vertical Line">
         </div>
       </div>
@@ -68,7 +68,7 @@
 
             <template v-for="item in getSelectProductData" :key="item.id">
               <swiper-slide>
-                <div class="container">
+                <div class="container-lg">
                   <div class="row justify-content-between">
 
                     <div class="" :class="[item.options.length >= 3 ? 'col-4' : 'col-6 g-0']"
