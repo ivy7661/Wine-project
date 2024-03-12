@@ -12,8 +12,10 @@ const INVALID_CHAR_REGEX = /[\x00-\x1F\x7F<>*#"{}|^[\]`;?:&=+$,]/g;
 const DRIVE_LETTER_REGEX = /^[a-z]:/i;
 
 // https://vitejs.dev/config/
-export default defineConfig(({ command, mode }) => {
+export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
+  console.log('REPOSITORY NAME : ', env.REPOSITORY_NAME);
+
   return {
     base: mode === 'production' ? `/${env.REPOSITORY_NAME}/` : '/',
     plugins: [
