@@ -308,28 +308,26 @@ const addToFavorite = (product) => {
 };
 
 // 定義純酒品條件判斷
-const selectConditionFunc = (item) => {
-  const [, b, c] = selectCondition.value;
+const selectConditionFunc = (item, taste, isFull) => {
   const itemTaste = item.taste;
 
-  switch (b) {
+  switch (taste) {
     case '偏甜':
-      return (c === '飽滿') ? (getNumber(itemTaste.sweet) > 50 && getNumber(itemTaste.body) > 50) : (getNumber(itemTaste.sweet) <= 50 && getNumber(itemTaste.body) <= 50);
+      return (isFull === '飽滿') ? (getNumber(itemTaste.sweet) > 50 && getNumber(itemTaste.body) > 50) : (getNumber(itemTaste.sweet) <= 50 && getNumber(itemTaste.body) <= 50);
     case '偏酸':
-      return (c === '飽滿') ? (getNumber(itemTaste.acidity) > 50 && getNumber(itemTaste.body) > 50) : (getNumber(itemTaste.acidity) <= 50 && getNumber(itemTaste.body) <= 50);
+      return (isFull === '飽滿') ? (getNumber(itemTaste.acidity) > 50 && getNumber(itemTaste.body) > 50) : (getNumber(itemTaste.acidity) <= 50 && getNumber(itemTaste.body) <= 50);
     case '偏乾':
-      return (c === '飽滿') ? (getNumber(itemTaste.tannin) > 50 && getNumber(itemTaste.body) > 50) : (getNumber(itemTaste.tannin) <= 50 && getNumber(itemTaste.body) <= 50);
+      return (isFull === '飽滿') ? (getNumber(itemTaste.tannin) > 50 && getNumber(itemTaste.body) > 50) : (getNumber(itemTaste.tannin) <= 50 && getNumber(itemTaste.body) <= 50);
     default:
       return false;
   }
 };
 
 // 定義FOOD條件判斷
-const selectFoodConditionFunc = (item) => {
-  const [, b] = selectCondition.value;
+const selectProductByFood = (item, food) => {
   const itemFood = item.food;
 
-  switch (b) {
+  switch (food) {
     case '開胃菜':
       return itemFood.some((data) => data.includes('開胃菜'));
     case '主菜':
@@ -348,11 +346,13 @@ const handleSelectProduct = (data) => {
 
   // 過濾產品
   if (selectCondition.value[0] === '搭配餐酒') {
-    isBubble = selectCondition.value[2] === '氣泡';
-    getSelectProducts = originalProducts.value.filter((item) => (isBubble ? item.wineStyle.includes('氣泡') : item.wineStyle === data.name) && selectFoodConditionFunc(item));
+    const [, food, bubble] = selectCondition.value;
+    isBubble = bubble === '氣泡';
+    getSelectProducts = originalProducts.value.filter((item) => (isBubble ? item.wineStyle.includes('氣泡') : item.wineStyle === data.name) && selectProductByFood(item, food));
   } else {
-    isBubble = selectCondition.value[3] === '氣泡';
-    getSelectProducts = originalProducts.value.filter((item) => (isBubble ? item.wineStyle.includes('氣泡') : item.wineStyle === data.name) && selectConditionFunc(item));
+    const [, taste, isFull, bubble] = selectCondition.value;
+    isBubble = bubble === '氣泡';
+    getSelectProducts = originalProducts.value.filter((item) => (isBubble ? item.wineStyle.includes('氣泡') : item.wineStyle === data.name) && selectConditionFunc(item, taste, isFull));
   }
 
   if (getSelectProducts.length > 0) {
