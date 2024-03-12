@@ -91,7 +91,7 @@
     </div>
 
     <SelectProductModal ref="selectProductModal" :tempProducts="selectProducts" :favorites="getFavorites"
-      @add-to-cart="addToCart" @add-to-favorite="addToFavorite" />
+      :isMatchCondition="isMatchCondition" @add-to-cart="addToCart" @add-to-favorite="addToFavorite" />
   </div>
 </template>
 
@@ -119,6 +119,8 @@ const userData = userStore();
 const emit = defineEmits(['isReady']);
 const { getUser, getFavorites } = storeToRefs(userData);
 const selectType = ref('taste');
+const selectCondition = ref([]);
+const isMatchCondition = ref(false);
 const currentSelect = ref(0);
 const selectProductModal = ref(null);
 const swiperModule = ref(null);
@@ -236,6 +238,11 @@ const selectWineTastingData = [
 ];
 
 // methods
+const getNumber = (str) => {
+  const num = str.match(/\d+/);
+  return num ? parseInt(num[0], 10) : 0;
+};
+
 const getProductList = () => {
   axios.get(`${import.meta.env.VITE_API_URL}/products`)
     .then((res) => {
@@ -272,6 +279,7 @@ const onSelectChange = (data) => {
   }
 
   if (data && data.next > 0) {
+    selectCondition.value.push(data.name);
     swiperSelectModule.value.slideNext();
   } else {
     currentSelect.value = data.next;
@@ -299,16 +307,72 @@ const addToFavorite = (product) => {
   }
 };
 
+// 定義純酒品條件判斷
+const selectConditionFunc = (item) => {
+  const [, b, c] = selectCondition.value;
+  const itemTaste = item.taste;
+
+  switch (b) {
+    case '偏甜':
+      return (c === '飽滿') ? (getNumber(itemTaste.sweet) > 50 && getNumber(itemTaste.body) > 50) : (getNumber(itemTaste.sweet) <= 50 && getNumber(itemTaste.body) <= 50);
+    case '偏酸':
+      return (c === '飽滿') ? (getNumber(itemTaste.acidity) > 50 && getNumber(itemTaste.body) > 50) : (getNumber(itemTaste.acidity) <= 50 && getNumber(itemTaste.body) <= 50);
+    case '偏乾':
+      return (c === '飽滿') ? (getNumber(itemTaste.tannin) > 50 && getNumber(itemTaste.body) > 50) : (getNumber(itemTaste.tannin) <= 50 && getNumber(itemTaste.body) <= 50);
+    default:
+      return false;
+  }
+};
+
+// 定義FOOD條件判斷
+const selectFoodConditionFunc = (item) => {
+  const [, b] = selectCondition.value;
+  const itemFood = item.food;
+
+  switch (b) {
+    case '開胃菜':
+      return itemFood.some((data) => data.includes('開胃菜'));
+    case '主菜':
+      return itemFood.some((data) => data.includes('海鮮') || data.includes('雞肉') || data.includes('披薩'));
+    case '甜點':
+      return itemFood.some((data) => data.includes('甜點'));
+    default:
+      return false;
+  }
+};
+
 // 顯示選擇酒品 modal
 const handleSelectProduct = (data) => {
-  // console.log(data);
-  selectProducts.value = originalProducts.value.filter(item => item.wineStyle === data.name).slice(0, 6);
+  let getSelectProducts = [];
+  let isBubble = false;
+
+  // 過濾產品
+  if (selectCondition.value[0] === '搭配餐酒') {
+    isBubble = selectCondition.value[2] === '氣泡';
+    getSelectProducts = originalProducts.value.filter((item) => (isBubble ? item.wineStyle.includes('氣泡') : item.wineStyle === data.name) && selectFoodConditionFunc(item));
+  } else {
+    isBubble = selectCondition.value[3] === '氣泡';
+    getSelectProducts = originalProducts.value.filter((item) => (isBubble ? item.wineStyle.includes('氣泡') : item.wineStyle === data.name) && selectConditionFunc(item));
+  }
+
+  if (getSelectProducts.length > 0) {
+    isMatchCondition.value = true;
+    selectProducts.value = getSelectProducts;
+  } else {
+    // console.log('沒有匹配產品');
+    // 在沒有匹配產品時的預設處理
+    isMatchCondition.value = false;
+    selectProducts.value = originalProducts.value.filter(item => item.wineStyle === data.name && !!item.is_hot).slice(0, 6);
+  }
+
+  // console.log('selectProducts', selectProducts.value);
   selectProductModal.value.openModal();
 };
 
 const handleCurrentSelect = () => {
   if (currentSelect.value === -1) {
     currentSelect.value = 0;
+    selectCondition.value.length = 0;
     swiperSelectModule.value.slideReset();
     swiperSelectModule.value.slideTo(0);
   }
