@@ -52,7 +52,7 @@
                       </div>
                       <div class="mb-3">
                         <label :for="`comment-${product.id}`">商品評論:</label>
-                        <textarea :id="`comment-${product.id}`" rows="6" maxlength="20"
+                        <textarea :id="`comment-${product.id}`" rows="6" maxlength="100"
                           :disabled="product.isCommentRate" v-model="product.comment"></textarea>
                       </div>
                       <button class="btn btn-primary w-100" @click.prevent="addComment(product)"

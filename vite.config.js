@@ -12,7 +12,9 @@ const INVALID_CHAR_REGEX = /[\x00-\x1F\x7F<>*#"{}|^[\]`;?:&=+$,]/g;
 const DRIVE_LETTER_REGEX = /^[a-z]:/i;
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => {
+export default defineConfig(({ command, mode }) => {
+  // 根據當前工作目錄中的 `mode` 加載 .env 文件
+  // 設置第三個參數為 '' 來加載所有環境變量，而不管是否有 `VITE_` 前綴
   const env = loadEnv(mode, process.cwd(), '');
   console.log('REPOSITORY NAME : ', env.REPOSITORY_NAME);
 
