@@ -342,7 +342,7 @@ export default {
           secureCode: ''
         }
       },
-      quantityOptions: [1, 2, 3, 4, 5, 6, 7, 8],
+      quantityOptions: [0, 1, 2, 3, 4, 5, 6, 7, 8],
       coupon: null,
       shipping: 300,
       newQty: 1,
@@ -586,7 +586,7 @@ export default {
         },
         cart: this.cart,
         is_paid: 1,
-        orderStatus: '待出貨',
+        orderStatus: '訂單已成立',
         create_at: formattedDateTime
       };
       axios
