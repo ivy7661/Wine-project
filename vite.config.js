@@ -37,6 +37,7 @@ export default defineConfig(({ command, mode }) => {
       chunkSizeWarningLimit: 1500,
       rollupOptions: {
         output: {
+          // https://israynotarray.com/other/20220928/1377668819/
           // https://github.com/rollup/rollup/blob/master/src/utils/sanitizeFileName.ts
           sanitizeFileName(name) {
             const match = DRIVE_LETTER_REGEX.exec(name);

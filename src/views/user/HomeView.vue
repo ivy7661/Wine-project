@@ -1,9 +1,9 @@
 <template>
-  <loading v-model:active="isLoading">
+  <VueLoading :active="isLoading">
     <template #default>
       <WineGlassLoader />
     </template>
-  </loading>
+  </VueLoading>
 
   <!-- 熱賣商品、引導選酒 -->
   <HomeWineSelection @is-ready="onIsReady" />
@@ -24,11 +24,10 @@ import HomeNews from '@/components/HomeNews.vue';
 import HomeWineRegion from '@/components/HomeWineRegion.vue';
 import HomePosts from '@/components/HomePosts.vue';
 import WineGlassLoader from './WineGlassLoader.vue';
-import Loading from 'vue-loading-overlay';
 
 export default {
   name: 'HomeView',
-  components: { HomeWineSelection, HomeNews, HomeWineRegion, HomePosts, WineGlassLoader, Loading },
+  components: { HomeWineSelection, HomeNews, HomeWineRegion, HomePosts, WineGlassLoader },
   data() {
     return {
       isLoading: true

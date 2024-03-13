@@ -1,9 +1,9 @@
 <template>
-  <loading v-model:active="isLoading">
+  <VueLoading :active="isLoading">
     <template #default>
       <WineGlassLoader />
     </template>
-  </loading>
+  </VueLoading>
 
   <div class="container mb-5">
     <div class="row">
@@ -49,7 +49,6 @@
 <script>
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import Loading from 'vue-loading-overlay';
 import WineGlassLoader from './WineGlassLoader.vue';
 
 import { mapActions } from 'pinia';
@@ -57,7 +56,7 @@ import userStore from '@/stores/user';
 
 export default {
   name: 'FavoriteView',
-  components: { WineGlassLoader, Loading },
+  components: { WineGlassLoader },
   data() {
     return {
       title: '慾望酒單',

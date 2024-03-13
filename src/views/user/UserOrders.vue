@@ -1,9 +1,9 @@
 <template>
-  <loading v-model:active="isLoading">
+  <VueLoading :active="isLoading">
     <template #default>
       <WineGlassLoader />
     </template>
-  </loading>
+  </VueLoading>
 
   <div class="container mb-5">
     <div class="row">
@@ -59,7 +59,6 @@
 <script>
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import Loading from 'vue-loading-overlay';
 import WineGlassLoader from './WineGlassLoader.vue';
 
 import { mapActions } from 'pinia';
@@ -69,7 +68,7 @@ import OrderProductModal from '@/components/OrderProductModal.vue';
 
 export default {
   name: 'UserOrders',
-  components: { OrderProductModal, WineGlassLoader, Loading },
+  components: { OrderProductModal, WineGlassLoader },
   data() {
     return {
       title: '會員訂單',

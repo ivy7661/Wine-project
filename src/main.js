@@ -41,6 +41,11 @@ app.use(createPinia());
 app.use(router);
 app.use(VueAxios, axios);
 
+// 另可全域註冊 import { LoadingPlugin } from 'vue-loading-overlay'
+// app.use(LoadingPlugin, {
+//   color: '#FF0000'
+// });
+
 app.component('VueLoading', Loading);
 app.component('VeeForm', Form);
 app.component('VeeField', Field);
