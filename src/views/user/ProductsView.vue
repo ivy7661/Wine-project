@@ -138,6 +138,7 @@ export default {
       productsContent: '',
       currentSort: '',
       selectedRegionProducts: [],
+      filteredProducts: [],
       cart: [],
       ascendingOrderPrice: true,
       ascendingOrderStar: true,
@@ -389,7 +390,18 @@ export default {
   computed: {
     ...mapState(userStore, ['getUser']),
     sortedProducts() {
-      return this.selectedRegionProducts.slice().sort((a, b) => {
+      let productsToSort = [];
+
+      if (this.filteredProducts.length > 0) {
+      // 如果有篩選字，使用篩選後的產品
+        productsToSort = this.filteredProducts.slice();
+      } else {
+      // 否則使用所選產區的產品
+        productsToSort = this.selectedRegionProducts.slice();
+      }
+
+      // 排序
+      const sortedProducts = productsToSort.sort((a, b) => {
         if (this.currentSort === 'price') {
           return this.ascendingOrderPrice ? a.price - b.price : b.price - a.price;
         } else if (this.currentSort === 'star') {
@@ -397,19 +409,41 @@ export default {
         }
         return 0;
       });
+
+      return sortedProducts;
     }
   },
   watch: {
     selectedRegion(newRegion) {
+      if (this.searchKeyword.trim() !== '') {
+        alert('請先清空搜尋關鍵字');
+        // 將 selectedRegion 設置回 '熱賣酒品'
+        this.selectedRegion = '熱賣酒品';
+        return;
+      }
+
       this.updateContent(newRegion);
       if (newRegion === '熱賣酒品') {
-        // 跟據 is_hot 過濾熱賣酒品
+      // 跟據 is_hot 過濾熱賣酒品
         this.selectedRegionProducts = this.products.filter((product) => product.is_hot === 1);
       } else {
-        // 根據地區 過濾
+      // 根據地區 過濾
         this.selectedRegionProducts = this.products.filter(
           (product) => product.place === newRegion
         );
+      }
+    },
+    searchKeyword(newKeyword) {
+      if (newKeyword.trim() !== '') {
+        // 使用 searchKeyword 篩選所有產品
+        this.filteredProducts = this.products.filter(product =>
+          product.chineseName.includes(newKeyword)
+        );
+        // 同時清空地區篩選
+        this.selectedRegion = '熱賣酒品';
+      } else {
+        // 如果 searchKeyword 為空，則顯示所有產品
+        this.filteredProducts = [];
       }
     }
   },
