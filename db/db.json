@@ -2456,6 +2456,28 @@
       "qty": 5,
       "userId": 6,
       "id": 5
+    },
+    {
+      "product_id": "7",
+      "chineseName": "聖羅蘭.馬貢村莊級新白酒",
+      "image": "wine7",
+      "price": 1200,
+      "is_hot": 0,
+      "star": 3,
+      "qty": 1,
+      "userId": 6,
+      "id": 6
+    },
+    {
+      "product_id": "9",
+      "chineseName": "費赫酒莊.普依富塞白酒",
+      "image": "wine9",
+      "price": 1350,
+      "is_hot": 1,
+      "star": 4,
+      "qty": 1,
+      "userId": 6,
+      "id": 7
     }
   ],
   "favorite": [
