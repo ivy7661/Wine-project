@@ -60,7 +60,6 @@
       </div>
       <div v-if="technique.isOpen" class="collapse show">
         <div class="row">
-          <div :class="{ 'col-md-8 order-md-first': index % 2 === 0, 'col-md-8': index % 2 !== 0 }">
         <div class="card-body" v-html="technique.description"></div>
         </div>
         <div :class="{ 'col-md-4 order-md-last': index % 2 === 0, 'col-md-4': index % 2 !== 0 }">
@@ -69,7 +68,6 @@
       </div>
       </div>
     </div>
-  </div>
 </template>
 <script>
 export default {
