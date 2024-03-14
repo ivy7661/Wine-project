@@ -1,0 +1,1 @@
+import{_ as t,o as e,c as o}from"./index-s3QXu1vX.js";const s="/Wine-project/images/drawn_cocktail.png",a={props:{width:{type:Number,default:24},height:{type:Number,default:24}}},c={src:s,class:"image_rotate",width:"200px",height:"200px",alt:"cocktail"};function r(p,i,n,_,d,l){return e(),o("img",c)}const h=t(a,[["render",r],["__scopeId","data-v-11d42662"]]);export{h as W};
