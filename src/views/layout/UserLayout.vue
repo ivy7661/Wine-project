@@ -1,5 +1,5 @@
 <template>
-  <HeaderComponent :userId="getUser?.id" />
+  <HeaderComponent :userId="getUser?.id" :cartLength="getCartLength || 0" />
 
   <RouterView />
 
@@ -63,10 +63,9 @@ export default {
     }
   },
   computed: {
-    ...mapState(userStore, ['getUser'])
+    ...mapState(userStore, ['getUser', 'getCartLength'])
   }
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

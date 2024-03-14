@@ -1,4 +1,10 @@
 <template>
+  <VueLoading :active="isLoading">
+    <template #default>
+      <WineGlassLoader />
+    </template>
+  </VueLoading>
+
   <div class="container mb-5">
     <div class="row">
       <div class="d-flex justify-content-between align-items-end mt-3">
@@ -43,16 +49,18 @@
 <script>
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import WineGlassLoader from './WineGlassLoader.vue';
 
 import { mapActions } from 'pinia';
 import userStore from '@/stores/user';
 
 export default {
   name: 'FavoriteView',
-  components: {},
+  components: { WineGlassLoader },
   data() {
     return {
       title: '慾望酒單',
+      isLoading: true,
       userId: 0,
       sortFilter: '1',
       list: []
@@ -91,6 +99,11 @@ export default {
         })
         .catch((err) => {
           console.log(err.response);
+        })
+        .finally(() => {
+          setTimeout(() => {
+            this.isLoading = false;
+          }, 500);
         });
     },
     removeFavorite(item) {

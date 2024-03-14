@@ -13,8 +13,9 @@
             <ErrorMessage name="帳號" class="invalid-feedback"></ErrorMessage>
           </div>
           <div class="form-floating">
-            <VeeField id="password" name="密碼" type="password" class="form-control" :class="{ 'is-invalid': errors['密碼'] }"
-              placeholder="請輸入密碼" autocomplete="false" :rules="isPasswordRule" v-model="userData.password" />
+            <VeeField id="password" name="密碼" type="password" class="form-control"
+              :class="{ 'is-invalid': errors['密碼'] }" placeholder="請輸入密碼" autocomplete="false" :rules="isPasswordRule"
+              v-model="userData.password" />
             <label for="password">密碼</label>
             <ErrorMessage name="密碼" class="invalid-feedback"></ErrorMessage>
           </div>
@@ -43,13 +44,13 @@
       </div>
 
       <div class="col-5 py-4">
-        <button class="btn btn-lg btn-primary w-100 mt-3" type="submit">
+        <button class="btn btn-lg btn-primary w-100 mt-3" type="submit" @click="onGAuth">
           使用 Google 快速登入
         </button>
 
         <div class="text-center mt-3">
           <p class="m-0">當您使用 Vin Chateau 購物</p>
-          <p>代表您同意 Vin Chateau <RouterLink to="/" class="p-2">隱私權條款</RouterLink>
+          <p>代表您同意 Vin Chateau <RouterLink to="/privacyPolicy" class="p-2">隱私權條款</RouterLink>
           </p>
         </div>
       </div>
@@ -113,6 +114,13 @@ export default {
           });
         });
     },
+    onGAuth() {
+      Swal.fire({
+        title: 'Google 登入',
+        text: '即將開放...',
+        icon: 'info'
+      });
+    },
     isPasswordRule(value) {
       return userPassword.test(value) ? true : '密碼長度為 6 ~ 12 碼，需包含英文及數字';
     }
@@ -120,5 +128,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

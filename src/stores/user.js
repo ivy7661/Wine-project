@@ -19,6 +19,9 @@ export default defineStore('userStore', {
     },
     getCarts: ({ carts }) => {
       return carts || [];
+    },
+    getCartLength: ({ carts }) => {
+      return carts.length || 0;
     }
   },
   actions: {
@@ -115,7 +118,7 @@ export default defineStore('userStore', {
             is_hot: product.is_hot,
             star: product.star,
             qty: 1,
-            userId: this.user.id
+            userId: parseInt(this.user.id, 10)
           };
 
           axios.post(`${import.meta.env.VITE_API_URL}/carts`, cartData)

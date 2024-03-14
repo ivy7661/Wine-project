@@ -175,7 +175,7 @@ h2 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 351px;
+    width: 363px;
 
     .card-img-top {
       height: 200px;
@@ -219,7 +219,7 @@ h2 {
   }
 
   .bg-slider {
-    width: 356px;
+    width: 406px;
     height: 370px;
     border-radius: 16px;
     background-color: #E7D8CA;
@@ -231,7 +231,7 @@ h2 {
     width: 132px;
     height: 65px;
     top: 370px;
-    left: 63%;
+    left: 66%;
   }
 }
 
