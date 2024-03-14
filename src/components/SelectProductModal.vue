@@ -6,10 +6,16 @@
           <h5 id="selectProductModalLabel" class="modal-title">
             <span>推薦酒品</span>
           </h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <div class="row">
+            <div class="col-12" v-if="!isMatchCondition">
+              <div class="alert alert-warning alert-title" role="alert">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                <span>您選擇的條件暫無適合酒款，另推薦熱門酒款給您。</span>
+              </div>
+            </div>
             <div class="col-12 col-md-6 col-lg-4 mb-3" v-for="product in tempProducts" :key="product.id">
               <div class="card h-100 p-2">
                 <div class="row h-100">
@@ -69,7 +75,7 @@
 import { Modal } from 'bootstrap';
 
 export default {
-  props: ['tempProducts', 'favorites'],
+  props: ['tempProducts', 'favorites', 'isMatchCondition'],
   data() {
     return {
       modalProduct: null
@@ -100,3 +106,9 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.alert-title {
+  letter-spacing: 1px;
+}
+</style>
