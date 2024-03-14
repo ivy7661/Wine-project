@@ -1,5 +1,5 @@
 <template>
-  <div id="main" style="width: 1140px; height: 400px" class="my-3"></div>
+  <div id="main" style="max-width: 1140px; height: 650px" class="my-3"></div>
 </template>
 
 <script>
@@ -25,19 +25,21 @@ export default {
       const option = {
         title: {
           text: '全品項營收比重',
+          top: 100,
           left: 'center'
         },
         tooltip: {
           trigger: 'item'
         },
         legend: {
-          orient: 'vertical',
-          left: 0
+          orient: 'horizontal',
+          top: 0
         },
         series: [
           {
             type: 'pie',
-            radius: '70%',
+            top: 50,
+            radius: '60%',
             data: this.modifiedData,
             emphasis: {
               itemStyle: {

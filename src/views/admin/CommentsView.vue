@@ -8,11 +8,11 @@
       <table class="table mt-4 mx-2">
         <thead class="table-light">
           <tr>
-            <th width="70">評論編號</th>
-            <th width="70">會員編號</th>
-            <th width="120">評論內容</th>
-            <th width="120">詳細資訊</th>
-            <th width="120" class="text-center">刪除評論</th>
+            <th width="90">評論編號</th>
+            <th width="90">會員編號</th>
+            <th width="260">評論內容</th>
+            <th width="70" class="text-center">詳細資訊</th>
+            <th width="70" class="text-center">刪除評論</th>
           </tr>
         </thead>
         <tbody>
@@ -33,16 +33,14 @@
                 查看
               </button>
             </td>
-            <td>
-              <div class="btn-group">
-                <button
-                  type="button"
-                  class="btn btn-outline-danger btn-sm"
-                  @click="openModal('delete', comment)"
-                >
-                  刪除
-                </button>
-              </div>
+            <td class="text-center">
+              <button
+                type="button"
+                class="btn btn-outline-danger btn-sm"
+                @click="openModal('delete', comment)"
+              >
+                刪除
+              </button>
             </td>
           </tr>
         </tbody>
@@ -123,7 +121,7 @@ export default {
 
 <style lang="scss" scoped>
 .commentContent {
-  width: 560px;
+  width: 260px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
