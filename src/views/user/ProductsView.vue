@@ -392,12 +392,18 @@ export default {
     sortedProducts() {
       let productsToSort = [];
 
-      if (this.filteredProducts.length > 0) {
-      // 如果有篩選字，使用篩選後的產品
-        productsToSort = this.filteredProducts.slice();
+      if (this.selectedRegion === '熱賣酒品') {
+        productsToSort = this.products.filter((product) => product.is_hot === 1);
       } else {
-      // 否則使用所選產區的產品
-        productsToSort = this.selectedRegionProducts.slice();
+        productsToSort = this.products.filter((product) => {
+          return product.place === this.selectedRegion;
+        });
+      }
+
+      const getKeyword = this.searchKeyword.trim();
+      if (getKeyword) {
+        // 使用 searchKeyword 篩選所有產品
+        productsToSort = productsToSort.filter(product => product.chineseName.includes(getKeyword));
       }
 
       // 排序
@@ -411,40 +417,6 @@ export default {
       });
 
       return sortedProducts;
-    }
-  },
-  watch: {
-    selectedRegion(newRegion) {
-      if (this.searchKeyword.trim() !== '') {
-        alert('請先清空搜尋關鍵字');
-        // 將 selectedRegion 設置回 '熱賣酒品'
-        this.selectedRegion = '熱賣酒品';
-        return;
-      }
-
-      this.updateContent(newRegion);
-      if (newRegion === '熱賣酒品') {
-      // 跟據 is_hot 過濾熱賣酒品
-        this.selectedRegionProducts = this.products.filter((product) => product.is_hot === 1);
-      } else {
-      // 根據地區 過濾
-        this.selectedRegionProducts = this.products.filter(
-          (product) => product.place === newRegion
-        );
-      }
-    },
-    searchKeyword(newKeyword) {
-      if (newKeyword.trim() !== '') {
-        // 使用 searchKeyword 篩選所有產品
-        this.filteredProducts = this.products.filter(product =>
-          product.chineseName.includes(newKeyword)
-        );
-        // 同時清空地區篩選
-        this.selectedRegion = '熱賣酒品';
-      } else {
-        // 如果 searchKeyword 為空，則顯示所有產品
-        this.filteredProducts = [];
-      }
     }
   },
   mounted() {
