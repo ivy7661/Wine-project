@@ -1,4 +1,4 @@
-import{_ as u,c as i,a as e,F as l,j as d,o as t,x as a,t as g,i as p,p as h,e as v}from"./index-D9iwTYBx.js";const b={name:"KnowledgeView",data(){return{redGrapeVarieties:[{name:"希拉",image:"/images/knowledge/syrah.png",description:`起源：希拉葡萄品種最初起源於法國的羅納河谷，並在整個法國多個葡萄酒產區中廣泛種植，尤其是在隆河谷地區。然而，它也在全球範圍內廣泛種植，包括澳大利亞、南非、美國、智利、阿根廷等地。
+import{_ as u,c as i,a as e,F as l,j as d,o as t,x as a,t as g,i as p,p as h,e as v}from"./index-Yx8QcuVY.js";const b={name:"KnowledgeView",data(){return{redGrapeVarieties:[{name:"希拉",image:"/images/knowledge/syrah.png",description:`起源：希拉葡萄品種最初起源於法國的羅納河谷，並在整個法國多個葡萄酒產區中廣泛種植，尤其是在隆河谷地區。然而，它也在全球範圍內廣泛種植，包括澳大利亞、南非、美國、智利、阿根廷等地。
 葡萄特性：希拉葡萄是黑皮葡萄，通常呈現深紫色至黑色的果實。葡萄叢小而緊湊，葡萄粒小，皮薄含有豐富的色素和單寧。
 風味特點：希拉葡萄釀造的葡萄酒通常具有豐富的水果風味，包括黑莓、覆盆子、李子和黑櫻桃等。此外，它還可能伴隨著辛香和香料的味道，如胡椒、肉桂和丁香。希拉葡萄酒的風格因產地、氣候和釀酒師的不同而有所差異，可以是濃烈的、濃鬱的，也可以是較輕盈和優雅的。
 葡萄酒產區：希拉葡萄品種在全球各地廣泛種植，並產生不同風格的葡萄酒。法國的隆河谷產區（如希拉和康涅），澳大利亞的巴羅莎穀和麥克拉倫穀，以及美國的加州，尤其是納帕谷和索諾馬穀，都以出產高質量的希拉葡萄酒而聞名。
