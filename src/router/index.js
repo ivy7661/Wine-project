@@ -1,7 +1,7 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
@@ -23,6 +23,11 @@ const router = createRouter({
           component: () => import('@/views/user/RegisterView.vue')
         },
         {
+          path: 'forgot',
+          name: 'UserForgot',
+          component: () => import('@/views/user/ForgotView.vue')
+        },
+        {
           path: 'products',
           name: 'ProductsPage',
           component: () => import('@/views/user/ProductsView.vue')
@@ -36,6 +41,41 @@ const router = createRouter({
           path: 'cart',
           name: 'CartPage',
           component: () => import('@/views/user/CartView.vue')
+        },
+        {
+          path: 'checkout',
+          name: 'CheckoutPage',
+          component: () => import('@/views/user/CheckoutView.vue')
+        },
+        {
+          path: 'paymentReceived',
+          name: 'PaymentReceived',
+          component: () => import('@/views/user/PaymentReceived.vue')
+        },
+        {
+          path: 'shippingInfo',
+          name: 'ShippingInfo',
+          component: () => import('@/views/user/ShippingInfo.vue')
+        },
+        {
+          path: 'favorite',
+          name: 'FavoritePage',
+          component: () => import('@/views/user/FavoriteView.vue')
+        },
+        {
+          path: 'userOrders',
+          name: 'userOrders',
+          component: () => import('@/views/user/UserOrders.vue')
+        },
+        {
+          path: 'privacyPolicy',
+          name: 'privacyPolicy',
+          component: () => import('@/views/user/PrivacyPolicy.vue')
+        },
+        {
+          path: 'Knowledge',
+          name: 'Knowledge',
+          component: () => import('@/views/user/KnowledgeView.vue')
         }
       ]
     },
@@ -49,9 +89,29 @@ const router = createRouter({
       component: () => import('@/views/layout/AdminLayout.vue'),
       children: [
         {
+          path: 'accounts',
+          name: 'AdminAccounts',
+          component: () => import('@/views/admin/AccountsView.vue')
+        },
+        {
           path: 'products',
           name: 'AdminProducts',
           component: () => import('@/views/admin/ProductsView.vue')
+        },
+        {
+          path: 'orders',
+          name: 'AdminOrders',
+          component: () => import('@/views/admin/OrdersView.vue')
+        },
+        {
+          path: 'comments',
+          name: 'AdminComments',
+          component: () => import('@/views/admin/CommentsView.vue')
+        },
+        {
+          path: 'sales',
+          name: 'AdminSalesVolume',
+          component: () => import('@/views/admin/SalesVolume.vue')
         }
       ]
     },
@@ -61,7 +121,13 @@ const router = createRouter({
       component: () => import('@/views/NotFound.vue')
     }
   ],
-  linkActiveClass: 'active'
+  linkActiveClass: 'active',
+  scrollBehavior(to, from, savedPosition) {
+    return {
+      behavior: 'smooth',
+      top: 0
+    };
+  }
 });
 
 export default router;

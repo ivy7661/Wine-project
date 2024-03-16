@@ -1,51 +1,584 @@
 <template>
-  <div class="col-md-6">
-    <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-      <div class="card-body d-flex flex-column align-items-start">
-        <strong class="d-inline-block mb-2 text-primary">熱賣商品</strong>
-        <h3 class="mb-0">
-          <a class="text-dark" href="#">Featured post</a>
-        </h3>
-        <div class="mb-1 text-muted">Nov 12</div>
-        <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional
-          content.</p>
-        <a href="#">Continue</a>
-      </div>
-      <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]"
-        style="width: 200px; height: 250px;"
-        src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22200%22%20height%3D%22250%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20250%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18d7dfc9bd9%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A13pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18d7dfc9bd9%22%3E%3Crect%20width%3D%22200%22%20height%3D%22250%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2256.1953125%22%20y%3D%22131%22%3EThumbnail%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" />
-    </div>
-  </div>
+  <div class="selection-container container-lg mt-5">
+    <div class="row justify-content-between">
+      <div class="hot-container col-md-12 col-lg-6">
+        <div class="info">
+          <div class="title d-flex justify-content-between align-items-center mb-3">
+            <div>
+              <img src="/images/hot_icon.svg" class="mb-2 me-1" alt="hot" />
+              <h5 class="d-inline-block text-primary">熱賣商品</h5>
+            </div>
+            <div id="hot_pagination" class="swiper-pagination homeswiper-pagination"></div>
+          </div>
 
-  <div class="col-md-6">
-    <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-      <div class="card-body d-flex flex-column align-items-start">
-        <strong class="d-inline-block mb-2 text-primary">引導選酒區</strong>
-        <h3 class="mb-0">
-          <a class="text-dark" href="#">Featured post</a>
-        </h3>
-        <div class="mb-1 text-muted">Nov 12</div>
-        <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional
-          content.</p>
-        <a href="#">Continue</a>
+          <swiper :pagination="{ el: '#hot_pagination' }" @swiper="onSwiper" :modules="[Pagination]" class="mySwiper">
+            <template v-for="item in hotProducts" :key="item.id">
+              <swiper-slide>
+                <div class="region-card card bg-white">
+                  <div>
+                    <div class="card-body px-0">
+                      <div class="region-card_head d-flex">
+                        <div class="image-wine">
+                          <img :src="$filters.imgPath(`/images/wine_images/${item.image}.jpg`)" alt="wine">
+                        </div>
+                        <img class="image-switch" src="/images/switch.png" alt="wine">
+                        <div class="info single-ellipsis">
+                          <h5 class="text-black mt-2">{{ item.chineseName }}</h5>
+                          <h6 class="card-subtitle mt-2 single-ellipsis">{{ item.englishName }}</h6>
+                          <div class="d-flex gap-1 mt-2">
+                            <i class="bi bi-star-fill text-warning" v-for="star in item.star" :key="star"></i>
+                          </div>
+
+                          <div class="price-block d-flex justify-content-between align-items-center">
+                            <h5 class="price text-primary">NT${{ $filters.currency(item.price) }}</h5>
+                            <button type="button" class="btn btn-primary me-0" :disabled="!getUser?.id"
+                              @click="addToCart(item)">
+                              <span>立即購買</span> <i class="bi bi-arrow-right"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </swiper-slide>
+            </template>
+          </swiper>
+        </div>
+
+        <div class="text-center vertical-line d-none d-lg-block">
+          <img :src="verticalLine" alt="vertical Line">
+        </div>
       </div>
-      <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]"
-        style="width: 200px; height: 250px;"
-        src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22200%22%20height%3D%22250%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20250%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_18d7dfc9bd9%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A13pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_18d7dfc9bd9%22%3E%3Crect%20width%3D%22200%22%20height%3D%22250%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2256.1953125%22%20y%3D%22131%22%3EThumbnail%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" />
+
+      <div class="select-container col-md-12 col-lg-6 d-flex justify-content-end">
+        <div class="info">
+          <div class="title d-flex justify-content-between align-items-center mb-3">
+            <div>
+              <img src="/images/wine_icon.svg" class="mb-2 me-1" alt="hot" />
+              <h5 class="d-inline-block text-primary">引導選酒區</h5>
+            </div>
+            <button type="button" class="btn btn-primary btn-next" @click="handleCurrentSelect">
+              <span v-if="currentSelect === -1">重新選擇</span>
+              <span v-else>下一步</span>
+            </button>
+          </div>
+
+          <swiper @swiper="onSwiperSelect" :allowTouchMove="false" class="mySwiper">
+
+            <template v-for="item in getSelectProductData" :key="item.id">
+              <swiper-slide>
+                <div class="container-lg">
+                  <div class="row justify-content-between">
+
+                    <div class="" :class="[item.options.length >= 3 ? 'col-4' : 'col-6 g-0']"
+                      v-for="selectItem in item.options" :key="`child-${selectItem.id}`">
+                      <div class="card-select" @click="onSelectChange(selectItem)">
+                        <img :src="$filters.imgPath(selectItem.image)" alt="wine">
+                        <h5>
+                          {{ selectItem.name }}
+                        </h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </swiper-slide>
+            </template>
+          </swiper>
+        </div>
+
+      </div>
     </div>
+
+    <SelectProductModal ref="selectProductModal" :tempProducts="selectProducts" :favorites="getFavorites"
+      :isMatchCondition="isMatchCondition" @add-to-cart="addToCart" @add-to-favorite="addToFavorite" />
   </div>
 </template>
 
-<script>
-export default {
-  name: 'HomeWineSelection',
-  data() {
-    return {
+<script setup>
+import 'swiper/css';
+import 'swiper/css/pagination';
 
-    };
+import axios from 'axios';
+
+import { storeToRefs } from 'pinia';
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Pagination } from 'swiper/modules';
+
+import { ref, computed, onMounted } from 'vue';
+
+import SelectProductModal from '@/components/SelectProductModal.vue';
+import verticalLine from '@/assets/icons/svg/vertical_line.svg';
+import { getFormattedDate } from '@/utils/helpers';
+
+import userStore from '@/stores/user';
+
+const userData = userStore();
+
+// 變數
+const emit = defineEmits(['isReady']);
+const { getUser, getFavorites } = storeToRefs(userData);
+const selectType = ref('taste');
+const selectCondition = ref([]);
+const isMatchCondition = ref(false);
+const currentSelect = ref(0);
+const selectProductModal = ref(null);
+const swiperModule = ref(null);
+const swiperSelectModule = ref(null);
+const hotProducts = ref([]);
+const originalProducts = ref([]);
+const selectProducts = ref([]);
+const selectWineTastingData = [
+  {
+    id: 0,
+    type: ['taste', 'food'],
+    options: [
+      {
+        name: '純品酒',
+        image: '/images/select_wine1.png',
+        next: 1
+      },
+      {
+        name: '搭配餐酒',
+        image: '/images/select_wine2.png',
+        next: 10
+      }
+    ]
+  },
+  {
+    id: 1,
+    type: ['taste'],
+    options: [
+      {
+        name: '偏甜',
+        image: '/images/lead_wine/sweet.png',
+        next: 2
+      },
+      {
+        name: '偏酸',
+        image: '/images/lead_wine/sour.png',
+        next: 2
+      },
+      {
+        name: '偏乾',
+        image: '/images/lead_wine/dry.png',
+        next: 90
+      }
+    ]
+  },
+  {
+    id: 2,
+    type: ['taste'],
+    options: [
+      {
+        name: '飽滿',
+        image: '/images/lead_wine/filling.png',
+        next: 90
+      },
+      {
+        name: '輕盈',
+        image: '/images/lead_wine/light.png',
+        next: 90
+      }
+    ]
+  },
+  {
+    id: 10,
+    type: ['food'],
+    options: [
+      {
+        name: '開胃菜',
+        image: '/images/lead_wine/appetizer.png',
+        next: 90
+      },
+      {
+        name: '主菜',
+        image: '/images/lead_wine/main_course.png',
+        next: 90
+      },
+      {
+        name: '甜點',
+        image: '/images/lead_wine/dessert.png',
+        next: 90
+      }
+    ]
+  },
+  {
+    id: 90,
+    type: ['taste', 'food'],
+    options: [
+      {
+        name: '氣泡',
+        image: '/images/lead_wine/sparkling.png',
+        next: 99
+      },
+      {
+        name: '無氣泡',
+        image: '/images/lead_wine/sparkling_non.png',
+        next: 99
+      }
+    ]
+  },
+  {
+    id: 99,
+    type: ['taste', 'food'],
+    options: [
+      {
+        name: '紅葡萄酒',
+        image: '/images/lead_wine/red_wine.png',
+        next: -1
+      },
+      {
+        name: '白葡萄酒',
+        image: '/images/lead_wine/white_wine.png',
+        next: -1
+      }
+    ]
+  }
+];
+
+// methods
+const getNumber = (str) => {
+  const num = str.match(/\d+/);
+  return num ? parseInt(num[0], 10) : 0;
+};
+
+const getProductList = () => {
+  axios.get(`${import.meta.env.VITE_API_URL}/products`)
+    .then((res) => {
+      // console.log(res.data);
+      originalProducts.value = res.data;
+      hotProducts.value = res.data.filter(item => !!item.is_hot && item.star > 3).slice(0, 3);
+      emit('isReady');
+    })
+    .catch((error) => {
+      console.log(error.response);
+    });
+};
+
+// 熱賣商品 swiper
+const onSwiper = (swiper) => {
+  swiperModule.value = swiper;
+  swiperModule.value.slideReset();
+  swiperModule.value.slideTo(0);
+};
+
+// 引導選酒區 swiper
+const onSwiperSelect = (swiper) => {
+  swiperSelectModule.value = swiper;
+  swiperSelectModule.value.slideReset();
+  swiperSelectModule.value.slideTo(0);
+};
+
+// 選擇引導酒品
+const onSelectChange = (data) => {
+  if (data.name === '搭配餐酒') {
+    selectType.value = 'food';
+  } else if (data.name === '純品酒') {
+    selectType.value = 'taste';
+  }
+
+  if (data && data.next > 0) {
+    selectCondition.value.push(data.name);
+    swiperSelectModule.value.slideNext();
+  } else {
+    currentSelect.value = data.next;
+    handleSelectProduct(data);
   }
 };
+
+// 加入購物車
+const addToCart = (product) => {
+  if (product && product.id && getUser.value?.id) {
+    userData.addToCart(product);
+  }
+};
+
+// 加入最愛
+const addToFavorite = (product) => {
+  if (product.id && getUser.value?.id && !getFavorites.value.includes(product.id)) {
+    const postData = {
+      userId: getUser.value.id,
+      productId: product.id,
+      created_at: getFormattedDate()
+    };
+
+    userData.addToFavorite(postData);
+  }
+};
+
+// 定義純酒品條件判斷
+const selectConditionFunc = (item, taste, isFull) => {
+  const itemTaste = item.taste;
+
+  switch (taste) {
+    case '偏甜':
+      return (isFull === '飽滿') ? (getNumber(itemTaste.sweet) > 50 && getNumber(itemTaste.body) > 50) : (getNumber(itemTaste.sweet) <= 50 && getNumber(itemTaste.body) <= 50);
+    case '偏酸':
+      return (isFull === '飽滿') ? (getNumber(itemTaste.acidity) > 50 && getNumber(itemTaste.body) > 50) : (getNumber(itemTaste.acidity) <= 50 && getNumber(itemTaste.body) <= 50);
+    case '偏乾':
+      return (isFull === '飽滿') ? (getNumber(itemTaste.tannin) > 50 && getNumber(itemTaste.body) > 50) : (getNumber(itemTaste.tannin) <= 50 && getNumber(itemTaste.body) <= 50);
+    default:
+      return false;
+  }
+};
+
+// 定義FOOD條件判斷
+const selectProductByFood = (item, food) => {
+  const itemFood = item.food;
+
+  switch (food) {
+    case '開胃菜':
+      return itemFood.some((data) => data.includes('開胃菜'));
+    case '主菜':
+      return itemFood.some((data) => data.includes('海鮮') || data.includes('雞肉') || data.includes('披薩'));
+    case '甜點':
+      return itemFood.some((data) => data.includes('甜點'));
+    default:
+      return false;
+  }
+};
+
+// 顯示選擇酒品 modal
+const handleSelectProduct = (data) => {
+  let getSelectProducts = [];
+  let isBubble = false;
+
+  // 過濾產品
+  if (selectCondition.value[0] === '搭配餐酒') {
+    const [, food, bubble] = selectCondition.value;
+    isBubble = bubble === '氣泡';
+    getSelectProducts = originalProducts.value.filter((item) => (isBubble ? item.wineStyle.includes('氣泡') : item.wineStyle === data.name) && selectProductByFood(item, food));
+  } else {
+    const [, taste, isFull, bubble] = selectCondition.value;
+    isBubble = bubble === '氣泡';
+    getSelectProducts = originalProducts.value.filter((item) => (isBubble ? item.wineStyle.includes('氣泡') : item.wineStyle === data.name) && selectConditionFunc(item, taste, isFull));
+  }
+
+  if (getSelectProducts.length > 0) {
+    isMatchCondition.value = true;
+    selectProducts.value = getSelectProducts;
+  } else {
+    // console.log('沒有匹配產品');
+    // 在沒有匹配產品時的預設處理
+    isMatchCondition.value = false;
+    selectProducts.value = originalProducts.value.filter(item => item.wineStyle === data.name && !!item.is_hot).slice(0, 6);
+  }
+
+  // console.log('selectProducts', selectProducts.value);
+  selectProductModal.value.openModal();
+};
+
+const handleCurrentSelect = () => {
+  if (currentSelect.value === -1) {
+    currentSelect.value = 0;
+    selectCondition.value.length = 0;
+    swiperSelectModule.value.slideReset();
+    swiperSelectModule.value.slideTo(0);
+  }
+};
+
+// computed
+const getSelectProductData = computed(() => {
+  return selectWineTastingData.filter(item => item.type.includes(selectType.value));
+});
+
+onMounted(() => {
+  getProductList();
+});
 </script>
 
 <style lang="scss" scoped>
+img:hover {
+  transform: translateY(-2px);
+}
+
+.selection-container {
+  margin-bottom: 0;
+}
+
+.title {
+  h5 {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: 0.05em;
+    text-align: left;
+    margin: 0;
+  }
+
+  img {
+    margin-bottom: 1px;
+  }
+
+  .btn-next {
+    height: 37px;
+    padding: 8px 16px 8px 16px;
+    background: #4D403C1A;
+    border-radius: 100px;
+    border: #4D403C1A;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: 0.03em;
+    text-align: center;
+    color: #4D403C4D;
+
+  }
+
+  .homeswiper-pagination {
+    width: 60px;
+  }
+}
+
+.hot-container {
+  position: relative;
+
+  .info {
+    width: 100%;
+  }
+
+  .vertical-line {
+    position: absolute;
+    top: 0;
+    right: 0%;
+  }
+}
+
+.select-container {
+  margin-top: 32px;
+
+  .info {
+    width: 100%;
+  }
+
+  .card-select {
+    height: 230px;
+    padding: 20px 20px 16px 20px;
+    border-radius: 24px;
+    border: 1px;
+    background: #FFFBF5;
+    box-shadow: 0px 2px 8px 0px #E7D8CA;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #E7D8CA;
+    }
+
+    h5 {
+      font-size: 20px;
+      font-weight: 350;
+      line-height: 30px;
+      letter-spacing: 0.03em;
+      text-align: center;
+      margin: 6px;
+    }
+
+    img {
+      width: 100%;
+      height: 148px;
+      object-fit: contain;
+    }
+  }
+
+  .col-6 {
+    width: 49%;
+  }
+}
+
+.region-card {
+  height: 230px;
+  padding: 32px 24px 24px 24px;
+  border-radius: 24px;
+  border: 1px;
+  background-color: #E7D8CA;
+
+  .info {
+    width: 100%;
+  }
+
+  .region-card_head {
+    img {
+      margin-right: 20px;
+      width: 108px;
+      height: 108px;
+      object-fit: contain;
+    }
+
+    h5 {
+      line-height: 24px;
+      letter-spacing: 0.05em;
+      text-align: left;
+    }
+
+    h6 {
+      color: #4D403CB2;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 21px;
+      letter-spacing: 0.03em;
+      text-align: left;
+    }
+
+    .image-wine {
+      width: 108px;
+    }
+
+    .image-switch {
+      position: absolute;
+      width: 76px;
+      left: 40px;
+    }
+
+    .price-block {
+      margin-top: 20px;
+
+      h5 {
+        margin: 0;
+      }
+
+      .price {
+        font-family: Noto Serif TC;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 24px;
+        letter-spacing: 0.05em;
+        text-align: left;
+      }
+
+      .btn {
+        width: 134px;
+        height: 44px;
+        padding: 5px 15px 5px 15px;
+        border-radius: 100px;
+      }
+    }
+  }
+}
+
+@media (min-width:992px) {
+  .selection-container {
+    margin-bottom: 48px;
+  }
+
+  .select-container {
+    margin-top: 0;
+
+    .info {
+      width: 90%;
+    }
+  }
+
+  .hot-container {
+    .info {
+      width: 90%;
+    }
+
+    .vertical-line {
+      position: absolute;
+      top: 0;
+      right: 0%;
+    }
+  }
+}
 </style>

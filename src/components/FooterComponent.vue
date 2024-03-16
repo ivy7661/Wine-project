@@ -1,22 +1,31 @@
 <template>
-  <footer class="footer pt-5 pb-3">
+  <footer class="footer pb-3">
+    <img src="/images/footerContainer.png" class="w-100 mb-5" />
     <div class="container mb-2">
       <div class="row">
         <div class="col-md-6 flex-column">
           <a href="#">
-            <img src="../../public/images/Logo.png" class="footer-logo" alt="Vin Chateau" />
+            <RouterLink to="/"><img class="footer-logo" src="/images/Logo.png" alt="LOGO"></RouterLink>
           </a>
           <div class="footer-page row mt-4 mb-4">
             <div class="col">
               <ul>
-                <li class="mb-2"><a href="#">會員專區</a></li>
-                <li class="mb-2"><a href="#">知識充電站</a></li>
+                <li class="mb-2">
+                  <RouterLink to="/login" class="footer-link">會員專區</RouterLink>
+                </li>
+                <li class="mb-2">
+                  <RouterLink to="/Knowledge" class="footer-link">知識充電站</RouterLink>
+                </li>
               </ul>
             </div>
             <div class="col">
               <ul>
-                <li class="mb-2"><a href="#">貨品寄送資訊</a></li>
-                <li class="mb-2"><a href="#">隱私權條款</a></li>
+                <li class="mb-2">
+                  <RouterLink to="/shippingInfo" class="footer-link">貨品寄送資訊</RouterLink>
+                </li>
+                <li class="mb-2">
+                  <RouterLink to="/privacyPolicy" class="footer-link">隱私權政策</RouterLink>
+                </li>
               </ul>
             </div>
           </div>
@@ -24,33 +33,65 @@
         <!-- desktop -->
         <div class="d-none d-md-block col-6">
           <ul class="footer-social d-flex justify-content-end">
-            <li><a href="#"><img src="../../public/images/facebook.png" alt="facebook"></a></li>
-            <li><a href="#"><img src="../../public/images/instagram.png" alt="instagram"></a></li>
-            <li><a href="#"><img src="../../public/images/tiktok.png" alt="tiktok"></a></li>
+            <li>
+              <a href="#"><i class="bi bi-facebook"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="bi bi-instagram"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="bi bi-line"></i></a>
+            </li>
           </ul>
           <div class="d-flex flex-column align-items-end">
             <ul class="footer-contact">
-              <li class="pb-2"><img width="24px" class="pe-2" src="../../public/images/footerPhone.png" alt="phone"><a href="#">0912345678</a></li>
-              <li><img width="24px" class="pe-2" src="../../public/images/footerMail.png" alt="email"><a href="#">vinchateau@mail.com</a></li>
+              <li class="pb-2">
+                <img width="24px" class="pe-2" src="/images/footerPhone.png" alt="phone" /><a
+                  href="#"
+                  >0912345678</a
+                >
+              </li>
+              <li>
+                <img width="24px" class="pe-2" src="/images/footerMail.png" alt="email" /><a
+                  href="#"
+                  >vinchateau@mail.com</a
+                >
+              </li>
             </ul>
           </div>
         </div>
         <!-- mobile -->
         <div class="col-12 d-md-none">
-          <div class="d-flex flex-column ">
+          <div class="d-flex flex-column">
             <ul class="footer-contact-mobile mb-4">
-              <li class="pb-2"><img width="24px" class="pe-2" src="../../public/images/footerPhone.png" alt="phone"><a href="#">0912345678</a></li>
-              <li><img width="24px" class="pe-2" src="../../public/images/footerMail.png" alt="email"><a href="#">vinchateau@mail.com</a></li>
+              <li class="pb-2">
+                <img width="24px" class="pe-2" src="/images/footerPhone.png" alt="phone" /><a
+                  href="#"
+                  >0912345678</a
+                >
+              </li>
+              <li>
+                <img width="24px" class="pe-2" src="/images/footerMail.png" alt="email" /><a
+                  href="#"
+                  >vinchateau@mail.com</a
+                >
+              </li>
             </ul>
           </div>
           <ul class="footer-social-mobile d-flex justify-content-center">
-            <li><a href="#"><img src="../../public/images/facebook.png" alt="facebook"></a></li>
-            <li><a href="#"><img src="../../public/images/instagram.png" alt="instagram"></a></li>
-            <li><a href="#"><img src="../../public/images/tiktok.png" alt="tiktok"></a></li>
+            <li>
+              <a href="#"><i class="bi bi-facebook"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="bi bi-instagram"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="bi bi-line"></i></a>
+            </li>
           </ul>
         </div>
       </div>
-      <img width="100%" src="../../public/images/footerContainer.png">
+      <img width="100%" src="/images/footerContainer.png" />
       <p class="text-center copyright">Copyright © 2024 Vin Chateau</p>
     </div>
   </footer>
@@ -68,7 +109,7 @@ export default {
 <style lang="scss" scoped>
 footer {
   background-color: #f5ebd8;
-  color: #4D403C;
+  color: #4d403c;
 }
 ul {
   padding-left: 0;
@@ -80,9 +121,14 @@ li {
   width: 180px;
 }
 .footer-page li a {
-    border-left: 4px solid #752725;
-    padding-left: 20px;
-    font-size: 20px;
+  border-left: 4px solid #752725;
+  padding-left: 20px;
+  font-size: 20px;
+}
+.footer-link {
+  border-left: 4px solid #752725;
+  padding-left: 20px;
+  font-size: 20px;
 }
 .footer-social {
   padding-top: 40px;
@@ -90,10 +136,14 @@ li {
   gap: 20px;
   li {
     padding: 10px;
-    background-color: #FFFBF5;
+    background-color: #fffbf5;
     border-radius: 8px;
-    img{
-      width: 32px;
+    transition: background-color 0.3s ease;
+    &:hover {
+      background-color: #e0e0e0;
+    }
+    i {
+      font-size: 32px;
     }
   }
 }
@@ -101,10 +151,14 @@ li {
   gap: 8px;
   li {
     padding: 10px;
-    background-color: #FFFBF5;
+    background-color: #fffbf5;
     border-radius: 8px;
-    img{
-      width: 32px;
+    transition: background-color 0.3s ease;
+    &:hover {
+      background-color: #e0e0e0;
+    }
+    i {
+      font-size: 32px;
     }
   }
 }

@@ -1,22 +1,45 @@
-@import "bootstrap/scss/functions";
-@import "./helpers/_variables"; // 自定義
-@import "bootstrap/scss/mixins";
-@import "bootstrap/scss/bootstrap";
+@import 'bootstrap/scss/functions';
+@import './helpers/_variables'; // 自定義
+@import 'bootstrap/scss/mixins';
+@import 'bootstrap/scss/bootstrap';
 
-@import "./helpers/base";
+@import './helpers/base';
 
-@import "bootstrap-icons/font/bootstrap-icons.css";
-@import "vue-loading-overlay/dist/css/index.css";
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+@import 'vue-loading-overlay/dist/css/index.css';
+
+body {
+  background-color: $bg-yellow;
+}
+
+#app {
+  background-color: $bg-yellow;
+}
 
 header {
   nav {
     a {
       font-weight: bold;
-      color: #ffffff;
+      color: #b43b3b;
 
       &.router-link-exact-active {
-        color: #42b983;
+        color: #752525;
       }
     }
+  }
+}
+
+.single-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.swiper-pagination.homeswiper-pagination {
+  position: relative;
+
+  .swiper-pagination-bullet {
+    margin: 0 6px !important;
+    background-color: $primary;
   }
 }
