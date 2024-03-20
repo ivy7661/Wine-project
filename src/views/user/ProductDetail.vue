@@ -60,8 +60,8 @@
                 <h5 class="pb-2">風味分類</h5>
                 <div class="row">
                   <div
-                    class="col-2 d-flex flex-column align-items-center"
-                    v-for="(flavor, key) in selectedProduct.flavor"
+                    class="col-3 d-flex flex-column align-items-center"
+                    v-for="(flavor, key) in selectedProduct.flavor.slice(0, 4)"
                     :key="key"
                   >
                     <img
@@ -77,8 +77,8 @@
                 <h5 class="pb-2">餐酒搭配選擇</h5>
                 <div class="row">
                   <div
-                    class="col-4 col-md-2 d-flex flex-column align-items-center"
-                    v-for="(food, key) in selectedProduct.food"
+                    class="col-3 d-flex flex-column align-items-center"
+                    v-for="(food, key) in selectedProduct.food.slice(0, 4)"
                     :key="key"
                   >
                     <img
