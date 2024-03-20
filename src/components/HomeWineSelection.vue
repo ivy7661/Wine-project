@@ -70,7 +70,7 @@
             <template v-for="item in getSelectProductData" :key="item.id">
               <swiper-slide>
                 <div class="container-lg">
-                  <div class="row justify-content-between">
+                  <div class="row justify-content-between gx-1 gx-sm-3">
 
                     <div class="" :class="[item.options.length >= 3 ? 'col-4' : 'col-6 g-0']"
                       v-for="selectItem in item.options" :key="`child-${selectItem.id}`">
@@ -467,7 +467,7 @@ img:hover {
     }
 
     h5 {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 350;
       line-height: 30px;
       letter-spacing: 0.03em;
@@ -569,6 +569,14 @@ img:hover {
   .region-card {
     .image-switch {
       left: 15px !important;
+    }
+  }
+
+  .select-container {
+    .card-select {
+      h5 {
+        font-size: 20px;
+      }
     }
   }
 }
