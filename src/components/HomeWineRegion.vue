@@ -2,7 +2,7 @@
   <div class="region-container bg-accent-brown">
     <div class="container">
       <div class="row justify-content-center flex-lg-row flex-column align-content-center">
-        <div class="col-lg-5 col-md-8">
+        <div class="col-lg-6 col-md-8">
           <div class="d-flex justify-content-between flex-lg-row flex-column align-items-center">
             <h3 class="title text-primary">法國特色產區</h3>
             <div>
@@ -45,7 +45,7 @@
           </div>
         </div>
 
-        <div class="col-lg-5 col-md-8">
+        <div class="col-lg-6 col-md-8">
           <swiper :pagination="{ el: '#region_pagination' }" @swiper="onSwiper" :modules="[Pagination]"
             class="mySwiper">
 
@@ -105,7 +105,7 @@
 
                       <div class="region-taste container-fluid px-0 my-4">
                         <div class="row">
-                          <div class="col-6">
+                          <div class="col-12 col-sm-6">
                             <p class="mb-2">風味分類</p>
                             <div class="d-flex justify-content-between">
                               <div class="icon-container" v-for="(flavor, index) in item.flavor.slice(0, 3)"
@@ -116,7 +116,7 @@
                               </div>
                             </div>
                           </div>
-                          <div class="col-6">
+                          <div class="col-12 col-sm-6">
                             <p class="mb-2">搭配餐酒</p>
                             <div class="d-flex justify-content-between">
                               <div class="icon-container" v-for="(food, index) in item.food.slice(0, 3)" :key="food">

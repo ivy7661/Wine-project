@@ -175,7 +175,7 @@ h2 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 363px;
+    width: 360px;
 
     .card-img-top {
       height: 200px;
@@ -231,7 +231,7 @@ h2 {
     width: 132px;
     height: 65px;
     top: 370px;
-    left: 66%;
+    left: 63%;
   }
 }
 

@@ -82,11 +82,17 @@ export default {
       }
     };
   },
+  mounted() {
+    const getAccount = localStorage.getItem('rememberAccount');
+    if (getAccount) {
+      this.userData.email = getAccount;
+      this.isRemember = true;
+    }
+  },
   methods: {
     ...mapActions(userStore, ['setUser', 'setUserCookie']),
     login() {
       // console.log(this.userData, this.isRemember);
-
       const api = `${import.meta.env.VITE_API_URL}/login`;
 
       this.$http.post(api, this.userData)
@@ -95,6 +101,10 @@ export default {
           if (res.data.accessToken && res.data.user.role === 'user') {
             this.setUserCookie(res.data.user.id, res.data.accessToken);
             this.setUser(res.data.user);
+
+            if (this.isRemember) {
+              localStorage.setItem('rememberAccount', this.userData.email);
+            }
 
             this.$router.replace('/');
           } else {
