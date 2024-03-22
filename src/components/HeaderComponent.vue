@@ -133,10 +133,10 @@ export default {
   }
 
   .header-img {
-    width: 150px;
+    width: 135px;
 
     img {
-      height: 90px;
+      height: 80px;
     }
   }
 
@@ -182,6 +182,17 @@ export default {
 
   img {
     width: 100%;
+  }
+}
+
+@media (min-width:576px) {
+  .header-img {
+    width: 150px;
+
+    img {
+      height: 90px;
+    }
+
   }
 }
 

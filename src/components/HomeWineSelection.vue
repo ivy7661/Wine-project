@@ -17,11 +17,12 @@
                 <div class="region-card card bg-white">
                   <div>
                     <div class="card-body px-0">
-                      <div class="region-card_head d-flex">
+                      <div class="region-card_head d-flex flex-sm-nowrap">
                         <div class="image-wine">
                           <img :src="$filters.imgPath(`/images/wine_images/${item.image}.jpg`)" alt="wine">
+                          <img class="image-switch" src="/images/switch.png" alt="wine">
                         </div>
-                        <img class="image-switch" src="/images/switch.png" alt="wine">
+
                         <div class="info single-ellipsis">
                           <h5 class="text-black mt-2">{{ item.chineseName }}</h5>
                           <h6 class="card-subtitle mt-2 single-ellipsis">{{ item.englishName }}</h6>
@@ -69,7 +70,7 @@
             <template v-for="item in getSelectProductData" :key="item.id">
               <swiper-slide>
                 <div class="container-lg">
-                  <div class="row justify-content-between">
+                  <div class="row justify-content-between gx-1 gx-sm-3">
 
                     <div class="" :class="[item.options.length >= 3 ? 'col-4' : 'col-6 g-0']"
                       v-for="selectItem in item.options" :key="`child-${selectItem.id}`">
@@ -466,7 +467,7 @@ img:hover {
     }
 
     h5 {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 350;
       line-height: 30px;
       letter-spacing: 0.03em;
@@ -487,8 +488,8 @@ img:hover {
 }
 
 .region-card {
-  height: 230px;
-  padding: 32px 24px 24px 24px;
+  height: 100%;
+  padding: 24px;
   border-radius: 24px;
   border: 1px;
   background-color: #E7D8CA;
@@ -498,12 +499,7 @@ img:hover {
   }
 
   .region-card_head {
-    img {
-      margin-right: 20px;
-      width: 108px;
-      height: 108px;
-      object-fit: contain;
-    }
+    flex-wrap: wrap;
 
     h5 {
       line-height: 24px;
@@ -521,13 +517,26 @@ img:hover {
     }
 
     .image-wine {
-      width: 108px;
-    }
+      position: relative;
+      width: 148px;
+      height: 148px;
+      margin: 0 auto;
 
-    .image-switch {
-      position: absolute;
-      width: 76px;
-      left: 40px;
+      img {
+        margin-right: 20px;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .image-switch {
+        position: absolute;
+        // width: 76px;
+        // left: 16px;
+        width: 96px;
+        left: 26px;
+        top: 6px;
+      }
     }
 
     .price-block {
@@ -551,6 +560,22 @@ img:hover {
         height: 44px;
         padding: 5px 15px 5px 15px;
         border-radius: 100px;
+      }
+    }
+  }
+}
+
+@media (min-width:576px) {
+  .region-card {
+    .image-switch {
+      left: 15px !important;
+    }
+  }
+
+  .select-container {
+    .card-select {
+      h5 {
+        font-size: 20px;
       }
     }
   }
