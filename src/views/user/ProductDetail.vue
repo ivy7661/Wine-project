@@ -58,10 +58,10 @@
               </div>
               <div class="pb-3">
                 <h5 class="pb-2">風味分類</h5>
-                <div class="row">
+                <div class="row mx-0">
                   <div
-                    class="col-3 d-flex flex-column align-items-center"
-                    v-for="(flavor, key) in selectedProduct.flavor.slice(0, 4)"
+                    class="col-3 col-lg-2 d-flex flex-column align-items-center"
+                    v-for="(flavor, key) in selectedProduct.flavor"
                     :key="key"
                   >
                     <img
@@ -75,10 +75,10 @@
               </div>
               <div>
                 <h5 class="pb-2">餐酒搭配選擇</h5>
-                <div class="row">
+                <div class="row mx-0">
                   <div
-                    class="col-3 d-flex flex-column align-items-center"
-                    v-for="(food, key) in selectedProduct.food.slice(0, 4)"
+                    class="col-3 col-md-2 d-flex flex-column align-items-center"
+                    v-for="(food, key) in selectedProduct.food"
                     :key="key"
                   >
                     <img
@@ -258,7 +258,7 @@
       <div class="container">
         <h3 class="text-white pb-5">您可能會喜歡的商品</h3>
         <div class="row gy-3">
-          <div class="col-6 col-md-3" v-for="(wine, key) in similarWines" :key="key">
+          <div class="col-12 col-sm-6 col-md-3" v-for="(wine, key) in similarWines" :key="key">
             <div class="card d-flex flex-column h-100 product_card">
               <a href="#" @click.prevent="seeProduct(wine.id)">
                 <img
@@ -319,7 +319,10 @@ export default {
     return {
       title: '產品詳情',
       products: [],
-      selectedProduct: {},
+      selectedProduct: {
+        flavor: [],
+        food: []
+      },
       similarWines: [],
       cart: [],
       favoriteList: [],
