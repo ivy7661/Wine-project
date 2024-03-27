@@ -2,7 +2,7 @@
   <div class="d-flex align-items-center justify-content-center vh-100">
     <div class="text-center">
       <h1 class="display-1 fw-bold">{{ title }}</h1>
-      <a href="/" class="btn btn-primary">回到首頁</a>
+      <RouterLink to="/" class="btn btn-primary">回到首頁</RouterLink>
     </div>
   </div>
 </template>
@@ -19,5 +19,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
