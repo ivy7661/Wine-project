@@ -169,7 +169,6 @@ import 'swiper/css/pagination';
 
 import { storeToRefs } from 'pinia';
 import axios from 'axios';
-// import Swal from 'sweetalert2';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Pagination } from 'swiper/modules';
 

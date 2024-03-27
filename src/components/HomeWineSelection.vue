@@ -101,7 +101,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 
 import axios from 'axios';
-
+import Swal from 'sweetalert2';
 import { storeToRefs } from 'pinia';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Pagination } from 'swiper/modules';
@@ -291,6 +291,12 @@ const onSelectChange = (data) => {
 const addToCart = (product) => {
   if (product && product.id && getUser.value?.id) {
     userData.addToCart(product);
+  } else {
+    Swal.fire({
+      title: '請先登入',
+      text: '',
+      icon: 'warning'
+    });
   }
 };
 
@@ -304,6 +310,12 @@ const addToFavorite = (product) => {
     };
 
     userData.addToFavorite(postData);
+  } else {
+    Swal.fire({
+      title: '請先登入',
+      text: '',
+      icon: 'warning'
+    });
   }
 };
 
@@ -387,8 +399,13 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-img:hover {
-  transform: translateY(-2px);
+img {
+  transition: transform 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
 }
 
 .selection-container {

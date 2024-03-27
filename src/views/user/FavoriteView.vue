@@ -19,10 +19,12 @@
 
       <div class="col-md-3 mt-3" v-for="item in getSortList" :key="item.id">
         <div class="card">
-          <img class=" card-img-top" :src="$filters.imgPath(`/images/wine_images/${item.product.image}.jpg`)"
-            alt="Card image cap">
+          <div @click="goToProductDetail(item.product.id)">
+            <img class=" card-img-top" :src="$filters.imgPath(`/images/wine_images/${item.product.image}.jpg`)"
+              alt="Card image cap">
+          </div>
           <div class="card-body">
-            <div>
+            <div @click="goToProductDetail(item.product.id)">
               <h5 class="card-title text-wrap">{{ item.product.chineseName }}</h5>
               <p class="card-text">{{ item.product.wineStyle }}</p>
             </div>
@@ -42,6 +44,16 @@
           </div>
         </div>
       </div>
+
+      <dvi v-if="!getSortList.length">
+        <div class="card" @click="goToProducts">
+          <div class="card-body">
+            <div class="text-center">
+              <h3 class="card-title text-wrap mt-5 text-primary">您尚未收藏任何商品，請至商品頁面收藏</h3>
+            </div>
+          </div>
+        </div>
+      </dvi>
     </div>
   </div>
 </template>
@@ -150,6 +162,12 @@ export default {
       // }
       // get http://localhost:3001/favorite?userId=1
       // get http://localhost:3001/favorite?userId=1&_expand=product
+    },
+    goToProductDetail(id) {
+      this.$router.push(`/productDetail/${id}`);
+    },
+    goToProducts() {
+      this.$router.push('/products');
     }
   }
 };
@@ -162,6 +180,15 @@ export default {
 }
 
 .card {
+  cursor: pointer;
+
+  transition: transform 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
   img {
     height: 470px;
     object-fit: contain;

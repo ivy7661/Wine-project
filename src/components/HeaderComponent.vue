@@ -89,7 +89,7 @@ export default {
 };
 </script>
 
-<style lang="scss" type="text/sass" scoped>
+<style lang="scss" scoped>
 .header-adv {
   width: 100%;
   padding: 16px 0 16px 0;

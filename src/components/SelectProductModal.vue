@@ -108,6 +108,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.card {
+  cursor: pointer;
+
+  transition: transform 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+}
+
 .alert-title {
   letter-spacing: 1px;
 }
