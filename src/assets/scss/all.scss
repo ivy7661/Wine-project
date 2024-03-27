@@ -8,12 +8,28 @@
 @import 'bootstrap-icons/font/bootstrap-icons.css';
 @import 'vue-loading-overlay/dist/css/index.css';
 
+html,
+body {
+  height: 100%;
+}
+
 body {
   background-color: $bg-yellow;
 }
 
 #app {
+  min-height: 100%;
   background-color: $bg-yellow;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-container {
+  flex: 1 0 auto;
+}
+
+.footer {
+  flex-shrink: 0;
 }
 
 header {
