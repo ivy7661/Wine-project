@@ -10,14 +10,14 @@
             <VeeField id="email" type="email" name="帳號" class="form-control" :class="{ 'is-invalid': errors['帳號'] }"
               placeholder="請輸入 Email" rules="email|required" autofocus v-model="userData.email" />
             <label for="email">帳號</label>
-            <ErrorMessage name="帳號" class="invalid-feedback"></ErrorMessage>
+            <ErrorMessage name="帳號" class="invalid-feedback" />
           </div>
           <div class="form-floating">
             <VeeField id="password" name="密碼" type="password" class="form-control"
               :class="{ 'is-invalid': errors['密碼'] }" placeholder="請輸入密碼" autocomplete="false" :rules="isPasswordRule"
               v-model="userData.password" />
             <label for="password">密碼</label>
-            <ErrorMessage name="密碼" class="invalid-feedback"></ErrorMessage>
+            <ErrorMessage name="密碼" class="invalid-feedback" />
           </div>
 
           <button class="btn btn-lg btn-primary w-100 mt-3" type="submit">

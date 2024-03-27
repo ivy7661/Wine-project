@@ -40,7 +40,6 @@ export default {
 
       this.$http.get(api)
         .then((res) => {
-          // console.log(res.data);
           if (res.data.role !== 'user') {
             this.logout();
           } else {
@@ -53,7 +52,7 @@ export default {
           }
         })
         .catch((err) => {
-          console.log(err.response);
+          console.error(err.response);
           this.logout();
         });
     },

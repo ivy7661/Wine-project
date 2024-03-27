@@ -13,32 +13,33 @@
             <VeeField id="email" name="帳號" type="email" class="form-control" :class="{ 'is-invalid': errors['帳號'] }"
               placeholder="請輸入 Email" rules="email|required" v-model="form.user.email" autofocus />
             <label for="email">帳號</label>
-            <ErrorMessage name="帳號" class="invalid-feedback"></ErrorMessage>
+            <ErrorMessage name="帳號" class="invalid-feedback" />
           </div>
           <div class="form-floating mb-3">
             <VeeField id="username" name="名稱" type="text" class="form-control" :class="{ 'is-invalid': errors['名稱'] }"
               placeholder="請輸入名稱" rules="required|min:2|max:10" v-model="form.user.username" />
             <label for="username">名稱</label>
-            <ErrorMessage name="名稱" class="invalid-feedback"></ErrorMessage>
+            <ErrorMessage name="名稱" class="invalid-feedback" />
           </div>
           <div class="form-floating mb-3">
             <VeeField id="phone" name="電話" type="text" class="form-control" :class="{ 'is-invalid': errors['電話'] }"
               placeholder="請輸入電話" :rules="isPhoneRule" v-model="form.user.phone" />
             <label for="phone">電話</label>
-            <ErrorMessage name="電話" class="invalid-feedback"></ErrorMessage>
+            <ErrorMessage name="電話" class="invalid-feedback" />
           </div>
           <div class="form-floating mb-3">
-            <VeeField id="password" name="密碼" type="password" class="form-control" :class="{ 'is-invalid': errors['密碼'] }"
-              placeholder="請輸入密碼" autocomplete="false" :rules="isPasswordRule" v-model="form.user.password" />
+            <VeeField id="password" name="密碼" type="password" class="form-control"
+              :class="{ 'is-invalid': errors['密碼'] }" placeholder="請輸入密碼" autocomplete="false" :rules="isPasswordRule"
+              v-model="form.user.password" />
             <label for="password">密碼</label>
-            <ErrorMessage name="密碼" class="invalid-feedback"></ErrorMessage>
+            <ErrorMessage name="密碼" class="invalid-feedback" />
           </div>
           <div class="form-floating mb-3">
             <VeeField id="checkPwd" name="確認密碼" type="password" class="form-control"
-              :class="{ 'is-invalid': errors['確認密碼'] }" placeholder="Password" autocomplete="false" :rules="checkPWDRule"
-              v-model="form.user.checkPwd" />
+              :class="{ 'is-invalid': errors['確認密碼'] }" placeholder="Password" autocomplete="false"
+              :rules="checkPWDRule" v-model="form.user.checkPwd" />
             <label for="checkPwd">確認密碼</label>
-            <ErrorMessage name="確認密碼" class="invalid-feedback"></ErrorMessage>
+            <ErrorMessage name="確認密碼" class="invalid-feedback" />
           </div>
 
           <button class="btn btn-lg btn-primary w-100 mt-3" type="submit">
@@ -84,7 +85,6 @@ export default {
     ...mapActions(userStore, ['setUser', 'setUserCookie']),
     register() {
       const api = `${import.meta.env.VITE_API_URL}/register1`;
-      // console.log('register: ', this.form.user);
 
       const postData = {
         email: this.form.user.email,
@@ -96,8 +96,6 @@ export default {
 
       this.$http.post(api, postData)
         .then((res) => {
-          // console.log(res.data);
-
           this.setUserCookie(res.data.user.id, res.data.accessToken);
           this.setUser(res.data.user);
 
@@ -110,7 +108,7 @@ export default {
           this.$router.push('/');
         })
         .catch((err) => {
-          console.log(err);
+          console.error(err);
           Swal.fire({
             title: err.response?.data || '註冊失敗',
             text: '',
@@ -131,5 +129,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

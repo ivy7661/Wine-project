@@ -199,11 +199,10 @@ const getFilterWine = computed(() => {
 const getProductList = () => {
   axios.get(`${import.meta.env.VITE_API_URL}/products`)
     .then((res) => {
-      // console.log(res.data);
       products.value = res.data;
     })
     .catch((error) => {
-      console.log(error.response);
+      console.error(error.response);
     });
 };
 
@@ -220,7 +219,6 @@ const addToFavorite = (productId) => {
 };
 
 const addToCart = (product) => {
-  // console.log('addToCart: ', product);
   if (product && product.id && getUser.value.id) {
     userData.addToCart(product);
   }
