@@ -15,7 +15,7 @@
           <option value="2">依價格排序 ⬇</option>
         </select>
       </div>
-      <img src="/images/footerContainer.png" class="w-100 my-5" />
+      <img src="/images/footerContainer.png" class="w-100 my-5" alt="line" />
 
       <div class="col-md-3 mt-3" v-for="item in getSortList" :key="item.id">
         <div class="card">

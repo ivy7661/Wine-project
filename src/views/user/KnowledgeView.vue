@@ -10,7 +10,7 @@
           <li class="col-12" v-for="(variety, index) in redGrapeVarieties" :key="`variety-${index}`">
             <div class="row">
               <div :class="{ 'col-md-4 order-md-last': index % 2 === 0, 'col-md-4': index % 2 !== 0 }">
-                <img :src="$filters.imgPath(variety.image)" class="img-fluid mb-4 rounded-3" alt="variety.name">
+                <img :src="$filters.imgPath(variety.image)" class="img-fluid mb-4 rounded-3" alt="variety">
               </div>
               <div :class="{ 'col-md-8 order-md-first': index % 2 === 0, 'col-md-8': index % 2 !== 0 }">
                 <h3>{{ variety.name }}</h3>
@@ -40,7 +40,7 @@
               <div class="card-body" v-html="opener.description"></div>
             </div>
             <div :class="{ 'col-md-4 order-md-last': index % 2 === 0, 'col-md-4': index % 2 !== 0 }">
-              <img :src="$filters.imgPath(opener.image)" class="w-100 mb-5">
+              <img :src="$filters.imgPath(opener.image)" class="w-100 mb-5" alt="info">
             </div>
           </div>
         </div>
@@ -63,7 +63,7 @@
           <div class="card-body" v-html="technique.description"></div>
         </div>
         <div :class="{ 'col-md-4 order-md-last': index % 2 === 0, 'col-md-4': index % 2 !== 0 }">
-          <img :src="$filters.imgPath(technique.image)" class="w-100 mb-5">
+          <img :src="$filters.imgPath(technique.image)" class="w-100 mb-5" alt="info">
         </div>
       </div>
     </div>
