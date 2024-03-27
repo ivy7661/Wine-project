@@ -1,7 +1,9 @@
 <template>
-  <HeaderComponent :userId="getUser?.id" :cartLength="getCartLength || 0" />
+  <main class="main-container">
+    <HeaderComponent :userId="getUser?.id" :cartLength="getCartLength || 0" />
 
-  <RouterView />
+    <RouterView />
+  </main>
 
   <FooterComponent />
 </template>
