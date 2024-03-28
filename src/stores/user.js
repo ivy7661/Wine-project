@@ -26,7 +26,6 @@ export default defineStore('userStore', {
   },
   actions: {
     setUser(newUser) {
-      // console.log('newUser', newUser);
       this.user = {
         ...newUser
       };
@@ -53,15 +52,13 @@ export default defineStore('userStore', {
       this.resetUserCarts();
     },
     resetUserFavorites() {
-      // console.log('getUserFavorites: ', this.user);
       if (this.user?.id) {
         axios.get(`${import.meta.env.VITE_API_URL}/favorite?userId=${this.user.id}`)
           .then((res) => {
-            // console.log(res.data);
             this.favorites = res.data.map((data) => data.productId);
           })
           .catch((error) => {
-            console.log(error.response);
+            console.error(error.response);
           });
       }
     },
@@ -69,11 +66,10 @@ export default defineStore('userStore', {
       if (this.user?.id) {
         axios.get(`${import.meta.env.VITE_API_URL}/carts?userId=${this.user.id}`)
           .then((res) => {
-            // console.log(res.data);
             this.carts = res.data;
           })
           .catch((error) => {
-            console.log(error.response);
+            console.error(error.response);
           });
       }
     },
@@ -92,7 +88,6 @@ export default defineStore('userStore', {
           axios
             .patch(`${import.meta.env.VITE_API_URL}/carts/${cartId}`, updateQty)
             .then((res) => {
-              // console.log(res.data);
               this.resetUserCarts();
               Swal.fire({
                 title: '成功加入購物車',
@@ -100,8 +95,7 @@ export default defineStore('userStore', {
                 icon: 'success'
               });
             })
-            .catch((err) => {
-              console.log(err.response);
+            .catch(() => {
               Swal.fire({
                 title: '加入購物車失敗',
                 text: '請稍後再試',
@@ -123,7 +117,6 @@ export default defineStore('userStore', {
 
           axios.post(`${import.meta.env.VITE_API_URL}/carts`, cartData)
             .then((res) => {
-              // console.log(res.data);
               this.resetUserCarts();
               Swal.fire({
                 title: '成功加入購物車',
@@ -132,7 +125,6 @@ export default defineStore('userStore', {
               });
             })
             .catch(() => {
-              // console.log(err);
               Swal.fire({
                 title: '加入購物車失敗',
                 text: '請稍後再試',
@@ -145,7 +137,6 @@ export default defineStore('userStore', {
     addToFavorite(data) {
       axios.post(`${import.meta.env.VITE_API_URL}/favorite`, data)
         .then((res) => {
-          // console.log(res.data);
           this.resetUserFavorites();
 
           Swal.fire({
@@ -154,8 +145,7 @@ export default defineStore('userStore', {
             icon: 'success'
           });
         })
-        .catch((error) => {
-          console.log(error.response);
+        .catch(() => {
           Swal.fire({
             title: '收藏失敗',
             text: '',

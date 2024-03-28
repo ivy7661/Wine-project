@@ -7,15 +7,15 @@
       </div>
       <div class="row">
         <ol class="row list-unstyled">
-          <li class="col-12"  v-for="(variety, index) in redGrapeVarieties" :key="`variety-${index}`">
+          <li class="col-12" v-for="(variety, index) in redGrapeVarieties" :key="`variety-${index}`">
             <div class="row">
               <div :class="{ 'col-md-4 order-md-last': index % 2 === 0, 'col-md-4': index % 2 !== 0 }">
-              <img :src="$filters.imgPath(variety.image)" class="img-fluid mb-4 rounded-3" alt="variety.name">
-            </div>
-            <div :class="{ 'col-md-8 order-md-first': index % 2 === 0, 'col-md-8': index % 2 !== 0 }">
-              <h3>{{ variety.name }}</h3>
-              <p v-html="variety.description"></p>
-            </div>
+                <img :src="$filters.imgPath(variety.image)" class="img-fluid mb-4 rounded-3" alt="variety">
+              </div>
+              <div :class="{ 'col-md-8 order-md-first': index % 2 === 0, 'col-md-8': index % 2 !== 0 }">
+                <h3>{{ variety.name }}</h3>
+                <p v-html="variety.description"></p>
+              </div>
             </div>
           </li>
         </ol>
@@ -29,19 +29,19 @@
       <div v-for="(opener, index) in openers" :key="`opener-${index}`" class="card">
         <div class="card-header" @click="toggleOpener(index)">
           <h5 class="mb-0">
-            <button class="btn btn-link">
+            <button class="btn btn-link" type="button">
               {{ opener.title }}
             </button>
           </h5>
         </div>
         <div v-if="opener.isOpen" class="collapse show">
           <div class="row">
-          <div :class="{ 'col-md-8 order-md-first': index % 2 === 0, 'col-md-8': index % 2 !== 0 }">
-          <div class="card-body" v-html="opener.description"></div>
-          </div>
-          <div :class="{ 'col-md-4 order-md-last': index % 2 === 0, 'col-md-4': index % 2 !== 0 }">
-          <img :src="$filters.imgPath(opener.image)" class="w-100 mb-5">
-          </div>
+            <div :class="{ 'col-md-8 order-md-first': index % 2 === 0, 'col-md-8': index % 2 !== 0 }">
+              <div class="card-body" v-html="opener.description"></div>
+            </div>
+            <div :class="{ 'col-md-4 order-md-last': index % 2 === 0, 'col-md-4': index % 2 !== 0 }">
+              <img :src="$filters.imgPath(opener.image)" class="w-100 mb-5" alt="info">
+            </div>
           </div>
         </div>
       </div>
@@ -60,15 +60,16 @@
       </div>
       <div v-if="technique.isOpen" class="collapse show">
         <div class="row">
-        <div class="card-body" v-html="technique.description"></div>
+          <div class="card-body" v-html="technique.description"></div>
         </div>
         <div :class="{ 'col-md-4 order-md-last': index % 2 === 0, 'col-md-4': index % 2 !== 0 }">
-        <img :src="$filters.imgPath(technique.image)" class="w-100 mb-5">
-      </div>
-      </div>
+          <img :src="$filters.imgPath(technique.image)" class="w-100 mb-5" alt="info">
+        </div>
       </div>
     </div>
+  </div>
 </template>
+
 <script>
 export default {
   name: 'KnowledgeView',
@@ -238,15 +239,17 @@ export default {
 
 <style lang="scss" scoped>
 .rounded-1 {
-  border-radius: 0.25rem; /* 使用 Bootstrap 默认的圆角尺寸 */
+  border-radius: 0.25rem;
+  /* 使用 Bootstrap 默认的圆角尺寸 */
 }
 
 .rounded-2 {
-  border-radius: 0.5rem; /* 圆角尺寸更大一点 */
+  border-radius: 0.5rem;
+  /* 圆角尺寸更大一点 */
 }
 
 .rounded-3 {
-  border-radius: 1rem; /* 圆角尺寸更大一点 */
+  border-radius: 1rem;
+  /* 圆角尺寸更大一点 */
 }
-
 </style>

@@ -297,6 +297,8 @@
 </template>
 
 <script>
+// eslint-disable-next-line no-unused-vars
+import { slice } from 'lodash';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import { mapState, mapActions } from 'pinia';

@@ -1,17 +1,6 @@
 <template>
   <div class="header-adv bg-primary text-center text-white">
     <p class="m-0">全館任選 $3,000 元免運&nbsp;&nbsp;立即下單享受下班小確幸</p>
-
-    <!-- <nav class="nav d-flex">
-      <RouterLink to="/" class="p-2 text-white">首頁</RouterLink>
-      <RouterLink to="/products" class="p-2 text-white">商品列表</RouterLink>
-      <RouterLink to="/productDetail/1234567879" class="p-2 text-white">商品介紹</RouterLink>
-      <RouterLink to="/cart" class="p-2 text-white">購物車</RouterLink>
-      <RouterLink to="/login" class="p-2 text-white">登入頁</RouterLink>
-      <RouterLink to="/register" class="p-2 text-white">註冊頁</RouterLink>
-      <RouterLink to="/error" class="p-2 text-white">404</RouterLink>
-      <RouterLink to="/admin/products" class="p-2 text-white">管理者頁面</RouterLink>
-    </nav> -->
   </div>
 
   <header class="header-main bg-yellow">
@@ -100,7 +89,7 @@ export default {
 };
 </script>
 
-<style lang="scss" type="text/sass" scoped>
+<style lang="scss" scoped>
 .header-adv {
   width: 100%;
   padding: 16px 0 16px 0;
