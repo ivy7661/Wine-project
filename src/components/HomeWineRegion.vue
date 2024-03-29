@@ -130,8 +130,7 @@
                       </div>
 
                       <div class="region-button d-flex justify-content-between">
-                        <button type="button" class="btn btn-black me-0" @click="addToFavorite(item.id)"
-                          :disabled="!getUser?.id">
+                        <button type="button" class="btn btn-black me-0" @click="addToFavorite(item.id)">
                           <template v-if="getFavorites.includes(item.id)">
                             <i class="bi bi-heart-fill me-1"></i>
                             已收藏
@@ -142,8 +141,7 @@
                             加入收藏
                           </template>
                         </button>
-                        <button type="button" class="btn btn-primary me-0" :disabled="!getUser?.id"
-                          @click="addToCart(item)">
+                        <button type="button" class="btn btn-primary me-0" @click="addToCart(item)">
                           <i class="bi bi-cart3 me-1"></i>
                           加入購物車
                         </button>
@@ -167,8 +165,10 @@
 import 'swiper/css';
 import 'swiper/css/pagination';
 
+import { useRouter } from 'vue-router';
 import { storeToRefs } from 'pinia';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Pagination } from 'swiper/modules';
 
@@ -179,6 +179,7 @@ import { getFormattedDate } from '@/utils/helpers';
 import userStore from '@/stores/user';
 
 const userData = userStore();
+const router = useRouter();
 
 // 變數
 const { getUser, getFavorites } = storeToRefs(userData);
@@ -206,20 +207,45 @@ const getProductList = () => {
 };
 
 const addToFavorite = (productId) => {
-  if (productId && getUser.value.id && !getFavorites.value.includes(productId)) {
-    const postData = {
-      userId: getUser.value.id,
-      productId,
-      created_at: getFormattedDate()
-    };
-
-    userData.addToFavorite(postData);
+  if (productId && getUser.value?.id) {
+    if (!getFavorites.value.includes(productId)) {
+      const postData = {
+        userId: getUser.value.id,
+        productId,
+        created_at: getFormattedDate()
+      };
+      userData.addToFavorite(postData);
+    }
+  } else {
+    Swal.fire({
+      title: '請先登入',
+      html: '前往登入頁面',
+      icon: 'question',
+      showCancelButton: true,
+      cancelButtonText: '取消'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        router.push({ name: 'UserLogin' });
+      }
+    });
   }
 };
 
 const addToCart = (product) => {
-  if (product && product.id && getUser.value.id) {
+  if (product && product.id && getUser.value?.id) {
     userData.addToCart(product);
+  } else {
+    Swal.fire({
+      title: '請先登入',
+      html: '前往登入頁面',
+      icon: 'question',
+      showCancelButton: true,
+      cancelButtonText: '取消'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        router.push({ name: 'UserLogin' });
+      }
+    });
   }
 };
 
