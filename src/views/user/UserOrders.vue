@@ -133,8 +133,7 @@ export default {
                 icon: 'success'
               });
             })
-            .catch((error) => {
-              console.error(error.response);
+            .catch(() => {
               Swal.fire({
                 title: '收藏失敗',
                 text: '',

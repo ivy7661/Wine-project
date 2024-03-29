@@ -130,15 +130,13 @@ export default {
       axios
         .patch(url, data)
         .then((res) => {
-          // console.log(res.data);
           Swal.fire({
             title: '商品評論',
             text: '商品已經成功評論。',
             icon: 'success'
           });
         })
-        .catch((error) => {
-          console.error('updateOrder', error);
+        .catch(() => {
           Swal.fire({
             title: '商品評論',
             text: '商品評論失敗',
@@ -147,8 +145,6 @@ export default {
         });
     },
     addComment(product) {
-      // console.log('addComment', product);
-
       const url = `${import.meta.env.VITE_API_URL}/comments`;
       const data = {
         ordersId: this.orderId,
@@ -163,13 +159,11 @@ export default {
       axios
         .post(url, data)
         .then((res) => {
-          // console.log(res.data);
           product.isCommentRate = true;
 
           this.updateOrder();
         })
-        .catch((error) => {
-          console.error('addComment', error);
+        .catch(() => {
           Swal.fire({
             title: '商品評論',
             text: '商品評論失敗!',

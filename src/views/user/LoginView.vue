@@ -92,12 +92,10 @@ export default {
   methods: {
     ...mapActions(userStore, ['setUser', 'setUserCookie']),
     login() {
-      // console.log(this.userData, this.isRemember);
       const api = `${import.meta.env.VITE_API_URL}/login`;
 
       this.$http.post(api, this.userData)
         .then((res) => {
-          // console.log(res.data);
           if (res.data.accessToken && res.data.user.role === 'user') {
             this.setUserCookie(res.data.user.id, res.data.accessToken);
             this.setUser(res.data.user);
@@ -116,7 +114,6 @@ export default {
           }
         })
         .catch((err) => {
-          console.log(err.response);
           Swal.fire({
             title: err.response?.data || '登入失敗',
             text: '',

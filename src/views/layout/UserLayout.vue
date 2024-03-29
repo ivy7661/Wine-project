@@ -53,8 +53,7 @@ export default {
             }
           }
         })
-        .catch((err) => {
-          console.error(err.response);
+        .catch(() => {
           this.logout();
         });
     },
