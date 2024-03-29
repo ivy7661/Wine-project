@@ -43,7 +43,7 @@
         </div>
       </div>
       <VeeForm ref="checkout-form" v-slot="{ errors }" @submit="createOrder">
-        <div class="row gy-4 flex-column-reverse flex-md-row">
+        <div class="row gy-4 flex-column flex-md-row">
           <div class="col-12 col-md-8">
             <h4 class="pb-4">1. 收件者資訊</h4>
             <div class="pb-5">
@@ -145,7 +145,7 @@
                   :rules="isDateFormat"
                   v-model="userData.payment.cardExpiration"
                 ></VeeField>
-                <label for="cardExpiration">有效日期 (MM/YY)</label>
+                <label for="cardExpiration">有效日期 (MMYY)</label>
                 <ErrorMessage name="有效日期" class="invalid-feedback"></ErrorMessage>
               </div>
               <div class="form-floating mb-3">
@@ -216,7 +216,7 @@
                   href="#"
                   type="submit"
                   class="btn bg-primary-low fs-5 text-white py-3"
-                  :disabled="!checkoutAgree"
+                  :class="{'notAllow' : !checkoutAgree}"
                 >
                   確認完成並付款
                 </button>
@@ -225,87 +225,6 @@
           </div>
         </div>
       </VeeForm>
-      <div class="row">
-        <div class="col-12 col-md-8">
-          <!-- 購物車清單外框 -->
-          <div class="cartList d-flex flex-column border border-primary rounded">
-            <div class="bg-primary fs-5 text-white mb-3 p-3 ps-4">訂購清單</div>
-            <div class="p-3">
-              <div
-                class="card shadow d-flex flex-row justify-content-between mb-3 fs-4 pe-3"
-                v-for="(product, key) in cart"
-                :key="key"
-              >
-                <a href="#" @click.prevent="toggleFavorite(product)">
-                  <i
-                    class="bi heart position-absolute top-5 start-5"
-                    :class="{
-                      'bi-heart': !product.isFavorite,
-                      'bi-heart-fill': product.isFavorite
-                    }"
-                  ></i>
-                </a>
-                <a
-                  href="#"
-                  @click.prevent="seeProduct(product.product_id)"
-                  class="wine_image_block"
-                >
-                  <div
-                    class="wine_image"
-                    :style="{
-                      'background-image': `url(${$filters.imgPath('/images/wine_images/' + product.image + '.jpg')})`
-                    }"
-                  ></div>
-                </a>
-                <div class="card-body d-flex flex-column justify-content-around">
-                  <div class="d-flex mb-1 justify-content-between">
-                    <span class="badge bg-danger mb-2" v-if="product.is_hot">熱門推薦</span>
-                    <div class="d-flex gap-1">
-                      <i
-                        class="bi bi-star-fill text-warning"
-                        v-for="star in product.star"
-                        :key="star"
-                      ></i>
-                    </div>
-                  </div>
-                  <a href="#" @click.prevent="seeProduct(product.id)">
-                    <h5 class="card-title text-black fs-4">{{ product.chineseName }}</h5>
-                  </a>
-                  <p>750 ml</p>
-                  <div class="input-group mb-3">
-                    <span class="input-group-text">數量</span>
-                    <select
-                      class="form-select"
-                      v-model="product.qty"
-                      @change="updateCartQty(product)"
-                    >
-                      <option v-for="quantity in quantityOptions" :key="quantity" :value="quantity">
-                        {{ quantity }}
-                      </option>
-                    </select>
-                  </div>
-                  <div class="d-flex">
-                    <p class="text-danger">$ {{ product.price }}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="d-flex justify-content-center mt-3 mb-5">
-              <div class="bg-black text-center line" style="height: 1px"></div>
-            </div>
-            <div class="d-flex flex-column align-items-end pe-3">
-              <p class="text-primary fs-5" v-if="coupon">太棒了！訂單滿3000元，獲得免運卷！</p>
-              <p class="text-primary fs-5" v-if="!coupon">
-                再 {{ 3000 - calculateSubtotal }} 元即可獲得免運唷！
-              </p>
-              <div>
-                <p class="text-end mb-1">(共 {{ cart.length }} 件商品)</p>
-                <p class="fs-4">小計: NT$ {{ calculateSubtotal }} 元</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </template>
@@ -358,7 +277,7 @@ export default {
     WineGlassLoader
   },
   methods: {
-    ...mapActions(userStore, ['setUser', 'cleanUser', 'getUserCookie']),
+    ...mapActions(userStore, ['setUser', 'cleanUser', 'getUserCookie', 'resetUserCarts']),
     doLoading() {
       const loader = this.$loading.show({
         props: { spinner: WineGlassLoader },
@@ -389,7 +308,6 @@ export default {
       axios
         .get(url)
         .then((res) => {
-          // console.log(res.data);
           this.setLoadingTime();
           this.cartAll = res.data;
           this.cart = res.data.filter((item) => item.userId === this.userId);
@@ -407,7 +325,7 @@ export default {
         axios
           .patch(`${url}/${product.id}`, newData)
           .then((res) => {
-            // console.log(res.data);
+            this.resetUserCarts();
           })
           .catch(() => {});
       }
@@ -431,7 +349,7 @@ export default {
               id: product.id
             })
             .then((res) => {
-              // console.log(res.data);
+              this.resetUserCarts();
               this.getCartList();
               Swal.fire({
                 title: '移出購物車',
@@ -440,7 +358,6 @@ export default {
               });
             })
             .catch(() => {
-              // console.log(err);
             });
         } else {
           product.qty = 1;
@@ -450,12 +367,12 @@ export default {
     clearCart() {
       const url = `${VITE_API_URL}/carts`;
       this.cart.forEach((product) => {
-        console.log(product);
         axios
           .delete(`${url}/${product.id}`)
-          .then(() => {})
-          .catch((error) => {
-            console.error('刪除購物車商品失敗:', error);
+          .then(() => {
+            this.resetUserCarts();
+          })
+          .catch(() => {
           });
       });
     },
@@ -469,7 +386,6 @@ export default {
           this.checkFavoriteStatus();
         })
         .catch(() => {
-          // console.log(err);
         });
     },
     checkFavoriteStatus() {
@@ -483,10 +399,6 @@ export default {
       return this.favoriteList.some((favorite) => favorite.productId === productId);
     },
     addToFavorite(id) {
-      if (!this.userId) {
-        alert('請先登入');
-        return;
-      }
       const url = `${VITE_API_URL}/favorite`;
 
       const currentDate = new Date();
@@ -500,7 +412,6 @@ export default {
       axios
         .post(url, favoriteData)
         .then((res) => {
-          // console.log(res.data);
           this.getFavoriteList();
           Swal.fire({
             title: '加入最愛',
@@ -509,7 +420,6 @@ export default {
           });
         })
         .catch(() => {
-          // alert('未正確取得，請稍後再試～');
         });
     },
     toggleFavorite(product) {
@@ -524,15 +434,10 @@ export default {
       }
     },
     removeFromFavorite(id) {
-      if (!this.userId) {
-        alert('請先登入');
-        return;
-      }
       const url = `${VITE_API_URL}/favorite`;
       const existingProductIndex = this.allFavoriteList.findIndex(
         (item) => item.productId === id && item.userId === this.userId
       );
-      // console.log(this.allFavoriteList[existingProductIndex].id);
       const deleteItem = this.allFavoriteList[existingProductIndex].id;
       axios
         .delete(`${url}/${deleteItem}`, {
@@ -540,11 +445,9 @@ export default {
           id: existingProductIndex
         })
         .then((res) => {
-          // console.log(res);
           this.getFavoriteList();
         })
         .catch(() => {
-          // console.log(err);
         });
     },
     applyFreeShippingCoupon() {
@@ -570,7 +473,7 @@ export default {
       return /^\d{16}$/.test(value) ? true : '需要正確的信用卡號';
     },
     isDateFormat(value) {
-      return /^\d{2}\/\d{2}$/.test(value) ? true : '需要正確的日期格式 MM/YY';
+      return /^\d{2}\d{2}$/.test(value) ? true : '需要正確的日期格式 MMYY';
     },
     createOrder() {
       const url = `${VITE_API_URL}/orders`;
@@ -662,6 +565,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.notAllow {
+  cursor: not-allowed;
+}
 .progress {
   height: 48px;
 }
