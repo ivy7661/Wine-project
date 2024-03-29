@@ -44,8 +44,6 @@
         </tbody>
       </table>
     </div>
-    <!-- pagination -->
-    <!-- <Pagination-Component :pages="pages" :get-data="getData"></Pagination-Component> -->
   </div>
   <!-- Modal -->
   <Product-Modal
@@ -63,6 +61,7 @@ import axios from 'axios';
 import ProductModal from '../../components/admin/ProductModal.vue';
 import DelModal from '../../components/admin/DelModal.vue';
 import headerLine from '@/assets/icons/svg/header_line.svg';
+import Alert from '@/utils/swal.js';
 
 const { VITE_API_URL } = import.meta.env;
 
@@ -103,12 +102,10 @@ export default {
       axios
         .get(url)
         .then((res) => {
-          console.log(res.data);
           this.products = res.data;
-          // this.pages = response.data.pagination;
         })
         .catch(() => {
-          alert('取得產品資訊失敗');
+          Alert.toastTop('error', '取得產品資訊失敗');
         });
     },
 
@@ -160,7 +157,6 @@ export default {
         this.$refs.pModal.openModal();
       } else if (status === 'edit') {
         this.tempProduct = { ...item };
-        // this.tempProduct.imagesUrl = [];
         this.isNew = false;
         this.$refs.pModal.openModal();
       } else if (status === 'delete') {
@@ -175,12 +171,13 @@ export default {
       axios
         .delete(url)
         .then((res) => {
-          alert('刪除成功');
+          Alert.toastTop('success', '刪除成功');
+
           this.$refs.delModal.closeDelModal();
           this.getData();
         })
         .catch(() => {
-          alert('刪除失敗');
+          Alert.toastTop('error', '刪除失敗');
         });
     },
     createImages() {
