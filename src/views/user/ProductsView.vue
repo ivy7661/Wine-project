@@ -63,11 +63,11 @@
       <img src="/images/footerContainer.png" class="w-100 mb-5" />
       <div class="productList pb-5 align-items-stretch">
         <div class="row mb-3 gy-3">
-          <div class="col-12 col-md-6 col-lg-4" v-for="(product, key) in sortedProducts" :key="key">
-            <div class="card h-100 p-2 product_card">
+          <a class="col-12 col-md-6 col-lg-4" v-for="(product, key) in sortedProducts" :key="key"  @click.prevent="seeProduct(product.id)">
+            <a href="#" class="card h-100 py-2 product_card radius-24">
               <div class="row h-100">
                 <div class="col-4">
-                  <a href="#" @click.prevent="toggleFavorite(product)">
+                  <a href="#" @click.prevent.stop="toggleFavorite(product)">
                     <i
                       class="bi heart position-absolute top-5 start-5"
                       :class="{
@@ -76,7 +76,7 @@
                       }"
                     ></i>
                   </a>
-                  <a href="#" @click.prevent="seeProduct(product.id)">
+                  <a href="#">
                     <img
                       :src="$filters.imgPath(`/images/wine_images/${product.image}.jpg`)"
                       class="card-img-top h-100"
@@ -98,20 +98,35 @@
                         </div>
                       </div>
                       <div>
-                        <a href="#" class="text-black" @click.prevent="seeProduct(product.id)">
+                        <a href="#" class="text-black">
                           <h5 class="card-title flex-fill">{{ product.chineseName }}</h5>
                         </a>
-                        <p class="card-text text-danger fw-bold">$ {{ product.price }}</p>
+                        <p class="card-text text-primary fw-bold">$ {{ product.price }}</p>
                       </div>
                     </div>
-                    <a href="#" class="btn btn-primary w-100" @click.prevent="addToCart(product)"
+                    <div class="input-group mb-3" @click.prevent.stop>
+                      <span class="input-group-text">數量</span>
+                      <select
+                        class="form-select"
+                        v-model="product.qty"
+                      >
+                        <option
+                          v-for="quantity in quantityOptions"
+                          :key="quantity"
+                          :value="quantity"
+                        >
+                          {{ quantity }}
+                        </option>
+                      </select>
+                    </div>
+                    <a href="#" class="btn btn-primary w-100 radius-24" @click.prevent.stop="addToCart(product)"
                       >加入購物車</a
                     >
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
+            </a>
+          </a>
         </div>
       </div>
     </div>
@@ -145,6 +160,7 @@ export default {
       searchKeyword: '',
       favoriteList: [],
       allFavoriteList: [],
+      quantityOptions: [1, 2, 3, 4],
       userId: '',
       isLoading: false,
       fullPage: true
@@ -155,7 +171,7 @@ export default {
     WineGlassLoader
   },
   methods: {
-    ...mapActions(userStore, ['setUser', 'cleanUser', 'getUserCookie']),
+    ...mapActions(userStore, ['setUser', 'cleanUser', 'getUserCookie', 'resetUserCarts']),
     doLoading() {
       const loader = this.$loading.show(
         {
@@ -189,13 +205,14 @@ export default {
       axios
         .get(url)
         .then((res) => {
-          // console.log(res.data);
           this.setLoadingTime();
-          this.products = res.data;
+          this.products = res.data.map(product => ({
+            ...product,
+            qty: 1
+          }));
           this.selectedRegionProducts = this.products.filter((product) => product.is_hot === 1);
         })
         .catch(() => {
-          alert('未正確取得產品資訊，請稍後再試～');
         });
     },
     getCartList() {
@@ -203,7 +220,6 @@ export default {
       axios
         .get(url)
         .then((res) => {
-          // console.log(res.data);
           this.cart = res.data.filter((item) => item.userId === this.userId);
         })
         .catch(() => {});
@@ -213,7 +229,6 @@ export default {
       axios
         .get(url)
         .then((res) => {
-          // console.log(res.data);
           this.productsContent = res.data;
         })
         .catch(() => {});
@@ -228,7 +243,15 @@ export default {
     },
     addToCart(product) {
       if (!this.userId) {
-        alert('請先登入');
+        Swal.fire({
+          title: '請先登入',
+          html: '前往登入頁面',
+          icon: 'question',
+          showCancelButton: true,
+          cancelButtonText: '取消'
+        }).then(() => {
+          this.goLogin();
+        });
         return;
       }
       const url = `${VITE_API_URL}/carts`;
@@ -246,13 +269,13 @@ export default {
           price: product.price,
           is_hot: product.is_hot,
           star: product.star,
-          qty: 1,
+          qty: product.qty,
           userId: this.userId
         };
         axios
           .post(url, newCartItem)
           .then((res) => {
-            // console.log(res.data);
+            this.resetUserCarts();
             Swal.fire({
               title: '成功加入購物車',
               text: '商品已經成功加入購物車',
@@ -260,7 +283,6 @@ export default {
             });
           })
           .catch(() => {
-            // console.log(err);
             Swal.fire({
               title: '加入購物車失敗',
               text: '請稍後再試',
@@ -272,14 +294,14 @@ export default {
         // 購物車的 id
         const cartId = this.cart[existingProductIndex].id;
         // 更新數量
-        this.cart[existingProductIndex].qty += 1;
+        this.cart[existingProductIndex].qty += product.qty;
         const updateQty = {
           qty: this.cart[existingProductIndex].qty
         };
         axios
           .patch(`${url}/${cartId}`, updateQty)
           .then((res) => {
-            // console.log(res.data);
+            this.resetUserCarts();
             Swal.fire({
               title: '成功加入購物車',
               text: '商品已經成功加入購物車',
@@ -287,7 +309,6 @@ export default {
             });
           })
           .catch(() => {
-            // console.log(err.response);
             Swal.fire({
               title: '加入購物車失敗',
               text: '請稍後再試',
@@ -299,6 +320,9 @@ export default {
     },
     seeProduct(id) {
       this.$router.push({ name: 'ProductDetail', params: { id } });
+    },
+    goLogin() {
+      this.$router.push({ name: 'UserLogin' });
     },
     getFavoriteList() {
       const url = `${VITE_API_URL}/favorite`;
@@ -323,7 +347,15 @@ export default {
     },
     addToFavorite(id) {
       if (!this.userId) {
-        alert('請先登入');
+        Swal.fire({
+          title: '請先登入',
+          html: '前往登入頁面',
+          icon: 'question',
+          showCancelButton: true,
+          cancelButtonText: '取消'
+        }).then(() => {
+          this.goLogin();
+        });
         return;
       }
       const url = `${VITE_API_URL}/favorite`;
@@ -339,7 +371,6 @@ export default {
       axios
         .post(url, favoriteData)
         .then((res) => {
-          // console.log(res.data);
           this.getFavoriteList();
           Swal.fire({
             title: '加入最愛',
@@ -348,7 +379,6 @@ export default {
           });
         })
         .catch(() => {
-          // alert('未正確取得，請稍後再試～');
         });
     },
     toggleFavorite(product) {
@@ -364,14 +394,21 @@ export default {
     },
     removeFromFavorite(id) {
       if (!this.userId) {
-        alert('請先登入');
+        Swal.fire({
+          title: '請先登入',
+          html: '前往登入頁面',
+          icon: 'question',
+          showCancelButton: true,
+          cancelButtonText: '取消'
+        }).then(() => {
+          this.goLogin();
+        });
         return;
       }
       const url = `${VITE_API_URL}/favorite`;
       const existingProductIndex = this.allFavoriteList.findIndex(
         (item) => item.productId === id && item.userId === this.userId
       );
-      // console.log(this.allFavoriteList[existingProductIndex].id);
       const deleteItem = this.allFavoriteList[existingProductIndex].id;
       axios
         .delete(`${url}/${deleteItem}`, {
@@ -379,11 +416,9 @@ export default {
           id: existingProductIndex
         })
         .then((res) => {
-          // console.log(res);
           this.getFavoriteList();
         })
         .catch(() => {
-          // console.log(err);
         });
     }
   },
@@ -431,6 +466,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.radius-24{
+  border-radius: 24px;
+}
 .bg-products {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url('/images/bg_wine_shelf.jpg');
@@ -493,7 +531,7 @@ export default {
     transform 0.2s,
     box-shadow 0.2s;
   &:hover {
-    transform: translateY(-8px);
+    transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 }
