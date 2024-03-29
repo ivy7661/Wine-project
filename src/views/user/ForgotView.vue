@@ -117,8 +117,7 @@ const checkUserInfo = () => {
         });
       }
     })
-    .catch((err) => {
-      console.error(err.response);
+    .catch(() => {
       Swal.fire({
         title: '查無此會員',
         text: '',
@@ -156,8 +155,7 @@ const resetUser = () => {
       });
       router.push('/login');
     })
-    .catch((err) => {
-      console.error(err.response);
+    .catch(() => {
       Swal.fire({
         title: '密碼重置失敗',
         text: '',
@@ -210,7 +208,6 @@ const checkPWDRule = (value) => {
 //         phone: this.userData.phone
 //       })
 //         .then((res) => {
-//           // console.log(res.data);
 //           if (res.data.id) {
 //             // 重置密碼
 //             this.userData.id = res.data.id;
@@ -224,7 +221,6 @@ const checkPWDRule = (value) => {
 //           }
 //         })
 //         .catch((err) => {
-//           console.log(err.response);
 //           Swal.fire({
 //             title: '查無此會員',
 //             text: '',
@@ -253,7 +249,6 @@ const checkPWDRule = (value) => {
 
 //       this.$http.patch(api, { password: this.userData.password })
 //         .then((res) => {
-//           // console.log(res.data);
 //           Swal.fire({
 //             title: '密碼已重置',
 //             text: '',
@@ -262,7 +257,6 @@ const checkPWDRule = (value) => {
 //           this.$router.push('/login');
 //         })
 //         .catch((err) => {
-//           console.log(err.response);
 //           Swal.fire({
 //             title: '密碼重置失敗',
 //             text: '',
