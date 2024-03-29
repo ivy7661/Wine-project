@@ -108,7 +108,6 @@ export default {
           this.$router.push('/');
         })
         .catch((err) => {
-          console.error(err);
           Swal.fire({
             title: err.response?.data || '註冊失敗',
             text: '',

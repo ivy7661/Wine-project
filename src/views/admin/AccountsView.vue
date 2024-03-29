@@ -42,6 +42,7 @@
 import axios from 'axios';
 import DelAccountModal from '../../components/admin/DelAccountModal.vue';
 import headerLine from '@/assets/icons/svg/header_line.svg';
+import Alert from '@/utils/swal.js';
 
 const { VITE_API_URL } = import.meta.env;
 
@@ -67,11 +68,10 @@ export default {
       axios
         .get(url)
         .then((res) => {
-          console.log(res.data);
           this.users = res.data;
         })
         .catch(() => {
-          alert('取得帳戶資訊失敗');
+          Alert.toastTop('error', '取得帳戶資訊失敗');
         });
     },
     delUser() {
@@ -80,12 +80,12 @@ export default {
       axios
         .delete(url)
         .then((res) => {
-          alert('刪除成功');
+          Alert.toastTop('success', '刪除成功');
           this.$refs.delModal.closeDelModal();
           this.getAccounts();
         })
         .catch(() => {
-          alert('刪除失敗');
+          Alert.toastTop('error', '刪除失敗');
         });
     },
     openModal(user) {
