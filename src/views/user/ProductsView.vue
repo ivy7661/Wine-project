@@ -249,8 +249,10 @@ export default {
           icon: 'question',
           showCancelButton: true,
           cancelButtonText: '取消'
-        }).then(() => {
-          this.goLogin();
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.goLogin();
+          }
         });
         return;
       }
@@ -353,8 +355,10 @@ export default {
           icon: 'question',
           showCancelButton: true,
           cancelButtonText: '取消'
-        }).then(() => {
-          this.goLogin();
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.goLogin();
+          }
         });
         return;
       }
@@ -400,8 +404,10 @@ export default {
           icon: 'question',
           showCancelButton: true,
           cancelButtonText: '取消'
-        }).then(() => {
-          this.goLogin();
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.goLogin();
+          }
         });
         return;
       }
