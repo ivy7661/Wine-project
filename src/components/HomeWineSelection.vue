@@ -32,8 +32,7 @@
 
                           <div class="price-block d-flex justify-content-between align-items-center">
                             <h5 class="price text-primary">NT${{ $filters.currency(item.price) }}</h5>
-                            <button type="button" class="btn btn-primary me-0" :disabled="!getUser?.id"
-                              @click="addToCart(item)">
+                            <button type="button" class="btn btn-primary me-0" @click="addToCart(item)">
                               <span>立即購買</span> <i class="bi bi-arrow-right"></i>
                             </button>
                           </div>
@@ -100,8 +99,9 @@
 import 'swiper/css';
 import 'swiper/css/pagination';
 
+import { useRouter } from 'vue-router';
 import axios from 'axios';
-
+import Swal from 'sweetalert2';
 import { storeToRefs } from 'pinia';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Pagination } from 'swiper/modules';
@@ -115,6 +115,7 @@ import { getFormattedDate } from '@/utils/helpers';
 import userStore from '@/stores/user';
 
 const userData = userStore();
+const router = useRouter();
 
 // 變數
 const emit = defineEmits(['isReady']);
@@ -247,13 +248,12 @@ const getNumber = (str) => {
 const getProductList = () => {
   axios.get(`${import.meta.env.VITE_API_URL}/products`)
     .then((res) => {
-      // console.log(res.data);
       originalProducts.value = res.data;
       hotProducts.value = res.data.filter(item => !!item.is_hot && item.star > 3).slice(0, 3);
       emit('isReady');
     })
     .catch((error) => {
-      console.log(error.response);
+      console.error(error.response);
     });
 };
 
@@ -292,6 +292,19 @@ const onSelectChange = (data) => {
 const addToCart = (product) => {
   if (product && product.id && getUser.value?.id) {
     userData.addToCart(product);
+  } else {
+    Swal.fire({
+      title: '請先登入',
+      html: '前往登入頁面',
+      icon: 'question',
+      showCancelButton: true,
+      cancelButtonText: '取消'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        selectProductModal.value.closeModal();
+        router.push({ name: 'UserLogin' });
+      }
+    });
   }
 };
 
@@ -305,6 +318,19 @@ const addToFavorite = (product) => {
     };
 
     userData.addToFavorite(postData);
+  } else {
+    Swal.fire({
+      title: '請先登入',
+      html: '前往登入頁面',
+      icon: 'question',
+      showCancelButton: true,
+      cancelButtonText: '取消'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        selectProductModal.value.closeModal();
+        router.push({ name: 'UserLogin' });
+      }
+    });
   }
 };
 
@@ -360,13 +386,11 @@ const handleSelectProduct = (data) => {
     isMatchCondition.value = true;
     selectProducts.value = getSelectProducts;
   } else {
-    // console.log('沒有匹配產品');
     // 在沒有匹配產品時的預設處理
     isMatchCondition.value = false;
     selectProducts.value = originalProducts.value.filter(item => item.wineStyle === data.name && !!item.is_hot).slice(0, 6);
   }
 
-  // console.log('selectProducts', selectProducts.value);
   selectProductModal.value.openModal();
 };
 
@@ -390,8 +414,13 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-img:hover {
-  transform: translateY(-2px);
+img {
+  transition: transform 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
 }
 
 .selection-container {

@@ -54,7 +54,7 @@
               <h3 class="card-title mb-2">{{ selectedProduct.chineseName }}</h3>
               <div class="d-flex justify-content-between mb-3">
                 <p class="card-text">750ml</p>
-                <p class="card-text fs-4 text-danger fw-bold">$ {{ selectedProduct.price }}</p>
+                <p class="card-text fs-4 text-primary fw-bold">$ {{ selectedProduct.price }}</p>
               </div>
               <div class="pb-3">
                 <h5 class="pb-2">風味分類</h5>
@@ -92,7 +92,7 @@
               </div>
               <a
                 href="#"
-                class="btn btn-primary w-100 py-2 mt-3"
+                class="btn btn-primary w-100 py-2 mt-3 radius-24"
                 @click.prevent="addToCart(selectedProduct)"
                 >加入購物車</a
               >
@@ -259,7 +259,7 @@
         <h3 class="text-white pb-5">您可能會喜歡的商品</h3>
         <div class="row gy-3">
           <div class="col-12 col-sm-6 col-md-3" v-for="(wine, key) in similarWines" :key="key">
-            <div class="card d-flex flex-column h-100 product_card">
+            <div class="card d-flex flex-column h-100 product_card radius-24">
               <a href="#" @click.prevent="seeProduct(wine.id)">
                 <img
                   :src="$filters.imgPath(`/images/wine_images/${wine.image}.jpg`)"
@@ -282,9 +282,9 @@
                   <a href="#" @click.prevent="seeProduct(wine.id)">
                     <h5 class="card-title text-black">{{ wine.chineseName }}</h5>
                   </a>
-                  <p class="card-text text-danger fw-bold">$ {{ wine.price }}</p>
+                  <p class="card-text text-primary fw-bold">$ {{ wine.price }}</p>
                 </div>
-                <a href="#" class="btn btn-primary w-100" @click.prevent="addToCart(wine)"
+                <a href="#" class="btn btn-primary w-100 radius-24" @click.prevent="addToCart(wine)"
                   >加入購物車</a
                 >
               </div>
@@ -333,7 +333,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(userStore, ['setUser', 'cleanUser', 'getUserCookie']),
+    ...mapActions(userStore, ['setUser', 'cleanUser', 'getUserCookie', 'resetUserCarts']),
     doLoading() {
       const loader = this.$loading.show({
         props: { spinner: WineGlassLoader },
@@ -364,11 +364,9 @@ export default {
       axios
         .get(url)
         .then((res) => {
-          // console.log(res.data);
           this.setLoadingTime();
           this.products = res.data;
           this.selectedProduct = this.products.find((item) => item.id === this.$route.params.id);
-          // console.log(this.selectedProduct);
           this.findSimilarWinesByGrape(this.selectedProduct, this.products);
         })
         .catch(() => {});
@@ -378,14 +376,21 @@ export default {
       axios
         .get(url)
         .then((res) => {
-          // console.log(res.data);
           this.cart = res.data.filter((item) => item.userId === this.userId);
         })
         .catch(() => {});
     },
     addToCart(product) {
       if (!this.userId) {
-        alert('請先登入');
+        Swal.fire({
+          title: '請先登入',
+          html: '前往登入頁面',
+          icon: 'question',
+          showCancelButton: true,
+          cancelButtonText: '取消'
+        }).then(() => {
+          this.goLogin();
+        });
         return;
       }
       const url = `${VITE_API_URL}/carts`;
@@ -409,7 +414,7 @@ export default {
         axios
           .post(url, newCartItem)
           .then((res) => {
-            // console.log(res.data);
+            this.resetUserCarts();
             Swal.fire({
               title: '成功加入購物車',
               text: '商品已經成功加入購物車',
@@ -417,7 +422,6 @@ export default {
             });
           })
           .catch(() => {
-            // console.log(err);
             Swal.fire({
               title: '加入購物車失敗',
               text: '請稍後再試',
@@ -436,7 +440,7 @@ export default {
         axios
           .patch(`${url}/${cartId}`, updateQty)
           .then((res) => {
-            // console.log(res.data);
+            this.resetUserCarts();
             Swal.fire({
               title: '成功加入購物車',
               text: '商品已經成功加入購物車',
@@ -471,7 +475,15 @@ export default {
     },
     addToFavorite(id) {
       if (!this.userId) {
-        alert('請先登入');
+        Swal.fire({
+          title: '請先登入',
+          html: '前往登入頁面',
+          icon: 'question',
+          showCancelButton: true,
+          cancelButtonText: '取消'
+        }).then(() => {
+          this.goLogin();
+        });
         return;
       }
       const url = `${VITE_API_URL}/favorite`;
@@ -487,7 +499,6 @@ export default {
       axios
         .post(url, favoriteData)
         .then((res) => {
-          // console.log(res.data);
           this.getFavoriteList();
           Swal.fire({
             title: '加入最愛',
@@ -510,14 +521,21 @@ export default {
     },
     removeFromFavorite(id) {
       if (!this.userId) {
-        alert('請先登入');
+        Swal.fire({
+          title: '請先登入',
+          html: '前往登入頁面',
+          icon: 'question',
+          showCancelButton: true,
+          cancelButtonText: '取消'
+        }).then(() => {
+          this.goLogin();
+        });
         return;
       }
       const url = `${VITE_API_URL}/favorite`;
       const existingProductIndex = this.allFavoriteList.findIndex(
         (item) => item.productId === id && item.userId === this.userId
       );
-      // console.log(this.allFavoriteList[existingProductIndex].id);
       const deleteItem = this.allFavoriteList[existingProductIndex].id;
       axios
         .delete(`${url}/${deleteItem}`, {
@@ -525,7 +543,6 @@ export default {
           id: existingProductIndex
         })
         .then((res) => {
-          // console.log(res);
           this.getFavoriteList();
           Swal.fire({
             title: '移出最愛',
@@ -538,7 +555,6 @@ export default {
     findSimilarWinesByGrape(selectedProduct, products, numberOfSimilarWines = 4) {
       // 提取目標酒的葡萄品種
       const targetGrapes = selectedProduct.grape;
-      // console.log(this.selectedProduct);
 
       // 遍歷所有酒，找出具有相同或相似葡萄品種的其他酒
       const similarWines = products.filter((wine) => {
@@ -567,7 +583,6 @@ export default {
     ...mapState(userStore, ['getUser'])
   },
   mounted() {
-    // console.log('ProductDetail.vue mounted', this.$route.params.id);
     // this.title = '產品詳情 - ' + this.$route.params.id;
     const { userId } = this.getUserCookie();
     this.userId = userId;
@@ -584,6 +599,9 @@ ul {
 }
 li {
   list-style: none;
+}
+.radius-24{
+  border-radius: 24px;
 }
 .heart {
   font-size: 20px;
@@ -660,7 +678,7 @@ li {
     transform 0.2s,
     box-shadow 0.2s;
   &:hover {
-    transform: translateY(-8px);
+    transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 }

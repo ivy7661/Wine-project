@@ -22,7 +22,7 @@
               autofocus
             />
             <label for="email">帳號</label>
-            <ErrorMessage name="帳號" class="invalid-feedback"></ErrorMessage>
+            <ErrorMessage name="帳號" class="invalid-feedback" />
           </div>
           <div class="form-floating mb-3">
             <VeeField
@@ -36,7 +36,7 @@
               v-model="form.user.username"
             />
             <label for="username">名稱</label>
-            <ErrorMessage name="名稱" class="invalid-feedback"></ErrorMessage>
+            <ErrorMessage name="名稱" class="invalid-feedback" />
           </div>
           <div class="form-floating mb-3">
             <VeeField
@@ -50,9 +50,10 @@
               v-model="form.user.phone"
             />
             <label for="phone">電話</label>
-            <ErrorMessage name="電話" class="invalid-feedback"></ErrorMessage>
+            <ErrorMessage name="電話" class="invalid-feedback" />
           </div>
           <div class="form-floating mb-3">
+<<<<<<< HEAD
             <VeeField
               id="password"
               name="密碼"
@@ -64,10 +65,16 @@
               :rules="isPasswordRule"
               v-model="form.user.password"
             />
+=======
+            <VeeField id="password" name="密碼" type="password" class="form-control"
+              :class="{ 'is-invalid': errors['密碼'] }" placeholder="請輸入密碼" autocomplete="false" :rules="isPasswordRule"
+              v-model="form.user.password" />
+>>>>>>> dev
             <label for="password">密碼</label>
-            <ErrorMessage name="密碼" class="invalid-feedback"></ErrorMessage>
+            <ErrorMessage name="密碼" class="invalid-feedback" />
           </div>
           <div class="form-floating mb-3">
+<<<<<<< HEAD
             <VeeField
               id="checkPwd"
               name="確認密碼"
@@ -79,8 +86,13 @@
               :rules="checkPWDRule"
               v-model="form.user.checkPwd"
             />
+=======
+            <VeeField id="checkPwd" name="確認密碼" type="password" class="form-control"
+              :class="{ 'is-invalid': errors['確認密碼'] }" placeholder="Password" autocomplete="false"
+              :rules="checkPWDRule" v-model="form.user.checkPwd" />
+>>>>>>> dev
             <label for="checkPwd">確認密碼</label>
-            <ErrorMessage name="確認密碼" class="invalid-feedback"></ErrorMessage>
+            <ErrorMessage name="確認密碼" class="invalid-feedback" />
           </div>
 
           <button class="btn btn-lg btn-primary w-100 mt-3" type="submit">註冊</button>
@@ -124,7 +136,6 @@ export default {
     ...mapActions(userStore, ['setUser', 'setUserCookie']),
     register() {
       const api = `${import.meta.env.VITE_API_URL}/register1`;
-      // console.log('register: ', this.form.user);
 
       const postData = {
         email: this.form.user.email,
@@ -137,8 +148,6 @@ export default {
       this.$http
         .post(api, postData)
         .then((res) => {
-          // console.log(res.data);
-
           this.setUserCookie(res.data.user.id, res.data.accessToken);
           this.setUser(res.data.user);
 
@@ -151,7 +160,7 @@ export default {
           this.$router.push('/');
         })
         .catch((err) => {
-          console.log(err);
+          console.error(err);
           Swal.fire({
             title: err.response?.data || '註冊失敗',
             text: '',

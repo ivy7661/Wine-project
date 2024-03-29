@@ -47,70 +47,83 @@
           <!-- 購物車清單外框 -->
           <div class="cartList d-flex flex-column border border-primary rounded">
             <div class="bg-primary fs-5 text-white mb-3 p-3 ps-4">訂購清單</div>
-            <div class="p-3">
-              <div
-                class="card shadow d-flex flex-row justify-content-between mb-3 fs-4 pe-3"
-                v-for="(product, key) in cart"
-                :key="key"
-              >
-                <a href="#" @click.prevent="toggleFavorite(product)">
-                  <i
-                    class="bi heart position-absolute top-5 start-5"
-                    :class="{
-                      'bi-heart': !product.isFavorite,
-                      'bi-heart-fill': product.isFavorite
-                    }"
-                  ></i>
-                </a>
-                <a
-                  href="#"
-                  @click.prevent="seeProduct(product.product_id)"
-                  class="wine_image_block"
-                >
-                  <div
-                    class="wine_image"
-                    :style="{
-                      'background-image': `url(${$filters.imgPath('/images/wine_images/' + product.image + '.jpg')})`
-                    }"
-                  ></div>
-                </a>
-                <div class="card-body d-flex flex-column justify-content-around">
-                  <div class="d-flex mb-1 justify-content-between">
-                    <span class="badge bg-danger mb-2" v-if="product.is_hot">熱門推薦</span>
-                    <div class="d-flex gap-1">
-                      <i
-                        class="bi bi-star-fill text-warning"
-                        v-for="star in product.star"
-                        :key="star"
-                      ></i>
+            <div class="p-3" v-if="cart.length > 0">
+              <a href="#" v-for="(product, key) in cart" :key="key" class="card shadow d-flex flex-row justify-content-between mb-3 fs-4 pe-3 py-1 radius-24"
+                  @click.prevent="seeProduct(product.product_id)">
+                  <a href="#" @click.prevent.stop="toggleFavorite(product)">
+                    <i
+                      class="bi heart position-absolute top-5 start-5"
+                      :class="{
+                        'bi-heart': !product.isFavorite,
+                        'bi-heart-fill': product.isFavorite
+                      }"
+                    ></i>
+                  </a>
+                  <a href="#" class="wine_image_block">
+                    <div
+                      class="wine_image"
+                      :style="{
+                        'background-image': `url(${$filters.imgPath('/images/wine_images/' + product.image + '.jpg')})`
+                      }"
+                    ></div>
+                  </a>
+                  <div class="card-body d-flex flex-column justify-content-around">
+                    <div class="d-flex mb-1 justify-content-between">
+                      <span class="badge bg-danger mb-2" v-if="product.is_hot">熱門推薦</span>
+                      <div class="d-flex gap-1">
+                        <i
+                          class="bi bi-star-fill text-warning"
+                          v-for="star in product.star"
+                          :key="star"
+                        ></i>
+                      </div>
+                    </div>
+                    <a href="#">
+                      <h5 class="card-title text-black fs-4">{{ product.chineseName }}</h5>
+                    </a>
+                    <p>750 ml</p>
+                    <div class="input-group mb-3" @click.prevent.stop>
+                      <span class="input-group-text">數量</span>
+                      <select
+                        class="form-select"
+                        v-model="product.qty"
+                        @change="updateCartQty(product)"
+                      >
+                        <option
+                          v-for="quantity in quantityOptions"
+                          :key="quantity"
+                          :value="quantity"
+                        >
+                          {{ quantity }}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                      <p class="text-primary">$ {{ product.price }}</p>
+                      <a href="#" @click.prevent.stop="deleteCartItem(product)">
+                        <i class="bi bi-trash"></i>
+                      </a>
                     </div>
                   </div>
-                  <a href="#" @click.prevent="seeProduct(product.id)">
-                    <h5 class="card-title text-black fs-4">{{ product.chineseName }}</h5>
-                  </a>
-                  <p>750 ml</p>
-                  <div class="input-group mb-3">
-                    <span class="input-group-text">數量</span>
-                    <select
-                      class="form-select"
-                      v-model="product.qty"
-                      @change="updateCartQty(product)"
-                    >
-                      <option v-for="quantity in quantityOptions" :key="quantity" :value="quantity">
-                        {{ quantity }}
-                      </option>
-                    </select>
-                  </div>
-                  <div class="d-flex">
-                    <p class="text-danger">$ {{ product.price }}</p>
+              </a>
+            </div>
+            <div class="p-3" v-else>
+              <div class="row">
+                <div class="col-12 col-md-4">
+                  <img src="/images/wine hand style.png" alt="shopping-cart" class="img-fluid" />
+                </div>
+                <div class="col-12 col-md-8 d-flex flex-column justify-content-center">
+                  <div>
+                    <p class="fs-5">看來你購物車目前還空空喔 ~~~</p>
+                    <RouterLink to="/products" class="fs-5">立刻前往商品區逛逛！!</RouterLink>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="d-flex justify-content-center mt-3 mb-5">
+            <div class="d-flex justify-content-center mt-3 mb-5" v-if="cart.length > 0">
               <div class="bg-black text-center line" style="height: 1px"></div>
             </div>
-            <div class="d-flex flex-column align-items-end pe-3">
+            <div class="d-flex flex-column align-items-end pe-3" v-if="cart.length > 0">
               <p class="text-primary fs-5" v-if="coupon">太棒了！訂單滿3000元，獲得免運！</p>
               <p class="text-primary fs-5" v-if="!coupon">
                 再 {{ 3000 - calculateSubtotal }} 元即可獲得免運唷！
@@ -151,6 +164,7 @@
               <a
                 href="#"
                 class="btn bg-primary-low text-white fs-5 py-3"
+                :class="{ disabled: !cart.length }"
                 @click.prevent="toCheckoutPage"
                 >前往結帳頁面</a
               >
@@ -178,7 +192,7 @@ export default {
   data() {
     return {
       title: '購物車',
-      quantityOptions: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+      quantityOptions: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
       cartAll: [],
       cart: [],
       favoriteList: [],
@@ -196,24 +210,27 @@ export default {
     WineGlassLoader
   },
   methods: {
-    ...mapActions(userStore, ['setUser', 'cleanUser', 'getUserCookie']),
+    ...mapActions(userStore, ['setUser', 'cleanUser', 'getUserCookie', 'resetUserCarts']),
     doLoading() {
-      const loader = this.$loading.show({
-        props: { spinner: WineGlassLoader },
-        // Pass props by their camelCased names
-        container: this.$refs.loadingContainer,
-        canCancel: true,
-        color: '#000000',
-        loader: 'spinner',
-        width: 64,
-        height: 64,
-        backgroundColor: '#ffffff',
-        opacity: 0.5,
-        zIndex: 999
-      }, {
-        // Pass slots by their names
-        default: h('WineGlassLoader')
-      });
+      const loader = this.$loading.show(
+        {
+          props: { spinner: WineGlassLoader },
+          // Pass props by their camelCased names
+          container: this.$refs.loadingContainer,
+          canCancel: true,
+          color: '#000000',
+          loader: 'spinner',
+          width: 64,
+          height: 64,
+          backgroundColor: '#ffffff',
+          opacity: 0.5,
+          zIndex: 999
+        },
+        {
+          // Pass slots by their names
+          default: h('WineGlassLoader')
+        }
+      );
       loader.hide();
     },
     setLoadingTime() {
@@ -227,7 +244,6 @@ export default {
       axios
         .get(url)
         .then((res) => {
-          // console.log(res.data);
           this.setLoadingTime();
           this.cartAll = res.data;
           this.cart = res.data.filter((item) => item.userId === this.userId);
@@ -245,7 +261,7 @@ export default {
         axios
           .patch(`${url}/${product.id}`, newData)
           .then((res) => {
-            // console.log(res.data);
+            this.resetUserCarts();
           })
           .catch(() => {});
       }
@@ -269,7 +285,7 @@ export default {
               id: product.id
             })
             .then((res) => {
-              // console.log(res.data);
+              this.resetUserCarts();
               this.getCartList();
               Swal.fire({
                 title: '移出購物車',
@@ -277,9 +293,7 @@ export default {
                 icon: 'success'
               });
             })
-            .catch(() => {
-              // console.log(err);
-            });
+            .catch(() => {});
         } else {
           product.qty = 1;
         }
@@ -298,7 +312,6 @@ export default {
           this.checkFavoriteStatus();
         })
         .catch(() => {
-          // console.log(err);
         });
     },
     checkFavoriteStatus() {
@@ -313,7 +326,15 @@ export default {
     },
     addToFavorite(id) {
       if (!this.userId) {
-        alert('請先登入');
+        Swal.fire({
+          title: '請先登入',
+          html: '前往登入頁面',
+          icon: 'question',
+          showCancelButton: true,
+          cancelButtonText: '取消'
+        }).then(() => {
+          this.goLogin();
+        });
         return;
       }
       const url = `${VITE_API_URL}/favorite`;
@@ -329,7 +350,6 @@ export default {
       axios
         .post(url, favoriteData)
         .then((res) => {
-          // console.log(res.data);
           this.getFavoriteList();
           Swal.fire({
             title: '加入最愛',
@@ -338,7 +358,6 @@ export default {
           });
         })
         .catch(() => {
-          // alert('未正確取得，請稍後再試～');
         });
     },
     toggleFavorite(product) {
@@ -354,14 +373,21 @@ export default {
     },
     removeFromFavorite(id) {
       if (!this.userId) {
-        alert('請先登入');
+        Swal.fire({
+          title: '請先登入',
+          html: '前往登入頁面',
+          icon: 'question',
+          showCancelButton: true,
+          cancelButtonText: '取消'
+        }).then(() => {
+          this.goLogin();
+        });
         return;
       }
       const url = `${VITE_API_URL}/favorite`;
       const existingProductIndex = this.allFavoriteList.findIndex(
         (item) => item.productId === id && item.userId === this.userId
       );
-      // console.log(this.allFavoriteList[existingProductIndex].id);
       const deleteItem = this.allFavoriteList[existingProductIndex].id;
       axios
         .delete(`${url}/${deleteItem}`, {
@@ -369,11 +395,9 @@ export default {
           id: existingProductIndex
         })
         .then((res) => {
-          // console.log(res);
           this.getFavoriteList();
         })
         .catch(() => {
-          // console.log(err);
         });
     },
     applyFreeShippingCoupon() {
@@ -432,6 +456,9 @@ export default {
 <style lang="scss" scoped>
 a:hover {
   cursor: pointer;
+}
+.radius-24 {
+  border-radius: 24px;
 }
 .progress {
   height: 48px;
