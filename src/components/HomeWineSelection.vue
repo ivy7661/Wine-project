@@ -32,8 +32,7 @@
 
                           <div class="price-block d-flex justify-content-between align-items-center">
                             <h5 class="price text-primary">NT${{ $filters.currency(item.price) }}</h5>
-                            <button type="button" class="btn btn-primary me-0" :disabled="!getUser?.id"
-                              @click="addToCart(item)">
+                            <button type="button" class="btn btn-primary me-0" @click="addToCart(item)">
                               <span>立即購買</span> <i class="bi bi-arrow-right"></i>
                             </button>
                           </div>
@@ -100,6 +99,7 @@
 import 'swiper/css';
 import 'swiper/css/pagination';
 
+import { useRouter } from 'vue-router';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { storeToRefs } from 'pinia';
@@ -115,6 +115,7 @@ import { getFormattedDate } from '@/utils/helpers';
 import userStore from '@/stores/user';
 
 const userData = userStore();
+const router = useRouter();
 
 // 變數
 const emit = defineEmits(['isReady']);
@@ -294,8 +295,15 @@ const addToCart = (product) => {
   } else {
     Swal.fire({
       title: '請先登入',
-      text: '',
-      icon: 'warning'
+      html: '前往登入頁面',
+      icon: 'question',
+      showCancelButton: true,
+      cancelButtonText: '取消'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        selectProductModal.value.closeModal();
+        router.push({ name: 'UserLogin' });
+      }
     });
   }
 };
@@ -313,8 +321,15 @@ const addToFavorite = (product) => {
   } else {
     Swal.fire({
       title: '請先登入',
-      text: '',
-      icon: 'warning'
+      html: '前往登入頁面',
+      icon: 'question',
+      showCancelButton: true,
+      cancelButtonText: '取消'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        selectProductModal.value.closeModal();
+        router.push({ name: 'UserLogin' });
+      }
     });
   }
 };
