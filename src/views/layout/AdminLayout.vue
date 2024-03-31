@@ -24,11 +24,10 @@
           <li class="nav-item">
             <RouterLink to="/" class="nav-link">回前台首頁</RouterLink>
           </li>
-
+          <!-- @click="logout" -->
           <li class="nav-item mt-5">
-            <RouterLink to="/adminLogin" class="nav-link d-flex align-items-center"
-              ><span class="material-icons"> logout </span>登出</RouterLink
-            >
+            <RouterLink to="/adminLogin" class="nav-link d-flex align-items-center" @click="logout"><span
+                class="material-icons"> logout </span>登出</RouterLink>
           </li>
         </ul>
       </div>
@@ -77,13 +76,11 @@ export default {
       this.$http
         .get(api)
         .then((res) => {
-          // console.log(res.data);
           if (res.data.role !== 'admin') {
             this.logout();
           }
         })
-        .catch((err) => {
-          console.log(err.response);
+        .catch(() => {
           this.logout();
         });
     },
@@ -110,6 +107,7 @@ export default {
   border-left: 4px solid transparent;
   margin-top: 20px;
 }
+
 .nav-link.active {
   border-left: 4px solid #752525;
   font-weight: bold;

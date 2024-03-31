@@ -5,7 +5,7 @@
         <WineGlassLoader />
       </template>
     </loading>
-    <div class="bg-paymentReceived pb-4">
+    <div class=" pb-4 bg-paymentReceived">
       <h2 class="pb-5 text-white container">訂單已成立</h2>
     </div>
     <div class="container pb-5">
@@ -67,24 +67,34 @@
         </div>
         <h3 class="pb-3">購買商品清單</h3>
         <div>
-          <table class="table">
-            <thead>
-              <tr class="fs-5">
-                <th>商品名稱</th>
-                <th>單價</th>
-                <th>數量</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="(item, key) in order.cart" :key="key" class="fs-5">
+          <table class="table" v-for="(item, key) in order.cart" :key="key">
+            <tbody class="fs-5">
+              <tr>
+                <th width="100">品項</th>
                 <td>{{ item.chineseName }}</td>
-                <td>NT$ {{ item.price }}</td>
-                <td>{{ item.qty }}</td>
+              </tr>
+              <tr>
+                <th width="100">價格</th>
+                <td>單件 NT$ {{ item.price }} X {{ item.qty }} 件</td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
+      <div class="bg-accent-brown p-3">
+              <div class="row">
+                <div class="col-12 col-md-4">
+                  <img src="/images/wine hand style.png" alt="shopping-cart" class="img-fluid">
+                </div>
+                <div class="col-12 col-md-8 d-flex flex-column justify-content-center">
+                  <div>
+                    <p class="fs-5">感謝您的購買！</p>
+                    <p class="fs-5">繼續探索吧，還有更多精彩等著您～</p>
+                    <RouterLink to="/products" class="fs-5">立刻前往商品區逛逛！!</RouterLink>
+                  </div>
+                </div>
+              </div>
+            </div>
     </div>
   </div>
 </template>
@@ -179,9 +189,5 @@ export default {
   .progress {
     font-size: 14px;
   }
-}
-.bg-paymentReceived {
-  padding-top: 50px;
-  padding-bottom: 50px;
 }
 </style>

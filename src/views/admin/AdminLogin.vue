@@ -87,7 +87,6 @@ export default {
           }
         })
         .catch((err) => {
-          // console.log(err.response);
           Swal.fire({
             title: err.response?.data || '登入失敗',
             text: '',

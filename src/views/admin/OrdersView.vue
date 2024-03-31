@@ -67,6 +67,7 @@ import axios from 'axios';
 import OrderModal from '../../components/admin/OrderModal.vue';
 import DelOrderModal from '../../components/admin/DelOrderModal.vue';
 import headerLine from '@/assets/icons/svg/header_line.svg';
+import Alert from '@/utils/swal.js';
 
 const { VITE_API_URL } = import.meta.env;
 export default {
@@ -95,11 +96,10 @@ export default {
       axios
         .get(url)
         .then((res) => {
-          console.log(res.data);
           this.orders = res.data;
         })
         .catch(() => {
-          alert('取得訂單資訊失敗');
+          Alert.toastTop('error', '取得訂單資訊失敗');
         });
     },
     openModal(status, order) {
@@ -116,13 +116,12 @@ export default {
       axios
         .put(url, this.tempOrder)
         .then((res) => {
-          console.log(res.data);
-          alert('新增/修改成功');
+          Alert.toastTop('success', '編輯成功');
           this.getOrders();
           this.$refs.orderModal.closeModal();
         })
         .catch(() => {
-          alert('更新訂單失敗');
+          Alert.toastTop('error', '更新訂單失敗');
         });
     },
     delOrder() {
@@ -130,12 +129,11 @@ export default {
       axios
         .delete(url)
         .then((res) => {
-          console.log(res.data);
           this.$refs.delOrderModal.closeDelModal();
           this.getOrders();
         })
         .catch(() => {
-          alert('刪除失敗');
+          Alert.toastTop('error', '刪除失敗');
         });
     }
   }

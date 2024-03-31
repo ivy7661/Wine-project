@@ -60,6 +60,7 @@ import axios from 'axios';
 import CommentModal from '../../components/admin/CommentModal.vue';
 import DelCommentModal from '../../components/admin/DelCommentModal.vue';
 import headerLine from '@/assets/icons/svg/header_line.svg';
+import Alert from '@/utils/swal.js';
 
 const { VITE_API_URL } = import.meta.env;
 export default {
@@ -85,11 +86,10 @@ export default {
       axios
         .get(url)
         .then((res) => {
-          console.log(res);
           this.comments = res.data;
         })
         .catch(() => {
-          alert('獲取評論失敗');
+          Alert.toastTop('error', '獲取評論失敗');
         });
     },
     openModal(status, comment) {
@@ -107,12 +107,12 @@ export default {
       axios
         .delete(url)
         .then((res) => {
-          alert('刪除成功');
+          Alert.toastTop('success', '刪除成功');
           this.$refs.delCommentModal.closeDelModal();
           this.getComments();
         })
         .catch(() => {
-          alert('刪除失敗');
+          Alert.toastTop('error', '刪除失敗');
         });
     }
   }

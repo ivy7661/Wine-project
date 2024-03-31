@@ -15,14 +15,16 @@
           <option value="2">依價格排序 ⬇</option>
         </select>
       </div>
-      <img src="/images/footerContainer.png" class="w-100 my-5" />
+      <img src="/images/footerContainer.png" class="w-100 my-5" alt="line" />
 
       <div class="col-md-3 mt-3" v-for="item in getSortList" :key="item.id">
         <div class="card">
-          <img class=" card-img-top" :src="$filters.imgPath(`/images/wine_images/${item.product.image}.jpg`)"
-            alt="Card image cap">
+          <div @click="goToProductDetail(item.product.id)">
+            <img class=" card-img-top" :src="$filters.imgPath(`/images/wine_images/${item.product.image}.jpg`)"
+              alt="Card image cap">
+          </div>
           <div class="card-body">
-            <div>
+            <div @click="goToProductDetail(item.product.id)">
               <h5 class="card-title text-wrap">{{ item.product.chineseName }}</h5>
               <p class="card-text">{{ item.product.wineStyle }}</p>
             </div>
@@ -42,6 +44,16 @@
           </div>
         </div>
       </div>
+
+      <dvi v-if="!getSortList.length">
+        <div class="card" @click="goToProducts">
+          <div class="card-body">
+            <div class="text-center">
+              <h3 class="card-title text-wrap mt-5 text-primary">您尚未收藏任何商品，請至商品頁面收藏</h3>
+            </div>
+          </div>
+        </div>
+      </dvi>
     </div>
   </div>
 </template>
@@ -94,11 +106,10 @@ export default {
 
       this.$http.get(api)
         .then((res) => {
-          // console.log(res.data);
           this.list = res.data;
         })
         .catch((err) => {
-          console.log(err.response);
+          console.error(err.response);
         })
         .finally(() => {
           setTimeout(() => {
@@ -122,7 +133,6 @@ export default {
         if (result.isConfirmed) {
           axios.delete(`${import.meta.env.VITE_API_URL}/favorite/${item.id}`)
             .then((res) => {
-              // console.log(res.data);
               this.getFavoriteList();
               this.resetUserFavorites();
               Swal.fire({
@@ -131,8 +141,7 @@ export default {
                 icon: 'success'
               });
             })
-            .catch((error) => {
-              console.log(error.response);
+            .catch(() => {
               Swal.fire({
                 title: '收藏失敗',
                 text: '',
@@ -143,18 +152,22 @@ export default {
       });
     },
     addToUserCart(product) {
-      console.log('addToUserCart', product);
       this.addToCart(product);
+      // post http://localhost:3001/favorite
+      // {
+      //   "userId": 1,
+      //   "productId": "5",
+      //   "created_at": "2024/02/21";
+      // }
+      // get http://localhost:3001/favorite?userId=1
+      // get http://localhost:3001/favorite?userId=1&_expand=product
+    },
+    goToProductDetail(id) {
+      this.$router.push(`/productDetail/${id}`);
+    },
+    goToProducts() {
+      this.$router.push('/products');
     }
-    // post http://localhost:3001/favorite
-    // {
-    //   "userId": 1,
-    //   "productId": "5",
-    //   "created_at": "2024/02/21";
-    // }
-    // get http://localhost:3001/favorite?userId=1
-    // get http://localhost:3001/favorite?userId=1&_expand=product
-
   }
 };
 </script>
@@ -166,6 +179,15 @@ export default {
 }
 
 .card {
+  cursor: pointer;
+
+  transition: transform 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
   img {
     height: 470px;
     object-fit: contain;

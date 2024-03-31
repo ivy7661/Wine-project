@@ -98,11 +98,10 @@ export default {
 
       this.$http.get(api)
         .then((res) => {
-          // console.log('getOrders', res.data);
           this.orders = res.data;
         })
         .catch((err) => {
-          console.log(err.response);
+          console.error(err.response);
         })
         .finally(() => {
           setTimeout(() => {
@@ -126,7 +125,6 @@ export default {
         if (result.isConfirmed) {
           axios.delete(`${import.meta.env.VITE_API_URL}/favorite/${item.id}`)
             .then((res) => {
-              // console.log(res.data);
               this.getFavoriteList();
               this.resetUserFavorites();
               Swal.fire({
@@ -135,8 +133,7 @@ export default {
                 icon: 'success'
               });
             })
-            .catch((error) => {
-              console.log(error.response);
+            .catch(() => {
               Swal.fire({
                 title: '收藏失敗',
                 text: '',

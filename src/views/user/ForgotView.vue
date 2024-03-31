@@ -13,14 +13,14 @@
                 <VeeField id="email" name="帳號" type="email" class="form-control" :class="{ 'is-invalid': errors['帳號'] }"
                   placeholder="請輸入 Email" rules="email|required" v-model="userData.email" />
                 <label for="email">帳號</label>
-                <ErrorMessage name="帳號" class="invalid-feedback"></ErrorMessage>
+                <ErrorMessage name="帳號" class="invalid-feedback" />
               </div>
 
               <div class="form-floating mb-3">
                 <VeeField id="phone" name="電話" type="text" class="form-control" :class="{ 'is-invalid': errors['電話'] }"
                   placeholder="請輸入電話" :rules="isPhoneRule" v-model="userData.phone" />
                 <label for="phone">電話</label>
-                <ErrorMessage name="電話" class="invalid-feedback"></ErrorMessage>
+                <ErrorMessage name="電話" class="invalid-feedback" />
               </div>
 
               <button class="btn btn-lg btn-primary w-100 mt-3" type="submit">
@@ -37,10 +37,10 @@
             <VeeForm ref="form-login" class="form-signin" v-slot="{ errors }" @submit="confirmResetUser">
               <div class="form-floating mb-3">
                 <VeeField id="password" name="密碼" type="password" class="form-control"
-                  :class="{ 'is-invalid': errors['密碼'] }" placeholder="請輸入密碼" autocomplete="false" :rules="isPasswordRule"
-                  v-model="userData.password" />
+                  :class="{ 'is-invalid': errors['密碼'] }" placeholder="請輸入密碼" autocomplete="false"
+                  :rules="isPasswordRule" v-model="userData.password" />
                 <label for="password">密碼</label>
-                <ErrorMessage name="密碼" class="invalid-feedback"></ErrorMessage>
+                <ErrorMessage name="密碼" class="invalid-feedback" />
               </div>
 
               <div class="form-floating mb-3">
@@ -48,7 +48,7 @@
                   :class="{ 'is-invalid': errors['確認密碼'] }" placeholder="Password" autocomplete="false"
                   :rules="checkPWDRule" v-model="userData.checkPwd" />
                 <label for="checkPwd">確認密碼</label>
-                <ErrorMessage name="確認密碼" class="invalid-feedback"></ErrorMessage>
+                <ErrorMessage name="確認密碼" class="invalid-feedback" />
               </div>
 
               <button class="btn btn-lg btn-primary w-100 mt-3" type="submit">
@@ -105,7 +105,6 @@ const checkUserInfo = () => {
     phone: userData.value.phone
   })
     .then((res) => {
-      // console.log(res.data);
       if (res.data.id) {
         // 確認完資料並進入下一步
         userData.value.id = res.data.id;
@@ -118,8 +117,7 @@ const checkUserInfo = () => {
         });
       }
     })
-    .catch((err) => {
-      console.log(err.response);
+    .catch(() => {
       Swal.fire({
         title: '查無此會員',
         text: '',
@@ -150,7 +148,6 @@ const resetUser = () => {
 
   axios.patch(api, { password: userData.value.password })
     .then((res) => {
-      // console.log(res.data);
       Swal.fire({
         title: '密碼已重置',
         text: '',
@@ -158,8 +155,7 @@ const resetUser = () => {
       });
       router.push('/login');
     })
-    .catch((err) => {
-      console.log(err.response);
+    .catch(() => {
       Swal.fire({
         title: '密碼重置失敗',
         text: '',
@@ -212,7 +208,6 @@ const checkPWDRule = (value) => {
 //         phone: this.userData.phone
 //       })
 //         .then((res) => {
-//           // console.log(res.data);
 //           if (res.data.id) {
 //             // 重置密碼
 //             this.userData.id = res.data.id;
@@ -226,7 +221,6 @@ const checkPWDRule = (value) => {
 //           }
 //         })
 //         .catch((err) => {
-//           console.log(err.response);
 //           Swal.fire({
 //             title: '查無此會員',
 //             text: '',
@@ -255,7 +249,6 @@ const checkPWDRule = (value) => {
 
 //       this.$http.patch(api, { password: this.userData.password })
 //         .then((res) => {
-//           // console.log(res.data);
 //           Swal.fire({
 //             title: '密碼已重置',
 //             text: '',
@@ -264,7 +257,6 @@ const checkPWDRule = (value) => {
 //           this.$router.push('/login');
 //         })
 //         .catch((err) => {
-//           console.log(err.response);
 //           Swal.fire({
 //             title: '密碼重置失敗',
 //             text: '',

@@ -1,7 +1,9 @@
 <template>
-  <HeaderComponent :userId="getUser?.id" :cartLength="getCartLength || 0" />
+  <main class="main-container">
+    <HeaderComponent :userId="getUser?.id" :cartLength="getCartLength || 0" />
 
-  <RouterView />
+    <RouterView />
+  </main>
 
   <FooterComponent />
 </template>
@@ -40,7 +42,6 @@ export default {
 
       this.$http.get(api)
         .then((res) => {
-          // console.log(res.data);
           if (res.data.role !== 'user') {
             this.logout();
           } else {
@@ -52,8 +53,7 @@ export default {
             }
           }
         })
-        .catch((err) => {
-          console.log(err.response);
+        .catch(() => {
           this.logout();
         });
     },

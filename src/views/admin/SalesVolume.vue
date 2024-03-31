@@ -20,6 +20,7 @@ import axios from 'axios';
 import PieChart from '../../components/admin/PieChart.vue';
 import RevenueStatistics from '../../components/admin/RevenueStatistics.vue';
 import headerLine from '@/assets/icons/svg/header_line.svg';
+import Alert from '@/utils/swal.js';
 
 const { VITE_API_URL } = import.meta.env;
 export default {
@@ -48,7 +49,7 @@ export default {
           this.orders = res.data;
         })
         .catch(() => {
-          alert('取得訂單資訊失敗');
+          Alert.toastTop('error', '取得訂單資訊失敗');
         });
     },
     getCart() {
@@ -59,7 +60,7 @@ export default {
           this.orders = res.data;
         })
         .catch(() => {
-          alert('取得訂單資訊失敗');
+          Alert.toastTop('error', '取得訂單資訊失敗');
         });
     }
   }
