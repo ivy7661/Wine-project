@@ -2215,7 +2215,7 @@
         }
       ],
       "is_paid": 1,
-      "orderStatus": "配送中",
+      "orderStatus": "訂單已成立",
       "create_at": "2024/03/14 16:36",
       "id": 13
     },
@@ -2327,6 +2327,17 @@
   ],
   "carts": [
     {
+      "product_id": "6",
+      "chineseName": "路易拉圖酒莊.夏山蒙哈榭白酒",
+      "image": "wine6",
+      "price": 4200,
+      "is_hot": 1,
+      "star": 5,
+      "qty": 1,
+      "userId": 11,
+      "id": 8
+    },
+    {
       "product_id": "16",
       "chineseName": "雨果.戈德梅香檳.一級園 微甜香檳",
       "image": "wine16",
@@ -2368,12 +2379,6 @@
       "productId": 10,
       "created_at": "2024/03/28",
       "id": 27
-    },
-    {
-      "userId": 11,
-      "productId": "9",
-      "created_at": "2024/04/02",
-      "id": 28
     }
   ],
   "comments": [
