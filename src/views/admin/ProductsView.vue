@@ -133,12 +133,17 @@ export default {
 
       axios[http](url, this.newProduct)
         .then((res) => {
-          alert('新增/修改成功');
+          if (!this.isNew) {
+            Alert.toastTop('success', '編輯成功');
+          } else {
+            Alert.toastTop('success', '新增成功');
+            this.$refs.pModal.resetForm();
+          }
           this.getData();
           this.$refs.pModal.closeModal();
         })
         .catch(() => {
-          alert('新增/修改失敗');
+          Alert.toastTop('error', '編輯失敗');
         });
     },
     openModal(status, item) {

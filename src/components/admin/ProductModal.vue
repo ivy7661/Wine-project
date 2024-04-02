@@ -9,7 +9,7 @@
           </h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
-        <VeeForm v-slot="{ errors }" @submit="updateProduct">
+        <VeeForm v-slot="{ errors }" @submit="updateProduct" ref="form">
           <div class="modal-body">
             <div class="row">
               <div class="col-sm-4">
@@ -279,6 +279,9 @@ export default {
     },
     closeModal() {
       this.modalProduct.hide();
+    },
+    resetForm() {
+      this.$refs.form.resetForm();
     }
   },
   mounted() {
