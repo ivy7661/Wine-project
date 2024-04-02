@@ -83,8 +83,7 @@ export default {
             });
           }
         })
-        .catch((err) => {
-          console.log(err.response);
+        .catch(() => {
           this.logout();
         });
     },
@@ -111,6 +110,7 @@ export default {
   border-left: 4px solid transparent;
   margin-top: 20px;
 }
+
 .nav-link.active {
   border-left: 4px solid #752525;
   font-weight: bold;
