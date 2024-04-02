@@ -25,7 +25,10 @@
             <RouterLink to="/" class="nav-link">回前台首頁</RouterLink>
           </li>
           <li class="nav-item mt-5">
-            <RouterLink to="/adminLogin" class="nav-link d-flex align-items-center" @click="logout"
+            <RouterLink
+              to="/adminLogin"
+              class="nav-link d-flex align-items-center"
+              @click="adminLogout"
               ><span class="material-icons"> logout </span>登出</RouterLink
             >
           </li>
@@ -45,13 +48,6 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 
 export default {
-  name: 'AdminLayout',
-  components: {},
-  data() {
-    return {
-      title: '後台頁面'
-    };
-  },
   mounted() {
     const adminTokenCookie = document.cookie.replace(
       /(?:(?:^|.*;\s*)adminToken\s*=\s*([^;]*).*$)|^.*$/,
@@ -63,22 +59,28 @@ export default {
     );
     if (!adminTokenCookie || !adminIdCookie) {
       this.logout();
+      Swal.fire({
+        title: '無授權，請登入',
+        icon: 'error'
+      });
     } else {
       axios.defaults.headers.common.Authorization = `Bearer ${adminTokenCookie}`;
       this.adminCheck(adminIdCookie);
     }
   },
   methods: {
-    // 確認是否為管理員
     adminCheck(adminId) {
       const api = `${import.meta.env.VITE_API_URL}/600/users/${adminId}`;
 
       this.$http
         .get(api)
         .then((res) => {
-          // console.log(res.data);
           if (res.data.role !== 'admin') {
             this.logout();
+            Swal.fire({
+              title: '無授權，請登入',
+              icon: 'error'
+            });
           }
         })
         .catch((err) => {
@@ -86,18 +88,18 @@ export default {
           this.logout();
         });
     },
-    // 登出
     logout() {
       document.cookie = `adminToken=0; expires=${new Date('2000/1/1 12:00')}; path=/`;
       document.cookie = `adminId=0; expires=${new Date('2000/1/1 12:00')}; path=/`;
 
-      Swal.fire({
-        title: '無授權，請重新登入',
-        text: '',
-        icon: 'error'
-      });
-
       this.$router.push('/adminLogin');
+    },
+    adminLogout() {
+      this.logout();
+      Swal.fire({
+        title: '登出成功',
+        icon: 'success'
+      });
     }
   }
 };

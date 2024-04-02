@@ -4,8 +4,8 @@
       <div class="modal-content border-0">
         <div class="modal-header bg-dark text-white">
           <h5 id="productModalLabel" class="modal-title">
-            <span v-if="isNew">新增產品</span>
-            <span v-else>編輯產品</span>
+            <span v-if="isNew">新增商品</span>
+            <span v-else>編輯商品</span>
           </h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
@@ -32,21 +32,27 @@
               </div>
               <div class="col-sm-8">
                 <div class="mb-3">
-                  <label for="title" class="form-label">產品名稱</label>
+                  <label for="title" class="form-label"
+                    >商品名稱
+                    <span class="text-danger">*</span>
+                  </label>
                   <VeeField
                     id="title"
                     v-model="editProduct.chineseName"
                     type="text"
                     class="form-control"
-                    :class="{ 'is-invalid': errors['產品名稱'] }"
-                    placeholder="請輸入產品名稱"
-                    name="產品名稱"
+                    :class="{ 'is-invalid': errors['商品名稱'] }"
+                    placeholder="請輸入商品名稱"
+                    name="商品名稱"
                     rules="required"
                   ></VeeField>
-                  <error-message name="產品名稱" class="invalid-feedback"></error-message>
+                  <error-message name="商品名稱" class="invalid-feedback"></error-message>
                 </div>
                 <div class="mb-3">
-                  <label for="engtitle" class="form-label">英文名稱</label>
+                  <label for="engtitle" class="form-label"
+                    >英文名稱
+                    <span class="text-danger">*</span>
+                  </label>
                   <VeeField
                     id="engtitle"
                     v-model="editProduct.englishName"
@@ -61,7 +67,10 @@
                 </div>
                 <div class="row">
                   <div class="mb-3 col-md-4">
-                    <label for="category" class="form-label">分類</label>
+                    <label for="category" class="form-label"
+                      >分類
+                      <span class="text-danger">*</span>
+                    </label>
                     <VeeField
                       id="category"
                       v-model="editProduct.wineStyle"
@@ -85,7 +94,10 @@
                     />
                   </div>
                   <div class="mb-3 col-md-4">
-                    <label for="price" class="form-label">售價</label>
+                    <label for="price" class="form-label"
+                      >售價
+                      <span class="text-danger">*</span>
+                    </label>
                     <VeeField
                       id="price"
                       v-model.number="editProduct.price"
@@ -185,7 +197,10 @@
                 </div>
                 <div class="row mb-3">
                   <div class="col-md-3">
-                    <label for="num" class="form-label">數量</label>
+                    <label for="num" class="form-label"
+                      >數量
+                      <span class="text-danger">*</span>
+                    </label>
                     <VeeField
                       id="num"
                       v-model.number="editProduct.num"
@@ -199,7 +214,10 @@
                     <error-message name="數量" class="invalid-feedback"></error-message>
                   </div>
                   <div class="col-md-3">
-                    <label for="star" class="form-label">評分</label>
+                    <label for="star" class="form-label"
+                      >評分
+                      <span class="text-danger">*</span>
+                    </label>
                     <VeeField
                       id="star"
                       v-model.number="editProduct.star"

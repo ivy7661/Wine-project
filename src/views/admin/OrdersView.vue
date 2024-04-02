@@ -54,18 +54,14 @@
       </table>
     </div>
   </div>
-  <Order-Modal ref="orderModal" :temp-order="tempOrder" :update-order="updateOrder"></Order-Modal>
-  <Del-Order-Modal
-    ref="delOrderModal"
-    :temp-order="tempOrder"
-    :del-order="delOrder"
-  ></Del-Order-Modal>
+  <OrderModal ref="orderModal" :temp-order="tempOrder" :update-order="updateOrder"></OrderModal>
+  <DelOrderModal ref="delOrderModal" :temp-order="tempOrder" :del-order="delOrder"></DelOrderModal>
 </template>
 
 <script>
 import axios from 'axios';
-import OrderModal from '../../components/admin/OrderModal.vue';
-import DelOrderModal from '../../components/admin/DelOrderModal.vue';
+import OrderModal from '@/components/admin/OrderModal.vue';
+import DelOrderModal from '@/components/admin/DelOrderModal.vue';
 import headerLine from '@/assets/icons/svg/header_line.svg';
 import Alert from '@/utils/swal.js';
 

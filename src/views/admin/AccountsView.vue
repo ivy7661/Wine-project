@@ -40,7 +40,7 @@
 
 <script>
 import axios from 'axios';
-import DelAccountModal from '../../components/admin/DelAccountModal.vue';
+import DelAccountModal from '@/components/admin/DelAccountModal.vue';
 import headerLine from '@/assets/icons/svg/header_line.svg';
 import Alert from '@/utils/swal.js';
 
