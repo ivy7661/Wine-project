@@ -153,14 +153,6 @@ export default {
     },
     addToUserCart(product) {
       this.addToCart(product);
-      // post http://localhost:3001/favorite
-      // {
-      //   "userId": 1,
-      //   "productId": "5",
-      //   "created_at": "2024/02/21";
-      // }
-      // get http://localhost:3001/favorite?userId=1
-      // get http://localhost:3001/favorite?userId=1&_expand=product
     },
     goToProductDetail(id) {
       this.$router.push(`/productDetail/${id}`);

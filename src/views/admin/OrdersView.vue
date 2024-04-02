@@ -32,20 +32,12 @@
               <span v-else>配送中</span>
             </td>
             <td class="text-center">
-              <button
-                type="button"
-                class="btn btn-outline-primary btn-sm"
-                @click="openModal('edit', order)"
-              >
+              <button type="button" class="btn btn-outline-primary btn-sm" @click="openModal('edit', order)">
                 編輯
               </button>
             </td>
             <td class="text-center">
-              <button
-                type="button"
-                class="btn btn-outline-danger btn-sm"
-                @click="openModal('delete', order)"
-              >
+              <button type="button" class="btn btn-outline-danger btn-sm" @click="openModal('delete', order)">
                 刪除
               </button>
             </td>
@@ -54,8 +46,8 @@
       </table>
     </div>
   </div>
-  <OrderModal ref="orderModal" :temp-order="tempOrder" :update-order="updateOrder"></OrderModal>
-  <DelOrderModal ref="delOrderModal" :temp-order="tempOrder" :del-order="delOrder"></DelOrderModal>
+  <OrderModal ref="orderModal" :temp-order="tempOrder" :update-order="updateOrder" />
+  <DelOrderModal ref="delOrderModal" :temp-order="tempOrder" :del-order="delOrder" />
 </template>
 
 <script>
@@ -145,19 +137,24 @@ export default {
     width: 100%;
   }
 }
+
 th,
 td {
   padding: 8px 30px;
 }
+
 tr:first-child th:first-child {
   border-top-left-radius: 5px;
 }
+
 tr:last-child td:first-child {
   border-bottom-left-radius: 5px;
 }
+
 tr:first-child th:last-child {
   border-top-right-radius: 5px;
 }
+
 tr:last-child td:last-child {
   border-bottom-right-radius: 5px;
 }
