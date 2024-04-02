@@ -35,12 +35,12 @@
       </div>
     </div>
   </div>
-  <Del-Account-Modal :temp-user="tempUser" :del-user="delUser" ref="delModal"></Del-Account-Modal>
+  <DelAccountModal :temp-user="tempUser" :del-user="delUser" ref="delModal"></DelAccountModal>
 </template>
 
 <script>
 import axios from 'axios';
-import DelAccountModal from '../../components/admin/DelAccountModal.vue';
+import DelAccountModal from '@/components/admin/DelAccountModal.vue';
 import headerLine from '@/assets/icons/svg/header_line.svg';
 import Alert from '@/utils/swal.js';
 

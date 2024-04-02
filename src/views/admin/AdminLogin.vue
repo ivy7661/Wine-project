@@ -66,7 +66,6 @@ export default {
       this.$http
         .post(api, this.userData)
         .then((res) => {
-          // role 用來判斷是否為管理員
           if (res.data.accessToken && res.data.user.role === 'admin') {
             const getDateTime = addDays(new Date(), 2);
             document.cookie = `adminToken=${res.data.accessToken}; expires=${new Date(getDateTime)}; path=/`;

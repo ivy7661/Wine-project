@@ -47,18 +47,18 @@
       </table>
     </div>
   </div>
-  <Comment-Modal :temp-comment="tempComment" ref="commentModal"></Comment-Modal>
-  <Del-Comment-Modal
+  <CommentModal :temp-comment="tempComment" ref="commentModal"></CommentModal>
+  <DelCommentModal
     :temp-comment="tempComment"
     :del-comment="delComment"
     ref="delCommentModal"
-  ></Del-Comment-Modal>
+  ></DelCommentModal>
 </template>
 
 <script>
 import axios from 'axios';
-import CommentModal from '../../components/admin/CommentModal.vue';
-import DelCommentModal from '../../components/admin/DelCommentModal.vue';
+import CommentModal from '@/components/admin/CommentModal.vue';
+import DelCommentModal from '@/components/admin/DelCommentModal.vue';
 import headerLine from '@/assets/icons/svg/header_line.svg';
 import Alert from '@/utils/swal.js';
 
