@@ -24,7 +24,6 @@
           <li class="nav-item">
             <RouterLink to="/" class="nav-link">回前台首頁</RouterLink>
           </li>
-          <!-- @click="logout" -->
           <li class="nav-item mt-5">
             <RouterLink to="/adminLogin" class="nav-link d-flex align-items-center" @click="logout"
               ><span class="material-icons"> logout </span>登出</RouterLink

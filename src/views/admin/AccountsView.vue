@@ -35,7 +35,7 @@
       </div>
     </div>
   </div>
-  <Del-Account-Modal :temp-user="tempUser" :del-user="delUser" ref="delModal"></Del-Account-Modal>
+  <DelAccountModal :temp-user="tempUser" :del-user="delUser" ref="delModal"></DelAccountModal>
 </template>
 
 <script>

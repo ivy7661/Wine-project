@@ -1,12 +1,5 @@
 <template>
-  <div
-    id="productModal"
-    ref="productModal"
-    class="modal fade"
-    tabindex="-1"
-    aria-labelledby="productModalLabel"
-    aria-hidden="true"
-  >
+  <div id="productModal" ref="productModal" class="modal fade" tabindex="-1">
     <div class="modal-dialog modal-xl">
       <div class="modal-content border-0">
         <div class="modal-header bg-dark text-white">
@@ -14,36 +7,30 @@
             <span v-if="isNew">新增產品</span>
             <span v-else>編輯產品</span>
           </h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-sm-4">
-              <div class="mb-3">
-                <label for="image" class="form-label">圖片</label>
-                <input
-                  id="image"
-                  v-model="editProduct.image"
-                  type="text"
-                  class="form-control mb-2"
-                  placeholder="請輸入圖片名稱"
-                />
-                <div v-if="editProduct.image">
-                  <img
-                    class="img-fluid"
-                    :src="$filters.imgPath(`/images/wine_images/${editProduct.image}.jpg`)"
+        <VeeForm v-slot="{ errors }" @submit="updateProduct">
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="mb-3">
+                  <label for="image" class="form-label">圖片</label>
+                  <input
+                    id="image"
+                    v-model="editProduct.image"
+                    type="text"
+                    class="form-control mb-2"
+                    placeholder="請輸入圖片名稱"
                   />
+                  <div v-if="editProduct.image">
+                    <img
+                      class="img-fluid"
+                      :src="$filters.imgPath(`/images/wine_images/${editProduct.image}.jpg`)"
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="col-sm-8">
-              <!-- @click="updateProduct" -->
-              <VeeForm v-slot="{ errors }" @submit="updateProduct">
+              <div class="col-sm-8">
                 <div class="mb-3">
                   <label for="title" class="form-label">產品名稱</label>
                   <VeeField
@@ -252,16 +239,16 @@
                     </div>
                   </div>
                 </div>
-              </VeeForm>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-            取消
-          </button>
-          <button type="submit" class="btn btn-primary">確認</button>
-        </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+              取消
+            </button>
+            <button type="submit" class="btn btn-primary">確認</button>
+          </div>
+        </VeeForm>
       </div>
     </div>
   </div>
