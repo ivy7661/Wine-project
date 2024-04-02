@@ -24,18 +24,10 @@
             <td>{{ item.price }}</td>
             <td class="text-center">
               <div class="btn-group">
-                <button
-                  type="button"
-                  class="btn btn-outline-primary btn-sm"
-                  @click="openModal('edit', item)"
-                >
+                <button type="button" class="btn btn-outline-primary btn-sm" @click="openModal('edit', item)">
                   編輯
                 </button>
-                <button
-                  type="button"
-                  class="btn btn-outline-danger btn-sm"
-                  @click="openModal('delete', item)"
-                >
+                <button type="button" class="btn btn-outline-danger btn-sm" @click="openModal('delete', item)">
                   刪除
                 </button>
               </div>
@@ -46,14 +38,9 @@
     </div>
   </div>
   <!-- Modal -->
-  <ProductModal
-    :temp-product="tempProduct"
-    :update-product="updateProduct"
-    :is-New="isNew"
-    ref="pModal"
-  ></ProductModal>
+  <ProductModal :temp-product="tempProduct" :update-product="updateProduct" :is-New="isNew" ref="pModal" />
   <!-- 刪除 -->
-  <DelModal :temp-product="tempProduct" :del-product="delProduct" ref="delModal"></DelModal>
+  <DelModal :temp-product="tempProduct" :del-product="delProduct" ref="delModal" />
 </template>
 
 <script>
@@ -202,19 +189,24 @@ export default {
     width: 100%;
   }
 }
+
 th,
 td {
   padding: 8px 30px;
 }
+
 tr:first-child th:first-child {
   border-top-left-radius: 5px;
 }
+
 tr:last-child td:first-child {
   border-bottom-left-radius: 5px;
 }
+
 tr:first-child th:last-child {
   border-top-right-radius: 5px;
 }
+
 tr:last-child td:last-child {
   border-bottom-right-radius: 5px;
 }

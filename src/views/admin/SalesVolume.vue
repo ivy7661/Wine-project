@@ -8,8 +8,8 @@
       <h2 class="mt-4">產品營收比重</h2>
 
       <section class="wrap">
-        <PieChart></PieChart>
-        <RevenueStatistics></RevenueStatistics>
+        <PieChart />
+        <RevenueStatistics />
       </section>
     </div>
   </div>

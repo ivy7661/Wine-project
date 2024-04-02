@@ -36,7 +36,7 @@
       </div>
       <div class="col-10 py-5">
         <div class="container">
-          <RouterView></RouterView>
+          <RouterView />
         </div>
       </div>
     </div>
