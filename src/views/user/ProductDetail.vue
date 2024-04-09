@@ -1,11 +1,11 @@
 <template>
   <div>
     <div class="container">
-      <loading v-model:active="isLoading" :is-full-page="fullPage">
+      <Loading v-model:active="isLoading" :is-full-page="fullPage">
         <template #default>
           <WineGlassLoader />
         </template>
-      </loading>
+      </Loading>
       <div class="productDisplay pt-5 pb-5">
         <div class="row justify-content-between mb-4">
           <div
@@ -73,7 +73,7 @@
                   </div>
                 </div>
               </div>
-              <div>
+              <div class="pb-3">
                 <h5 class="pb-2">餐酒搭配選擇</h5>
                 <div class="row mx-0">
                   <div
@@ -90,12 +90,25 @@
                   </div>
                 </div>
               </div>
-              <a
-                href="#"
-                class="btn btn-primary w-100 py-2 mt-3 radius-24"
-                @click.prevent="addToCart(selectedProduct)"
-                >加入購物車</a
-              >
+              <div class="row align-items-stretch">
+                <div class="col">
+                  <div class="input-group">
+                    <select class="form-select fs-5" v-model.number="selectedProduct.qty">
+                      <option v-for="quantity in quantityOptions" :key="quantity" :value="quantity">
+                        {{ quantity }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col">
+                  <a
+                    href="#"
+                    class="btn btn-primary w-100 radius-24 fs-5"
+                    @click.prevent="addToCart(selectedProduct)"
+                    >加入購物車</a
+                  >
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -297,8 +310,6 @@
 </template>
 
 <script>
-// eslint-disable-next-line no-unused-vars
-import { slice } from 'lodash';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import { mapState, mapActions } from 'pinia';
@@ -321,12 +332,14 @@ export default {
       products: [],
       selectedProduct: {
         flavor: [],
-        food: []
+        food: [],
+        qty: 1
       },
       similarWines: [],
       cart: [],
       favoriteList: [],
       allFavoriteList: [],
+      quantityOptions: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
       userId: '',
       isLoading: false,
       fullPage: true
@@ -335,22 +348,25 @@ export default {
   methods: {
     ...mapActions(userStore, ['setUser', 'cleanUser', 'getUserCookie', 'resetUserCarts']),
     doLoading() {
-      const loader = this.$loading.show({
-        props: { spinner: WineGlassLoader },
-        // Pass props by their camelCased names
-        container: this.$refs.loadingContainer,
-        canCancel: true,
-        color: '#000000',
-        loader: 'spinner',
-        width: 64,
-        height: 64,
-        backgroundColor: '#ffffff',
-        opacity: 0.5,
-        zIndex: 999
-      }, {
-        // Pass slots by their names
-        default: h('WineGlassLoader')
-      });
+      const loader = this.$loading.show(
+        {
+          props: { spinner: WineGlassLoader },
+          // Pass props by their camelCased names
+          container: this.$refs.loadingContainer,
+          canCancel: true,
+          color: '#000000',
+          loader: 'spinner',
+          width: 64,
+          height: 64,
+          backgroundColor: '#ffffff',
+          opacity: 0.5,
+          zIndex: 999
+        },
+        {
+          // Pass slots by their names
+          default: h('WineGlassLoader')
+        }
+      );
       loader.hide();
     },
     setLoadingTime() {
@@ -365,7 +381,10 @@ export default {
         .get(url)
         .then((res) => {
           this.setLoadingTime();
-          this.products = res.data;
+          this.products = res.data.map((product) => ({
+            ...product,
+            qty: 1
+          }));
           this.selectedProduct = this.products.find((item) => item.id === this.$route.params.id);
           this.findSimilarWinesByGrape(this.selectedProduct, this.products);
         })
@@ -410,7 +429,7 @@ export default {
           price: product.price,
           is_hot: product.is_hot,
           star: product.star,
-          qty: 1,
+          qty: this.selectedProduct.qty,
           userId: this.userId
         };
         axios
@@ -435,7 +454,7 @@ export default {
         // 購物車的 id
         const cartId = this.cart[existingProductIndex].id;
         // 更新數量
-        this.cart[existingProductIndex].qty += 1;
+        this.cart[existingProductIndex].qty += this.selectedProduct.qty;
         const updateQty = {
           qty: this.cart[existingProductIndex].qty
         };
@@ -458,6 +477,9 @@ export default {
           });
       }
       this.getCartList();
+    },
+    goLogin() {
+      this.$router.push({ name: 'UserLogin' });
     },
     getFavoriteList() {
       const url = `${VITE_API_URL}/favorite`;
@@ -606,7 +628,7 @@ ul {
 li {
   list-style: none;
 }
-.radius-24{
+.radius-24 {
   border-radius: 24px;
 }
 .heart {

@@ -1,15 +1,15 @@
 <template>
   <div>
-    <loading v-model:active="isLoading" :is-full-page="fullPage">
+    <Loading v-model:active="isLoading" :is-full-page="fullPage">
       <template #default>
         <WineGlassLoader />
       </template>
-    </loading>
+    </Loading>
     <div class="bg-cart pb-4">
       <h2 class="pb-5 text-white container">購物車資訊</h2>
     </div>
     <div class="container pb-5">
-      <img src="/images/footerContainer.png" class="w-100 mb-5" />
+      <img src="/images/footerContainer.png" class="w-100 mb-5" alt="line" />
       <div class="progress mb-5 fs-5" role="progressbar" aria-label="Animated striped example">
         <div
           class="progress-bar bg-primary progress-bar-striped progress-bar-animated"
@@ -42,69 +42,97 @@
           完成訂單
         </div>
       </div>
-      <div class="row gy-4 flex-column-reverse flex-md-row">
+      <div class="row gy-4 flex-md-row">
         <div class="col-12 col-md-8">
           <!-- 購物車清單外框 -->
           <div class="cartList d-flex flex-column border border-primary rounded">
             <div class="bg-primary fs-5 text-white mb-3 p-3 ps-4">訂購清單</div>
             <div class="p-3" v-if="cart.length > 0">
-              <a href="#" v-for="(product, key) in cart" :key="key" class="card shadow d-flex flex-row justify-content-between mb-3 fs-4 pe-3 py-1 radius-24"
-                  @click.prevent="seeProduct(product.product_id)">
-                  <a href="#" @click.prevent.stop="toggleFavorite(product)">
-                    <i
-                      class="bi heart position-absolute top-5 start-5"
-                      :class="{
-                        'bi-heart': !product.isFavorite,
-                        'bi-heart-fill': product.isFavorite
-                      }"
-                    ></i>
-                  </a>
-                  <a href="#" class="wine_image_block">
-                    <div
-                      class="wine_image"
-                      :style="{
-                        'background-image': `url(${$filters.imgPath('/images/wine_images/' + product.image + '.jpg')})`
-                      }"
-                    ></div>
-                  </a>
-                  <div class="card-body d-flex flex-column justify-content-around">
-                    <div class="d-flex mb-1 justify-content-between">
-                      <span class="badge bg-danger mb-2" v-if="product.is_hot">熱門推薦</span>
-                      <div class="d-flex gap-1">
-                        <i
-                          class="bi bi-star-fill text-warning"
-                          v-for="star in product.star"
-                          :key="star"
-                        ></i>
-                      </div>
-                    </div>
-                    <a href="#">
-                      <h5 class="card-title text-black fs-4">{{ product.chineseName }}</h5>
-                    </a>
-                    <p>750 ml</p>
-                    <div class="input-group mb-3" @click.prevent.stop>
-                      <span class="input-group-text">數量</span>
-                      <select
-                        class="form-select"
-                        v-model="product.qty"
-                        @change="updateCartQty(product)"
-                      >
-                        <option
-                          v-for="quantity in quantityOptions"
-                          :key="quantity"
-                          :value="quantity"
-                        >
-                          {{ quantity }}
-                        </option>
-                      </select>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                      <p class="text-primary">$ {{ product.price }}</p>
-                      <a href="#" @click.prevent.stop="deleteCartItem(product)">
-                        <i class="bi bi-trash"></i>
-                      </a>
+              <a
+                href="#"
+                v-for="(product, key) in cart"
+                :key="key"
+                class="card shadow d-flex flex-row justify-content-between mb-3 fs-4 pe-3 py-1 radius-24"
+                @click.prevent="seeProduct(product.product_id)"
+              >
+                <a href="#" @click.prevent.stop="toggleFavorite(product)">
+                  <i
+                    class="bi heart position-absolute top-5 start-5"
+                    :class="{
+                      'bi-heart': !product.isFavorite,
+                      'bi-heart-fill': product.isFavorite
+                    }"
+                  ></i>
+                </a>
+                <a href="#" class="wine_image_block">
+                  <div
+                    class="wine_image"
+                    :style="{
+                      'background-image': `url(${$filters.imgPath('/images/wine_images/' + product.image + '.jpg')})`
+                    }"
+                  ></div>
+                </a>
+                <div class="card-body d-flex flex-column justify-content-around">
+                  <div class="d-flex mb-1 justify-content-between">
+                    <span class="badge bg-danger mb-2" v-if="product.is_hot">熱門推薦</span>
+                    <div class="d-flex gap-1">
+                      <i
+                        class="bi bi-star-fill text-warning"
+                        v-for="star in product.star"
+                        :key="star"
+                      ></i>
                     </div>
                   </div>
+                  <a href="#">
+                    <h5 class="card-title text-black fs-4">{{ product.chineseName }}</h5>
+                  </a>
+                  <p>750 ml</p>
+
+                  <p class="text-primary">$ {{ product.price }}</p>
+                  <div class="d-flex justify-content-between">
+                    <div class="input-group mb-3" @click.prevent.stop>
+                      <template v-if="product.qty > 10">
+                        <div class="d-flex align-items-center">
+                          <button
+                            class="btn btn-outline-secondary btn-sm me-1"
+                            @click.prevent="decreaseQty(product)"
+                          >
+                            <i class="bi bi-dash fs-4"></i>
+                          </button>
+                          <div>{{ product.qty }}</div>
+                          <button
+                            class="btn btn-outline-secondary btn-sm ms-1"
+                            @click.prevent="increaseQty(product)"
+                          >
+                            <i class="bi bi-plus fs-4"></i>
+                          </button>
+                        </div>
+                      </template>
+                      <template v-else>
+                        <div class="row">
+                          <div class="col">
+                            <select
+                              class="form-select fs-4"
+                              v-model="product.qty"
+                              @change="updateCartQty(product)"
+                            >
+                              <option
+                                v-for="quantity in quantityOptions"
+                                :key="quantity"
+                                :value="quantity"
+                              >
+                                {{ quantity }}
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                      </template>
+                    </div>
+                    <a href="#" @click.prevent.stop="deleteCartItem(product)">
+                      <i class="bi bi-trash"></i>
+                    </a>
+                  </div>
+                </div>
               </a>
             </div>
             <div class="p-3" v-else>
@@ -135,7 +163,7 @@
             </div>
           </div>
         </div>
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-md-4" v-if="cart.length > 0">
           <div class="totalPrice">
             <div class="card fs-5">
               <div class="card-header bg-primary fs-5 p-3 ps-4 text-white">購物車</div>
@@ -266,6 +294,16 @@ export default {
           .catch(() => {});
       }
     },
+    increaseQty(product) {
+      product.qty++;
+      this.updateCartQty(product);
+    },
+    decreaseQty(product) {
+      if (product.qty > 1) {
+        product.qty--;
+        this.updateCartQty(product);
+      }
+    },
     deleteCartItem(product) {
       Swal.fire({
         title: '確認刪除？',
@@ -311,8 +349,7 @@ export default {
           this.favoriteList = res.data.filter((item) => item.userId === this.userId);
           this.checkFavoriteStatus();
         })
-        .catch(() => {
-        });
+        .catch(() => {});
     },
     checkFavoriteStatus() {
       // 遍歷所有產品，檢查它們是否在願望清單中
@@ -359,8 +396,7 @@ export default {
             icon: 'success'
           });
         })
-        .catch(() => {
-        });
+        .catch(() => {});
     },
     toggleFavorite(product) {
       // 檢查產品是否在最愛清單中
@@ -401,8 +437,7 @@ export default {
         .then((res) => {
           this.getFavoriteList();
         })
-        .catch(() => {
-        });
+        .catch(() => {});
     },
     applyFreeShippingCoupon() {
       const url = `${VITE_API_URL}/coupons`;
