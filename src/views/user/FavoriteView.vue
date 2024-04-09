@@ -45,7 +45,7 @@
         </div>
       </div>
 
-      <dvi v-if="!getSortList.length">
+      <div v-if="!getSortList.length">
         <div class="card" @click="goToProducts">
           <div class="card-body">
             <div class="text-center">
@@ -53,7 +53,7 @@
             </div>
           </div>
         </div>
-      </dvi>
+      </div>
     </div>
   </div>
 </template>
