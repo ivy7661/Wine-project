@@ -61,7 +61,6 @@
             </VeeForm>
           </swiper-slide>
         </swiper>
-
       </div>
     </div>
   </div>
@@ -182,108 +181,6 @@ const isPasswordRule = (value) => {
 const checkPWDRule = (value) => {
   return value === userData.value.password ? true : '密碼不一致';
 };
-
-// export default {
-//   name: 'ForgotView',
-//   components: {},
-//   data() {
-//     return {
-//       step: 1,
-//       title: '忘記密碼?',
-//       userData: {
-//         id: 0,
-//         email: '',
-//         phone: '',
-//         password: '',
-//         checkPwd: ''
-//       }
-//     };
-//   },
-//   methods: {
-//     checkUserInfo() {
-//       const api = `${import.meta.env.VITE_API_URL}/v1/api/uservalid`;
-
-//       this.$http.post(api, {
-//         email: this.userData.email,
-//         phone: this.userData.phone
-//       })
-//         .then((res) => {
-//           if (res.data.id) {
-//             // 重置密碼
-//             this.userData.id = res.data.id;
-//             this.step = 2;
-//           } else {
-//             Swal.fire({
-//               title: '查無此會員',
-//               text: '',
-//               icon: 'error'
-//             });
-//           }
-//         })
-//         .catch((err) => {
-//           Swal.fire({
-//             title: '查無此會員',
-//             text: '',
-//             icon: 'error'
-//           });
-//         });
-//     },
-//     confirmResetUser() {
-//       Swal.fire({
-//         title: '確認修改密碼??',
-//         text: '',
-//         icon: 'warning',
-//         showCancelButton: true,
-//         confirmButtonColor: '#3085d6',
-//         cancelButtonColor: '#d33',
-//         confirmButtonText: '確認',
-//         cancelButtonText: '取消'
-//       }).then((result) => {
-//         if (result.isConfirmed) {
-//           this.resetUser();
-//         }
-//       });
-//     },
-//     resetUser() {
-//       const api = `${import.meta.env.VITE_API_URL}/users/${this.userData.id}`;
-
-//       this.$http.patch(api, { password: this.userData.password })
-//         .then((res) => {
-//           Swal.fire({
-//             title: '密碼已重置',
-//             text: '',
-//             icon: 'success'
-//           });
-//           this.$router.push('/login');
-//         })
-//         .catch((err) => {
-//           Swal.fire({
-//             title: '密碼重置失敗',
-//             text: '',
-//             icon: 'error'
-//           });
-
-//           this.step = 1;
-//           this.userData = {
-//             id: 0,
-//             email: '',
-//             phone: '',
-//             password: '',
-//             checkPwd: ''
-//           };
-//         });
-//     },
-//     isPhoneRule(value) {
-//       return phoneNumber.test(value) ? true : '請輸入正確的電話號碼';
-//     },
-//     isPasswordRule(value) {
-//       return userPassword.test(value) ? true : '密碼長度為 6 ~ 12 碼，需包含英文及數字';
-//     },
-//     checkPWDRule(value) {
-//       return value === this.userData.password ? true : '密碼不一致';
-//     }
-//   }
-// };
 </script>
 
 <style lang="scss" scoped>

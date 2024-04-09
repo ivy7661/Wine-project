@@ -1,15 +1,15 @@
 <template>
   <div>
-    <loading v-model:active="isLoading" :is-full-page="fullPage">
+    <Loading v-model:active="isLoading" :is-full-page="fullPage">
       <template #default>
         <WineGlassLoader />
       </template>
-    </loading>
+    </Loading>
     <div class="bg-checkout pb-4">
       <h2 class="pb-5 text-white container">填寫訂單資訊</h2>
     </div>
     <div class="container pb-5">
-      <img src="/images/footerContainer.png" class="w-100 mb-5" />
+      <img src="/images/footerContainer.png" class="w-100 mb-5"  alt="line"/>
       <div class="progress mb-5 fs-5" role="progressbar" aria-label="Animated striped example">
         <div
           class="progress-bar bg-primary"
@@ -58,7 +58,7 @@
                   rules="required|min:2|max:16"
                   v-model="userData.user.customerName"
                 />
-                <label for="username">姓名</label>
+                <label for="username">＊ 姓名</label>
                 <ErrorMessage name="姓名" class="invalid-feedback"></ErrorMessage>
               </div>
               <div class="form-floating mb-3">
@@ -72,7 +72,7 @@
                   rules="required"
                   v-model="userData.user.customerAddress"
                 ></VeeField>
-                <label for="customerAddress">寄送地址</label>
+                <label for="customerAddress">＊ 寄送地址</label>
                 <ErrorMessage name="地址" class="invalid-feedback"></ErrorMessage>
               </div>
               <div class="form-floating mb-3">
@@ -86,7 +86,7 @@
                   :rules="isPhone"
                   v-model="userData.user.customerTel"
                 ></VeeField>
-                <label for="customerTel">電話</label>
+                <label for="customerTel">＊ 電話</label>
                 <ErrorMessage name="電話" class="invalid-feedback"></ErrorMessage>
               </div>
               <div class="form-floating mb-3">
@@ -100,7 +100,7 @@
                   rules="email|required"
                   v-model="userData.user.customerEmail"
                 ></VeeField>
-                <label for="customerEmail">電子郵件</label>
+                <label for="customerEmail">＊ 電子郵件</label>
                 <ErrorMessage name="email" class="invalid-feedback"></ErrorMessage>
               </div>
             </div>
@@ -117,7 +117,7 @@
                   :rules="isCreditCard"
                   v-model="userData.payment.creditCard"
                 ></VeeField>
-                <label for="creditCard">卡號</label>
+                <label for="creditCard">＊ 卡號</label>
                 <ErrorMessage name="信用卡號" class="invalid-feedback"></ErrorMessage>
               </div>
               <div class="form-floating mb-3">
@@ -131,7 +131,7 @@
                   rules="required|min:2|max:16"
                   v-model="userData.payment.cardName"
                 ></VeeField>
-                <label for="cardName">持卡人姓名</label>
+                <label for="cardName">＊ 持卡人姓名</label>
                 <ErrorMessage name="持卡人姓名" class="invalid-feedback"></ErrorMessage>
               </div>
               <div class="form-floating mb-3">
@@ -145,7 +145,7 @@
                   :rules="isDateFormat"
                   v-model="userData.payment.cardExpiration"
                 ></VeeField>
-                <label for="cardExpiration">有效日期 (MMYY)</label>
+                <label for="cardExpiration">＊ 有效日期 (MMYY)</label>
                 <ErrorMessage name="有效日期" class="invalid-feedback"></ErrorMessage>
               </div>
               <div class="form-floating mb-3">
@@ -159,7 +159,7 @@
                   :rules="isSecurityCode"
                   v-model="userData.payment.secureCode"
                 ></VeeField>
-                <label for="secureCode">安全碼</label>
+                <label for="secureCode">＊ 安全碼</label>
                 <ErrorMessage name="安全碼" class="invalid-feedback"></ErrorMessage>
               </div>
             </div>
@@ -216,7 +216,7 @@
                   href="#"
                   type="submit"
                   class="btn bg-primary-low fs-5 text-white py-3"
-                  :class="{'notAllow' : !checkoutAgree}"
+                  :class="{ notAllow: !checkoutAgree }"
                 >
                   確認完成並付款
                 </button>
@@ -279,22 +279,25 @@ export default {
   methods: {
     ...mapActions(userStore, ['setUser', 'cleanUser', 'getUserCookie', 'resetUserCarts']),
     doLoading() {
-      const loader = this.$loading.show({
-        props: { spinner: WineGlassLoader },
-        // Pass props by their camelCased names
-        container: this.$refs.loadingContainer,
-        canCancel: true,
-        color: '#000000',
-        loader: 'spinner',
-        width: 64,
-        height: 64,
-        backgroundColor: '#ffffff',
-        opacity: 0.5,
-        zIndex: 999
-      }, {
-        // Pass slots by their names
-        default: h('WineGlassLoader')
-      });
+      const loader = this.$loading.show(
+        {
+          props: { spinner: WineGlassLoader },
+          // Pass props by their camelCased names
+          container: this.$refs.loadingContainer,
+          canCancel: true,
+          color: '#000000',
+          loader: 'spinner',
+          width: 64,
+          height: 64,
+          backgroundColor: '#ffffff',
+          opacity: 0.5,
+          zIndex: 999
+        },
+        {
+          // Pass slots by their names
+          default: h('WineGlassLoader')
+        }
+      );
       loader.hide();
     },
     setLoadingTime() {
@@ -357,8 +360,7 @@ export default {
                 icon: 'success'
               });
             })
-            .catch(() => {
-            });
+            .catch(() => {});
         } else {
           product.qty = 1;
         }
@@ -372,8 +374,7 @@ export default {
           .then(() => {
             this.resetUserCarts();
           })
-          .catch(() => {
-          });
+          .catch(() => {});
       });
     },
     getFavoriteList() {
@@ -385,8 +386,7 @@ export default {
           this.favoriteList = res.data.filter((item) => item.userId === this.userId);
           this.checkFavoriteStatus();
         })
-        .catch(() => {
-        });
+        .catch(() => {});
     },
     checkFavoriteStatus() {
       // 遍歷所有產品，檢查它們是否在願望清單中
@@ -419,8 +419,7 @@ export default {
             icon: 'success'
           });
         })
-        .catch(() => {
-        });
+        .catch(() => {});
     },
     toggleFavorite(product) {
       // 檢查產品是否在最愛清單中
@@ -447,8 +446,7 @@ export default {
         .then((res) => {
           this.getFavoriteList();
         })
-        .catch(() => {
-        });
+        .catch(() => {});
     },
     applyFreeShippingCoupon() {
       const url = `${VITE_API_URL}/coupons`;

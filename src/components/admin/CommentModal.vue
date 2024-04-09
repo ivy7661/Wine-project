@@ -7,7 +7,7 @@
     aria-labelledby="commentModalLabel"
     aria-hidden="true"
   >
-    <div class="modal-dialog modal-xl">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content border-0">
         <div class="modal-header bg-dark text-white">
           <h5 id="commentModalLabel" class="modal-title">

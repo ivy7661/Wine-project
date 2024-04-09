@@ -5,14 +5,14 @@
       <img :src="headerLine" alt="header line" />
     </div>
     <div class="text-end mt-4">
-      <button class="btn btn-primary" @click="openModal('new')">建立新的產品</button>
+      <button class="btn btn-primary" @click="openModal('new')">建立新商品</button>
     </div>
     <div class="row">
       <table class="table mt-4 mx-2">
         <thead class="table-light">
           <tr>
             <th width="120">分類</th>
-            <th width="300">產品名稱</th>
+            <th width="300">商品名稱</th>
             <th width="120">售價</th>
             <th width="120" class="text-center">編輯</th>
           </tr>
@@ -24,18 +24,10 @@
             <td>{{ item.price }}</td>
             <td class="text-center">
               <div class="btn-group">
-                <button
-                  type="button"
-                  class="btn btn-outline-primary btn-sm"
-                  @click="openModal('edit', item)"
-                >
+                <button type="button" class="btn btn-outline-primary btn-sm" @click="openModal('edit', item)">
                   編輯
                 </button>
-                <button
-                  type="button"
-                  class="btn btn-outline-danger btn-sm"
-                  @click="openModal('delete', item)"
-                >
+                <button type="button" class="btn btn-outline-danger btn-sm" @click="openModal('delete', item)">
                   刪除
                 </button>
               </div>
@@ -46,20 +38,15 @@
     </div>
   </div>
   <!-- Modal -->
-  <Product-Modal
-    :temp-product="tempProduct"
-    :update-product="updateProduct"
-    :is-New="isNew"
-    ref="pModal"
-  ></Product-Modal>
+  <ProductModal :temp-product="tempProduct" :update-product="updateProduct" :is-New="isNew" ref="pModal" />
   <!-- 刪除 -->
-  <Del-Modal :temp-product="tempProduct" :del-product="delProduct" ref="delModal"></Del-Modal>
+  <DelModal :temp-product="tempProduct" :del-product="delProduct" ref="delModal" />
 </template>
 
 <script>
 import axios from 'axios';
-import ProductModal from '../../components/admin/ProductModal.vue';
-import DelModal from '../../components/admin/DelModal.vue';
+import ProductModal from '@/components/admin/ProductModal.vue';
+import DelModal from '@/components/admin/DelModal.vue';
 import headerLine from '@/assets/icons/svg/header_line.svg';
 import Alert from '@/utils/swal.js';
 
@@ -133,12 +120,17 @@ export default {
 
       axios[http](url, this.newProduct)
         .then((res) => {
-          alert('新增/修改成功');
+          if (!this.isNew) {
+            Alert.toastTop('success', '編輯成功');
+          } else {
+            Alert.toastTop('success', '新增成功');
+            this.$refs.pModal.resetForm();
+          }
           this.getData();
           this.$refs.pModal.closeModal();
         })
         .catch(() => {
-          alert('新增/修改失敗');
+          Alert.toastTop('error', '編輯失敗');
         });
     },
     openModal(status, item) {
@@ -197,19 +189,24 @@ export default {
     width: 100%;
   }
 }
+
 th,
 td {
   padding: 8px 30px;
 }
+
 tr:first-child th:first-child {
   border-top-left-radius: 5px;
 }
+
 tr:last-child td:first-child {
   border-bottom-left-radius: 5px;
 }
+
 tr:first-child th:last-child {
   border-top-right-radius: 5px;
 }
+
 tr:last-child td:last-child {
   border-bottom-right-radius: 5px;
 }

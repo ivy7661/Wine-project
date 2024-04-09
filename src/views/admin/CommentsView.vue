@@ -25,20 +25,12 @@
               </p>
             </td>
             <td class="text-center">
-              <button
-                type="button"
-                class="btn btn-outline-primary btn-sm"
-                @click="openModal('detail', comment)"
-              >
+              <button type="button" class="btn btn-outline-primary btn-sm" @click="openModal('detail', comment)">
                 查看
               </button>
             </td>
             <td class="text-center">
-              <button
-                type="button"
-                class="btn btn-outline-danger btn-sm"
-                @click="openModal('delete', comment)"
-              >
+              <button type="button" class="btn btn-outline-danger btn-sm" @click="openModal('delete', comment)">
                 刪除
               </button>
             </td>
@@ -47,18 +39,14 @@
       </table>
     </div>
   </div>
-  <Comment-Modal :temp-comment="tempComment" ref="commentModal"></Comment-Modal>
-  <Del-Comment-Modal
-    :temp-comment="tempComment"
-    :del-comment="delComment"
-    ref="delCommentModal"
-  ></Del-Comment-Modal>
+  <CommentModal :temp-comment="tempComment" ref="commentModal" />
+  <DelCommentModal :temp-comment="tempComment" :del-comment="delComment" ref="delCommentModal" />
 </template>
 
 <script>
 import axios from 'axios';
-import CommentModal from '../../components/admin/CommentModal.vue';
-import DelCommentModal from '../../components/admin/DelCommentModal.vue';
+import CommentModal from '@/components/admin/CommentModal.vue';
+import DelCommentModal from '@/components/admin/DelCommentModal.vue';
 import headerLine from '@/assets/icons/svg/header_line.svg';
 import Alert from '@/utils/swal.js';
 
@@ -126,6 +114,7 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 .header-line {
   display: flex;
   justify-content: left;
@@ -134,19 +123,24 @@ export default {
     width: 100%;
   }
 }
+
 th,
 td {
   padding: 8px 30px;
 }
+
 tr:first-child th:first-child {
   border-top-left-radius: 5px;
 }
+
 tr:last-child td:first-child {
   border-bottom-left-radius: 5px;
 }
+
 tr:first-child th:last-child {
   border-top-right-radius: 5px;
 }
+
 tr:last-child td:last-child {
   border-bottom-right-radius: 5px;
 }
