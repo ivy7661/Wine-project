@@ -28,8 +28,6 @@
                       <template v-else>
                         <i class="bi bi-heart me-1"></i>
                       </template>
-                      <!-- <i class="bi heart position-absolute top-5 start-5"
-                        :class="{ 'bi-heart': !product.isFavorite, 'bi-heart-fill': product.isFavorite }"></i> -->
                     </a>
                     <a href="#" @click.prevent="seeProduct(product.id)">
                       <img :src="$filters.imgPath(`/images/wine_images/${product.image}.jpg`)" class="card-img-top"
