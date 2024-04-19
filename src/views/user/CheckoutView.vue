@@ -9,36 +9,18 @@
       <h2 class="pb-5 text-white container">填寫訂單資訊</h2>
     </div>
     <div class="container pb-5">
-      <img src="/images/footerContainer.png" class="w-100 mb-5"  alt="line"/>
+      <img src="/images/footerContainer.png" class="w-100 mb-5" alt="line" />
       <div class="progress mb-5 fs-5" role="progressbar" aria-label="Animated striped example">
-        <div
-          class="progress-bar bg-primary"
-          role="progressbar"
-          style="width: 33%"
-          aria-valuenow="33"
-          aria-valuemin="0"
-          aria-valuemax="100"
-        >
+        <div class="progress-bar bg-primary" role="progressbar" style="width: 33%" aria-valuenow="33" aria-valuemin="0"
+          aria-valuemax="100">
           確認購物車
         </div>
-        <div
-          class="progress-bar bg-primary progress-bar-striped progress-bar-animated"
-          role="progressbar"
-          style="width: 33%"
-          aria-valuenow="33"
-          aria-valuemin="0"
-          aria-valuemax="100"
-        >
+        <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated" role="progressbar"
+          style="width: 33%" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100">
           填寫資料
         </div>
-        <div
-          class="progress-bar bg-secondary"
-          role="progressbar"
-          style="width: 34%"
-          aria-valuenow="34"
-          aria-valuemin="0"
-          aria-valuemax="100"
-        >
+        <div class="progress-bar bg-secondary" role="progressbar" style="width: 34%" aria-valuenow="34"
+          aria-valuemin="0" aria-valuemax="100">
           完成訂單
         </div>
       </div>
@@ -48,119 +30,63 @@
             <h4 class="pb-4">1. 收件者資訊</h4>
             <div class="pb-5">
               <div class="form-floating mb-3">
-                <VeeField
-                  id="customerName"
-                  name="姓名"
-                  type="text"
-                  class="form-control"
-                  :class="{ 'is-invalid': errors['姓名'] }"
-                  placeholder="請輸入名稱"
-                  rules="required|min:2|max:16"
-                  v-model="userData.user.customerName"
-                />
+                <VeeField id="customerName" name="姓名" type="text" class="form-control"
+                  :class="{ 'is-invalid': errors['姓名'] }" placeholder="請輸入名稱" rules="required|min:2|max:16"
+                  v-model="userData.user.customerName" />
                 <label for="username">＊ 姓名</label>
-                <ErrorMessage name="姓名" class="invalid-feedback"></ErrorMessage>
+                <ErrorMessage name="姓名" class="invalid-feedback" />
               </div>
               <div class="form-floating mb-3">
-                <VeeField
-                  id="customerAddress"
-                  name="地址"
-                  type="text"
-                  class="form-control"
-                  :class="{ 'is-invalid': errors['地址'] }"
-                  placeholder="請輸入地址"
-                  rules="required"
-                  v-model="userData.user.customerAddress"
-                ></VeeField>
+                <VeeField id="customerAddress" name="地址" type="text" class="form-control"
+                  :class="{ 'is-invalid': errors['地址'] }" placeholder="請輸入地址" rules="required"
+                  v-model="userData.user.customerAddress"></VeeField>
                 <label for="customerAddress">＊ 寄送地址</label>
-                <ErrorMessage name="地址" class="invalid-feedback"></ErrorMessage>
+                <ErrorMessage name="地址" class="invalid-feedback" />
               </div>
               <div class="form-floating mb-3">
-                <VeeField
-                  id="customerTel"
-                  name="電話"
-                  type="tel"
-                  class="form-control"
-                  :class="{ 'is-invalid': errors['電話'] }"
-                  placeholder="請輸入電話"
-                  :rules="isPhone"
-                  v-model="userData.user.customerTel"
-                ></VeeField>
+                <VeeField id="customerTel" name="電話" type="tel" class="form-control"
+                  :class="{ 'is-invalid': errors['電話'] }" placeholder="請輸入電話" :rules="isPhone"
+                  v-model="userData.user.customerTel"></VeeField>
                 <label for="customerTel">＊ 電話</label>
-                <ErrorMessage name="電話" class="invalid-feedback"></ErrorMessage>
+                <ErrorMessage name="電話" class="invalid-feedback" />
               </div>
               <div class="form-floating mb-3">
-                <VeeField
-                  id="customerEmail"
-                  name="email"
-                  type="email"
-                  class="form-control"
-                  :class="{ 'is-invalid': errors['email'] }"
-                  placeholder="請輸入 Email"
-                  rules="email|required"
-                  v-model="userData.user.customerEmail"
-                ></VeeField>
+                <VeeField id="customerEmail" name="email" type="email" class="form-control"
+                  :class="{ 'is-invalid': errors['email'] }" placeholder="請輸入 Email" rules="email|required"
+                  v-model="userData.user.customerEmail"></VeeField>
                 <label for="customerEmail">＊ 電子郵件</label>
-                <ErrorMessage name="email" class="invalid-feedback"></ErrorMessage>
+                <ErrorMessage name="email" class="invalid-feedback" />
               </div>
             </div>
             <h4 class="pb-4">2. 付款資訊</h4>
             <div class="pb-5">
               <div class="form-floating mb-3">
-                <VeeField
-                  id="creditCard"
-                  name="信用卡號"
-                  type="text"
-                  class="form-control"
-                  :class="{ 'is-invalid': errors['信用卡號'] }"
-                  placeholder="請輸入信用卡號"
-                  :rules="isCreditCard"
-                  v-model="userData.payment.creditCard"
-                ></VeeField>
+                <VeeField id="creditCard" name="信用卡號" type="text" class="form-control"
+                  :class="{ 'is-invalid': errors['信用卡號'] }" placeholder="請輸入信用卡號" :rules="isCreditCard"
+                  v-model="userData.payment.creditCard"></VeeField>
                 <label for="creditCard">＊ 卡號</label>
-                <ErrorMessage name="信用卡號" class="invalid-feedback"></ErrorMessage>
+                <ErrorMessage name="信用卡號" class="invalid-feedback" />
               </div>
               <div class="form-floating mb-3">
-                <VeeField
-                  id="cardName"
-                  name="持卡人姓名"
-                  type="text"
-                  class="form-control"
-                  :class="{ 'is-invalid': errors['持卡人姓名'] }"
-                  placeholder="請輸入持卡人姓名"
-                  rules="required|min:2|max:16"
-                  v-model="userData.payment.cardName"
-                ></VeeField>
+                <VeeField id="cardName" name="持卡人姓名" type="text" class="form-control"
+                  :class="{ 'is-invalid': errors['持卡人姓名'] }" placeholder="請輸入持卡人姓名" rules="required|min:2|max:16"
+                  v-model="userData.payment.cardName"></VeeField>
                 <label for="cardName">＊ 持卡人姓名</label>
-                <ErrorMessage name="持卡人姓名" class="invalid-feedback"></ErrorMessage>
+                <ErrorMessage name="持卡人姓名" class="invalid-feedback" />
               </div>
               <div class="form-floating mb-3">
-                <VeeField
-                  id="cardExpiration"
-                  name="有效日期"
-                  type="text"
-                  class="form-control"
-                  :class="{ 'is-invalid': errors['有效日期'] }"
-                  placeholder="請輸入有效日期 (MM/YY)"
-                  :rules="isDateFormat"
-                  v-model="userData.payment.cardExpiration"
-                ></VeeField>
+                <VeeField id="cardExpiration" name="有效日期" type="text" class="form-control"
+                  :class="{ 'is-invalid': errors['有效日期'] }" placeholder="請輸入有效日期 (MM/YY)" :rules="isDateFormat"
+                  v-model="userData.payment.cardExpiration"></VeeField>
                 <label for="cardExpiration">＊ 有效日期 (MMYY)</label>
-                <ErrorMessage name="有效日期" class="invalid-feedback"></ErrorMessage>
+                <ErrorMessage name="有效日期" class="invalid-feedback" />
               </div>
               <div class="form-floating mb-3">
-                <VeeField
-                  id="secureCode"
-                  name="安全碼"
-                  type="number"
-                  class="form-control"
-                  :class="{ 'is-invalid': errors['安全碼'] }"
-                  placeholder="請輸入三位數的安全碼"
-                  :rules="isSecurityCode"
-                  v-model="userData.payment.secureCode"
-                ></VeeField>
+                <VeeField id="secureCode" name="安全碼" type="number" class="form-control"
+                  :class="{ 'is-invalid': errors['安全碼'] }" placeholder="請輸入三位數的安全碼" :rules="isSecurityCode"
+                  v-model="userData.payment.secureCode"></VeeField>
                 <label for="secureCode">＊ 安全碼</label>
-                <ErrorMessage name="安全碼" class="invalid-feedback"></ErrorMessage>
+                <ErrorMessage name="安全碼" class="invalid-feedback" />
               </div>
             </div>
           </div>
@@ -192,32 +118,19 @@
                     <p class="card-text text-danger fs-4">NT$ {{ calculateTotalPrice }} 元</p>
                   </div>
                   <div class="form-check mb-3">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      v-model="eighteenPlusAgree"
-                      id="eighteenPlusAgree"
-                    />
+                    <input class="form-check-input" type="checkbox" v-model="eighteenPlusAgree"
+                      id="eighteenPlusAgree" />
                     <label class="form-check-label" for="eighteenPlusAgree"> 我已年滿18歲 </label>
                   </div>
                   <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      v-model="privacyAgree"
-                      id="privacyAgree"
-                    />
+                    <input class="form-check-input" type="checkbox" v-model="privacyAgree" id="privacyAgree" />
                     <label class="form-check-label" for="privacyAgree">
                       我同意服務及隱私權條款
                     </label>
                   </div>
                 </div>
-                <button
-                  href="#"
-                  type="submit"
-                  class="btn bg-primary-low fs-5 text-white py-3"
-                  :class="{ notAllow: !checkoutAgree }"
-                >
+                <button href="#" type="submit" class="btn bg-primary-low fs-5 text-white py-3"
+                  :class="{ notAllow: !checkoutAgree }">
                   確認完成並付款
                 </button>
               </div>
@@ -315,7 +228,7 @@ export default {
           this.cartAll = res.data;
           this.cart = res.data.filter((item) => item.userId === this.userId);
         })
-        .catch(() => {});
+        .catch(() => { });
     },
     updateCartQty(product) {
       const url = `${VITE_API_URL}/carts`;
@@ -330,7 +243,7 @@ export default {
           .then((res) => {
             this.resetUserCarts();
           })
-          .catch(() => {});
+          .catch(() => { });
       }
     },
     deleteCartItem(product) {
@@ -360,7 +273,7 @@ export default {
                 icon: 'success'
               });
             })
-            .catch(() => {});
+            .catch(() => { });
         } else {
           product.qty = 1;
         }
@@ -374,7 +287,7 @@ export default {
           .then(() => {
             this.resetUserCarts();
           })
-          .catch(() => {});
+          .catch(() => { });
       });
     },
     getFavoriteList() {
@@ -386,7 +299,7 @@ export default {
           this.favoriteList = res.data.filter((item) => item.userId === this.userId);
           this.checkFavoriteStatus();
         })
-        .catch(() => {});
+        .catch(() => { });
     },
     checkFavoriteStatus() {
       // 遍歷所有產品，檢查它們是否在願望清單中
@@ -419,7 +332,7 @@ export default {
             icon: 'success'
           });
         })
-        .catch(() => {});
+        .catch(() => { });
     },
     toggleFavorite(product) {
       // 檢查產品是否在最愛清單中
@@ -446,7 +359,7 @@ export default {
         .then((res) => {
           this.getFavoriteList();
         })
-        .catch(() => {});
+        .catch(() => { });
     },
     applyFreeShippingCoupon() {
       const url = `${VITE_API_URL}/coupons`;
@@ -455,7 +368,7 @@ export default {
         .then((res) => {
           this.coupon = res.data[0];
         })
-        .catch(() => {});
+        .catch(() => { });
     },
     seeProduct(id) {
       this.$router.push({ name: 'ProductDetail', params: { id } });
@@ -566,14 +479,17 @@ export default {
 .notAllow {
   cursor: not-allowed;
 }
+
 .progress {
   height: 48px;
 }
+
 @media (max-width: 767px) {
   .progress {
     font-size: 14px;
   }
 }
+
 .heart:hover {
   color: red;
   transform: scale(1.5);
@@ -581,12 +497,15 @@ export default {
     color 0.3s ease,
     transform 0.3s ease;
 }
+
 .bg-primary-low {
   background-color: lighten(#752525, 10%);
+
   &:hover {
     background-color: #d9381e;
   }
 }
+
 .bg-checkout {
   padding-top: 90px;
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/bg1.jpg');
@@ -594,12 +513,15 @@ export default {
   background-position: center;
   background-size: cover;
 }
+
 .cartList .card {
   height: 300px;
+
   .wine_image_block {
     width: 33%;
     height: 100%;
   }
+
   .wine_image {
     width: 100%;
     height: 100%;
@@ -607,10 +529,12 @@ export default {
     background-position: center;
     background-repeat: no-repeat;
   }
+
   .card-body {
     width: 60%;
   }
 }
+
 .line {
   width: 95%;
 }
