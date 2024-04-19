@@ -1,24 +1,13 @@
 <template>
-  <div
-    id="modalOrder"
-    ref="modalOrder"
-    class="modal fade"
-    tabindex="-1"
-    aria-labelledby="orderModalLabel"
-    aria-hidden="true"
-  >
+  <div id="modalOrder" ref="modalOrder" class="modal fade" tabindex="-1" aria-labelledby="orderModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-xl" style="width: 900px">
       <div class="modal-content border-0">
         <div class="modal-header bg-dark text-white">
           <h5 id="orderModalLabel" class="modal-title">
             <span>訂單內容</span>
           </h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <div class="row">
@@ -27,13 +16,7 @@
               <div class="row">
                 <div class="col-md-2">
                   <label for="orderId" class="form-label">訂單編號</label>
-                  <input
-                    id="orderId"
-                    v-model="editOrder.id"
-                    type="text"
-                    class="form-control"
-                    readonly
-                  />
+                  <input id="orderId" v-model="editOrder.id" type="text" class="form-control" readonly />
                 </div>
 
                 <div class="col-md-3">
@@ -49,18 +32,9 @@
                 <div class="col-md-4">
                   <label class="form-check-label">帳款狀態</label>
                   <div class="form-check mt-2">
-                    <label class="form-check-label" for="is_paid" style="font-size: 16px"
-                      >已付款</label
-                    >
-                    <input
-                      id="is_paid"
-                      v-model="editOrder.is_paid"
-                      class="form-check-input"
-                      type="checkbox"
-                      :true-value="1"
-                      :false-value="0"
-                      style="height: 18px; width: 18px"
-                    />
+                    <label class="form-check-label" for="is_paid">已付款</label>
+                    <input id="is_paid" v-model="editOrder.is_paid" class="form-check-input" type="checkbox"
+                      :true-value="1" :false-value="0" style="height: 18px; width: 18px" />
                   </div>
                 </div>
               </div>
@@ -69,57 +43,27 @@
                 <h3>會員資訊</h3>
                 <div class="mb-3 col-md-2">
                   <label for="userId" class="form-label">會員編號</label>
-                  <input
-                    id="userId"
-                    v-model="editOrder.user.userId"
-                    type="text"
-                    class="form-control"
-                    readonly
-                  />
+                  <input id="userId" v-model="editOrder.user.userId" type="text" class="form-control" readonly />
                 </div>
 
                 <div class="mb-3 col-md-2">
                   <label for="name" class="form-label">名稱</label>
-                  <input
-                    id="name"
-                    v-model="editOrder.user.name"
-                    type="text"
-                    class="form-control"
-                    readonly
-                  />
+                  <input id="name" v-model="editOrder.user.name" type="text" class="form-control" readonly />
                 </div>
 
                 <div class="mb-3 col-md-2">
                   <label for="phone" class="form-label">電話</label>
-                  <input
-                    id="phone"
-                    v-model="editOrder.user.phone"
-                    type="text"
-                    class="form-control"
-                    readonly
-                  />
+                  <input id="phone" v-model="editOrder.user.phone" type="text" class="form-control" readonly />
                 </div>
 
                 <div class="mb-3 col-md-3">
                   <label for="email" class="form-label">電子信箱</label>
-                  <input
-                    id="email"
-                    v-model="editOrder.user.email"
-                    type="text"
-                    class="form-control"
-                    readonly
-                  />
+                  <input id="email" v-model="editOrder.user.email" type="text" class="form-control" readonly />
                 </div>
               </div>
               <div class="mb-3 col-md-8">
                 <label for="address" class="form-label">寄送地址</label>
-                <input
-                  id="address"
-                  v-model="editOrder.user.address"
-                  type="text"
-                  class="form-control"
-                  readonly
-                />
+                <input id="address" v-model="editOrder.user.address" type="text" class="form-control" readonly />
               </div>
               <div class="row mt-5">
                 <h3>訂購商品</h3>
@@ -205,4 +149,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.form-check>.form-check-label {
+  font-size: 16px;
+}
+</style>

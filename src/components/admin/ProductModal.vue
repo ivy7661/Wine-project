@@ -31,7 +31,7 @@
                   <VeeField id="title" v-model="editProduct.chineseName" type="text" class="form-control"
                     :class="{ 'is-invalid': errors['商品名稱'] }" placeholder="請輸入商品名稱" name="商品名稱" rules="required">
                   </VeeField>
-                  <error-message name="商品名稱" class="invalid-feedback"></error-message>
+                  <ErrorMessage name="商品名稱" class="invalid-feedback" />
                 </div>
                 <div class="mb-3">
                   <label for="engtitle" class="form-label">英文名稱
@@ -40,7 +40,7 @@
                   <VeeField id="engtitle" v-model="editProduct.englishName" type="text" class="form-control"
                     :class="{ 'is-invalid': errors['英文名稱'] }" placeholder="請輸入英文名稱" name="英文名稱" rules="required">
                   </VeeField>
-                  <error-message name="英文名稱" class="invalid-feedback"></error-message>
+                  <ErrorMessage name="英文名稱" class="invalid-feedback" />
                 </div>
                 <div class="row">
                   <div class="mb-3 col-md-4">
@@ -49,7 +49,7 @@
                     </label>
                     <VeeField id="category" v-model="editProduct.wineStyle" type="text" class="form-control"
                       :class="{ 'is-invalid': errors['分類'] }" placeholder="請輸入分類" name="分類" rules="required"></VeeField>
-                    <error-message name="分類" class="invalid-feedback"></error-message>
+                    <ErrorMessage name="分類" class="invalid-feedback" />
                   </div>
                   <div class="mb-3 col-md-4">
                     <label for="place" class="form-label">產區</label>
@@ -63,7 +63,7 @@
                     <VeeField id="price" v-model.number="editProduct.price" type="number" class="form-control"
                       :class="{ 'is-invalid': errors['售價'] }" placeholder="請輸入售價" name="售價"
                       rules="required|min_value:1"></VeeField>
-                    <error-message name="售價" class="invalid-feedback"></error-message>
+                    <ErrorMessage name="售價" class="invalid-feedback" />
                   </div>
                 </div>
                 <div class="row">
@@ -117,7 +117,7 @@
                     <VeeField id="num" v-model.number="editProduct.num" type="number" class="form-control"
                       :class="{ 'is-invalid': errors['數量'] }" placeholder="請輸入數量" name="數量"
                       rules="required|min_value:1"></VeeField>
-                    <error-message name="數量" class="invalid-feedback"></error-message>
+                    <ErrorMessage name="數量" class="invalid-feedback" />
                   </div>
                   <div class="col-md-3">
                     <label for="star" class="form-label">評分
@@ -126,7 +126,7 @@
                     <VeeField id="star" v-model.number="editProduct.star" type="number" class="form-control"
                       :class="{ 'is-invalid': errors['評分'] }" placeholder="請輸入評分" name="評分"
                       rules="required|min_value:1|max_value:5"></VeeField>
-                    <error-message name="評分" class="invalid-feedback"></error-message>
+                    <ErrorMessage name="評分" class="invalid-feedback" />
                   </div>
                   <div class="col-md-3 mt-5 mb-3">
                     <div class="form-check">
