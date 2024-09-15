@@ -1,15 +1,15 @@
 <template>
   <div>
-    <loading v-model:active="isLoading" :is-full-page="fullPage">
+    <Loading v-model:active="isLoading" :is-full-page="fullPage">
       <template #default>
         <WineGlassLoader />
       </template>
-    </loading>
+    </Loading>
     <div class=" pb-4 bg-paymentReceived">
       <h2 class="pb-5 text-white container">訂單已成立</h2>
     </div>
     <div class="container pb-5">
-      <img src="/images/footerContainer.png" class="w-100 mb-5" />
+      <img src="/images/footerContainer.png" class="w-100 mb-5"  alt="line"/>
       <div class="progress mb-5 fs-5" role="progressbar" aria-label="Animated striped example">
         <div
           class="progress-bar bg-primary"

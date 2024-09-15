@@ -1,11 +1,11 @@
 <template>
   <div>
     <div class="bg-products pb-4">
-      <loading v-model:active="isLoading" :is-full-page="fullPage">
+      <Loading v-model:active="isLoading" :is-full-page="fullPage">
         <template #default>
           <WineGlassLoader />
         </template>
-      </loading>
+      </Loading>
       <div class="container">
         <div class="row justify-content-between">
           <div class="col-lg-6">
@@ -65,68 +65,78 @@
       </div>
     </div>
     <div class="container">
-      <img src="/images/footerContainer.png" class="w-100 mb-5" />
+      <img src="/images/footerContainer.png" class="w-100 mb-5" alt="line" />
       <div class="productList pb-5 align-items-stretch">
         <div class="row mb-3 gy-3">
-          <a class="col-12 col-md-6 col-lg-4" v-for="(product, key) in sortedProducts" :key="key"  @click.prevent="seeProduct(product.id)">
-            <a href="#" class="card h-100 py-2 product_card radius-24">
-              <div class="row h-100">
+          <a
+            class="col-12 col-md-6"
+            v-for="(product, key) in sortedProducts"
+            :key="key"
+            @click.prevent="seeProduct(product.id)"
+          >
+            <a href="#" class="card h-100 p-3 product_card radius-24">
+              <div class="row h-100 d-flex">
                 <div class="col-4">
-                  <a href="#" @click.prevent.stop="toggleFavorite(product)">
-                    <i
-                      class="bi heart position-absolute top-5 start-5"
-                      :class="{
-                        'bi-heart': !product.isFavorite,
-                        'bi-heart-fill': product.isFavorite
-                      }"
-                    ></i>
-                  </a>
-                  <a href="#">
-                    <img
-                      :src="$filters.imgPath(`/images/wine_images/${product.image}.jpg`)"
-                      class="card-img-top h-100"
-                      :alt="product.chineseName"
-                    />
-                  </a>
+                  <div>
+                    <a href="#" @click.prevent.stop="toggleFavorite(product)">
+                      <i
+                        class="bi heart position-absolute top-5 start-5"
+                        :class="{
+                          'bi-heart': !product.isFavorite,
+                          'bi-heart-fill': product.isFavorite
+                        }"
+                      ></i>
+                    </a>
+                    <a href="#">
+                      <img
+                        :src="$filters.imgPath(`/images/wine_images/${product.image}.jpg`)"
+                        class="card-img-top h-100 radius-24"
+                        :alt="product.chineseName"
+                      />
+                    </a>
+                  </div>
                 </div>
                 <div class="col-8">
-                  <div class="card-body d-flex flex-column h-100 justify-content-between">
-                    <div class="mb-2">
-                      <div class="d-flex mb-1 justify-content-between">
-                        <span class="badge bg-danger mb-2" v-if="product.is_hot">熱門推薦</span>
-                        <div class="d-flex gap-1">
-                          <i
-                            class="bi bi-star-fill text-warning"
-                            v-for="star in product.star"
-                            :key="star"
-                          ></i>
+                  <div class="card-body d-flex flex-column h-100 justify-content-evenly">
+                    <div>
+                      <div class="mb-2">
+                        <h5 class="card-title flex-fill">{{ product.chineseName }}</h5>
+                        <h6 class="card-subtitle mt-2 text-secondary">{{ product.englishName }}</h6>
+                      </div>
+                    </div>
+                    <div class="d-flex mb-2 justify-content-between">
+                      <div class="d-flex gap-1">
+                        <i
+                          class="bi bi-star-fill text-warning"
+                          v-for="star in product.star"
+                          :key="star"
+                        ></i>
+                      </div>
+                    </div>
+                    <h5 class="text-primary fw-bold">$ {{ product.price }}</h5>
+                    <div class="row">
+                      <div class="col">
+                        <div class="input-group mb-3" @click.prevent.stop>
+                          <select class="form-select" v-model="product.qty">
+                            <option
+                              v-for="quantity in quantityOptions"
+                              :key="quantity"
+                              :value="quantity"
+                            >
+                              {{ quantity }}
+                            </option>
+                          </select>
                         </div>
                       </div>
-                      <div>
-                        <a href="#" class="text-black">
-                          <h5 class="card-title flex-fill">{{ product.chineseName }}</h5>
-                        </a>
-                        <p class="card-text text-primary fw-bold">$ {{ product.price }}</p>
+                      <div class="col">
+                        <a
+                          href="#"
+                          class="btn btn-primary px-3 radius-24"
+                          @click.prevent.stop="addToCart(product)"
+                          >加入購物車 <i class="bi bi-arrow-right"></i
+                        ></a>
                       </div>
                     </div>
-                    <div class="input-group mb-3" @click.prevent.stop>
-                      <span class="input-group-text">數量</span>
-                      <select
-                        class="form-select"
-                        v-model="product.qty"
-                      >
-                        <option
-                          v-for="quantity in quantityOptions"
-                          :key="quantity"
-                          :value="quantity"
-                        >
-                          {{ quantity }}
-                        </option>
-                      </select>
-                    </div>
-                    <a href="#" class="btn btn-primary w-100 radius-24" @click.prevent.stop="addToCart(product)"
-                      >加入購物車</a
-                    >
                   </div>
                 </div>
               </div>
@@ -165,7 +175,7 @@ export default {
       searchKeyword: '',
       favoriteList: [],
       allFavoriteList: [],
-      quantityOptions: [1, 2, 3, 4],
+      quantityOptions: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
       userId: '',
       isLoading: false,
       fullPage: true
@@ -211,14 +221,13 @@ export default {
         .get(url)
         .then((res) => {
           this.setLoadingTime();
-          this.products = res.data.map(product => ({
+          this.products = res.data.map((product) => ({
             ...product,
             qty: 1
           }));
           this.selectedRegionProducts = this.products.filter((product) => product.is_hot === 1);
         })
-        .catch(() => {
-        });
+        .catch(() => {});
     },
     getCartList() {
       const url = `${VITE_API_URL}/carts`;
@@ -254,8 +263,10 @@ export default {
           icon: 'question',
           showCancelButton: true,
           cancelButtonText: '取消'
-        }).then(() => {
-          this.goLogin();
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.goLogin();
+          }
         });
         return;
       }
@@ -358,8 +369,10 @@ export default {
           icon: 'question',
           showCancelButton: true,
           cancelButtonText: '取消'
-        }).then(() => {
-          this.goLogin();
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.goLogin();
+          }
         });
         return;
       }
@@ -383,8 +396,7 @@ export default {
             icon: 'success'
           });
         })
-        .catch(() => {
-        });
+        .catch(() => {});
     },
     toggleFavorite(product) {
       // 檢查產品是否在最愛清單中
@@ -405,8 +417,10 @@ export default {
           icon: 'question',
           showCancelButton: true,
           cancelButtonText: '取消'
-        }).then(() => {
-          this.goLogin();
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.goLogin();
+          }
         });
         return;
       }
@@ -423,8 +437,7 @@ export default {
         .then((res) => {
           this.getFavoriteList();
         })
-        .catch(() => {
-        });
+        .catch(() => {});
     }
   },
   computed: {
@@ -473,7 +486,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.radius-24{
+.radius-24 {
   border-radius: 24px;
 }
 .bg-products {

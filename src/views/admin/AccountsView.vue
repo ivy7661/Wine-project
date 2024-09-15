@@ -21,11 +21,7 @@
               <td>{{ user.username }}</td>
               <td>{{ user.email }}</td>
               <td class="text-center">
-                <button
-                  type="button"
-                  class="btn btn-outline-danger btn-sm"
-                  @click="openModal(user)"
-                >
+                <button type="button" class="btn btn-outline-danger btn-sm" @click="openModal(user)">
                   刪除
                 </button>
               </td>
@@ -35,12 +31,12 @@
       </div>
     </div>
   </div>
-  <Del-Account-Modal :temp-user="tempUser" :del-user="delUser" ref="delModal"></Del-Account-Modal>
+  <DelAccountModal :temp-user="tempUser" :del-user="delUser" ref="delModal" />
 </template>
 
 <script>
 import axios from 'axios';
-import DelAccountModal from '../../components/admin/DelAccountModal.vue';
+import DelAccountModal from '@/components/admin/DelAccountModal.vue';
 import headerLine from '@/assets/icons/svg/header_line.svg';
 import Alert from '@/utils/swal.js';
 
@@ -105,19 +101,24 @@ export default {
     width: 100%;
   }
 }
+
 th,
 td {
   padding: 8px 30px;
 }
+
 tr:first-child th:first-child {
   border-top-left-radius: 5px;
 }
+
 tr:last-child td:first-child {
   border-bottom-left-radius: 5px;
 }
+
 tr:first-child th:last-child {
   border-top-right-radius: 5px;
 }
+
 tr:last-child td:last-child {
   border-bottom-right-radius: 5px;
 }

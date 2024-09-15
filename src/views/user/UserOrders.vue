@@ -11,7 +11,7 @@
         <h2 class="mt-5 mb-1 fs-3 font-weight-normal fw-bold">會員 / {{ title }}</h2>
 
       </div>
-      <img src="/images/footerContainer.png" class="w-100 mt-5 mb-3" />
+      <img src="/images/footerContainer.png" class="w-100 mt-5 mb-3" alt="Footer" />
 
       <div class="col-12">
         <table class="table order-table mt-4 mx-2">

@@ -2338,15 +2338,37 @@
       "id": 8
     },
     {
-      "product_id": "16",
-      "chineseName": "雨果.戈德梅香檳.一級園 微甜香檳",
-      "image": "wine16",
-      "price": 2070,
-      "is_hot": 1,
-      "star": 3,
-      "qty": 10,
+      "product_id": "4",
+      "chineseName": "夏布利酒莊.小夏布利白酒",
+      "image": "wine4",
+      "price": 935,
+      "is_hot": 0,
+      "star": 5,
+      "qty": 8,
       "userId": 6,
-      "id": 10
+      "id": 14
+    },
+    {
+      "product_id": "1",
+      "chineseName": "開心妞香檳.特級陳釀不甜香檳",
+      "image": "wine1",
+      "price": 1275,
+      "is_hot": 0,
+      "star": 4,
+      "userId": 6,
+      "id": 15,
+      "qty": 15
+    },
+    {
+      "product_id": "27",
+      "chineseName": "侯松加西堡.侯松加西一軍紅酒",
+      "image": "wine27",
+      "price": 4980,
+      "is_hot": 1,
+      "star": 2,
+      "userId": 6,
+      "id": 16,
+      "qty": 6
     }
   ],
   "favorite": [

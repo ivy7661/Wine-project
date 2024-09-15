@@ -576,7 +576,6 @@ img {
       }
 
       .price {
-        font-family: Noto Serif TC;
         font-size: 20px;
         font-weight: 600;
         line-height: 24px;

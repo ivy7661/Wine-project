@@ -16,6 +16,7 @@
   "dependencies": {
     "@vee-validate/i18n": "^4.12.5",
     "@vee-validate/rules": "^4.12.5",
+    "animate.css": "^4.1.1",
     "axios": "^1.6.7",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",

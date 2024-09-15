@@ -16,17 +16,15 @@ import { date, currency, imgPath } from '@/utils/filters';
 import App from './App.vue';
 import router from './router';
 
-/**
- * vee-validate 設定
- */
+// vee-validate 設定
 Object.keys(AllRules).forEach((rule) => {
   defineRule(rule, AllRules[rule]);
 });
 configure({
-  generateMessage: localize({ zh_TW: zhTW }), // 載入繁體中文語系
-  validateOnInput: true // 當輸入任何內容直接進行驗證
+  generateMessage: localize({ zh_TW: zhTW }),
+  validateOnInput: true
 });
-// 設定預設語系
+
 setLocale('zh_TW');
 
 const app = createApp(App);
@@ -40,11 +38,6 @@ app.config.globalProperties.$filters = {
 app.use(createPinia());
 app.use(router);
 app.use(VueAxios, axios);
-
-// 另可全域註冊 import { LoadingPlugin } from 'vue-loading-overlay'
-// app.use(LoadingPlugin, {
-//   color: '#FF0000'
-// });
 
 app.component('VueLoading', Loading);
 app.component('VeeForm', Form);

@@ -46,16 +46,12 @@
           <div class="d-flex flex-column align-items-end">
             <ul class="footer-contact">
               <li class="pb-2">
-                <img width="24px" class="pe-2" src="/images/footerPhone.png" alt="phone" /><a
-                  href="#"
-                  >0912345678</a
-                >
+                <img width="24px" class="pe-2" src="/images/footerPhone.png" alt="phone" />
+                <a href="#">0912345678</a>
               </li>
               <li>
-                <img width="24px" class="pe-2" src="/images/footerMail.png" alt="email" /><a
-                  href="#"
-                  >vinchateau@mail.com</a
-                >
+                <img width="24px" class="pe-2" src="/images/footerMail.png" alt="email" />
+                <a href="#">vinchateau@mail.com</a>
               </li>
             </ul>
           </div>
@@ -65,16 +61,12 @@
           <div class="d-flex flex-column">
             <ul class="footer-contact-mobile mb-4">
               <li class="pb-2">
-                <img width="24px" class="pe-2" src="/images/footerPhone.png" alt="phone" /><a
-                  href="#"
-                  >0912345678</a
-                >
+                <img width="24px" class="pe-2" src="/images/footerPhone.png" alt="phone" />
+                <a href="#">0912345678</a>
               </li>
               <li>
-                <img width="24px" class="pe-2" src="/images/footerMail.png" alt="email" /><a
-                  href="#"
-                  >vinchateau@mail.com</a
-                >
+                <img width="24px" class="pe-2" src="/images/footerMail.png" alt="email" />
+                <a href="#">vinchateau@mail.com</a>
               </li>
             </ul>
           </div>
@@ -91,7 +83,7 @@
           </ul>
         </div>
       </div>
-      <img width="100%" src="/images/footerContainer.png" />
+      <img width="100%" src="/images/footerContainer.png" alt="Footer" />
       <p class="text-center copyright">Copyright © 2024 Vin Chateau</p>
     </div>
   </footer>
@@ -111,57 +103,71 @@ footer {
   background-color: #f5ebd8;
   color: #4d403c;
 }
+
 ul {
   padding-left: 0;
 }
+
 li {
   list-style: none;
 }
+
 .footer-logo {
   width: 180px;
 }
+
 .footer-page li a {
   border-left: 4px solid #752725;
   padding-left: 20px;
   font-size: 20px;
 }
+
 .footer-link {
   border-left: 4px solid #752725;
   padding-left: 20px;
   font-size: 20px;
 }
+
 .footer-social {
   padding-top: 40px;
   padding-bottom: 40px;
   gap: 20px;
+
   li {
     padding: 10px;
     background-color: #fffbf5;
     border-radius: 8px;
     transition: background-color 0.3s ease;
+
     &:hover {
       background-color: #e0e0e0;
     }
+
     i {
       font-size: 32px;
     }
   }
 }
+
 .footer-social-mobile {
   gap: 8px;
+
   li {
     padding: 10px;
     background-color: #fffbf5;
     border-radius: 8px;
     transition: background-color 0.3s ease;
+
     &:hover {
       background-color: #e0e0e0;
     }
+
     i {
       font-size: 32px;
     }
   }
 }
+
 .copyright {
   padding-top: 20px;
   font-size: 14px;

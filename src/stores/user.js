@@ -37,10 +37,7 @@ export default defineStore('userStore', {
         /(?:(?:^|.*;\s*)userToken\s*=\s*([^;]*).*$)|^.*$/,
         '$1'
       );
-      const userId = document.cookie.replace(
-        /(?:(?:^|.*;\s*)userId\s*=\s*([^;]*).*$)|^.*$/,
-        '$1'
-      );
+      const userId = document.cookie.replace(/(?:(?:^|.*;\s*)userId\s*=\s*([^;]*).*$)|^.*$/, '$1');
 
       return {
         userToken: userToken || null,
@@ -53,7 +50,8 @@ export default defineStore('userStore', {
     },
     resetUserFavorites() {
       if (this.user?.id) {
-        axios.get(`${import.meta.env.VITE_API_URL}/favorite?userId=${this.user.id}`)
+        axios
+          .get(`${import.meta.env.VITE_API_URL}/favorite?userId=${this.user.id}`)
           .then((res) => {
             this.favorites = res.data.map((data) => data.productId);
           })
@@ -64,7 +62,8 @@ export default defineStore('userStore', {
     },
     resetUserCarts() {
       if (this.user?.id) {
-        axios.get(`${import.meta.env.VITE_API_URL}/carts?userId=${this.user.id}`)
+        axios
+          .get(`${import.meta.env.VITE_API_URL}/carts?userId=${this.user.id}`)
           .then((res) => {
             this.carts = res.data;
           })
@@ -75,7 +74,9 @@ export default defineStore('userStore', {
     },
     addToCart(product) {
       if (product?.id && this.user?.id) {
-        const findCartIdx = this.carts.findIndex((cart) => cart.product_id === product.id && cart.userId === this.user.id);
+        const findCartIdx = this.carts.findIndex(
+          (cart) => cart.product_id === product.id && cart.userId === this.user.id
+        );
 
         if (findCartIdx > -1) {
           // 更新購物車數量
@@ -115,7 +116,8 @@ export default defineStore('userStore', {
             userId: parseInt(this.user.id, 10)
           };
 
-          axios.post(`${import.meta.env.VITE_API_URL}/carts`, cartData)
+          axios
+            .post(`${import.meta.env.VITE_API_URL}/carts`, cartData)
             .then((res) => {
               this.resetUserCarts();
               Swal.fire({
@@ -135,7 +137,8 @@ export default defineStore('userStore', {
       }
     },
     addToFavorite(data) {
-      axios.post(`${import.meta.env.VITE_API_URL}/favorite`, data)
+      axios
+        .post(`${import.meta.env.VITE_API_URL}/favorite`, data)
         .then((res) => {
           this.resetUserFavorites();
 

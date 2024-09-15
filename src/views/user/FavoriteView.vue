@@ -45,7 +45,7 @@
         </div>
       </div>
 
-      <dvi v-if="!getSortList.length">
+      <div v-if="!getSortList.length">
         <div class="card" @click="goToProducts">
           <div class="card-body">
             <div class="text-center">
@@ -53,7 +53,7 @@
             </div>
           </div>
         </div>
-      </dvi>
+      </div>
     </div>
   </div>
 </template>
@@ -153,14 +153,6 @@ export default {
     },
     addToUserCart(product) {
       this.addToCart(product);
-      // post http://localhost:3001/favorite
-      // {
-      //   "userId": 1,
-      //   "productId": "5",
-      //   "created_at": "2024/02/21";
-      // }
-      // get http://localhost:3001/favorite?userId=1
-      // get http://localhost:3001/favorite?userId=1&_expand=product
     },
     goToProductDetail(id) {
       this.$router.push(`/productDetail/${id}`);

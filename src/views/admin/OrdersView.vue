@@ -32,20 +32,12 @@
               <span v-else>配送中</span>
             </td>
             <td class="text-center">
-              <button
-                type="button"
-                class="btn btn-outline-primary btn-sm"
-                @click="openModal('edit', order)"
-              >
+              <button type="button" class="btn btn-outline-primary btn-sm" @click="openModal('edit', order)">
                 編輯
               </button>
             </td>
             <td class="text-center">
-              <button
-                type="button"
-                class="btn btn-outline-danger btn-sm"
-                @click="openModal('delete', order)"
-              >
+              <button type="button" class="btn btn-outline-danger btn-sm" @click="openModal('delete', order)">
                 刪除
               </button>
             </td>
@@ -54,18 +46,14 @@
       </table>
     </div>
   </div>
-  <Order-Modal ref="orderModal" :temp-order="tempOrder" :update-order="updateOrder"></Order-Modal>
-  <Del-Order-Modal
-    ref="delOrderModal"
-    :temp-order="tempOrder"
-    :del-order="delOrder"
-  ></Del-Order-Modal>
+  <OrderModal ref="orderModal" :temp-order="tempOrder" :update-order="updateOrder" />
+  <DelOrderModal ref="delOrderModal" :temp-order="tempOrder" :del-order="delOrder" />
 </template>
 
 <script>
 import axios from 'axios';
-import OrderModal from '../../components/admin/OrderModal.vue';
-import DelOrderModal from '../../components/admin/DelOrderModal.vue';
+import OrderModal from '@/components/admin/OrderModal.vue';
+import DelOrderModal from '@/components/admin/DelOrderModal.vue';
 import headerLine from '@/assets/icons/svg/header_line.svg';
 import Alert from '@/utils/swal.js';
 
@@ -149,19 +137,24 @@ export default {
     width: 100%;
   }
 }
+
 th,
 td {
   padding: 8px 30px;
 }
+
 tr:first-child th:first-child {
   border-top-left-radius: 5px;
 }
+
 tr:last-child td:first-child {
   border-bottom-left-radius: 5px;
 }
+
 tr:first-child th:last-child {
   border-top-right-radius: 5px;
 }
+
 tr:last-child td:last-child {
   border-bottom-right-radius: 5px;
 }
