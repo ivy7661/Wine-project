@@ -20,7 +20,6 @@
             </RouterLink>
           </div>
         </div>
-        <p>Test123</p>
 
         <div class="news-md-image d-lg-none d-flex justify-content-center">
           <div class="bg-slider"></div>
